@@ -1,0 +1,10 @@
+gate_file,exists,touches_nuts,unaffected
+predictx/gate_clinical_classification_f.py,True,False,True
+predictx/gate_fvc_correction_f.py,True,False,True
+predictx/gate_offset_lungsize_f.py,True,True,False
+predictx/gate_truncation_recovery_f.py,True,True,False
+predictx/gate_reproducibility_volume_f.py,True,True,False
+predictx/gate_estimand_hybrid_f.py,True,True,False
+predictx/gate23_f.py,True,False,True
+predictx/gate3_f_rerun.py,True,False,True
+predictx/gate_model_vs_observed_f.py,True,True,False

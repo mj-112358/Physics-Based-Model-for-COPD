@@ -1,0 +1,30 @@
+{
+  "verdict": "RECOVERY-HELPS",
+  "c1_dropped_n": 15,
+  "recovered_plausible_n": 14,
+  "coverage": {
+    "denominator": 129,
+    "old_confident_rate": 0.8837209302325582,
+    "old_flag_rate": 0.11627906976744186,
+    "new_confident_rate": 0.9922480620155039,
+    "new_flag_rate": 0.007751937984496124,
+    "new_residual_confident_fn_rate": 0.015503875968992248,
+    "recovered_n": 14,
+    "recovered_obstructed_n": 14,
+    "recovered_normal_n": 0,
+    "sentence": "After multi-start recovery, the system produces a confident call for 99.2% of severe+moderate obstructed participants and recommends repeat/FLAG for 0.8%, with residual confident false-negative rate 1.6%."
+  },
+  "gli_diagnosis": {
+    "row_type": "part_c_c2_gli_diagnosis",
+    "test_n": 563,
+    "gli_valid_n": 562,
+    "gli_lln_median": 0.6966215873491379,
+    "gli_lln_iqr_low": 0.65831208170996,
+    "gli_lln_iqr_high": 0.7409416665674032,
+    "gli_obstructed_n": 220,
+    "gli_obstructed_near_threshold_fraction": 0.4772727272727273,
+    "fixed_obstructed_n": 313,
+    "fixed_obstructed_near_threshold_fraction": 0.5175718849840255,
+    "explains_gap": false
+  }
+}

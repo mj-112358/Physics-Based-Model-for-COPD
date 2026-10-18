@@ -1,0 +1,489 @@
+{
+  "verdict": "WORKFLOW-RECOVERED",
+  "verdict_reason": "held-out severe accepted-normal FN is zero, borderline accepted-normal FN is <=0.10, and normal non-accept burden is <=0.35.",
+  "seed": 20260710,
+  "bootstrap_n": 2000,
+  "c1_offset_from_existing_policy": 0.008637018273988883,
+  "inputs": [
+    {
+      "artifact": "results/gate_policy_calibrated_flag_F_rows.csv",
+      "rows": 1125,
+      "role": "bias-corrected selected-maneuver policy sample"
+    },
+    {
+      "artifact": "results/gate_reproducibility_volume_F_rows.csv",
+      "rows": 30593,
+      "role": "cross-maneuver repeatability and stopping proxy"
+    }
+  ],
+  "protocol_decisions": [
+    "Cycle F is the first workflow target because the existing calibrated policy artifacts are strongest there.",
+    "The headline evaluation uses held-out TEST rows from the existing policy gate; all rows are reported secondarily.",
+    "No NUTS, SNPE, posterior draws, refits, threshold movement, or dashboard code is used.",
+    "Only ACCEPT_NORMAL is counted as a false-negative workflow failure for obstructed truth; repeat/referral/unusable are safe non-final actions.",
+    "Predicted severe-range corrected ratio <0.50 is routed to referral instead of accepted as a routine obstructed call.",
+    "Borderline corrected ratios in [0.60,0.72), raw/corrected threshold disagreement, and ATS-truncated normal calls are routed to repeat.",
+    "Repeated-maneuver instability near the decision boundary routes to referral/unstable rather than a confident diagnosis.",
+    "The stopping audit is explicitly a deterministic stability proxy, not Bayesian expected information gain."
+  ],
+  "workflow_metrics": {
+    "heldout_test": {
+      "scope": "heldout_test",
+      "n": 563,
+      "rates": {
+        "accepted_normal_fn_all_obstructed": {
+          "metric": "accepted_normal_fn_all_obstructed",
+          "numerator": 9,
+          "denominator": 313,
+          "rate": 0.02875399361022364,
+          "ci_low": 0.013230710295627758,
+          "ci_high": 0.053880472598473624
+        },
+        "accepted_normal_fn_severe": {
+          "metric": "accepted_normal_fn_severe",
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.2059072142078227
+        },
+        "accepted_normal_fn_moderate": {
+          "metric": "accepted_normal_fn_moderate",
+          "numerator": 1,
+          "denominator": 47,
+          "rate": 0.02127659574468085,
+          "ci_low": 0.0005385317053423146,
+          "ci_high": 0.11293771714640011
+        },
+        "accepted_normal_fn_borderline": {
+          "metric": "accepted_normal_fn_borderline",
+          "numerator": 8,
+          "denominator": 250,
+          "rate": 0.032,
+          "ci_low": 0.01391461154874382,
+          "ci_high": 0.062076697374870406
+        },
+        "normal_non_accept_burden": {
+          "metric": "normal_non_accept_burden",
+          "numerator": 59,
+          "denominator": 250,
+          "rate": 0.236,
+          "ci_low": 0.18477729873144408,
+          "ci_high": 0.2935992449291608
+        },
+        "final_diagnostic_call_rate": {
+          "metric": "final_diagnostic_call_rate",
+          "numerator": 255,
+          "denominator": 563,
+          "rate": 0.45293072824156305,
+          "ci_low": 0.4112653210771061,
+          "ci_high": 0.4950925123386774
+        },
+        "repeat_referral_unusable_rate": {
+          "metric": "repeat_referral_unusable_rate",
+          "numerator": 308,
+          "denominator": 563,
+          "rate": 0.5470692717584369,
+          "ci_low": 0.5049074876613227,
+          "ci_high": 0.5887346789228939
+        }
+      },
+      "decision_counts": [
+        {
+          "decision": "ACCEPT_NORMAL",
+          "n": 200,
+          "fraction": 0.3552397868561279
+        },
+        {
+          "decision": "ACCEPT_OBSTRUCTED",
+          "n": 29,
+          "fraction": 0.05150976909413854
+        },
+        {
+          "decision": "BORDERLINE_REPEAT",
+          "n": 165,
+          "fraction": 0.29307282415630553
+        },
+        {
+          "decision": "TRUNCATED_RECOVERED",
+          "n": 26,
+          "fraction": 0.046181172291296625
+        },
+        {
+          "decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 143,
+          "fraction": 0.2539964476021314
+        },
+        {
+          "decision": "UNUSABLE",
+          "n": 0,
+          "fraction": 0.0
+        }
+      ],
+      "final_confusion_fixed_0p70": {
+        "n": 255,
+        "tp": 50,
+        "tn": 191,
+        "fp": 5,
+        "fn": 9,
+        "sensitivity": 0.847457627118644,
+        "specificity": 0.9744897959183674,
+        "agreement": 0.9450980392156862,
+        "cohens_kappa": 0.8418954827280778
+      },
+      "severity_decision_counts": [
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "ACCEPT_NORMAL",
+          "n": 8
+        },
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "ACCEPT_OBSTRUCTED",
+          "n": 3
+        },
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "BORDERLINE_REPEAT",
+          "n": 127
+        },
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 100
+        },
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "TRUNCATED_RECOVERED",
+          "n": 12
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "ACCEPT_NORMAL",
+          "n": 1
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "ACCEPT_OBSTRUCTED",
+          "n": 25
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "BORDERLINE_REPEAT",
+          "n": 3
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 10
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "TRUNCATED_RECOVERED",
+          "n": 8
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "ACCEPT_NORMAL",
+          "n": 191
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "ACCEPT_OBSTRUCTED",
+          "n": 1
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "BORDERLINE_REPEAT",
+          "n": 35
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 19
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "TRUNCATED_RECOVERED",
+          "n": 4
+        },
+        {
+          "truth_severity": "severe",
+          "workflow_decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 14
+        },
+        {
+          "truth_severity": "severe",
+          "workflow_decision": "TRUNCATED_RECOVERED",
+          "n": 2
+        }
+      ]
+    },
+    "all_policy_rows": {
+      "scope": "all_policy_rows",
+      "n": 1125,
+      "rates": {
+        "accepted_normal_fn_all_obstructed": {
+          "metric": "accepted_normal_fn_all_obstructed",
+          "numerator": 14,
+          "denominator": 625,
+          "rate": 0.0224,
+          "ci_low": 0.012299125126416476,
+          "ci_high": 0.037298022808497304
+        },
+        "accepted_normal_fn_severe": {
+          "metric": "accepted_normal_fn_severe",
+          "numerator": 0,
+          "denominator": 31,
+          "rate": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.11218874692236996
+        },
+        "accepted_normal_fn_moderate": {
+          "metric": "accepted_normal_fn_moderate",
+          "numerator": 2,
+          "denominator": 94,
+          "rate": 0.02127659574468085,
+          "ci_low": 0.002587161113393486,
+          "ci_high": 0.07475176597758047
+        },
+        "accepted_normal_fn_borderline": {
+          "metric": "accepted_normal_fn_borderline",
+          "numerator": 12,
+          "denominator": 500,
+          "rate": 0.024,
+          "ci_low": 0.01246123905955567,
+          "ci_high": 0.04154761879968625
+        },
+        "normal_non_accept_burden": {
+          "metric": "normal_non_accept_burden",
+          "numerator": 115,
+          "denominator": 500,
+          "rate": 0.23,
+          "ci_low": 0.1938019682595219,
+          "ci_high": 0.2694251668461727
+        },
+        "final_diagnostic_call_rate": {
+          "metric": "final_diagnostic_call_rate",
+          "numerator": 506,
+          "denominator": 1125,
+          "rate": 0.4497777777777778,
+          "ci_low": 0.4204275405023836,
+          "ci_high": 0.4793912909009575
+        },
+        "repeat_referral_unusable_rate": {
+          "metric": "repeat_referral_unusable_rate",
+          "numerator": 619,
+          "denominator": 1125,
+          "rate": 0.5502222222222222,
+          "ci_low": 0.5206087090990426,
+          "ci_high": 0.5795724594976163
+        }
+      },
+      "decision_counts": [
+        {
+          "decision": "ACCEPT_NORMAL",
+          "n": 399,
+          "fraction": 0.3546666666666667
+        },
+        {
+          "decision": "ACCEPT_OBSTRUCTED",
+          "n": 61,
+          "fraction": 0.05422222222222222
+        },
+        {
+          "decision": "BORDERLINE_REPEAT",
+          "n": 338,
+          "fraction": 0.30044444444444446
+        },
+        {
+          "decision": "TRUNCATED_RECOVERED",
+          "n": 46,
+          "fraction": 0.04088888888888889
+        },
+        {
+          "decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 281,
+          "fraction": 0.24977777777777777
+        },
+        {
+          "decision": "UNUSABLE",
+          "n": 0,
+          "fraction": 0.0
+        }
+      ],
+      "final_confusion_fixed_0p70": {
+        "n": 506,
+        "tp": 96,
+        "tn": 385,
+        "fp": 11,
+        "fn": 14,
+        "sensitivity": 0.8727272727272727,
+        "specificity": 0.9722222222222222,
+        "agreement": 0.950592885375494,
+        "cohens_kappa": 0.8533537362917621
+      },
+      "severity_decision_counts": [
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "ACCEPT_NORMAL",
+          "n": 12
+        },
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "ACCEPT_OBSTRUCTED",
+          "n": 7
+        },
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "BORDERLINE_REPEAT",
+          "n": 265
+        },
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 195
+        },
+        {
+          "truth_severity": "mild_0.60_0.70",
+          "workflow_decision": "TRUNCATED_RECOVERED",
+          "n": 21
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "ACCEPT_NORMAL",
+          "n": 2
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "ACCEPT_OBSTRUCTED",
+          "n": 47
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "BORDERLINE_REPEAT",
+          "n": 7
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 23
+        },
+        {
+          "truth_severity": "moderate",
+          "workflow_decision": "TRUNCATED_RECOVERED",
+          "n": 15
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "ACCEPT_NORMAL",
+          "n": 385
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "ACCEPT_OBSTRUCTED",
+          "n": 3
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "BORDERLINE_REPEAT",
+          "n": 66
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 38
+        },
+        {
+          "truth_severity": "normal",
+          "workflow_decision": "TRUNCATED_RECOVERED",
+          "n": 8
+        },
+        {
+          "truth_severity": "severe",
+          "workflow_decision": "ACCEPT_OBSTRUCTED",
+          "n": 4
+        },
+        {
+          "truth_severity": "severe",
+          "workflow_decision": "REFER_SEVERE_OR_UNSTABLE",
+          "n": 25
+        },
+        {
+          "truth_severity": "severe",
+          "workflow_decision": "TRUNCATED_RECOVERED",
+          "n": 2
+        }
+      ]
+    }
+  },
+  "heldout_bootstrap": {
+    "accepted_normal_fn_all_obstructed": {
+      "n": 313,
+      "point": 0.02875399361022364,
+      "ci_low": 0.012779552715654952,
+      "ci_high": 0.04792332268370607,
+      "bootstrap_n": 2000
+    },
+    "accepted_normal_fn_borderline": {
+      "n": 250,
+      "point": 0.032,
+      "ci_low": 0.012,
+      "ci_high": 0.056,
+      "bootstrap_n": 2000
+    },
+    "normal_non_accept_burden": {
+      "n": 250,
+      "point": 0.236,
+      "ci_low": 0.184,
+      "ci_high": 0.288,
+      "bootstrap_n": 2000
+    },
+    "final_diagnostic_call_rate": {
+      "n": 563,
+      "point": 0.45293072824156305,
+      "ci_low": 0.41207815275310833,
+      "ci_high": 0.4937833037300178,
+      "bootstrap_n": 2000
+    }
+  },
+  "stopping_simulation": {
+    "method": "deterministic stopping proxy, not Bayesian EIG",
+    "participants_simulated": 6664,
+    "participants_with_at_least_3_maneuvers": 6389,
+    "mean_stop_k_all": 1.8161764705882353,
+    "mean_stop_k_eligible_3": 1.8328376897793082,
+    "mean_maneuvers_saved_vs_3_eligible_3": 1.1671623102206918,
+    "decision_counts_all": {
+      "ACCEPT_NORMAL": 5004,
+      "BORDERLINE_REPEAT": 1206,
+      "REFER_SEVERE_OR_UNSTABLE": 291,
+      "ACCEPT_OBSTRUCTED": 162,
+      "UNUSABLE": 1
+    },
+    "accepted_normal_fn_all_obstructed": {
+      "metric": "stopping_accepted_normal_fn_all_obstructed",
+      "numerator": 16,
+      "denominator": 597,
+      "rate": 0.02680067001675042,
+      "ci_low": 0.015394794818390473,
+      "ci_high": 0.043158456095646454
+    },
+    "accepted_normal_fn_severe": {
+      "metric": "stopping_accepted_normal_fn_severe",
+      "numerator": 0,
+      "denominator": 25,
+      "rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.1371851715307125
+    },
+    "normal_non_accept_burden": {
+      "metric": "stopping_normal_non_accept_burden",
+      "numerator": 1079,
+      "denominator": 6067,
+      "rate": 0.17784737102357012,
+      "ci_low": 0.168299668958287,
+      "ci_high": 0.1877058474072214
+    }
+  }
+}

@@ -1,0 +1,716 @@
+{
+  "seed": 20260710,
+  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_loaded_rows": 36421,
+  "parse_error_count": 45,
+  "baseline": {
+    "gate2": {
+      "n": 7079,
+      "median_abs_fev1_pct": 2.908327132804675,
+      "median_abs_fvc_pct": 3.5273255813953415,
+      "median_signed_fev1_pct": -2.885889141458292,
+      "median_signed_fvc_pct": -3.489326433958947
+    },
+    "clinical_fixed": {
+      "n": 414,
+      "tp": 112,
+      "tn": 287,
+      "fp": 13,
+      "fn": 2,
+      "sensitivity": 0.9824561403508771,
+      "specificity": 0.9566666666666667,
+      "agreement": 0.9637681159420289,
+      "cohens_kappa": 0.9118473724554977
+    },
+    "truncation_hardening_verdict": {
+      "verdict": "TRUNCATION-QUALIFIED",
+      "reason": "recovery survives field-realistic truncation, but at least one robustness condition is weaker or denominator-limited.",
+      "field_direct_fn": 0.42696629213483145,
+      "field_e1_fn": 0.06741573033707865,
+      "field_h1_fn": 0.07303370786516854,
+      "clean_T2_T3_difference_cis_exclude_zero": true,
+      "field_all_difference_cis_exclude_zero": true,
+      "field_recovery_concentrates_in_severe_moderate": false
+    },
+    "severe_recovery": [
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "2",
+        "truth_severity": "severe",
+        "n": 17,
+        "false_negative_n": 0,
+        "false_negative_rate": 0.0,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "2",
+        "truth_severity": "moderate",
+        "n": 80,
+        "false_negative_n": 22,
+        "false_negative_rate": 0.275,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "2",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200,
+        "false_negative_n": 153,
+        "false_negative_rate": 0.765,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "3",
+        "truth_severity": "severe",
+        "n": 17,
+        "false_negative_n": 0,
+        "false_negative_rate": 0.0,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "3",
+        "truth_severity": "moderate",
+        "n": 80,
+        "false_negative_n": 18,
+        "false_negative_rate": 0.225,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "3",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200,
+        "false_negative_n": 159,
+        "false_negative_rate": 0.795,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "4",
+        "truth_severity": "severe",
+        "n": 17,
+        "false_negative_n": 0,
+        "false_negative_rate": 0.0,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "4",
+        "truth_severity": "moderate",
+        "n": 80,
+        "false_negative_n": 8,
+        "false_negative_rate": 0.1,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "4",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200,
+        "false_negative_n": 146,
+        "false_negative_rate": 0.73,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "5",
+        "truth_severity": "severe",
+        "n": 17,
+        "false_negative_n": 0,
+        "false_negative_rate": 0.0,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "5",
+        "truth_severity": "moderate",
+        "n": 80,
+        "false_negative_n": 2,
+        "false_negative_rate": 0.025,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "E1_OMBE",
+        "T_label": "5",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200,
+        "false_negative_n": 137,
+        "false_negative_rate": 0.685,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "2",
+        "truth_severity": "severe",
+        "n": 17,
+        "false_negative_n": 0,
+        "false_negative_rate": 0.0,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "2",
+        "truth_severity": "moderate",
+        "n": 80,
+        "false_negative_n": 19,
+        "false_negative_rate": 0.2375,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "2",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200,
+        "false_negative_n": 153,
+        "false_negative_rate": 0.765,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "3",
+        "truth_severity": "severe",
+        "n": 17,
+        "false_negative_n": 0,
+        "false_negative_rate": 0.0,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "3",
+        "truth_severity": "moderate",
+        "n": 80,
+        "false_negative_n": 14,
+        "false_negative_rate": 0.175,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "3",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200,
+        "false_negative_n": 158,
+        "false_negative_rate": 0.79,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "4",
+        "truth_severity": "severe",
+        "n": 17,
+        "false_negative_n": 0,
+        "false_negative_rate": 0.0,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "4",
+        "truth_severity": "moderate",
+        "n": 80,
+        "false_negative_n": 5,
+        "false_negative_rate": 0.0625,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "4",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200,
+        "false_negative_n": 142,
+        "false_negative_rate": 0.71,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "5",
+        "truth_severity": "severe",
+        "n": 17,
+        "false_negative_n": 0,
+        "false_negative_rate": 0.0,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "5",
+        "truth_severity": "moderate",
+        "n": 80,
+        "false_negative_n": 2,
+        "false_negative_rate": 0.025,
+        "adequate_cell_n_ge_10": true
+      },
+      {
+        "estimator": "H1",
+        "T_label": "5",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200,
+        "false_negative_n": 129,
+        "false_negative_rate": 0.645,
+        "adequate_cell_n_ge_10": true
+      }
+    ]
+  },
+  "baseline_rows": [
+    {
+      "headline": "Gate 2 parser",
+      "metric": "median_abs_fev1_error_pct",
+      "estimator": "",
+      "endpoint": "",
+      "baseline_value": 2.908327132804675,
+      "n": 7079,
+      "denominator_n": null,
+      "unit": "percent",
+      "source": "results/gate2_F_parse.json:criterion"
+    },
+    {
+      "headline": "Gate 2 parser",
+      "metric": "median_abs_fvc_error_pct",
+      "estimator": "",
+      "endpoint": "",
+      "baseline_value": 3.5273255813953415,
+      "n": 7079,
+      "denominator_n": null,
+      "unit": "percent",
+      "source": "results/gate2_F_parse.json:criterion"
+    },
+    {
+      "headline": "Gate 2 parser",
+      "metric": "median_signed_fev1_error_pct",
+      "estimator": "",
+      "endpoint": "",
+      "baseline_value": -2.885889141458292,
+      "n": 7079,
+      "denominator_n": null,
+      "unit": "percent",
+      "source": "results/gate2_F_parse.json:criterion"
+    },
+    {
+      "headline": "Gate 2 parser",
+      "metric": "median_signed_fvc_error_pct",
+      "estimator": "",
+      "endpoint": "",
+      "baseline_value": -3.489326433958947,
+      "n": 7079,
+      "denominator_n": null,
+      "unit": "percent",
+      "source": "results/gate2_F_parse.json:criterion"
+    },
+    {
+      "headline": "Clinical fixed-0.70",
+      "metric": "sensitivity",
+      "estimator": "",
+      "endpoint": "",
+      "baseline_value": 0.9824561403508771,
+      "n": 414,
+      "denominator_n": 114.0,
+      "unit": "rate",
+      "source": "results/gate_clinical_classification_F.json:fixed"
+    },
+    {
+      "headline": "Clinical fixed-0.70",
+      "metric": "specificity",
+      "estimator": "",
+      "endpoint": "",
+      "baseline_value": 0.9566666666666667,
+      "n": 414,
+      "denominator_n": 300.0,
+      "unit": "rate",
+      "source": "results/gate_clinical_classification_F.json:fixed"
+    },
+    {
+      "headline": "Clinical fixed-0.70",
+      "metric": "cohens_kappa",
+      "estimator": "",
+      "endpoint": "",
+      "baseline_value": 0.9118473724554977,
+      "n": 414,
+      "denominator_n": null,
+      "unit": "kappa",
+      "source": "results/gate_clinical_classification_F.json:fixed"
+    },
+    {
+      "headline": "Truncation clean-cut",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "2",
+      "baseline_value": 0.5892255892255892,
+      "n": 497,
+      "denominator_n": 297.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation clean-cut",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "2",
+      "baseline_value": 0.5791245791245792,
+      "n": 497,
+      "denominator_n": 297.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation clean-cut",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "3",
+      "baseline_value": 0.5959595959595959,
+      "n": 497,
+      "denominator_n": 297.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation clean-cut",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "3",
+      "baseline_value": 0.5791245791245792,
+      "n": 497,
+      "denominator_n": 297.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation clean-cut",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "4",
+      "baseline_value": 0.5185185185185185,
+      "n": 497,
+      "denominator_n": 297.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation clean-cut",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "4",
+      "baseline_value": 0.494949494949495,
+      "n": 497,
+      "denominator_n": 297.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation clean-cut",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "5",
+      "baseline_value": 0.468013468013468,
+      "n": 497,
+      "denominator_n": 297.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation clean-cut",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "5",
+      "baseline_value": 0.44107744107744107,
+      "n": 497,
+      "denominator_n": 297.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation field-realistic",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "E0_DIRECT",
+      "endpoint": "field_all",
+      "baseline_value": 0.42696629213483145,
+      "n": 286,
+      "denominator_n": 178.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation field-realistic",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "field_all",
+      "baseline_value": 0.06741573033707865,
+      "n": 286,
+      "denominator_n": 178.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Truncation field-realistic",
+      "metric": "obstructed_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "field_all",
+      "baseline_value": 0.07303370786516854,
+      "n": 286,
+      "denominator_n": 178.0,
+      "unit": "rate",
+      "source": "results/gate_truncation_hardening_F.json:classification_summary"
+    },
+    {
+      "headline": "Severe-band clean recovery",
+      "metric": "severe_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "2",
+      "baseline_value": 0.0,
+      "n": 17,
+      "denominator_n": 17.0,
+      "unit": "rate",
+      "source": "results/gate_severe_truncation_diagnosis_F.json:clean_severity_recovery"
+    },
+    {
+      "headline": "Severe-band clean recovery",
+      "metric": "severe_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "3",
+      "baseline_value": 0.0,
+      "n": 17,
+      "denominator_n": 17.0,
+      "unit": "rate",
+      "source": "results/gate_severe_truncation_diagnosis_F.json:clean_severity_recovery"
+    },
+    {
+      "headline": "Severe-band clean recovery",
+      "metric": "severe_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "4",
+      "baseline_value": 0.0,
+      "n": 17,
+      "denominator_n": 17.0,
+      "unit": "rate",
+      "source": "results/gate_severe_truncation_diagnosis_F.json:clean_severity_recovery"
+    },
+    {
+      "headline": "Severe-band clean recovery",
+      "metric": "severe_false_negative_rate",
+      "estimator": "E1_OMBE",
+      "endpoint": "5",
+      "baseline_value": 0.0,
+      "n": 17,
+      "denominator_n": 17.0,
+      "unit": "rate",
+      "source": "results/gate_severe_truncation_diagnosis_F.json:clean_severity_recovery"
+    },
+    {
+      "headline": "Severe-band clean recovery",
+      "metric": "severe_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "2",
+      "baseline_value": 0.0,
+      "n": 17,
+      "denominator_n": 17.0,
+      "unit": "rate",
+      "source": "results/gate_severe_truncation_diagnosis_F.json:clean_severity_recovery"
+    },
+    {
+      "headline": "Severe-band clean recovery",
+      "metric": "severe_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "3",
+      "baseline_value": 0.0,
+      "n": 17,
+      "denominator_n": 17.0,
+      "unit": "rate",
+      "source": "results/gate_severe_truncation_diagnosis_F.json:clean_severity_recovery"
+    },
+    {
+      "headline": "Severe-band clean recovery",
+      "metric": "severe_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "4",
+      "baseline_value": 0.0,
+      "n": 17,
+      "denominator_n": 17.0,
+      "unit": "rate",
+      "source": "results/gate_severe_truncation_diagnosis_F.json:clean_severity_recovery"
+    },
+    {
+      "headline": "Severe-band clean recovery",
+      "metric": "severe_false_negative_rate",
+      "estimator": "H1",
+      "endpoint": "5",
+      "baseline_value": 0.0,
+      "n": 17,
+      "denominator_n": 17.0,
+      "unit": "rate",
+      "source": "results/gate_severe_truncation_diagnosis_F.json:clean_severity_recovery"
+    }
+  ],
+  "forward_model_guard_start": {
+    "n_param_sets": 24,
+    "grid_n": 1201,
+    "max_abs_flow_lps": 3.552713678800501e-15,
+    "max_abs_volume_ml": 3.552713678800501e-12,
+    "tolerance_ml": 1e-09,
+    "passed": true
+  },
+  "part1_current_bev": {
+    "current_onset_code_path": [
+      "predictx/gate23_f.py::derive_curve",
+      "predictx.segment.detect_forced_exhale_segment",
+      "predictx.segment.backextrap_t0",
+      "predictx.segment.derive_fev1_fvc",
+      "predictx/gate_clinical_classification_f.py::extract_curve_for_fit"
+    ],
+    "current_t0_formula": "time_s[pef_idx] - (volume_ml[pef_idx] - volume_ml[onset_idx]) / (flow_lps[pef_idx] * 1000)",
+    "scope_summaries": [
+      {
+        "scope": "all_parsed_pre",
+        "n": 34369,
+        "bev_ml_median": 89.68929166666686,
+        "bev_ml_iqr_low": 65.69999999999993,
+        "bev_ml_iqr_high": 114.68930612244915,
+        "bev_ml_p95": 195.43471301631368,
+        "bev_fvc_ratio_median": 0.02743673986973313,
+        "bev_fvc_ratio_iqr_low": 0.0212765957446809,
+        "bev_fvc_ratio_iqr_high": 0.036982004292554084,
+        "ats_violation_fraction": 0.08612412348337165,
+        "ats_compliance_fraction": 0.9138758765166284
+      },
+      {
+        "scope": "gate2_acceptable_pre",
+        "n": 31851,
+        "bev_ml_median": 88.40042857142875,
+        "bev_ml_iqr_low": 65.4718902439025,
+        "bev_ml_iqr_high": 110.71764350094894,
+        "bev_ml_p95": 157.24302751423176,
+        "bev_fvc_ratio_median": 0.02687431578203908,
+        "bev_fvc_ratio_iqr_low": 0.021111074956355308,
+        "bev_fvc_ratio_iqr_high": 0.03516144709240068,
+        "ats_violation_fraction": 0.04329534394524505,
+        "ats_compliance_fraction": 0.956704656054755
+      },
+      {
+        "scope": "clinical_acceptable_ab_pre",
+        "n": 24119,
+        "bev_ml_median": 90.18000000000036,
+        "bev_ml_iqr_low": 69.01752618135386,
+        "bev_ml_iqr_high": 111.93218105209425,
+        "bev_ml_p95": 158.18533092224268,
+        "bev_fvc_ratio_median": 0.026220621849914232,
+        "bev_fvc_ratio_iqr_low": 0.020897174900979844,
+        "bev_fvc_ratio_iqr_high": 0.03355355741305212,
+        "ats_violation_fraction": 0.03499315892035325,
+        "ats_compliance_fraction": 0.9650068410796467
+      },
+      {
+        "scope": "grade_a_acceptable_pre",
+        "n": 18673,
+        "bev_ml_median": 89.09742592592592,
+        "bev_ml_iqr_low": 69.54792452830196,
+        "bev_ml_iqr_high": 108.45540000000018,
+        "bev_ml_p95": 143.6207623255814,
+        "bev_fvc_ratio_median": 0.025276526436236613,
+        "bev_fvc_ratio_iqr_low": 0.02053112287972984,
+        "bev_fvc_ratio_iqr_high": 0.03133621653866233,
+        "ats_violation_fraction": 0.014138060300969315,
+        "ats_compliance_fraction": 0.9858619396990307
+      }
+    ],
+    "decision_scope": "gate2_acceptable_pre",
+    "decision_scope_compliance_fraction": 0.956704656054755,
+    "ats_stop_threshold": 0.95,
+    "ats_stop_rule_met": true
+  },
+  "part2_axis_onset": {
+    "candidate_formula": "time_s[pef_idx] - volume_ml[pef_idx] / (flow_lps[pef_idx] * 1000)",
+    "current_summary": {
+      "label": "current baseline onset",
+      "n": 7079,
+      "fev1_median_signed_pct_error": -2.885889141458292,
+      "fev1_median_abs_pct_error": 2.908327132804675,
+      "fvc_median_signed_pct_error": -3.489326433958947,
+      "fvc_median_abs_pct_error": 3.5273255813953415,
+      "ratio_median_signed_pct_error": 4.33669135862609,
+      "ratio_median_abs_pct_error": 4.3383201313130755,
+      "bev_flag_fraction": 0.15058624099449075
+    },
+    "axis_summary": {
+      "label": "volume-axis tangent onset",
+      "n": 7079,
+      "fev1_median_signed_pct_error": -2.905242234220279,
+      "fev1_median_abs_pct_error": 2.9260040844111717,
+      "fvc_median_signed_pct_error": -3.5069018693346274,
+      "fvc_median_abs_pct_error": 3.5440680411289596,
+      "ratio_median_signed_pct_error": 4.333562352345899,
+      "ratio_median_abs_pct_error": 4.334117609309959,
+      "bev_flag_fraction": 0.15482412770165277
+    },
+    "bootstrap_deltas": [
+      {
+        "metric": "fev1_signed_pct",
+        "n": 7079,
+        "baseline_median": -2.885889141458292,
+        "axis_median": -2.905242234220279,
+        "delta_axis_minus_baseline": -0.019353092761987156,
+        "delta_ci_low": -0.029490243084266298,
+        "delta_ci_high": -0.011253668405564134,
+        "bootstrap_n": 1000
+      },
+      {
+        "metric": "fev1_abs_pct",
+        "n": 7079,
+        "baseline_median": 2.908327132804675,
+        "axis_median": 2.9260040844111717,
+        "delta_axis_minus_baseline": 0.017676951606496516,
+        "delta_ci_low": 0.010333143034221138,
+        "delta_ci_high": 0.02846270496716,
+        "bootstrap_n": 1000
+      },
+      {
+        "metric": "fvc_signed_pct",
+        "n": 7079,
+        "baseline_median": -3.489326433958947,
+        "axis_median": -3.5069018693346274,
+        "delta_axis_minus_baseline": -0.017575435375680293,
+        "delta_ci_low": -0.026381522935062462,
+        "delta_ci_high": -0.006245070596999614,
+        "bootstrap_n": 1000
+      },
+      {
+        "metric": "fvc_abs_pct",
+        "n": 7079,
+        "baseline_median": 3.5273255813953415,
+        "axis_median": 3.5440680411289596,
+        "delta_axis_minus_baseline": 0.016742459733618098,
+        "delta_ci_low": 0.0064500591162645615,
+        "delta_ci_high": 0.03051388141227691,
+        "bootstrap_n": 1000
+      },
+      {
+        "metric": "ratio_abs_pct",
+        "n": 7079,
+        "baseline_median": 4.3383201313130755,
+        "axis_median": 4.334117609309959,
+        "delta_axis_minus_baseline": -0.004202522003116549,
+        "delta_ci_low": -0.010653839425664313,
+        "delta_ci_high": 0.007588789206795172,
+        "bootstrap_n": 1000
+      }
+    ],
+    "fev1_signed_toward_zero": false,
+    "fvc_signed_toward_zero": false,
+    "fev1_abs_not_increased": false,
+    "fvc_abs_not_increased": false,
+    "passed": false,
+    "interpretation": "The candidate moves neither FEV1 nor FVC signed bias toward zero and slightly increases absolute percent error, so it is not an acceptable onset replacement."
+  },
+  "part3_propagation": {
+    "run": false,
+    "reason": "Part 3 was not run. The Gate 2 acceptable-curve BEV stop rule fired and the volume-axis tangent candidate did not pass the signed-bias/absolute-error guard, so clinical/truncation recomputation would only risk regressing already-passing headlines."
+  },
+  "forward_model_guard_end": {
+    "n_param_sets": 24,
+    "grid_n": 1201,
+    "max_abs_flow_lps": 3.552713678800501e-15,
+    "max_abs_volume_ml": 2.6645352591003757e-12,
+    "tolerance_ml": 1e-09,
+    "passed": true
+  },
+  "verdict": "ONSET-NEUTRAL",
+  "verdict_reason": "Current acceptable Pre curves are already >95% ATS-compliant by BEV, and the literal volume-axis tangent does not reduce the known Gate 2 signed low bias. The retained baseline onset leaves all headlines unchanged; the remaining Gate 2 bias is best characterized as composite/selection mismatch rather than onset-driven."
+}

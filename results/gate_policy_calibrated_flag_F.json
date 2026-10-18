@@ -1,0 +1,911 @@
+{
+  "verdict": "MODERATE",
+  "verdict_reason": "borderline residual false negatives improve versus 0.24 baseline, but one or more STRONG criteria do not clear.",
+  "random_seed": 20260708,
+  "truth_counts": {
+    "normal": 6403,
+    "mild_0.60_0.70": 529,
+    "moderate": 107,
+    "severe": 40
+  },
+  "available_selected_counts": {
+    "severe": 31,
+    "moderate": 94,
+    "borderline": 503,
+    "normal": 6214
+  },
+  "sampled_counts": {
+    "severe": 31,
+    "moderate": 94,
+    "borderline": 500,
+    "normal": 500
+  },
+  "dropped_before_sampling_counts": {
+    "normal": 189,
+    "mild_0.60_0.70": 26,
+    "moderate": 13,
+    "severe": 9
+  },
+  "valid_fit_counts": {
+    "mild_0.60_0.70": 500,
+    "normal": 500,
+    "moderate": 94,
+    "severe": 31
+  },
+  "raw_candidate_rows_pre_acc_ab": 24127,
+  "raw_candidate_parse_errors": 112,
+  "split_counts": {
+    "test": {
+      "mild_0.60_0.70": 250,
+      "normal": 250,
+      "moderate": 47,
+      "severe": 16
+    },
+    "train": {
+      "mild_0.60_0.70": 250,
+      "normal": 250,
+      "moderate": 47,
+      "severe": 15
+    }
+  },
+  "corrections": {
+    "c1": {
+      "kind": "constant",
+      "bias": 0.008637018273988828,
+      "formula": "corrected_ratio = model_ratio - (0.008637)",
+      "train_residual": {
+        "n": 562,
+        "median": 0.0,
+        "iqr": [
+          -0.009592057214410171,
+          0.0114285197353792
+        ]
+      },
+      "n_params": 1
+    },
+    "c2": {
+      "kind": "linear",
+      "intercept": -0.10222543534628839,
+      "slope": 0.14156384354962248,
+      "formula": "corrected_ratio = model_ratio - (-0.102225 + 0.141564 * model_ratio)",
+      "train_residual": {
+        "n": 562,
+        "median": 0.010404098440721266,
+        "iqr": [
+          -0.01173336519229598,
+          0.025924794551419106
+        ]
+      },
+      "n_params": 2
+    }
+  },
+  "preferred_correction": "c1",
+  "preferred_policy_variant": "flag_unbanded",
+  "preferred_policy_label": "correction + flag, unbanded",
+  "candidate_metrics": {
+    "c1": {
+      "fixed": {
+        "correction_only": {
+          "n": 563,
+          "obstructed_truth": {
+            "n": 313,
+            "obstructed_fraction": 0.8306709265175719,
+            "flagged_fraction": 0.0,
+            "normal_fraction": 0.16932907348242812,
+            "normal_n": 53
+          },
+          "normal_truth": {
+            "n": 250,
+            "normal_fraction": 0.94,
+            "flagged_fraction": 0.0,
+            "obstructed_fraction": 0.06,
+            "flagged_n": 0
+          },
+          "flag_burden_all": 0.0,
+          "flag_burden_normal_truth": 0.0,
+          "confident_nonflagged": {
+            "n": 563,
+            "tp": 260,
+            "tn": 235,
+            "fp": 15,
+            "fn": 53,
+            "sensitivity": 0.8306709265175719,
+            "specificity": 0.94,
+            "agreement": 0.8792184724689165,
+            "cohens_kappa": 0.7590594987853537
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.204,
+          "borderline_flagged_fraction": 0.0,
+          "borderline_obstructed_fraction": 0.796
+        },
+        "flag_banded_corrected": {
+          "n": 563,
+          "obstructed_truth": {
+            "n": 313,
+            "obstructed_fraction": 0.8306709265175719,
+            "flagged_fraction": 0.0,
+            "normal_fraction": 0.16932907348242812,
+            "normal_n": 53
+          },
+          "normal_truth": {
+            "n": 250,
+            "normal_fraction": 0.94,
+            "flagged_fraction": 0.0,
+            "obstructed_fraction": 0.06,
+            "flagged_n": 0
+          },
+          "flag_burden_all": 0.0,
+          "flag_burden_normal_truth": 0.0,
+          "confident_nonflagged": {
+            "n": 563,
+            "tp": 260,
+            "tn": 235,
+            "fp": 15,
+            "fn": 53,
+            "sensitivity": 0.8306709265175719,
+            "specificity": 0.94,
+            "agreement": 0.8792184724689165,
+            "cohens_kappa": 0.7590594987853537
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.204,
+          "borderline_flagged_fraction": 0.0,
+          "borderline_obstructed_fraction": 0.796
+        },
+        "flag_banded_raw": {
+          "n": 563,
+          "obstructed_truth": {
+            "n": 313,
+            "obstructed_fraction": 0.8306709265175719,
+            "flagged_fraction": 0.0,
+            "normal_fraction": 0.16932907348242812,
+            "normal_n": 53
+          },
+          "normal_truth": {
+            "n": 250,
+            "normal_fraction": 0.94,
+            "flagged_fraction": 0.0,
+            "obstructed_fraction": 0.06,
+            "flagged_n": 0
+          },
+          "flag_burden_all": 0.0,
+          "flag_burden_normal_truth": 0.0,
+          "confident_nonflagged": {
+            "n": 563,
+            "tp": 260,
+            "tn": 235,
+            "fp": 15,
+            "fn": 53,
+            "sensitivity": 0.8306709265175719,
+            "specificity": 0.94,
+            "agreement": 0.8792184724689165,
+            "cohens_kappa": 0.7590594987853537
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.204,
+          "borderline_flagged_fraction": 0.0,
+          "borderline_obstructed_fraction": 0.796
+        },
+        "flag_unbanded": {
+          "n": 563,
+          "obstructed_truth": {
+            "n": 313,
+            "obstructed_fraction": 0.8306709265175719,
+            "flagged_fraction": 0.009584664536741214,
+            "normal_fraction": 0.1597444089456869,
+            "normal_n": 50
+          },
+          "normal_truth": {
+            "n": 250,
+            "normal_fraction": 0.812,
+            "flagged_fraction": 0.128,
+            "obstructed_fraction": 0.06,
+            "flagged_n": 32
+          },
+          "flag_burden_all": 0.06216696269982238,
+          "flag_burden_normal_truth": 0.128,
+          "confident_nonflagged": {
+            "n": 528,
+            "tp": 260,
+            "tn": 203,
+            "fp": 15,
+            "fn": 50,
+            "sensitivity": 0.8387096774193549,
+            "specificity": 0.9311926605504587,
+            "agreement": 0.8768939393939394,
+            "cohens_kappa": 0.7519872813990461
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.192,
+          "borderline_flagged_fraction": 0.012,
+          "borderline_obstructed_fraction": 0.796
+        }
+      },
+      "lln": {
+        "correction_only": {
+          "n": 562,
+          "obstructed_truth": {
+            "n": 220,
+            "obstructed_fraction": 0.8409090909090909,
+            "flagged_fraction": 0.0,
+            "normal_fraction": 0.1590909090909091,
+            "normal_n": 35
+          },
+          "normal_truth": {
+            "n": 342,
+            "normal_fraction": 0.9239766081871345,
+            "flagged_fraction": 0.0,
+            "obstructed_fraction": 0.07602339181286549,
+            "flagged_n": 0
+          },
+          "flag_burden_all": 0.0,
+          "flag_burden_normal_truth": 0.0,
+          "confident_nonflagged": {
+            "n": 562,
+            "tp": 185,
+            "tn": 316,
+            "fp": 26,
+            "fn": 35,
+            "sensitivity": 0.8409090909090909,
+            "specificity": 0.9239766081871345,
+            "agreement": 0.891459074733096,
+            "cohens_kappa": 0.770507825574701
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.508,
+          "borderline_flagged_fraction": 0.0,
+          "borderline_obstructed_fraction": 0.492
+        },
+        "flag_banded_corrected": {
+          "n": 562,
+          "obstructed_truth": {
+            "n": 220,
+            "obstructed_fraction": 0.8409090909090909,
+            "flagged_fraction": 0.01818181818181818,
+            "normal_fraction": 0.1409090909090909,
+            "normal_n": 31
+          },
+          "normal_truth": {
+            "n": 342,
+            "normal_fraction": 0.9064327485380117,
+            "flagged_fraction": 0.017543859649122806,
+            "obstructed_fraction": 0.07602339181286549,
+            "flagged_n": 6
+          },
+          "flag_burden_all": 0.017793594306049824,
+          "flag_burden_normal_truth": 0.017543859649122806,
+          "confident_nonflagged": {
+            "n": 552,
+            "tp": 185,
+            "tn": 310,
+            "fp": 26,
+            "fn": 31,
+            "sensitivity": 0.8564814814814815,
+            "specificity": 0.9226190476190477,
+            "agreement": 0.8967391304347826,
+            "cohens_kappa": 0.7823343848580441
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.472,
+          "borderline_flagged_fraction": 0.036,
+          "borderline_obstructed_fraction": 0.492
+        },
+        "flag_banded_raw": {
+          "n": 562,
+          "obstructed_truth": {
+            "n": 220,
+            "obstructed_fraction": 0.8409090909090909,
+            "flagged_fraction": 0.01818181818181818,
+            "normal_fraction": 0.1409090909090909,
+            "normal_n": 31
+          },
+          "normal_truth": {
+            "n": 342,
+            "normal_fraction": 0.9093567251461988,
+            "flagged_fraction": 0.014619883040935672,
+            "obstructed_fraction": 0.07602339181286549,
+            "flagged_n": 5
+          },
+          "flag_burden_all": 0.01601423487544484,
+          "flag_burden_normal_truth": 0.014619883040935672,
+          "confident_nonflagged": {
+            "n": 553,
+            "tp": 185,
+            "tn": 311,
+            "fp": 26,
+            "fn": 31,
+            "sensitivity": 0.8564814814814815,
+            "specificity": 0.9228486646884273,
+            "agreement": 0.8969258589511754,
+            "cohens_kappa": 0.7825823050234861
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.476,
+          "borderline_flagged_fraction": 0.032,
+          "borderline_obstructed_fraction": 0.492
+        },
+        "flag_unbanded": {
+          "n": 562,
+          "obstructed_truth": {
+            "n": 220,
+            "obstructed_fraction": 0.8409090909090909,
+            "flagged_fraction": 0.02727272727272727,
+            "normal_fraction": 0.1318181818181818,
+            "normal_n": 29
+          },
+          "normal_truth": {
+            "n": 342,
+            "normal_fraction": 0.8304093567251462,
+            "flagged_fraction": 0.0935672514619883,
+            "obstructed_fraction": 0.07602339181286549,
+            "flagged_n": 32
+          },
+          "flag_burden_all": 0.06761565836298933,
+          "flag_burden_normal_truth": 0.0935672514619883,
+          "confident_nonflagged": {
+            "n": 524,
+            "tp": 185,
+            "tn": 284,
+            "fp": 26,
+            "fn": 29,
+            "sensitivity": 0.8644859813084113,
+            "specificity": 0.9161290322580645,
+            "agreement": 0.8950381679389313,
+            "cohens_kappa": 0.7823131307027615
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.46,
+          "borderline_flagged_fraction": 0.048,
+          "borderline_obstructed_fraction": 0.492
+        }
+      },
+      "test_residual": {
+        "n": 563,
+        "median": 0.0015886947996345269,
+        "iqr": [
+          -0.010200477956074538,
+          0.012048628198062405
+        ]
+      },
+      "diagnostics": {
+        "test_n": 563,
+        "truncation_flagged_n": 84,
+        "corrected_band_060_070_n": 202,
+        "raw_band_060_070_n": 185,
+        "old_impossible_fixed_flag_branch_n": 0,
+        "fixed_branch_counts": {
+          "correction_only": {
+            "flag_n": 0,
+            "obstructed_n": 275,
+            "normal_n": 288
+          },
+          "flag_banded_corrected": {
+            "flag_n": 0,
+            "obstructed_n": 275,
+            "normal_n": 288
+          },
+          "flag_banded_raw": {
+            "flag_n": 0,
+            "obstructed_n": 275,
+            "normal_n": 288
+          },
+          "flag_unbanded": {
+            "flag_n": 35,
+            "obstructed_n": 275,
+            "normal_n": 253
+          }
+        },
+        "lln_branch_counts": {
+          "correction_only": {
+            "flag_n": 0,
+            "obstructed_n": 211,
+            "normal_n": 351
+          },
+          "flag_banded_corrected": {
+            "flag_n": 10,
+            "obstructed_n": 211,
+            "normal_n": 341
+          },
+          "flag_banded_raw": {
+            "flag_n": 9,
+            "obstructed_n": 211,
+            "normal_n": 342
+          },
+          "flag_unbanded": {
+            "flag_n": 38,
+            "obstructed_n": 211,
+            "normal_n": 313
+          }
+        }
+      }
+    },
+    "c2": {
+      "fixed": {
+        "correction_only": {
+          "n": 563,
+          "obstructed_truth": {
+            "n": 313,
+            "obstructed_fraction": 0.7220447284345048,
+            "flagged_fraction": 0.0,
+            "normal_fraction": 0.2779552715654952,
+            "normal_n": 87
+          },
+          "normal_truth": {
+            "n": 250,
+            "normal_fraction": 0.948,
+            "flagged_fraction": 0.0,
+            "obstructed_fraction": 0.052,
+            "flagged_n": 0
+          },
+          "flag_burden_all": 0.0,
+          "flag_burden_normal_truth": 0.0,
+          "confident_nonflagged": {
+            "n": 563,
+            "tp": 226,
+            "tn": 237,
+            "fp": 13,
+            "fn": 87,
+            "sensitivity": 0.7220447284345048,
+            "specificity": 0.948,
+            "agreement": 0.822380106571936,
+            "cohens_kappa": 0.6506620667402986
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.34,
+          "borderline_flagged_fraction": 0.0,
+          "borderline_obstructed_fraction": 0.66
+        },
+        "flag_banded_corrected": {
+          "n": 563,
+          "obstructed_truth": {
+            "n": 313,
+            "obstructed_fraction": 0.7220447284345048,
+            "flagged_fraction": 0.0,
+            "normal_fraction": 0.2779552715654952,
+            "normal_n": 87
+          },
+          "normal_truth": {
+            "n": 250,
+            "normal_fraction": 0.948,
+            "flagged_fraction": 0.0,
+            "obstructed_fraction": 0.052,
+            "flagged_n": 0
+          },
+          "flag_burden_all": 0.0,
+          "flag_burden_normal_truth": 0.0,
+          "confident_nonflagged": {
+            "n": 563,
+            "tp": 226,
+            "tn": 237,
+            "fp": 13,
+            "fn": 87,
+            "sensitivity": 0.7220447284345048,
+            "specificity": 0.948,
+            "agreement": 0.822380106571936,
+            "cohens_kappa": 0.6506620667402986
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.34,
+          "borderline_flagged_fraction": 0.0,
+          "borderline_obstructed_fraction": 0.66
+        },
+        "flag_banded_raw": {
+          "n": 563,
+          "obstructed_truth": {
+            "n": 313,
+            "obstructed_fraction": 0.7220447284345048,
+            "flagged_fraction": 0.006389776357827476,
+            "normal_fraction": 0.2715654952076677,
+            "normal_n": 85
+          },
+          "normal_truth": {
+            "n": 250,
+            "normal_fraction": 0.948,
+            "flagged_fraction": 0.0,
+            "obstructed_fraction": 0.052,
+            "flagged_n": 0
+          },
+          "flag_burden_all": 0.003552397868561279,
+          "flag_burden_normal_truth": 0.0,
+          "confident_nonflagged": {
+            "n": 561,
+            "tp": 226,
+            "tn": 237,
+            "fp": 13,
+            "fn": 85,
+            "sensitivity": 0.7266881028938906,
+            "specificity": 0.948,
+            "agreement": 0.8253119429590018,
+            "cohens_kappa": 0.6561554048983064
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.332,
+          "borderline_flagged_fraction": 0.008,
+          "borderline_obstructed_fraction": 0.66
+        },
+        "flag_unbanded": {
+          "n": 563,
+          "obstructed_truth": {
+            "n": 313,
+            "obstructed_fraction": 0.7220447284345048,
+            "flagged_fraction": 0.022364217252396165,
+            "normal_fraction": 0.25559105431309903,
+            "normal_n": 80
+          },
+          "normal_truth": {
+            "n": 250,
+            "normal_fraction": 0.816,
+            "flagged_fraction": 0.132,
+            "obstructed_fraction": 0.052,
+            "flagged_n": 33
+          },
+          "flag_burden_all": 0.07104795737122557,
+          "flag_burden_normal_truth": 0.132,
+          "confident_nonflagged": {
+            "n": 523,
+            "tp": 226,
+            "tn": 204,
+            "fp": 13,
+            "fn": 80,
+            "sensitivity": 0.738562091503268,
+            "specificity": 0.9400921658986175,
+            "agreement": 0.8221797323135756,
+            "cohens_kappa": 0.649491593822739
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.312,
+          "borderline_flagged_fraction": 0.028,
+          "borderline_obstructed_fraction": 0.66
+        }
+      },
+      "lln": {
+        "correction_only": {
+          "n": 562,
+          "obstructed_truth": {
+            "n": 220,
+            "obstructed_fraction": 0.7136363636363636,
+            "flagged_fraction": 0.0,
+            "normal_fraction": 0.2863636363636364,
+            "normal_n": 63
+          },
+          "normal_truth": {
+            "n": 342,
+            "normal_fraction": 0.9269005847953217,
+            "flagged_fraction": 0.0,
+            "obstructed_fraction": 0.07309941520467836,
+            "flagged_n": 0
+          },
+          "flag_burden_all": 0.0,
+          "flag_burden_normal_truth": 0.0,
+          "confident_nonflagged": {
+            "n": 562,
+            "tp": 157,
+            "tn": 317,
+            "fp": 25,
+            "fn": 63,
+            "sensitivity": 0.7136363636363636,
+            "specificity": 0.9269005847953217,
+            "agreement": 0.8434163701067615,
+            "cohens_kappa": 0.6608979457502536
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.596,
+          "borderline_flagged_fraction": 0.0,
+          "borderline_obstructed_fraction": 0.404
+        },
+        "flag_banded_corrected": {
+          "n": 562,
+          "obstructed_truth": {
+            "n": 220,
+            "obstructed_fraction": 0.7136363636363636,
+            "flagged_fraction": 0.04090909090909091,
+            "normal_fraction": 0.24545454545454545,
+            "normal_n": 54
+          },
+          "normal_truth": {
+            "n": 342,
+            "normal_fraction": 0.9181286549707602,
+            "flagged_fraction": 0.008771929824561403,
+            "obstructed_fraction": 0.07309941520467836,
+            "flagged_n": 3
+          },
+          "flag_burden_all": 0.021352313167259787,
+          "flag_burden_normal_truth": 0.008771929824561403,
+          "confident_nonflagged": {
+            "n": 550,
+            "tp": 157,
+            "tn": 314,
+            "fp": 25,
+            "fn": 54,
+            "sensitivity": 0.7440758293838863,
+            "specificity": 0.9262536873156342,
+            "agreement": 0.8563636363636363,
+            "cohens_kappa": 0.6881862414421656
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.56,
+          "borderline_flagged_fraction": 0.036,
+          "borderline_obstructed_fraction": 0.404
+        },
+        "flag_banded_raw": {
+          "n": 562,
+          "obstructed_truth": {
+            "n": 220,
+            "obstructed_fraction": 0.7136363636363636,
+            "flagged_fraction": 0.04090909090909091,
+            "normal_fraction": 0.24545454545454545,
+            "normal_n": 54
+          },
+          "normal_truth": {
+            "n": 342,
+            "normal_fraction": 0.9122807017543859,
+            "flagged_fraction": 0.014619883040935672,
+            "obstructed_fraction": 0.07309941520467836,
+            "flagged_n": 5
+          },
+          "flag_burden_all": 0.02491103202846975,
+          "flag_burden_normal_truth": 0.014619883040935672,
+          "confident_nonflagged": {
+            "n": 548,
+            "tp": 157,
+            "tn": 312,
+            "fp": 25,
+            "fn": 54,
+            "sensitivity": 0.7440758293838863,
+            "specificity": 0.9258160237388724,
+            "agreement": 0.8558394160583942,
+            "cohens_kappa": 0.6875577367205543
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.552,
+          "borderline_flagged_fraction": 0.044,
+          "borderline_obstructed_fraction": 0.404
+        },
+        "flag_unbanded": {
+          "n": 562,
+          "obstructed_truth": {
+            "n": 220,
+            "obstructed_fraction": 0.7136363636363636,
+            "flagged_fraction": 0.05,
+            "normal_fraction": 0.23636363636363636,
+            "normal_n": 52
+          },
+          "normal_truth": {
+            "n": 342,
+            "normal_fraction": 0.8333333333333334,
+            "flagged_fraction": 0.0935672514619883,
+            "obstructed_fraction": 0.07309941520467836,
+            "flagged_n": 32
+          },
+          "flag_burden_all": 0.07651245551601424,
+          "flag_burden_normal_truth": 0.0935672514619883,
+          "confident_nonflagged": {
+            "n": 519,
+            "tp": 157,
+            "tn": 285,
+            "fp": 25,
+            "fn": 52,
+            "sensitivity": 0.7511961722488039,
+            "specificity": 0.9193548387096774,
+            "agreement": 0.8516377649325626,
+            "cohens_kappa": 0.6849660630808889
+          },
+          "borderline_n": 250,
+          "borderline_residual_false_negative_rate": 0.536,
+          "borderline_flagged_fraction": 0.06,
+          "borderline_obstructed_fraction": 0.404
+        }
+      },
+      "test_residual": {
+        "n": 563,
+        "median": 0.01156300666997434,
+        "iqr": [
+          -0.013581722704100296,
+          0.028972733084885016
+        ]
+      },
+      "diagnostics": {
+        "test_n": 563,
+        "truncation_flagged_n": 84,
+        "corrected_band_060_070_n": 184,
+        "raw_band_060_070_n": 185,
+        "old_impossible_fixed_flag_branch_n": 0,
+        "fixed_branch_counts": {
+          "correction_only": {
+            "flag_n": 0,
+            "obstructed_n": 239,
+            "normal_n": 324
+          },
+          "flag_banded_corrected": {
+            "flag_n": 0,
+            "obstructed_n": 239,
+            "normal_n": 324
+          },
+          "flag_banded_raw": {
+            "flag_n": 2,
+            "obstructed_n": 239,
+            "normal_n": 322
+          },
+          "flag_unbanded": {
+            "flag_n": 40,
+            "obstructed_n": 239,
+            "normal_n": 284
+          }
+        },
+        "lln_branch_counts": {
+          "correction_only": {
+            "flag_n": 0,
+            "obstructed_n": 182,
+            "normal_n": 380
+          },
+          "flag_banded_corrected": {
+            "flag_n": 12,
+            "obstructed_n": 182,
+            "normal_n": 368
+          },
+          "flag_banded_raw": {
+            "flag_n": 14,
+            "obstructed_n": 182,
+            "normal_n": 366
+          },
+          "flag_unbanded": {
+            "flag_n": 43,
+            "obstructed_n": 182,
+            "normal_n": 337
+          }
+        }
+      }
+    }
+  },
+  "baseline_test_metrics": {
+    "n": 563,
+    "obstructed_truth": {
+      "n": 313,
+      "obstructed_fraction": 0.7635782747603834,
+      "flagged_fraction": 0.0,
+      "normal_fraction": 0.2364217252396166,
+      "normal_n": 74
+    },
+    "normal_truth": {
+      "n": 250,
+      "normal_fraction": 0.944,
+      "flagged_fraction": 0.0,
+      "obstructed_fraction": 0.056,
+      "flagged_n": 0
+    },
+    "flag_burden_all": 0.0,
+    "flag_burden_normal_truth": 0.0,
+    "confident_nonflagged": {
+      "n": 563,
+      "tp": 239,
+      "tn": 236,
+      "fp": 14,
+      "fn": 74,
+      "sensitivity": 0.7635782747603834,
+      "specificity": 0.944,
+      "agreement": 0.8436944937833037,
+      "cohens_kappa": 0.6908909408535063
+    },
+    "borderline_n": 250,
+    "borderline_residual_false_negative_rate": 0.288,
+    "borderline_flagged_fraction": 0.0,
+    "borderline_obstructed_fraction": 0.712
+  },
+  "truncation_by_stratum": {
+    "mild_0.60_0.70": {
+      "n": 500,
+      "flagged_fraction": 0.09
+    },
+    "moderate": {
+      "n": 94,
+      "flagged_fraction": 0.2127659574468085
+    },
+    "normal": {
+      "n": 500,
+      "flagged_fraction": 0.154
+    },
+    "severe": {
+      "n": 31,
+      "flagged_fraction": 0.5161290322580645
+    }
+  },
+  "sensitivity_sweep": [
+    {
+      "plateau_L": 0.01,
+      "fet_s": 5.0,
+      "policy_variant": "flag_unbanded",
+      "flag_rate_all": 0.2557726465364121,
+      "flag_rate_normal_truth": 0.136,
+      "flagged_outcome_all": 0.07815275310834814,
+      "borderline_residual_fn": 0.164,
+      "overall_residual_fn": 0.13738019169329074,
+      "nonflag_specificity": 0.9305555555555556
+    },
+    {
+      "plateau_L": 0.01,
+      "fet_s": 6.0,
+      "policy_variant": "flag_unbanded",
+      "flag_rate_all": 0.2824156305506217,
+      "flag_rate_normal_truth": 0.184,
+      "flagged_outcome_all": 0.0994671403197158,
+      "borderline_residual_fn": 0.164,
+      "overall_residual_fn": 0.13738019169329074,
+      "nonflag_specificity": 0.9264705882352942
+    },
+    {
+      "plateau_L": 0.025,
+      "fet_s": 5.0,
+      "policy_variant": "flag_unbanded",
+      "flag_rate_all": 0.12078152753108348,
+      "flag_rate_normal_truth": 0.076,
+      "flagged_outcome_all": 0.03907637655417407,
+      "borderline_residual_fn": 0.192,
+      "overall_residual_fn": 0.1597444089456869,
+      "nonflag_specificity": 0.935064935064935
+    },
+    {
+      "plateau_L": 0.025,
+      "fet_s": 6.0,
+      "policy_variant": "flag_unbanded",
+      "flag_rate_all": 0.1492007104795737,
+      "flag_rate_normal_truth": 0.128,
+      "flagged_outcome_all": 0.06216696269982238,
+      "borderline_residual_fn": 0.192,
+      "overall_residual_fn": 0.1597444089456869,
+      "nonflag_specificity": 0.9311926605504587
+    },
+    {
+      "plateau_L": 0.05,
+      "fet_s": 5.0,
+      "policy_variant": "flag_unbanded",
+      "flag_rate_all": 0.05328596802841918,
+      "flag_rate_normal_truth": 0.064,
+      "flagged_outcome_all": 0.03197158081705151,
+      "borderline_residual_fn": 0.196,
+      "overall_residual_fn": 0.16293929712460065,
+      "nonflag_specificity": 0.9358974358974359
+    },
+    {
+      "plateau_L": 0.05,
+      "fet_s": 6.0,
+      "policy_variant": "flag_unbanded",
+      "flag_rate_all": 0.08348134991119005,
+      "flag_rate_normal_truth": 0.116,
+      "flagged_outcome_all": 0.055062166962699825,
+      "borderline_residual_fn": 0.196,
+      "overall_residual_fn": 0.16293929712460065,
+      "nonflag_specificity": 0.9321266968325792
+    }
+  ],
+  "overfit": false,
+  "overfit_statement": "TEST residual is not materially worse than TRAIN residual.",
+  "drop_bias_audit": {
+    "retained": {
+      "n": 114,
+      "ratio_median": 0.5487707052215844,
+      "ratio_iqr": [
+        0.4977939379803634,
+        0.575241711710468
+      ],
+      "mean_best_raw_spaqeff_grade_score": 1.0,
+      "best_raw_spaqeff_grade_counts": {
+        "A": 114
+      }
+    },
+    "dropped": {
+      "n": 15,
+      "ratio_median": 0.5043656908063687,
+      "ratio_iqr": [
+        0.4281753271872386,
+        0.5324089397468055
+      ],
+      "mean_best_raw_spaqeff_grade_score": 3.0,
+      "best_raw_spaqeff_grade_counts": {
+        "C": 15
+      }
+    },
+    "skew_statement": "drops are skewed toward lower FEV1/FVC ratios"
+  },
+  "residual_leaks_trunc_flag_outside_band_n": 0
+}

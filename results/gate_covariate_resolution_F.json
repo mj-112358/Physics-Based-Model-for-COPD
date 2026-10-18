@@ -1,0 +1,279 @@
+{
+  "seed": 20260710,
+  "test_n": 563,
+  "residual_deferred_n": 188,
+  "baseline_coverage": 0.6660746003552398,
+  "residual_breakdown": [
+    {
+      "reason": "R3_FAILED_REPEATABILITY",
+      "n": 103,
+      "fraction_residual": 0.5478723404255319
+    },
+    {
+      "reason": "R2_BORDERLINE_RATIO",
+      "n": 39,
+      "fraction_residual": 0.2074468085106383
+    },
+    {
+      "reason": "R4_GENUINELY_UNINTERPRETABLE",
+      "n": 33,
+      "fraction_residual": 0.17553191489361702
+    },
+    {
+      "reason": "R1_TRUNCATED_INCOMPLETE",
+      "n": 13,
+      "fraction_residual": 0.06914893617021277
+    }
+  ],
+  "covariate_variables": {
+    "DEMO": "RIDAGEYR, RIAGENDR, RIDRETH1",
+    "BMX": "BMXHT, BMXBMI",
+    "SMQ": "SMQ020/SMQ040 smoking status; SMD030/SMD055/SMD057/SMD641/SMD650 approximate pack-years when derivable",
+    "MCQ": "MCQ160G emphysema OR MCQ160K chronic bronchitis",
+    "RDQ": "RDQ031/RDQ050/RDQ070/RDQ090/RDQ100/RDQ134/RDQ140 symptoms; RDQ135 activity limitation proxy"
+  },
+  "covariate_notes": [],
+  "covariate_availability": [
+    {
+      "covariate": "DEMO.RIDAGEYR age",
+      "available_n": 188,
+      "deferred_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "covariate": "DEMO.RIAGENDR sex",
+      "available_n": 188,
+      "deferred_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "covariate": "DEMO.RIDRETH1 race/ethnicity",
+      "available_n": 188,
+      "deferred_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "covariate": "BMX.BMXHT height",
+      "available_n": 188,
+      "deferred_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "covariate": "BMX.BMXBMI BMI",
+      "available_n": 188,
+      "deferred_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "covariate": "SMQ smoking status",
+      "available_n": 158,
+      "deferred_n": 188,
+      "available_fraction": 0.8404255319148937
+    },
+    {
+      "covariate": "SMQ pack-years derivable",
+      "available_n": 155,
+      "deferred_n": 188,
+      "available_fraction": 0.824468085106383
+    },
+    {
+      "covariate": "MCQ emphysema/chronic bronchitis",
+      "available_n": 156,
+      "deferred_n": 188,
+      "available_fraction": 0.8297872340425532
+    },
+    {
+      "covariate": "RDQ cough",
+      "available_n": 143,
+      "deferred_n": 188,
+      "available_fraction": 0.7606382978723404
+    },
+    {
+      "covariate": "RDQ wheeze",
+      "available_n": 188,
+      "deferred_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "covariate": "RDQ dyspnea/activity proxy",
+      "available_n": 186,
+      "deferred_n": 188,
+      "available_fraction": 0.9893617021276596
+    },
+    {
+      "covariate": "RDQ any respiratory symptom",
+      "available_n": 151,
+      "deferred_n": 188,
+      "available_fraction": 0.8031914893617021
+    }
+  ],
+  "declared_rule": {
+    "scope": "only residual deferred TEST cases; only R2 and R3 with corrected_ratio_c1 in [0.65, 0.75]",
+    "high_risk": "age >= 40 AND ever-smoker AND (self-reported emphysema/chronic bronchitis OR >=1 RDQ respiratory symptom) -> OBSTRUCTED",
+    "low_risk": "never-smoker AND no self-reported emphysema/chronic bronchitis AND no RDQ respiratory symptoms -> NORMAL",
+    "intermediate": "all other cases stay deferred",
+    "naive_comparator": "on the exact same resolved cases, classify corrected_ratio_c1 < 0.70 as OBSTRUCTED and otherwise NORMAL"
+  },
+  "eligible_n": 126,
+  "eligible_risk_counts": {
+    "INTERMEDIATE": 73,
+    "LOW": 31,
+    "HIGH": 22
+  },
+  "context_resolution_counts": {
+    "resolved_n": 53,
+    "high_risk_obstructed_n": 22,
+    "low_risk_normal_n": 31,
+    "still_deferred_n": 135
+  },
+  "context_accuracy": {
+    "context_resolved_n": 53,
+    "context_correct_n": 26,
+    "context_error_n": 27,
+    "context_accuracy": 0.49056603773584906,
+    "context_severe_n": 0,
+    "context_severe_fn_n": 0,
+    "context_severe_fn_ci_low": null,
+    "context_severe_fn_ci_high": null
+  },
+  "naive_accuracy_on_same_cases": {
+    "naive_resolved_n": 53,
+    "naive_correct_n": 29,
+    "naive_error_n": 24,
+    "naive_accuracy": 0.5471698113207547,
+    "naive_severe_n": 0,
+    "naive_severe_fn_n": 0,
+    "naive_severe_fn_ci_low": null,
+    "naive_severe_fn_ci_high": null
+  },
+  "accuracy_comparison": [
+    {
+      "method": "context rule",
+      "resolved_n": 53,
+      "correct_n": 26,
+      "error_n": 27,
+      "accuracy": 0.49056603773584906,
+      "severe_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_ci_high": null
+    },
+    {
+      "method": "naive 0.70 flip",
+      "resolved_n": 53,
+      "correct_n": 29,
+      "error_n": 24,
+      "accuracy": 0.5471698113207547,
+      "severe_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_ci_high": null
+    }
+  ],
+  "context_heldout_proxy": {
+    "participants_with_proxy_n": 52,
+    "blow_correct_n": 89,
+    "blow_n": 182,
+    "blow_accuracy": 0.489010989010989,
+    "participant_majority_correct_n": 23,
+    "participant_majority_n": 52,
+    "participant_majority_accuracy": 0.4423076923076923,
+    "participant_all_accuracy": 0.25
+  },
+  "naive_heldout_proxy_on_same_cases": {
+    "participants_with_proxy_n": 52,
+    "blow_correct_n": 123,
+    "blow_n": 182,
+    "blow_accuracy": 0.6758241758241759,
+    "participant_majority_correct_n": 35,
+    "participant_majority_n": 52,
+    "participant_majority_accuracy": 0.6730769230769231,
+    "participant_all_accuracy": 0.38461538461538464
+  },
+  "heldout_comparison": [
+    {
+      "method": "context rule",
+      "participants_with_proxy_n": 52,
+      "blow_correct_n": 89,
+      "blow_n": 182,
+      "blow_accuracy": 0.489010989010989,
+      "participant_majority_correct_n": 23,
+      "participant_majority_n": 52,
+      "participant_majority_accuracy": 0.4423076923076923
+    },
+    {
+      "method": "naive 0.70 flip",
+      "participants_with_proxy_n": 52,
+      "blow_correct_n": 123,
+      "blow_n": 182,
+      "blow_accuracy": 0.6758241758241759,
+      "participant_majority_correct_n": 35,
+      "participant_majority_n": 52,
+      "participant_majority_accuracy": 0.6730769230769231
+    }
+  ],
+  "candidate_context_coverage_if_retained": 0.7602131438721137,
+  "candidate_retained": false,
+  "tier_rows": [
+    {
+      "tier": "TIER 1 spirometry-alone retained",
+      "finalized_n": 375,
+      "coverage": 0.6660746003552398,
+      "heldout_blow_correct_n": 1181,
+      "heldout_blow_n": 1208,
+      "heldout_blow_accuracy": 0.9776490066225165,
+      "retained": true
+    },
+    {
+      "tier": "TIER 2 spirometry + clinical context candidate",
+      "finalized_n": 53,
+      "coverage": 0.0941385435168739,
+      "heldout_blow_correct_n": 89,
+      "heldout_blow_n": 182,
+      "heldout_blow_accuracy": 0.489010989010989,
+      "retained": false
+    }
+  ],
+  "baseline_metrics": {
+    "finalized_n": 375,
+    "finalized_fraction": 0.6660746003552398,
+    "tp": 150,
+    "tn": 211,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9433962264150944,
+    "specificity": 0.9768518518518519,
+    "cohens_kappa": 0.9233128834355828,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "final_metrics": {
+    "finalized_n": 375,
+    "finalized_fraction": 0.6660746003552398,
+    "tp": 150,
+    "tn": 211,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9433962264150944,
+    "specificity": 0.9768518518518519,
+    "cohens_kappa": 0.9233128834355828,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "protocol_decisions": [
+    "TEST split only.",
+    "Operated only on residual deferred cases from gate_deferral_recovery_f: deferred_baseline == True and recovered == False.",
+    "The clinical context rule was declared before evaluation and was not fit to outcomes.",
+    "Borderline band was fixed as corrected_ratio_c1 in [0.65, 0.75] for R2/R3 residuals only.",
+    "RDQ has no direct dyspnea variable in these cycles; RDQ135 wheeze-limited activity is reported as a dyspnea/activity proxy.",
+    "Pack-years are approximate and only used for availability reporting, not for the tiebreak rule.",
+    "Covariates never override already-finalized spirometry calls.",
+    "Tier 2 is retained only if context beats the naive 0.70 flip on the exact same cases and severe FN remains zero."
+  ],
+  "verdict": "CONTEXT-ADDS-NOTHING",
+  "verdict_reason": "covariate-resolved calls did not beat the naive 0.70 spirometry flip on the same cases, so Tier 2 is discarded."
+}

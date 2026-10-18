@@ -1,0 +1,142 @@
+{
+  "verdict": "DEPLOYABLE-AS-REPORTED",
+  "verdict_reason": "selection is label-independent in the current recovery runner; coverage and accuracy are scored after deployable selection.",
+  "seed": 20260710,
+  "test_n": 563,
+  "label_leakage_confirmed": false,
+  "selection_rule_audit": [
+    {
+      "bucket": "R1",
+      "candidate_path": "attempt_recovery -> r1_candidate (predictx/gate_deferral_recovery_f.py:138-150)",
+      "candidate_rule": "volume_r2 >= R1_GOOD_FIT_R2_MIN and corrected_ratio_c1 <0.60 => obstructed; corrected_ratio_c1 >=0.80 => normal",
+      "candidate_label_independent": true,
+      "final_keep_path": "apply_recovery label-independent keep rule (predictx/gate_deferral_recovery_f.py:218-259)",
+      "truth_usage": "current report keeps every non-empty candidate_decision; truth_label(row) is used only after selection for candidate_correct scoring"
+    },
+    {
+      "bucket": "R2",
+      "candidate_path": "attempt_recovery -> r2_candidate (predictx/gate_deferral_recovery_f.py:153-169)",
+      "candidate_rule": "bootstrap median CI must sit on one side of 0.70; below-side median <0.67, above-side median >=0.73",
+      "candidate_label_independent": true,
+      "final_keep_path": "apply_recovery label-independent keep rule (predictx/gate_deferral_recovery_f.py:218-259)",
+      "truth_usage": "current report keeps every non-empty candidate_decision; truth_label(row) is used only after selection for candidate_correct scoring"
+    },
+    {
+      "bucket": "R3",
+      "candidate_path": "attempt_recovery -> r3_candidate (predictx/gate_deferral_recovery_f.py:172-204)",
+      "candidate_rule": "good-fit maneuvers volume_r2 >=0.95; cluster width <=0.020; cluster majority; cluster high <0.65 or low >=0.75",
+      "candidate_label_independent": true,
+      "final_keep_path": "apply_recovery label-independent keep rule (predictx/gate_deferral_recovery_f.py:218-259)",
+      "truth_usage": "current report keeps every non-empty candidate_decision; truth_label(row) is used only after selection for candidate_correct scoring"
+    }
+  ],
+  "baseline_metrics": {
+    "finalized_n": 255,
+    "finalized_fraction": 0.45293072824156305,
+    "tp": 50,
+    "tn": 191,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.847457627118644,
+    "specificity": 0.9744897959183674,
+    "cohens_kappa": 0.8418954827280778,
+    "severe_finalized_n": 2,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.841886116991581
+  },
+  "current_runner_metrics": {
+    "finalized_n": 375,
+    "finalized_fraction": 0.6660746003552398,
+    "tp": 150,
+    "tn": 211,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9433962264150944,
+    "specificity": 0.9768518518518519,
+    "cohens_kappa": 0.9233128834355828,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "deployable_metrics": {
+    "finalized_n": 375,
+    "finalized_fraction": 0.6660746003552398,
+    "tp": 150,
+    "tn": 211,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9433962264150944,
+    "specificity": 0.9768518518518519,
+    "cohens_kappa": 0.9233128834355828,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "deployable_by_bucket": [
+    {
+      "reason": "R1_TRUNCATED_INCOMPLETE",
+      "deferred_n": 38,
+      "deployable_finalized_n": 25,
+      "correct_n": 25,
+      "wrong_n": 0,
+      "accuracy": 1.0,
+      "severe_finalized_n": 4,
+      "severe_fn_n": 0,
+      "severe_fn_ci_high": 0.6023646356164746
+    },
+    {
+      "reason": "R2_BORDERLINE_RATIO",
+      "deferred_n": 127,
+      "deployable_finalized_n": 88,
+      "correct_n": 88,
+      "wrong_n": 0,
+      "accuracy": 1.0,
+      "severe_finalized_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_ci_high": null
+    },
+    {
+      "reason": "R3_FAILED_REPEATABILITY",
+      "deferred_n": 110,
+      "deployable_finalized_n": 7,
+      "correct_n": 7,
+      "wrong_n": 0,
+      "accuracy": 1.0,
+      "severe_finalized_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_ci_high": null
+    },
+    {
+      "reason": "R4_GENUINELY_UNINTERPRETABLE",
+      "deferred_n": 33,
+      "deployable_finalized_n": 0,
+      "correct_n": 0,
+      "wrong_n": 0,
+      "accuracy": null,
+      "severe_finalized_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_ci_high": null
+    }
+  ],
+  "current_runner_recovered_n": 120,
+  "current_runner_recovered_accuracy": 1.0,
+  "deployable_recovered_n": 120,
+  "deployable_recovered_accuracy": 1.0,
+  "deployable_wrong_recovered_n": 0,
+  "current_runner_coverage": 0.6660746003552398,
+  "deployable_coverage": 0.6660746003552398,
+  "current_runner_recovered_cases": 120,
+  "deployable_recovered_cases": 120,
+  "deployable_severe_fn": {
+    "n": 0,
+    "denominator": 6,
+    "cp_upper": 0.4592581264399005
+  },
+  "deployable_rows_written": false
+}

@@ -1,0 +1,182 @@
+{
+  "cycle": "F",
+  "status": "PASS",
+  "reason": "Gate 2 parser recovery criterion passed under max/best-test comparison.",
+  "parser_callable": "predictx.gate23_f.derive_curve",
+  "raw_source_note": "extracted <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/SPXRAW_F.zip -> <PROJECT_ROOT>/NHANES_SpiroSBI/_extracted/spxraw_f.sas7bdat",
+  "raw_info": {
+    "path": "<PROJECT_ROOT>/NHANES_SpiroSBI/_extracted/spxraw_f.sas7bdat",
+    "metadata_rows": 36421,
+    "loaded_rows": 36421,
+    "columns": [
+      "SEQN",
+      "SPATTYPE",
+      "SPAMANU",
+      "SPAFACT",
+      "SPAPOS",
+      "SPAPLAT",
+      "SPAACC",
+      "SPAQEFF",
+      "SPXPTS",
+      "SPXRAW"
+    ]
+  },
+  "parse_error_count": 43,
+  "counts": {
+    "raw_rows": 36421,
+    "pre_rows": 34413,
+    "acceptable_pre_rows": 31881,
+    "A_pre_rows": 18676,
+    "acceptable_A_pre_rows": 18676,
+    "participants_with_truth": 7079,
+    "participants_first_acceptable": 7079,
+    "participants_first_acceptable_A": 6638
+  },
+  "comparison_summaries": [
+    {
+      "label": "all acceptable A Pre curves",
+      "n": 18617,
+      "fev1_median_signed_pct_error": -4.730453879941447,
+      "fev1_median_abs_pct_error": 4.730789529990735,
+      "fev1_abs_pct_error_iqr": [
+        3.194167419699354,
+        7.401202300052276
+      ],
+      "fvc_median_signed_pct_error": -5.883765003158552,
+      "fvc_median_abs_pct_error": 5.886652062796644,
+      "fvc_abs_pct_error_iqr": [
+        3.9118438989442668,
+        8.604675671800376
+      ],
+      "ratio_median_signed_pct_error": 0.656631978312714,
+      "ratio_median_abs_pct_error": 1.8053772239114574,
+      "bev_flag_fraction": 0.013965730246548853,
+      "bev_flag_n": 260,
+      "bev_flag_den": 18617,
+      "bev_flag_ci_low": 0.012300585486383414,
+      "bev_flag_ci_high": 0.015684589353816406,
+      "bev_flag_underpowered": false
+    },
+    {
+      "label": "first acceptable A Pre per participant",
+      "n": 6638,
+      "fev1_median_signed_pct_error": -5.620536757187811,
+      "fev1_median_abs_pct_error": 5.621719156086404,
+      "fev1_abs_pct_error_iqr": [
+        3.7880989503560434,
+        8.598684758444165
+      ],
+      "fvc_median_signed_pct_error": -6.527757140020476,
+      "fvc_median_abs_pct_error": 6.535085403515351,
+      "fvc_abs_pct_error_iqr": [
+        4.357803812099944,
+        9.461897288542328
+      ],
+      "ratio_median_signed_pct_error": 0.46201972998067176,
+      "ratio_median_abs_pct_error": 1.9746542049219828,
+      "bev_flag_fraction": 0.016721904188008438,
+      "bev_flag_n": 111,
+      "bev_flag_den": 6638,
+      "bev_flag_ci_low": 0.013558300692979813,
+      "bev_flag_ci_high": 0.019885507683037058,
+      "bev_flag_underpowered": false
+    },
+    {
+      "label": "first acceptable Pre per participant",
+      "n": 7079,
+      "fev1_median_signed_pct_error": -8.30477339201911,
+      "fev1_median_abs_pct_error": 8.318576388888895,
+      "fev1_abs_pct_error_iqr": [
+        5.300542427625259,
+        13.32829422993978
+      ],
+      "fvc_median_signed_pct_error": -8.791528150134056,
+      "fvc_median_abs_pct_error": 8.871577179039866,
+      "fvc_abs_pct_error_iqr": [
+        5.649192026805009,
+        14.741537920231877
+      ],
+      "ratio_median_signed_pct_error": 0.4359611637921944,
+      "ratio_median_abs_pct_error": 2.9697491591879857,
+      "bev_flag_fraction": 0.06992513066817348,
+      "bev_flag_n": 495,
+      "bev_flag_den": 7079,
+      "bev_flag_ci_low": 0.06413335216838537,
+      "bev_flag_ci_high": 0.07585817205820031,
+      "bev_flag_underpowered": false
+    },
+    {
+      "label": "max acceptable A Pre per participant",
+      "n": 6638,
+      "fev1_median_signed_pct_error": -3.019974532272239,
+      "fev1_median_abs_pct_error": 3.0215422388616457,
+      "fev1_abs_pct_error_iqr": [
+        2.401415147464993,
+        4.0133195147981375
+      ],
+      "fvc_median_signed_pct_error": -3.819395975696437,
+      "fvc_median_abs_pct_error": 3.8239758058997877,
+      "fvc_abs_pct_error_iqr": [
+        2.8939947995779054,
+        5.519467977172495
+      ],
+      "ratio_median_signed_pct_error": 2.372691220813586,
+      "ratio_median_abs_pct_error": 2.5657998475575976,
+      "bev_flag_fraction": 0.033594456161494424,
+      "bev_flag_n": 223,
+      "bev_flag_den": 6638,
+      "bev_flag_ci_low": 0.029225670382645376,
+      "bev_flag_ci_high": 0.03796324194034348,
+      "bev_flag_underpowered": false
+    },
+    {
+      "label": "max acceptable Pre per participant",
+      "n": 7079,
+      "fev1_median_signed_pct_error": -2.8857075360264703,
+      "fev1_median_abs_pct_error": 2.9080973266499504,
+      "fev1_abs_pct_error_iqr": [
+        2.3415636721818904,
+        3.7039343883683484
+      ],
+      "fvc_median_signed_pct_error": -3.489492629413801,
+      "fvc_median_abs_pct_error": 3.5278832718463256,
+      "fvc_abs_pct_error_iqr": [
+        2.7184730087821407,
+        4.755234633513627
+      ],
+      "ratio_median_signed_pct_error": 4.337839066694403,
+      "ratio_median_abs_pct_error": 4.3409486069678485,
+      "bev_flag_fraction": 0.15129255544568443,
+      "bev_flag_n": 1071,
+      "bev_flag_den": 7079,
+      "bev_flag_ci_low": 0.14324057070207658,
+      "bev_flag_ci_high": 0.16005085464048593,
+      "bev_flag_underpowered": false
+    }
+  ],
+  "criterion": {
+    "label": "max acceptable Pre per participant",
+    "n": 7079,
+    "fev1_median_signed_pct_error": -2.8857075360264703,
+    "fev1_median_abs_pct_error": 2.9080973266499504,
+    "fev1_abs_pct_error_iqr": [
+      2.3415636721818904,
+      3.7039343883683484
+    ],
+    "fvc_median_signed_pct_error": -3.489492629413801,
+    "fvc_median_abs_pct_error": 3.5278832718463256,
+    "fvc_abs_pct_error_iqr": [
+      2.7184730087821407,
+      4.755234633513627
+    ],
+    "ratio_median_signed_pct_error": 4.337839066694403,
+    "ratio_median_abs_pct_error": 4.3409486069678485,
+    "bev_flag_fraction": 0.15129255544568443,
+    "bev_flag_n": 1071,
+    "bev_flag_den": 7079,
+    "bev_flag_ci_low": 0.14324057070207658,
+    "bev_flag_ci_high": 0.16005085464048593,
+    "bev_flag_underpowered": false
+  },
+  "diagnosis": "none; Gate 2 passed"
+}

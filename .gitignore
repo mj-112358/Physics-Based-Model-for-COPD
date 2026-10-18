@@ -1,0 +1,53 @@
+# macOS / editor noise
+.DS_Store
+*.swp
+*.swo
+
+# Python bytecode and test caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+
+# Local Python environments and secrets
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Local tool caches / logs
+.cache/
+.matplotlib/
+sbi-logs/
+*.log
+
+# Raw NHANES / local dataset copies.
+# These are large and should be restored from source, not committed to GitHub.
+data/
+NHANES_SpiroSBI/
+DATASET[?]/
+*.sas7bdat
+*.xpt
+*.rds
+
+# Download archives and compressed raw inputs
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+
+# Regenerable long-running checkpoints
+results/_cache*/
+results/_*_checkpoint.csv
+results/*_progress.json

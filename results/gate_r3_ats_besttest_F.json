@@ -1,0 +1,236 @@
+{
+  "seed": 20260710,
+  "test_n": 563,
+  "c1_offset_from_existing_policy": 0.008637018273988883,
+  "ats_source": "https://doi.org/10.1164/rccm.201908-1590ST",
+  "protocol_decisions": [
+    "TEST split only; training rows are ignored.",
+    "The current deferral-recovery gate is the baseline: 66.6% coverage before this ATS best-test pass.",
+    "NHANES/repro maneuver rows do not expose separate BEV, cough, glottis, leak, or plateau subflags. SPAACC == 'Y' was used as the individual acceptability flag, and this limitation is reported explicitly.",
+    "A maneuver also must have a successful finite model fit to be usable by the PredictX model best-test computation; this is a computational availability requirement, not a repeatability threshold.",
+    "Best-test FEV1 is max model FEV1 across acceptable usable maneuvers, and best-test FVC is max model FVC across acceptable usable maneuvers; the FEV1 and FVC may come from different maneuvers.",
+    "The existing C1 ratio correction is applied after forming max(FEV1)/max(FVC), keeping the recovered ratio on the same calibrated scale as the workflow.",
+    "Repeatability is converted to an ATS-style session grade and is not used as a hard exclusion.",
+    "Automatic normal diagnosis is deferred when any acceptable maneuver remains obstructed on the calibrated ratio scale; obstructed best-test calls are allowed to finalize because they do not create false-normal risk.",
+    "Residual R2 cases are not recovered by best-test because the task explicitly says not to loosen the borderline CI rule.",
+    "TEST truth is used only after label-independent selection to score correctness, sensitivity, specificity, kappa, and severe FN."
+  ],
+  "current_recovery_metrics": {
+    "finalized_n": 375,
+    "finalized_fraction": 0.6660746003552398,
+    "tp": 150,
+    "tn": 211,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9433962264150944,
+    "specificity": 0.9768518518518519,
+    "cohens_kappa": 0.9233128834355828,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "post_pure_r3_metrics": {
+    "finalized_n": 473,
+    "finalized_fraction": 0.8401420959147424,
+    "tp": 231,
+    "tn": 220,
+    "fp": 5,
+    "fn": 17,
+    "sensitivity": 0.9314516129032258,
+    "specificity": 0.9777777777777777,
+    "cohens_kappa": 0.9069863062676535,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "r3_acceptability": {
+    "cases_n": 110,
+    "ats_acceptable_ge2_n": 105,
+    "ats_acceptable_ge1_n": 105,
+    "ats_acceptable_zero_n": 5,
+    "model_usable_acceptable_ge2_n": 105,
+    "model_usable_acceptable_ge1_n": 105,
+    "model_usable_acceptable_zero_n": 5,
+    "ats_acceptable_median_n": 3.0,
+    "model_usable_acceptable_median_n": 3.0
+  },
+  "r3_grade_distribution": [
+    {
+      "grade": "A",
+      "n": 79,
+      "fraction": 0.7181818181818181
+    },
+    {
+      "grade": "B",
+      "n": 1,
+      "fraction": 0.00909090909090909
+    },
+    {
+      "grade": "C",
+      "n": 10,
+      "fraction": 0.09090909090909091
+    },
+    {
+      "grade": "D",
+      "n": 7,
+      "fraction": 0.06363636363636363
+    },
+    {
+      "grade": "E",
+      "n": 8,
+      "fraction": 0.07272727272727272
+    },
+    {
+      "grade": "F",
+      "n": 5,
+      "fraction": 0.045454545454545456
+    }
+  ],
+  "r3_besttest_rows": [
+    {
+      "policy": "pure classify-all",
+      "selected_n": 105,
+      "correct_n": 97,
+      "error_n": 8,
+      "accuracy": 0.9238095238095239,
+      "severe_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_ci_low": null,
+      "severe_fn_ci_high": null
+    },
+    {
+      "policy": "deployable conservative",
+      "selected_n": 88,
+      "correct_n": 88,
+      "error_n": 0,
+      "accuracy": 1.0,
+      "severe_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_ci_low": null,
+      "severe_fn_ci_high": null
+    }
+  ],
+  "residual_r1_r2_checks": [
+    {
+      "reason": "R1_TRUNCATED_INCOMPLETE",
+      "residual_n": 13,
+      "ats_acceptable_ge1_n": 11,
+      "model_usable_ge1_n": 11,
+      "pure_besttest_would_classify_n": 11,
+      "conservative_besttest_classifies_n": 8,
+      "conservative_accuracy_if_used": 1.0
+    },
+    {
+      "reason": "R2_BORDERLINE_RATIO",
+      "residual_n": 39,
+      "ats_acceptable_ge1_n": 39,
+      "model_usable_ge1_n": 39,
+      "pure_besttest_would_classify_n": 39,
+      "conservative_besttest_classifies_n": 36,
+      "conservative_accuracy_if_used": 0.8888888888888888
+    }
+  ],
+  "post_ats_r3_only_metrics": {
+    "finalized_n": 456,
+    "finalized_fraction": 0.8099467140319716,
+    "tp": 231,
+    "tn": 211,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9625,
+    "specificity": 0.9768518518518519,
+    "cohens_kappa": 0.9384828862164662,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "post_ats_with_r1_metrics": {
+    "finalized_n": 464,
+    "finalized_fraction": 0.8241563055062167,
+    "tp": 233,
+    "tn": 217,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9628099173553719,
+    "specificity": 0.9774774774774775,
+    "cohens_kappa": 0.9395878282865858,
+    "severe_finalized_n": 7,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4096163972250034
+  },
+  "coverage_gain_r3_only": 0.1438721136767318,
+  "coverage_gain_with_r1": 0.15808170515097686,
+  "ats_selected_retained_n": 96,
+  "newly_finalized_retained_n": 89,
+  "heldout_newly_finalized": {
+    "participants_n": 89,
+    "participants_with_proxy_n": 89,
+    "participants_without_proxy_n": 0,
+    "observed_blow_correct_n": 219,
+    "observed_blow_n": 312,
+    "observed_blow_accuracy": 0.7019230769230769,
+    "model_blow_correct_n": 243,
+    "model_blow_n": 312,
+    "model_blow_accuracy": 0.7788461538461539,
+    "participant_majority_observed_correct_n": 59,
+    "participant_majority_observed_n": 89,
+    "participant_majority_observed_accuracy": 0.6629213483146067,
+    "participant_all_observed_accuracy": 0.38202247191011235,
+    "by_reason": [
+      {
+        "reason": "R1_TRUNCATED_INCOMPLETE",
+        "observed_blow_correct_n": 22,
+        "observed_blow_n": 23,
+        "observed_blow_accuracy": 0.9565217391304348
+      },
+      {
+        "reason": "R3_FAILED_REPEATABILITY",
+        "observed_blow_correct_n": 197,
+        "observed_blow_n": 289,
+        "observed_blow_accuracy": 0.6816608996539792
+      }
+    ]
+  },
+  "retained_residual_summary": [
+    {
+      "residual_reason": "R2_BORDERLINE_RATIO",
+      "n": 39,
+      "fraction_all": 0.06927175843694494,
+      "zero_model_usable_n": 0,
+      "normal_call_discordance_n": 3
+    },
+    {
+      "residual_reason": "R4_GENUINELY_UNINTERPRETABLE",
+      "n": 33,
+      "fraction_all": 0.0586145648312611,
+      "zero_model_usable_n": 3,
+      "normal_call_discordance_n": 4
+    },
+    {
+      "residual_reason": "R3_FAILED_REPEATABILITY",
+      "n": 22,
+      "fraction_all": 0.03907637655417407,
+      "zero_model_usable_n": 5,
+      "normal_call_discordance_n": 17
+    },
+    {
+      "residual_reason": "R1_TRUNCATED_INCOMPLETE",
+      "n": 5,
+      "fraction_all": 0.008880994671403197,
+      "zero_model_usable_n": 2,
+      "normal_call_discordance_n": 3
+    }
+  ],
+  "retained_residual_n": 99,
+  "retained_residual_fraction": 0.17584369449378331,
+  "verdict": "ATS-RULE-RECOVERS",
+  "verdict_reason": "ATS best-test plus the conservative normal-call guard materially increases deployable coverage and preserves severe FN=0."
+}

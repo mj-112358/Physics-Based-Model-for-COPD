@@ -1,0 +1,40 @@
+{
+  "verdict": "GEOMETRY-INTRACTABLE",
+  "S_min": null,
+  "S_min_summary": null,
+  "gate_A_halt_retracted": false,
+  "stop_reason": "S6 reached without any rung satisfying divergence, Rhat, and ESS convergence criteria",
+  "ladder_rungs_run": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6"
+  ],
+  "divergence_geometry_note": "S1 posterior condition number median 172667.6; Rhat>1.01 fraction 0.833; divergent transitions 251. The tau_f/tau_s ordering is by disjoint prior support, not rejection.",
+  "tau_ordering_constraint": {
+    "method": "disjoint prior support",
+    "rejection_rate": 0.0
+  },
+  "cost_projection": {
+    "source": "last_rung_run",
+    "sec_per_curve": 44.46375952096423,
+    "misspec_2x2_2250_fits_hours": 27.789849700602645,
+    "dose_900_fits_hours": 11.115939880241058,
+    "likelihood_repair_750_fits_hours": 9.263283233534215
+  },
+  "repo_likelihood_config": {
+    "chains": 2,
+    "warmup": 250,
+    "draws": 250,
+    "grid_stride": 5
+  },
+  "target_counts": {
+    "mild_0.60_0.70": 67,
+    "normal": 67,
+    "moderate": 12,
+    "severe": 4
+  },
+  "wall_clock_s": 31.285637208027765
+}

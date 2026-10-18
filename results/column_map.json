@@ -1,0 +1,601 @@
+{
+  "cycles": [
+    "E",
+    "F",
+    "G"
+  ],
+  "field_sources": {
+    "acceptable": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "acceptable_curve_count": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "age_years": {
+      "computed": false,
+      "optional": false,
+      "source_file": "DEMO"
+    },
+    "bronchodilator_selected": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPX"
+    },
+    "btps_factor": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "effort_quality": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "fev1_fvc_ratio": {
+      "computed": true,
+      "optional": true,
+      "source_file": "SPX"
+    },
+    "fev1_mL": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "fev1_quality": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "fev6_mL": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "fvc_mL": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "fvc_quality": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "height_cm": {
+      "computed": false,
+      "optional": false,
+      "source_file": "BMX"
+    },
+    "maneuver_num": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "n_points": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "participant_id": {
+      "computed": false,
+      "optional": false,
+      "source_file": "ANY"
+    },
+    "pef_mL_s": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "plateau": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "position": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "race_ethnicity": {
+      "computed": false,
+      "optional": false,
+      "source_file": "DEMO"
+    },
+    "raw_curve": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "raw_effort_grade": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "sex": {
+      "computed": false,
+      "optional": false,
+      "source_file": "DEMO"
+    },
+    "spirometry_status": {
+      "computed": false,
+      "optional": false,
+      "source_file": "SPX"
+    },
+    "survey_psu": {
+      "computed": false,
+      "optional": false,
+      "source_file": "DEMO"
+    },
+    "survey_strata": {
+      "computed": false,
+      "optional": false,
+      "source_file": "DEMO"
+    },
+    "survey_weight_mec_2yr": {
+      "computed": false,
+      "optional": false,
+      "source_file": "DEMO"
+    },
+    "test_type": {
+      "computed": false,
+      "optional": true,
+      "source_file": "SPXRAW"
+    },
+    "weight_kg": {
+      "computed": false,
+      "optional": false,
+      "source_file": "BMX"
+    }
+  },
+  "fields": {
+    "acceptable": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "acceptable_curve_count": {
+      "E": "SPDNACC",
+      "F": "SPDNACC",
+      "G": "SPDNACC"
+    },
+    "age_years": {
+      "E": "RIDAGEYR",
+      "F": "RIDAGEYR",
+      "G": "RIDAGEYR"
+    },
+    "bronchodilator_selected": {
+      "E": "SPDBRONC",
+      "F": "SPDBRONC",
+      "G": "SPDBRONC"
+    },
+    "btps_factor": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "effort_quality": {
+      "E": "SPXNQEFF",
+      "F": "SPXNQEFF",
+      "G": "SPXNQEFF"
+    },
+    "fev1_fvc_ratio": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "fev1_mL": {
+      "E": "SPXNFEV1",
+      "F": "SPXNFEV1",
+      "G": "SPXNFEV1"
+    },
+    "fev1_quality": {
+      "E": "SPXNQFV1",
+      "F": "SPXNQFV1",
+      "G": "SPXNQFV1"
+    },
+    "fev6_mL": {
+      "E": "SPXNFEV6",
+      "F": "SPXNFEV6",
+      "G": "SPXNFEV6"
+    },
+    "fvc_mL": {
+      "E": "SPXNFVC",
+      "F": "SPXNFVC",
+      "G": "SPXNFVC"
+    },
+    "fvc_quality": {
+      "E": "SPXNQFVC",
+      "F": "SPXNQFVC",
+      "G": "SPXNQFVC"
+    },
+    "height_cm": {
+      "E": "BMXHT",
+      "F": "BMXHT",
+      "G": "BMXHT"
+    },
+    "maneuver_num": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "n_points": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "participant_id": {
+      "E": "SEQN",
+      "F": "SEQN",
+      "G": "SEQN"
+    },
+    "pef_mL_s": {
+      "E": "SPXNPEF",
+      "F": "SPXNPEF",
+      "G": "SPXNPEF"
+    },
+    "plateau": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "position": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "race_ethnicity": {
+      "E": "RIDRETH1",
+      "F": "RIDRETH1",
+      "G": "RIDRETH3"
+    },
+    "raw_curve": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "raw_effort_grade": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "sex": {
+      "E": "RIAGENDR",
+      "F": "RIAGENDR",
+      "G": "RIAGENDR"
+    },
+    "spirometry_status": {
+      "E": "SPXNSTAT",
+      "F": "SPXNSTAT",
+      "G": "SPXNSTAT"
+    },
+    "survey_psu": {
+      "E": "SDMVPSU",
+      "F": "SDMVPSU",
+      "G": "SDMVPSU"
+    },
+    "survey_strata": {
+      "E": "SDMVSTRA",
+      "F": "SDMVSTRA",
+      "G": "SDMVSTRA"
+    },
+    "survey_weight_mec_2yr": {
+      "E": "WTMEC2YR",
+      "F": "WTMEC2YR",
+      "G": "WTMEC2YR"
+    },
+    "test_type": {
+      "E": null,
+      "F": null,
+      "G": null
+    },
+    "weight_kg": {
+      "E": "BMXWT",
+      "F": "BMXWT",
+      "G": "BMXWT"
+    }
+  },
+  "version": 1,
+  "warnings": [
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPXRAW"
+      ],
+      "field": "raw_curve",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPXRAW"
+      ],
+      "field": "raw_curve",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPXRAW"
+      ],
+      "field": "raw_curve",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPXPTS"
+      ],
+      "field": "n_points",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPXPTS"
+      ],
+      "field": "n_points",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPXPTS"
+      ],
+      "field": "n_points",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPAFACT"
+      ],
+      "field": "btps_factor",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPAFACT"
+      ],
+      "field": "btps_factor",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPAFACT"
+      ],
+      "field": "btps_factor",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPATTYPE"
+      ],
+      "field": "test_type",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPATTYPE"
+      ],
+      "field": "test_type",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPATTYPE"
+      ],
+      "field": "test_type",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPAMANU"
+      ],
+      "field": "maneuver_num",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPAMANU"
+      ],
+      "field": "maneuver_num",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPAMANU"
+      ],
+      "field": "maneuver_num",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPAACC"
+      ],
+      "field": "acceptable",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPAACC"
+      ],
+      "field": "acceptable",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPAACC"
+      ],
+      "field": "acceptable",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPAPOS"
+      ],
+      "field": "position",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPAPOS"
+      ],
+      "field": "position",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPAPOS"
+      ],
+      "field": "position",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPAPLAT"
+      ],
+      "field": "plateau",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPAPLAT"
+      ],
+      "field": "plateau",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPAPLAT"
+      ],
+      "field": "plateau",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "E",
+      "expected": [
+        "SPAQEFF"
+      ],
+      "field": "raw_effort_grade",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "F",
+      "expected": [
+        "SPAQEFF"
+      ],
+      "field": "raw_effort_grade",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    },
+    {
+      "candidate_columns": [],
+      "cycle": "G",
+      "expected": [
+        "SPAQEFF"
+      ],
+      "field": "raw_effort_grade",
+      "optional": true,
+      "patterns": [],
+      "source_file": "SPXRAW"
+    }
+  ]
+}

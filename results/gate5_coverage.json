@@ -1,0 +1,210 @@
+{
+  "status": "PASS",
+  "reason": "Rank histograms passed previously and coverage is within Monte Carlo tolerance.",
+  "n_replications": 500,
+  "draws": 1000,
+  "warmup": 1000,
+  "chains": 1,
+  "sigma_lps": 0.1,
+  "rank_uniform_p_gt_0_05_params_from_prior_run": 5,
+  "persistent_below_band_params": [],
+  "below_band_counts_by_param": {
+    "tau_f": 1,
+    "tau_s": 0,
+    "alpha": 1,
+    "fvc_l": 0,
+    "tau_o": 2
+  },
+  "coverage_results": {
+    "0.50": {
+      "nominal": 0.5,
+      "mc_half_width_2se": 0.044721359549995794,
+      "mc_lower": 0.4552786404500042,
+      "mc_upper": 0.5447213595499958,
+      "params": {
+        "tau_f": {
+          "observed": 0.522,
+          "relation_to_mc_band": "within"
+        },
+        "tau_s": {
+          "observed": 0.482,
+          "relation_to_mc_band": "within"
+        },
+        "alpha": {
+          "observed": 0.464,
+          "relation_to_mc_band": "within"
+        },
+        "fvc_l": {
+          "observed": 0.53,
+          "relation_to_mc_band": "within"
+        },
+        "tau_o": {
+          "observed": 0.49,
+          "relation_to_mc_band": "within"
+        }
+      }
+    },
+    "0.60": {
+      "nominal": 0.6,
+      "mc_half_width_2se": 0.04381780460041329,
+      "mc_lower": 0.5561821953995867,
+      "mc_upper": 0.6438178046004133,
+      "params": {
+        "tau_f": {
+          "observed": 0.59,
+          "relation_to_mc_band": "within"
+        },
+        "tau_s": {
+          "observed": 0.584,
+          "relation_to_mc_band": "within"
+        },
+        "alpha": {
+          "observed": 0.556,
+          "relation_to_mc_band": "below"
+        },
+        "fvc_l": {
+          "observed": 0.626,
+          "relation_to_mc_band": "within"
+        },
+        "tau_o": {
+          "observed": 0.592,
+          "relation_to_mc_band": "within"
+        }
+      }
+    },
+    "0.70": {
+      "nominal": 0.7,
+      "mc_half_width_2se": 0.040987803063838396,
+      "mc_lower": 0.6590121969361615,
+      "mc_upper": 0.7409878030638384,
+      "params": {
+        "tau_f": {
+          "observed": 0.69,
+          "relation_to_mc_band": "within"
+        },
+        "tau_s": {
+          "observed": 0.696,
+          "relation_to_mc_band": "within"
+        },
+        "alpha": {
+          "observed": 0.676,
+          "relation_to_mc_band": "within"
+        },
+        "fvc_l": {
+          "observed": 0.716,
+          "relation_to_mc_band": "within"
+        },
+        "tau_o": {
+          "observed": 0.674,
+          "relation_to_mc_band": "within"
+        }
+      }
+    },
+    "0.80": {
+      "nominal": 0.8,
+      "mc_half_width_2se": 0.03577708763999663,
+      "mc_lower": 0.7642229123600034,
+      "mc_upper": 0.8357770876399967,
+      "params": {
+        "tau_f": {
+          "observed": 0.79,
+          "relation_to_mc_band": "within"
+        },
+        "tau_s": {
+          "observed": 0.784,
+          "relation_to_mc_band": "within"
+        },
+        "alpha": {
+          "observed": 0.782,
+          "relation_to_mc_band": "within"
+        },
+        "fvc_l": {
+          "observed": 0.804,
+          "relation_to_mc_band": "within"
+        },
+        "tau_o": {
+          "observed": 0.778,
+          "relation_to_mc_band": "within"
+        }
+      }
+    },
+    "0.90": {
+      "nominal": 0.9,
+      "mc_half_width_2se": 0.02683281572999747,
+      "mc_lower": 0.8731671842700025,
+      "mc_upper": 0.9268328157299975,
+      "params": {
+        "tau_f": {
+          "observed": 0.882,
+          "relation_to_mc_band": "within"
+        },
+        "tau_s": {
+          "observed": 0.88,
+          "relation_to_mc_band": "within"
+        },
+        "alpha": {
+          "observed": 0.882,
+          "relation_to_mc_band": "within"
+        },
+        "fvc_l": {
+          "observed": 0.902,
+          "relation_to_mc_band": "within"
+        },
+        "tau_o": {
+          "observed": 0.862,
+          "relation_to_mc_band": "below"
+        }
+      }
+    },
+    "0.95": {
+      "nominal": 0.95,
+      "mc_half_width_2se": 0.01949358868961794,
+      "mc_lower": 0.930506411310382,
+      "mc_upper": 0.9694935886896179,
+      "params": {
+        "tau_f": {
+          "observed": 0.916,
+          "relation_to_mc_band": "below"
+        },
+        "tau_s": {
+          "observed": 0.932,
+          "relation_to_mc_band": "within"
+        },
+        "alpha": {
+          "observed": 0.94,
+          "relation_to_mc_band": "within"
+        },
+        "fvc_l": {
+          "observed": 0.942,
+          "relation_to_mc_band": "within"
+        },
+        "tau_o": {
+          "observed": 0.922,
+          "relation_to_mc_band": "below"
+        }
+      }
+    }
+  },
+  "prior_ranges": {
+    "tau_f": [
+      0.15,
+      0.8
+    ],
+    "tau_s": [
+      1.0,
+      5.0
+    ],
+    "alpha": [
+      0.25,
+      0.85
+    ],
+    "fvc_l": [
+      2.0,
+      6.0
+    ],
+    "tau_o": [
+      0.03,
+      0.4
+    ]
+  }
+}

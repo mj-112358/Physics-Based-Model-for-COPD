@@ -1,0 +1,112 @@
+{
+  "verdict": {
+    "offset": "PARTIALLY CLOSES",
+    "honest_endpoint_best": "observed",
+    "honest_endpoint_best_distinguishable_from_observed": false,
+    "gli": "REFUTED",
+    "deployable_complete": "observed",
+    "deployable_truncated": "H1"
+  },
+  "headline": {
+    "best_k": "K2",
+    "model_nhanes_p3_kappa": 0.6804950048715226,
+    "best_k_nhanes_p3_kappa": 0.7310908641347766,
+    "observed_nhanes_p3_kappa": 0.9176953941176695,
+    "model_mult_nhanes_p3_kappa": 0.6137169385771424,
+    "best_k_heldout_p3_kappa": 0.5825605536332176,
+    "observed_heldout_p3_kappa": 0.700137996962525,
+    "h1_heldout_p3_kappa": 0.6837679765432293,
+    "h2_heldout_p3_kappa": 0.5825605536332176,
+    "bias_removal_degraded_kappa": false,
+    "best_k_flip_row": {
+      "row_type": "part2_classification_flip",
+      "baseline": "model",
+      "corrected": "K2",
+      "definition": "fixed_0.70",
+      "n": 3329,
+      "normal_to_obstructed": 33,
+      "obstructed_to_normal": 45,
+      "sensitivity_delta": 0.036666666666666736,
+      "specificity_delta": 0.0075932651039947174,
+      "kappa_delta": 0.05059585926325405
+    },
+    "heldout_bootstrap_best_k": {
+      "row_type": "part3_heldout_kappa_bootstrap",
+      "estimator": "K2",
+      "method": "P3",
+      "n": 3328,
+      "kappa": 0.5825605536332176,
+      "ci_low": 0.5386000399924104,
+      "ci_high": 0.6261724189442462,
+      "bootstrap_n": 1000
+    },
+    "heldout_bootstrap_h1": {
+      "row_type": "part3_heldout_kappa_bootstrap",
+      "estimator": "H1",
+      "method": "P3",
+      "n": 3328,
+      "kappa": 0.6837679765432293,
+      "ci_low": 0.6410716488752738,
+      "ci_high": 0.7228290822763789,
+      "bootstrap_n": 1000
+    },
+    "heldout_bootstrap_observed": {
+      "row_type": "part3_heldout_kappa_bootstrap",
+      "estimator": "observed",
+      "method": "P3",
+      "n": 3328,
+      "kappa": 0.700137996962525,
+      "ci_low": 0.6587680800965173,
+      "ci_high": 0.7378151193920545,
+      "bootstrap_n": 1000
+    },
+    "gli_fn_drop_after_best_k": -0.08615384615384614
+  },
+  "offset_fits": {
+    "K1": {
+      "variant": "K1",
+      "form": "FVC_model + c",
+      "c": -0.028994048281227647,
+      "n": 11968
+    },
+    "K2": {
+      "variant": "K2",
+      "form": "FVC_model + c0 + c1*FET",
+      "c0": -0.28082024744355133,
+      "c1": 0.02146118270536999,
+      "n": 11968,
+      "slope": 0.02146118270536999,
+      "intercept": -0.28082024744355133,
+      "r2": 0.11714533715617312,
+      "p_value": 0.0
+    },
+    "K3": {
+      "variant": "K3",
+      "form": "FVC_model + c0 + c1*tau_s",
+      "c0": 0.030883983043418953,
+      "c1": -0.047261812777231973,
+      "n": 11968,
+      "slope": -0.047261812777231973,
+      "intercept": 0.030883983043418953,
+      "r2": 0.11974993567882278,
+      "p_value": 0.0
+    }
+  },
+  "multiplicative_fit": {
+    "a": 0.8463878706797962,
+    "b": 1.112146315253389,
+    "n": 3326,
+    "r2": 0.953480313805703,
+    "p_value": 0.0
+  },
+  "inputs": {
+    "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "raw_loaded_rows": 36421,
+    "participants_n": 6655,
+    "test_n": 3329,
+    "heldout_n": 6655,
+    "wall_clock_s": 50.39021983300336,
+    "split_note": "Uses the same stratified_half_split helper and seed 20260708 used by the Cycle F pooling/hybrid gates."
+  }
+}

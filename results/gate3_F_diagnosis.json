@@ -1,0 +1,65 @@
+{
+  "status": "FIXABLE_TIMING_SUSPECT",
+  "reason": "Dipole peak residuals dominate, supporting onset/phase misregistration as the leading fixable cause.",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_info": {
+    "path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "metadata_rows": 36421,
+    "loaded_rows": 36421,
+    "columns": [
+      "SEQN",
+      "SPATTYPE",
+      "SPAMANU",
+      "SPAFACT",
+      "SPAPOS",
+      "SPAPLAT",
+      "SPAACC",
+      "SPAQEFF",
+      "SPXPTS",
+      "SPXRAW"
+    ]
+  },
+  "sample_n": 200,
+  "sample_seed": 20260707,
+  "eligible_A_non_obstructed_no_fit_error_n": 16807,
+  "fit_domain_current": "predictx/fit.py fits the FLOW-time curve: fit_ombe_lm(t, flow_lps) minimizes np_ombe_flow(params, t) - flow_lps.",
+  "steltner_comparability": "Unresolved: local repo search found only internal mentions of Steltner/2.76, and web search did not locate a primary source for whether the benchmark used flow-time or volume-time residuals. Do not claim comparability until the paper is supplied or verified.",
+  "n_analyzed": 200,
+  "n_valid": 200,
+  "diagnostic_error_n": 0,
+  "peak_class_counts": {
+    "dipole": 169,
+    "mixed": 29,
+    "single_signed_overshoot": 2
+  },
+  "peak_class_fractions": {
+    "dipole": 0.845,
+    "mixed": 0.145,
+    "single_signed_overshoot": 0.01
+  },
+  "dipole_fraction": 0.845,
+  "single_signed_fraction": 0.01,
+  "single_signed_undershoot_fraction": 0.0,
+  "single_signed_overshoot_fraction": 0.01,
+  "volume_nrss_valid_n": 200,
+  "volume_nrss_norm_median": 1278.2711459264974,
+  "volume_nrss_norm_iqr": [
+    570.5307327075516,
+    2617.7279439302524
+  ],
+  "volume_nrss_threshold_median": 1.079344085172795,
+  "volume_adequate_n": 0,
+  "volume_adequate_fraction": 0.0,
+  "volume_r2_median": 0.9979657260437516,
+  "clinical_valid_n": 200,
+  "clinical_all_within_5pct_n": 168,
+  "clinical_all_within_5pct_fraction": 0.84,
+  "clinical_ratio_within_5pct_n": 171,
+  "clinical_ratio_within_5pct_fraction": 0.855,
+  "clinical_ratio_within_0p02_n": 135,
+  "clinical_ratio_within_0p02_fraction": 0.675,
+  "fev1_abs_pct_error_median": 0.7026090952292874,
+  "fvc_abs_pct_error_median": 1.0081563647562382,
+  "ratio_abs_pct_error_median": 1.4884805574849271,
+  "ratio_abs_error_median": 0.011380024010413659
+}

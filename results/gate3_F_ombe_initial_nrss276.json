@@ -1,0 +1,80 @@
+{
+  "status": "FAIL",
+  "reason": "Gate 3 real-curve OMBE fit fraction failed.",
+  "cycle_scope": "F historical gate; E and G analyzed separately in the three-cycle extension. Obstructed-subgroup numbers are cycle-F-specific.",
+  "n_fit_curves": 31851,
+  "adequate_threshold_nrss": 2.76,
+  "adequate_count": 8041,
+  "adequate_fraction": 0.2524567517503375,
+  "nrss_median": 4.578454335040525,
+  "nrss_iqr": [
+    2.728549244094461,
+    8.483958677506015
+  ],
+  "r2_median": 0.9614155385158519,
+  "r2_iqr": [
+    0.9410324607091871,
+    0.9718822760082116
+  ],
+  "by_spaqeff": [
+    {
+      "group": "A",
+      "n": 18673,
+      "adequate": 5014,
+      "adequate_fraction": 0.2685160392009854
+    },
+    {
+      "group": "B",
+      "n": 5446,
+      "adequate": 2361,
+      "adequate_fraction": 0.43352919573999266
+    },
+    {
+      "group": "C",
+      "n": 7732,
+      "adequate": 666,
+      "adequate_fraction": 0.08613554061045008
+    }
+  ],
+  "by_obstruction": [
+    {
+      "group": "non_obstructed_derived_ratio_ge_0.70",
+      "n": 28023,
+      "adequate": 6010,
+      "adequate_fraction": 0.2144666880776505
+    },
+    {
+      "group": "obstructed_derived_ratio_lt_0.70",
+      "n": 3828,
+      "adequate": 2031,
+      "adequate_fraction": 0.530564263322884
+    }
+  ],
+  "by_obstructed_severity": [
+    {
+      "group": "0.50-0.60",
+      "n": 755,
+      "adequate": 436,
+      "adequate_fraction": 0.5774834437086093
+    },
+    {
+      "group": "0.60-0.70",
+      "n": 2653,
+      "adequate": 1351,
+      "adequate_fraction": 0.5092348284960422
+    },
+    {
+      "group": "<0.50",
+      "n": 420,
+      "adequate": 244,
+      "adequate_fraction": 0.580952380952381
+    }
+  ],
+  "failure_characterization": {
+    "n_failed": 23810,
+    "failed_obstructed_n": 1797,
+    "failed_truncated_lt6s_n": 8373,
+    "failed_spaqeff_D_n": 0,
+    "fit_error_n": 326
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_rows": 36421,
+  "parse_error_count": 45,
+  "ratio_diagnostics": [
+    {
+      "label": "first acceptable A Pre per participant",
+      "n": 6638,
+      "fev1_ratio_median": 0.9438041373403482,
+      "fev1_ratio_iqr": [
+        0.9140322103573353,
+        0.9621799286314253
+      ],
+      "fvc_ratio_median": 0.9346491459648465,
+      "fvc_ratio_iqr": [
+        0.9054237380699335,
+        0.9564308096231181
+      ],
+      "spafact_median": 1.084,
+      "spafact_iqr": [
+        1.075,
+        1.091
+      ],
+      "fev1_ratio_spafact_pearson_r": 0.012801929749014791,
+      "fev1_ratio_spafact_pearson_p": 0.29700863005778816,
+      "fev1_ratio_spafact_spearman_r": -0.0056128852102772095,
+      "fev1_ratio_spafact_spearman_p": 0.6475120245732671,
+      "fvc_ratio_spafact_pearson_r": 0.023183378290257933,
+      "fvc_ratio_spafact_pearson_p": 0.058926827607610074,
+      "fvc_ratio_spafact_spearman_r": 0.014305275606402582,
+      "fvc_ratio_spafact_spearman_p": 0.24387854516070037
+    },
+    {
+      "label": "all acceptable A Pre curves",
+      "n": 18617,
+      "fev1_ratio_median": 0.9527014000865223,
+      "fev1_ratio_iqr": [
+        0.9260223914017018,
+        0.9680748782734572
+      ],
+      "fvc_ratio_median": 0.9411653605015673,
+      "fvc_ratio_iqr": [
+        0.9139963358491748,
+        0.9608897914842558
+      ],
+      "spafact_median": 1.084,
+      "spafact_iqr": [
+        1.075,
+        1.091
+      ],
+      "fev1_ratio_spafact_pearson_r": 0.02988669130756729,
+      "fev1_ratio_spafact_pearson_p": 4.5327065116838924e-05,
+      "fev1_ratio_spafact_spearman_r": 0.014625788893174207,
+      "fev1_ratio_spafact_spearman_p": 0.04598012226815936,
+      "fvc_ratio_spafact_pearson_r": 0.02168171519044817,
+      "fvc_ratio_spafact_pearson_p": 0.0030914844340893593,
+      "fvc_ratio_spafact_spearman_r": 0.014411381145969673,
+      "fvc_ratio_spafact_spearman_p": 0.049261842495074114
+    }
+  ],
+  "first_vs_max": [
+    {
+      "label": "first acceptable A Pre per participant",
+      "n": 6638,
+      "fev1_median_signed_pct_error": -5.619586265965182,
+      "fev1_median_abs_pct_error": 5.620536757187802,
+      "fvc_median_signed_pct_error": -6.535085403515344,
+      "fvc_median_abs_pct_error": 6.539883882309393
+    },
+    {
+      "label": "max acceptable A Pre per participant",
+      "n": 6638,
+      "fev1_median_signed_pct_error": -3.0195810383423956,
+      "fev1_median_abs_pct_error": 3.0215422388616457,
+      "fvc_median_signed_pct_error": -3.8224125267023776,
+      "fvc_median_abs_pct_error": 3.824538168175311
+    },
+    {
+      "label": "max acceptable Pre per participant",
+      "n": 7079,
+      "fev1_median_signed_pct_error": -2.885889141458292,
+      "fev1_median_abs_pct_error": 2.908327132804675,
+      "fvc_median_signed_pct_error": -3.489326433958947,
+      "fvc_median_abs_pct_error": 3.5273255813953415
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "predictx"
+version = "0.1.0"
+description = "PredictX research extension for physics-based analysis of raw spirometry curves"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "matplotlib>=3.8,<4",
+  "numpy>=2,<3",
+  "pandas>=2.2,<3",
+  "pillow>=10,<13",
+  "pyarrow>=16,<23",
+  "pyreadstat>=1.2.7,<2",
+  "scikit-learn>=1.5,<2",
+  "scipy>=1.13,<2",
+]
+
+[project.optional-dependencies]
+inference = [
+  "jax[cpu]>=0.6,<0.7",
+  "numpyro==0.19.0",
+  "sbi>=0.24,<0.26",
+  "torch>=2.4,<3",
+]
+dev = [
+  "pytest>=8,<10",
+  "pytest-cov>=5,<8",
+  "ruff>=0.8,<1",
+]
+
+[tool.setuptools.packages.find]
+include = ["predictx*"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E402", "E501"]

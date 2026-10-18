@@ -1,0 +1,111 @@
+{
+  "status": "FAIL",
+  "reason": "OMBE-gamma fails identifiability and does not clear the 200-curve gamma-helps gate.",
+  "volume_conservation": {
+    "midrange_integral_l": 4.0,
+    "midrange_fvc_l": 4.0,
+    "relative_error": 0.0
+  },
+  "fisher": {
+    "n": 1000,
+    "finite_kappa_n": 499,
+    "kappa_median": 1777813217.1025836,
+    "kappa_iqr": [
+      624238024.1544845,
+      7093044202.987961
+    ],
+    "kappa_p95": 171830253908.2394,
+    "kappa_max": 9170172749485.406,
+    "kappa_gt_1e4_fraction": 1.0,
+    "kappa_gt_1e6_fraction": 1.0,
+    "stiff_loading_median": {
+      "tau_f": 0.13991114497184753,
+      "tau_s": 0.0176938995718956,
+      "alpha": 0.04056571424007416,
+      "fvc_l": 0.36844438314437866,
+      "tau_o": 0.7258809804916382,
+      "k": 0.5071945190429688
+    },
+    "sloppy_loading_median": {
+      "tau_f": 0.11704256385564804,
+      "tau_s": 0.7549648284912109,
+      "alpha": 0.6413959264755249,
+      "fvc_l": 9.915665941662155e-07,
+      "tau_o": 0.05411860719323158,
+      "k": 2.238167689938564e-05
+    },
+    "identifiability_flag": true,
+    "identifiability_reason": "median kappa exceeds 1e4"
+  },
+  "sample": {
+    "sample_n": 200,
+    "sample_valid_n": 200,
+    "sample_error_n": 0,
+    "peak_class_counts": {
+      "dipole": 192,
+      "mixed": 5,
+      "single_signed_overshoot": 2,
+      "single_signed_undershoot": 1
+    },
+    "dipole_fraction": 0.96,
+    "single_signed_fraction": 0.015,
+    "flow_nrss_median": 46.67482038947975,
+    "flow_nrss_iqr": [
+      29.498500284421944,
+      73.28394139570294
+    ],
+    "flow_adequate_n": 0,
+    "flow_adequate_fraction": 0.0,
+    "all_within_5pct_n": 13,
+    "all_within_5pct_fraction": 0.065,
+    "ratio_within_0p02_n": 24,
+    "ratio_within_0p02_fraction": 0.12,
+    "fev1_abs_pct_error_median": 6.096086570717199,
+    "fvc_abs_pct_error_median": 15.710152116769915,
+    "ratio_abs_error_median": 0.11152194349017336,
+    "tau_o_bound": {
+      "lower": 0,
+      "upper": 51,
+      "any": 51,
+      "fraction_any": 0.255
+    },
+    "tau_s_bound": {
+      "lower": 1,
+      "upper": 52,
+      "any": 53,
+      "fraction_any": 0.265
+    },
+    "k_bound": {
+      "lower": 197,
+      "upper": 0,
+      "any": 197,
+      "fraction_any": 0.985
+    },
+    "k_median": 1.0000000000000002,
+    "k_iqr": [
+      1.0000000000000002,
+      1.0000000000000002
+    ],
+    "step3_gamma_helps": false,
+    "step3_gate_reason": "dipoles<30%=False; tau_o/tau_s/k bound-piling<50 each=False; ratio-within-0.02 materially above baseline=False; all-within-5% not below baseline=False"
+  },
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_info": {
+    "path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "metadata_rows": 36421,
+    "loaded_rows": 36421,
+    "columns": [
+      "SEQN",
+      "SPATTYPE",
+      "SPAMANU",
+      "SPAFACT",
+      "SPAPOS",
+      "SPAPLAT",
+      "SPAACC",
+      "SPAQEFF",
+      "SPXPTS",
+      "SPXRAW"
+    ]
+  },
+  "verdict": "OMBE-gamma is not adopted. The augmentation adds complexity without clearing the onset, clinical, and identifiability gates."
+}
