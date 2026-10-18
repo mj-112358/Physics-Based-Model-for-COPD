@@ -1,0 +1,726 @@
+{
+  "random_seed": 20260708,
+  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_loaded_rows": 36421,
+  "part_a": {
+    "verdict": "TRUTH-CONFIRMED",
+    "halt": false,
+    "material_false_negative_delta_threshold": 0.02,
+    "code_paths": [
+      {
+        "gate": "clinical observed parser",
+        "code_path": "gate_clinical_classification_f.extract_curve_for_fit",
+        "t0": "ATS back-extrapolated time-zero from gate23_f.backextrap_t0",
+        "fev1": "np.interp(min(1.0, vol_t[-1]), observed vol_t, observed vol_l)",
+        "fvc": "observed segmented end-volume vol_l[-1]",
+        "grid": "native 100 Hz samples after detected start/end, with inserted t=0 if needed"
+      },
+      {
+        "gate": "clinical reported model",
+        "code_path": "gate_clinical_classification_f.fit_selected_rows -> gate3_diagnosis.fit_ombe_volume_lm -> clinical_metrics_from_volume",
+        "t0": "same observed ATS back-extrapolated t0 before fitting",
+        "fev1": "np.interp(min(1.0, t[-1]), fitted OMBE volume, native observed grid)",
+        "fvc": "fitted OMBE volume at observed end-of-test, not asymptote beyond the grid",
+        "grid": "native observed volume grid"
+      },
+      {
+        "gate": "truncation TRUE",
+        "code_path": "gate_truncation_recovery_f.estimate_one_curve -> extract_curve_for_fit",
+        "t0": "same ATS back-extrapolated time-zero",
+        "fev1": "np.interp(1.0, full observed vol_t, observed vol_l)",
+        "fvc": "observed segmented end-volume full_y[-1]",
+        "grid": "native observed volume grid; truncated estimators see samples only up to T"
+      }
+    ],
+    "common_curve_count_total": 78,
+    "common_curve_count_reported": 30,
+    "attribution": {
+      "clinical_model_vs_nhanes_obstructed_fev1_abs_pct": {
+        "signed": {
+          "n": 114,
+          "median": -1.1576281358070144,
+          "iqr": [
+            -3.3149471155258303,
+            0.0591870551884093
+          ]
+        },
+        "absolute": {
+          "n": 114,
+          "median": 1.3758479117170537,
+          "iqr": [
+            0.6150267820737756,
+            3.3149471155258303
+          ]
+        }
+      },
+      "clinical_observed_vs_nhanes_obstructed_fev1_abs_pct": {
+        "signed": {
+          "n": 114,
+          "median": -2.7621300564718396,
+          "iqr": [
+            -4.548811562863267,
+            -1.951202286512375
+          ]
+        },
+        "absolute": {
+          "n": 114,
+          "median": 2.7621300564718396,
+          "iqr": [
+            1.951202286512375,
+            4.548811562863267
+          ]
+        }
+      },
+      "clinical_model_vs_nhanes_obstructed_fvc_abs_pct": {
+        "signed": {
+          "n": 114,
+          "median": -5.177661538237652,
+          "iqr": [
+            -7.929056742066506,
+            -2.7313420706037506
+          ]
+        },
+        "absolute": {
+          "n": 114,
+          "median": 5.779305455463795,
+          "iqr": [
+            3.499868794265809,
+            8.161635330424595
+          ]
+        }
+      },
+      "clinical_observed_vs_nhanes_obstructed_fvc_abs_pct": {
+        "signed": {
+          "n": 114,
+          "median": -3.6606361709068946,
+          "iqr": [
+            -5.455370669576075,
+            -2.1890897087609016
+          ]
+        },
+        "absolute": {
+          "n": 114,
+          "median": 3.6606361709068946,
+          "iqr": [
+            2.1890897087609016,
+            5.455370669576075
+          ]
+        }
+      },
+      "clinical_model_vs_nhanes_obstructed_ratio_abs": {
+        "signed": {
+          "n": 114,
+          "median": 0.019731369676320998,
+          "iqr": [
+            0.007252559074206771,
+            0.03269159675570968
+          ]
+        },
+        "absolute": {
+          "n": 114,
+          "median": 0.021861911232188835,
+          "iqr": [
+            0.011916743563101947,
+            0.03827251796730441
+          ]
+        }
+      },
+      "clinical_observed_vs_nhanes_obstructed_ratio_abs": {
+        "signed": {
+          "n": 114,
+          "median": 0.00047790301890504594,
+          "iqr": [
+            -0.004483819734843089,
+            0.011331937232733055
+          ]
+        },
+        "absolute": {
+          "n": 114,
+          "median": 0.00695745023162056,
+          "iqr": [
+            0.0027572600656358137,
+            0.016782982547571684
+          ]
+        }
+      },
+      "trunc_observed_vs_nhanes_sample_fev1_abs_pct": {
+        "signed": {
+          "n": 497,
+          "median": -3.214059056853225,
+          "iqr": [
+            -4.638628129117249,
+            -2.4065067850974415
+          ]
+        },
+        "absolute": {
+          "n": 497,
+          "median": 3.214059056853225,
+          "iqr": [
+            2.4065067850974415,
+            4.638628129117249
+          ]
+        }
+      },
+      "trunc_observed_vs_nhanes_sample_fvc_abs_pct": {
+        "signed": {
+          "n": 497,
+          "median": -3.8411461650291305,
+          "iqr": [
+            -5.808944704049843,
+            -2.7578587675906783
+          ]
+        },
+        "absolute": {
+          "n": 497,
+          "median": 3.8411461650291305,
+          "iqr": [
+            2.7578587675906783,
+            5.808944704049843
+          ]
+        }
+      },
+      "trunc_observed_vs_nhanes_sample_ratio_abs": {
+        "signed": {
+          "n": 497,
+          "median": 0.0017211985000715746,
+          "iqr": [
+            -0.004469606491462219,
+            0.012981449448150717
+          ]
+        },
+        "absolute": {
+          "n": 497,
+          "median": 0.008278834903815868,
+          "iqr": [
+            0.00298270455766958,
+            0.020581414120499186
+          ]
+        }
+      },
+      "trunc_observed_vs_nhanes_clinical_overlap_fev1_abs_pct": {
+        "signed": {
+          "n": 85,
+          "median": -3.1518796410891166,
+          "iqr": [
+            -5.188165080122917,
+            -2.054661265053592
+          ]
+        },
+        "absolute": {
+          "n": 85,
+          "median": 3.1518796410891166,
+          "iqr": [
+            2.054661265053592,
+            5.188165080122917
+          ]
+        }
+      },
+      "nearest_vs_interpolation_fev1_mL_common30": {
+        "n": 30,
+        "median": 0.28937383177574105,
+        "iqr": [
+          -1.280181818181847,
+          1.5785294117648396
+        ]
+      }
+    },
+    "dominant_gap_attribution": "definition: clinical headline is fitted-model vs NHANES, while truncation TRUE is observed-curve vs NHANES",
+    "clinical_obstructed_n": 114,
+    "truncation_crosscheck_sample_n": 497,
+    "truncation_overlap_with_clinical_obstructed_n": 85,
+    "headline_recalc": [
+      {
+        "row_type": "part_a_headline_recalc",
+        "estimator": "E0_DIRECT",
+        "T_label": "2",
+        "old_false_negative_rate_obstructed": 0.98989898989899,
+        "recomputed_false_negative_rate_obstructed": 0.98989898989899,
+        "delta": 0.0,
+        "material_delta_threshold": 0.02
+      },
+      {
+        "row_type": "part_a_headline_recalc",
+        "estimator": "E1_OMBE",
+        "T_label": "2",
+        "old_false_negative_rate_obstructed": 0.5892255892255892,
+        "recomputed_false_negative_rate_obstructed": 0.5892255892255892,
+        "delta": 0.0,
+        "material_delta_threshold": 0.02
+      }
+    ],
+    "max_recomputed_truth_abs_delta": {
+      "fev1_l": 0.0,
+      "fvc_l": 0.0,
+      "ratio": 0.0
+    }
+  },
+  "part_b": {
+    "verdict": "NOISE",
+    "reason": "Paired bootstrap CI for E1 T=3 minus T=2 false-negative rate includes zero.",
+    "obstructed_stratum_counts": [
+      {
+        "row_type": "part_b_obstructed_stratum_count",
+        "truth_severity": "mild_0.60_0.70",
+        "n": 200
+      },
+      {
+        "row_type": "part_b_obstructed_stratum_count",
+        "truth_severity": "moderate",
+        "n": 80
+      },
+      {
+        "row_type": "part_b_obstructed_stratum_count",
+        "truth_severity": "severe",
+        "n": 17
+      }
+    ],
+    "bootstrap_rows": [
+      {
+        "row_type": "part_b_bootstrap_fn",
+        "T_label": "2",
+        "n_obstructed": 297,
+        "fn_rate": 0.5892255892255892,
+        "bootstrap_ci_low": 0.531986531986532,
+        "bootstrap_ci_high": 0.6464646464646465,
+        "bootstrap_n": 2000
+      },
+      {
+        "row_type": "part_b_bootstrap_fn",
+        "T_label": "3",
+        "n_obstructed": 297,
+        "fn_rate": 0.5959595959595959,
+        "bootstrap_ci_low": 0.5420875420875421,
+        "bootstrap_ci_high": 0.6531986531986532,
+        "bootstrap_n": 2000
+      },
+      {
+        "row_type": "part_b_bootstrap_fn",
+        "T_label": "4",
+        "n_obstructed": 297,
+        "fn_rate": 0.5185185185185185,
+        "bootstrap_ci_low": 0.46464646464646464,
+        "bootstrap_ci_high": 0.5757575757575758,
+        "bootstrap_n": 2000
+      },
+      {
+        "row_type": "part_b_bootstrap_fn",
+        "T_label": "5",
+        "n_obstructed": 297,
+        "fn_rate": 0.468013468013468,
+        "bootstrap_ci_low": 0.41414141414141414,
+        "bootstrap_ci_high": 0.5252525252525253,
+        "bootstrap_n": 2000
+      },
+      {
+        "row_type": "part_b_bootstrap_pairdiff",
+        "n_paired": 297,
+        "mean_difference_T3_minus_T2": 0.006734006734006734,
+        "ci_low": -0.02356902356902357,
+        "ci_high": 0.04040404040404041,
+        "distinguishable_from_zero": false
+      }
+    ],
+    "paired_difference_T3_minus_T2": {
+      "n_paired": 297,
+      "mean_difference_T3_minus_T2": 0.006734006734006734,
+      "ci_low": -0.02356902356902357,
+      "ci_high": 0.04040404040404041,
+      "distinguishable_from_zero": false
+    },
+    "bound_summary": [
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "2",
+        "parameter": "tau_f",
+        "fit_success_n": 497,
+        "low_bound_n": 147,
+        "high_bound_n": 1,
+        "either_bound_n": 148,
+        "either_bound_fraction": 0.2977867203219316
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "2",
+        "parameter": "tau_s",
+        "fit_success_n": 497,
+        "low_bound_n": 214,
+        "high_bound_n": 62,
+        "either_bound_n": 276,
+        "either_bound_fraction": 0.5553319919517102
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "2",
+        "parameter": "alpha",
+        "fit_success_n": 497,
+        "low_bound_n": 45,
+        "high_bound_n": 36,
+        "either_bound_n": 81,
+        "either_bound_fraction": 0.16297786720321933
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "2",
+        "parameter": "fvc_l",
+        "fit_success_n": 497,
+        "low_bound_n": 53,
+        "high_bound_n": 7,
+        "either_bound_n": 60,
+        "either_bound_fraction": 0.12072434607645875
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "2",
+        "parameter": "tau_o",
+        "fit_success_n": 497,
+        "low_bound_n": 421,
+        "high_bound_n": 2,
+        "either_bound_n": 423,
+        "either_bound_fraction": 0.8511066398390342
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "3",
+        "parameter": "tau_f",
+        "fit_success_n": 497,
+        "low_bound_n": 126,
+        "high_bound_n": 3,
+        "either_bound_n": 129,
+        "either_bound_fraction": 0.2595573440643863
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "3",
+        "parameter": "tau_s",
+        "fit_success_n": 497,
+        "low_bound_n": 176,
+        "high_bound_n": 45,
+        "either_bound_n": 221,
+        "either_bound_fraction": 0.44466800804828976
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "3",
+        "parameter": "alpha",
+        "fit_success_n": 497,
+        "low_bound_n": 34,
+        "high_bound_n": 41,
+        "either_bound_n": 75,
+        "either_bound_fraction": 0.15090543259557343
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "3",
+        "parameter": "fvc_l",
+        "fit_success_n": 497,
+        "low_bound_n": 50,
+        "high_bound_n": 4,
+        "either_bound_n": 54,
+        "either_bound_fraction": 0.10865191146881288
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "3",
+        "parameter": "tau_o",
+        "fit_success_n": 497,
+        "low_bound_n": 419,
+        "high_bound_n": 3,
+        "either_bound_n": 422,
+        "either_bound_fraction": 0.8490945674044266
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "4",
+        "parameter": "tau_f",
+        "fit_success_n": 497,
+        "low_bound_n": 93,
+        "high_bound_n": 3,
+        "either_bound_n": 96,
+        "either_bound_fraction": 0.193158953722334
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "4",
+        "parameter": "tau_s",
+        "fit_success_n": 497,
+        "low_bound_n": 109,
+        "high_bound_n": 29,
+        "either_bound_n": 138,
+        "either_bound_fraction": 0.2776659959758551
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "4",
+        "parameter": "alpha",
+        "fit_success_n": 497,
+        "low_bound_n": 22,
+        "high_bound_n": 42,
+        "either_bound_n": 64,
+        "either_bound_fraction": 0.12877263581488935
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "4",
+        "parameter": "fvc_l",
+        "fit_success_n": 497,
+        "low_bound_n": 46,
+        "high_bound_n": 5,
+        "either_bound_n": 51,
+        "either_bound_fraction": 0.10261569416498995
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "4",
+        "parameter": "tau_o",
+        "fit_success_n": 497,
+        "low_bound_n": 421,
+        "high_bound_n": 5,
+        "either_bound_n": 426,
+        "either_bound_fraction": 0.8571428571428571
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "5",
+        "parameter": "tau_f",
+        "fit_success_n": 497,
+        "low_bound_n": 63,
+        "high_bound_n": 3,
+        "either_bound_n": 66,
+        "either_bound_fraction": 0.13279678068410464
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "5",
+        "parameter": "tau_s",
+        "fit_success_n": 497,
+        "low_bound_n": 73,
+        "high_bound_n": 26,
+        "either_bound_n": 99,
+        "either_bound_fraction": 0.19919517102615694
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "5",
+        "parameter": "alpha",
+        "fit_success_n": 497,
+        "low_bound_n": 16,
+        "high_bound_n": 45,
+        "either_bound_n": 61,
+        "either_bound_fraction": 0.1227364185110664
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "5",
+        "parameter": "fvc_l",
+        "fit_success_n": 497,
+        "low_bound_n": 41,
+        "high_bound_n": 5,
+        "either_bound_n": 46,
+        "either_bound_fraction": 0.0925553319919517
+      },
+      {
+        "row_type": "part_b_bound_summary",
+        "T_label": "5",
+        "parameter": "tau_o",
+        "fit_success_n": 497,
+        "low_bound_n": 424,
+        "high_bound_n": 6,
+        "either_bound_n": 430,
+        "either_bound_fraction": 0.8651911468812877
+      }
+    ],
+    "fvc_signed_error_trend": [
+      {
+        "row_type": "part_b_fvc_signed_error_trend",
+        "T_label": "2",
+        "n": 297,
+        "fvc_signed_pct_median": -11.258890796401127,
+        "fvc_signed_pct_iqr": [
+          -15.702324777745648,
+          -5.217039868342054
+        ],
+        "fvc_abs_pct_median": 12.297167940299776
+      },
+      {
+        "row_type": "part_b_fvc_signed_error_trend",
+        "T_label": "3",
+        "n": 297,
+        "fvc_signed_pct_median": -11.455741824802857,
+        "fvc_signed_pct_iqr": [
+          -14.96315755501765,
+          -7.319741079797199
+        ],
+        "fvc_abs_pct_median": 11.95315800790562
+      },
+      {
+        "row_type": "part_b_fvc_signed_error_trend",
+        "T_label": "4",
+        "n": 297,
+        "fvc_signed_pct_median": -9.914845419612442,
+        "fvc_signed_pct_iqr": [
+          -12.813001325242109,
+          -6.379812628266879
+        ],
+        "fvc_abs_pct_median": 10.662590000860613
+      },
+      {
+        "row_type": "part_b_fvc_signed_error_trend",
+        "T_label": "5",
+        "n": 297,
+        "fvc_signed_pct_median": -8.088428884071497,
+        "fvc_signed_pct_iqr": [
+          -11.126694835245194,
+          -4.9576064837915705
+        ],
+        "fvc_abs_pct_median": 8.651527172176733
+      },
+      {
+        "row_type": "part_b_fvc_signed_error_trend",
+        "T_label": "full",
+        "n": 297,
+        "fvc_signed_pct_median": -0.160437882429567,
+        "fvc_signed_pct_iqr": [
+          -0.8221629650997818,
+          0.541030560348727
+        ],
+        "fvc_abs_pct_median": 0.7073931126914608
+      }
+    ],
+    "fvc_abs_error_strictly_shrinks_T2_to_T5": true,
+    "bound_limited": false,
+    "bound_reason": "No tau_s/fvc_l bound-pile pattern meeting the predeclared audit rule."
+  },
+  "part_c": {
+    "clinical_drop_denominator_n": 129,
+    "clinical_drop_n": 15,
+    "clinical_drop_taxonomy_counts": {
+      "FIT-QUALITY": 15
+    },
+    "parse_bug_fixed_n": 0,
+    "policy_available_modsev_n": 114,
+    "policy_extra_modsev_outside_denominator_n": 11,
+    "policy_missing_modsev_counted_flag_n": 15,
+    "policy_denominator_all_modsev_n": 129,
+    "policy_outcome_counts_full_denominator": {
+      "OBSTRUCTED": 112,
+      "NORMAL": 2,
+      "FLAG": 15
+    },
+    "confident_call_rate": 0.8837209302325582,
+    "flag_rate": 0.11627906976744186,
+    "residual_confident_false_negative_rate": 0.015503875968992248,
+    "coverage_sentence": "The system produces a confident call for 88.4% of severe+moderate obstructed participants and recommends repeat/FLAG for 11.6%, with residual confident false-negative rate 1.6% over the full severe+moderate denominator."
+  },
+  "part_d": {
+    "verdict": "UNSTABLE",
+    "note": "Part D reuses the existing all-manoeuvre deterministic flow-domain OMBE fit table. It is not a fresh all-manoeuvre volume-domain refit.",
+    "participants_with_at_least_2_acceptable_ab_manoeuvres": 6677,
+    "manoeuvre_count_distribution": {
+      "2": 269,
+      "3": 3959,
+      "4": 1475,
+      "5": 553,
+      "6": 266,
+      "7": 107,
+      "8": 48
+    },
+    "model_fit_manoeuvre_rows_used": 23809,
+    "within_participant_sd": {
+      "model_fev1_l": {
+        "n": 6677,
+        "median": 0.08276143330678695,
+        "iqr": [
+          0.048253919788666756,
+          0.1425008252252281
+        ]
+      },
+      "model_fvc_l": {
+        "n": 6677,
+        "median": 0.08745862456598193,
+        "iqr": [
+          0.04396141643256972,
+          0.14502547029073729
+        ]
+      },
+      "model_ratio": {
+        "n": 6677,
+        "median": 0.018797532632000638,
+        "iqr": [
+          0.01040615024363866,
+          0.03346677855492337
+        ]
+      }
+    },
+    "icc_ratio": 0.7213658889039518,
+    "classification_stability_all": {
+      "n": 6677,
+      "unanimous_fraction": 0.8526284259397933,
+      "split_fraction": 0.14737157406020668,
+      "majority_fraction": {
+        "n": 6677,
+        "median": 1.0,
+        "iqr": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "classification_stability_borderline_0.60_0.70": {
+      "n": 483,
+      "unanimous_fraction": 0.6066252587991718,
+      "split_fraction": 0.39337474120082816,
+      "majority_fraction": {
+        "n": 483,
+        "median": 1.0,
+        "iqr": [
+          0.6666666666666667,
+          1.0
+        ]
+      }
+    },
+    "ats_repeatability_observed": {
+      "n": 6677,
+      "repeatable_n": 5630,
+      "repeatable_fraction": 0.8431930507713045,
+      "fev1_top2_diff_l": {
+        "n": 6677,
+        "median": 0.04413293920454464,
+        "iqr": [
+          0.02042897297297297,
+          0.08322780099220406
+        ]
+      },
+      "fvc_top2_diff_l": {
+        "n": 6677,
+        "median": 0.05343481527093541,
+        "iqr": [
+          0.024397958762886862,
+          0.10002193548387095
+        ]
+      }
+    },
+    "ats_repeatability_model": {
+      "n": 6677,
+      "repeatable_n": 5373,
+      "repeatable_fraction": 0.8047027107982627,
+      "fev1_top2_diff_l": {
+        "n": 6677,
+        "median": 0.047867031334398735,
+        "iqr": [
+          0.020773114860447972,
+          0.09021116663459061
+        ]
+      },
+      "fvc_top2_diff_l": {
+        "n": 6677,
+        "median": 0.05234024047339547,
+        "iqr": [
+          0.01724460172499498,
+          0.10435918377728992
+        ]
+      }
+    },
+    "model_more_repeatable_than_raw": false
+  }
+}

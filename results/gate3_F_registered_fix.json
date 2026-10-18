@@ -1,0 +1,64 @@
+{
+  "status": "SAMPLE_NOT_FIXED",
+  "reason": "registered sample did not clear the fixed criteria",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_info": {
+    "path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "metadata_rows": 36421,
+    "loaded_rows": 36421,
+    "columns": [
+      "SEQN",
+      "SPATTYPE",
+      "SPAMANU",
+      "SPAFACT",
+      "SPAPOS",
+      "SPAPLAT",
+      "SPAACC",
+      "SPAQEFF",
+      "SPXPTS",
+      "SPXRAW"
+    ]
+  },
+  "sample_seed": 20260707,
+  "sample_n_requested": 200,
+  "sample_fixed": false,
+  "sample_fixed_reason": "dipoles<30%=False; all-three-within-5%>90%=False; FEV1/FVC within 0.02 improved by >=5 points=False (delta=-24.0 points)",
+  "full_ran": false,
+  "sample_n": 200,
+  "sample_valid_n": 200,
+  "sample_error_n": 0,
+  "sample_flow_nrss_valid_n": 200,
+  "sample_flow_nrss_median": 6.950859750399575,
+  "sample_flow_nrss_iqr": [
+    4.006559940347871,
+    12.932602979832007
+  ],
+  "sample_flow_threshold_median": 1.0794350415904188,
+  "sample_flow_adequate_n": 0,
+  "sample_flow_adequate_fraction": 0.0,
+  "sample_dipole_n": 107,
+  "sample_dipole_fraction": 0.535,
+  "sample_single_signed_n": 1,
+  "sample_single_signed_fraction": 0.005,
+  "sample_peak_class_counts": {
+    "dipole": 107,
+    "mixed": 92,
+    "single_signed_overshoot": 1
+  },
+  "sample_shift_median_samples": -1.7823728172268267,
+  "sample_shift_iqr_samples": [
+    -2.376865875475979,
+    -1.3507830618433485
+  ],
+  "sample_clinical_valid_n": 200,
+  "sample_all_within_5pct_n": 136,
+  "sample_all_within_5pct_fraction": 0.68,
+  "sample_ratio_within_5pct_n": 149,
+  "sample_ratio_within_5pct_fraction": 0.745,
+  "sample_ratio_within_0p02_n": 87,
+  "sample_ratio_within_0p02_fraction": 0.435,
+  "sample_fev1_abs_pct_error_median": 0.8341095153721999,
+  "sample_fvc_abs_pct_error_median": 2.891938724547633,
+  "sample_ratio_abs_pct_error_median": 3.024910496451654,
+  "sample_ratio_abs_error_median": 0.02417454204374353
+}

@@ -1,0 +1,702 @@
+{
+  "verdict": "MIGRATION-CLEAN",
+  "seed": 20260710,
+  "elapsed_s": 331.32286045805085,
+  "cached_f_before_migration": {
+    "gate2.med_abs_FEV1": 2.908327132804675,
+    "gate2.med_abs_FVC": 3.5273255813953415,
+    "gate2.signed_FEV1": -2.885889141458292,
+    "gate2.signed_FVC": -3.489326433958947,
+    "gate2.parse_errors": 45,
+    "gate2.participants_with_truth": 7079,
+    "clinical.fixed.sensitivity": 0.9824561403508771,
+    "clinical.fixed.specificity": 0.9566666666666667,
+    "clinical.fixed.kappa": 0.9118473724554977,
+    "clinical.fixed.n": 414
+  },
+  "expected_checks": [
+    {
+      "metric": "gate2.med_abs_FEV1",
+      "expected": 2.908327132804675,
+      "cached": 2.908327132804675,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.med_abs_FVC",
+      "expected": 3.5273255813953415,
+      "cached": 3.5273255813953415,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.signed_FEV1",
+      "expected": -2.885889141458292,
+      "cached": -2.885889141458292,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.signed_FVC",
+      "expected": -3.489326433958947,
+      "cached": -3.489326433958947,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.parse_errors",
+      "expected": 45,
+      "cached": 45,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.participants_with_truth",
+      "expected": 7079,
+      "cached": 7079,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "clinical.fixed.sensitivity",
+      "expected": 0.9824561403508771,
+      "cached": 0.9824561403508771,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "clinical.fixed.specificity",
+      "expected": 0.9566666666666667,
+      "cached": 0.9566666666666667,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "clinical.fixed.kappa",
+      "expected": 0.9118473724554977,
+      "cached": 0.9118473724554977,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "clinical.fixed.n",
+      "expected": 414,
+      "cached": 414,
+      "delta": 0.0,
+      "pass": true
+    }
+  ],
+  "dataset_listing": [
+    {
+      "cycle": "E",
+      "year": "2007-2008",
+      "folder": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008",
+      "has_extracted_sas7bdat": true,
+      "has_raw_zip": true,
+      "has_spx_xpt": true,
+      "files": [
+        ".DS_Store",
+        "BMX_E.xpt",
+        "DEMO_E.xpt",
+        "ENX_E.xpt",
+        "MCQ_E.xpt",
+        "RDQ_E.xpt",
+        "RXQ_RX_E.xpt",
+        "SMQ_E.xpt",
+        "SPXRAW_E.zip",
+        "SPX_E.xpt",
+        "spxraw_e.sas7bdat",
+        "spxraw_e.sas7bdat 2"
+      ]
+    },
+    {
+      "cycle": "F",
+      "year": "2009-2010",
+      "folder": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010",
+      "has_extracted_sas7bdat": true,
+      "has_raw_zip": true,
+      "has_spx_xpt": true,
+      "files": [
+        ".DS_Store",
+        "BMX_F.xpt",
+        "DEMO_F.xpt",
+        "ENX_F.xpt",
+        "MCQ_F.xpt",
+        "RDQ_F.xpt",
+        "RXQ_RX_F.xpt",
+        "SMQ_F.xpt",
+        "SPXRAW_F.zip",
+        "SPX_F.xpt",
+        "spxraw_f.sas7bdat",
+        "spxraw_f.sas7bdat 2"
+      ]
+    },
+    {
+      "cycle": "G",
+      "year": "2011-2012",
+      "folder": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012",
+      "has_extracted_sas7bdat": true,
+      "has_raw_zip": true,
+      "has_spx_xpt": true,
+      "files": [
+        ".DS_Store",
+        "BMX_G.xpt",
+        "DEMO_G.xpt",
+        "ENX_G.xpt",
+        "MCQ_G.xpt",
+        "RDQ_G.xpt",
+        "RXQ_RX_G.xpt",
+        "SMQ_G.xpt",
+        "SPXRAW_G.zip",
+        "SPX_G.xpt",
+        "spxraw_g.sas7bdat",
+        "spxraw_g.sas7bdat 2"
+      ]
+    }
+  ],
+  "resolver_check": [
+    {
+      "cycle": "E",
+      "year": "2007-2008",
+      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+      "raw_source": "new-extracted",
+      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+      "raw_row_count": 34857,
+      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/SPX_E.xpt",
+      "spx_source": "new-nested",
+      "spx_note": "using SPX_E.xpt from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/SPX_E.xpt"
+    },
+    {
+      "cycle": "F",
+      "year": "2009-2010",
+      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+      "raw_source": "new-extracted",
+      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+      "raw_row_count": 36421,
+      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/SPX_F.xpt",
+      "spx_source": "new-nested",
+      "spx_note": "using SPX_F.xpt from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/SPX_F.xpt"
+    },
+    {
+      "cycle": "G",
+      "year": "2011-2012",
+      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
+      "raw_source": "new-extracted",
+      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
+      "raw_row_count": 37661,
+      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/SPX_G.xpt",
+      "spx_source": "new-nested",
+      "spx_note": "using SPX_G.xpt from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/SPX_G.xpt"
+    }
+  ],
+  "migrated_checklist": [
+    "predictx/gate23_f.py: raw resolver formerly hardcoded data/ and DATASET?/SPXRAW_F paths",
+    "predictx/gate23_f.py: summary truth formerly hardcoded data/SPX_F.xpt",
+    "predictx/gate23_f.py: Gate 2 and Gate 3 output filenames now include the cycle token",
+    "predictx/gate_clinical_classification_f.py: load_truth now filters df[df['cycle'] == cycle]",
+    "predictx/gate_clinical_classification_f.py: column_map source fields now use .get(cycle)",
+    "predictx/gate_clinical_classification_f.py: raw resolver and output filenames now include the cycle token",
+    "predictx/gate_estimand_hybrid_f.py: read_spx_summary now resolves SPX_{cycle}.xpt",
+    "predictx/gate_four_part_fix_f.py: Part A SPX summary probe now resolves SPX_{cycle}.xpt"
+  ],
+  "source_audit": [
+    {
+      "path": "predictx/dataset_resolver.py",
+      "line": 119,
+      "patterns": [
+        "DATASET?"
+      ],
+      "text": "root / \"DATASET?\" / f\"{file_type}_{cycle}.xpt\","
+    },
+    {
+      "path": "predictx/dataset_resolver.py",
+      "line": 188,
+      "patterns": [
+        "DATASET?"
+      ],
+      "text": "root / \"DATASET?\" / f\"spxraw_{cycle.lower()}.sas7bdat\","
+    },
+    {
+      "path": "predictx/dataset_resolver.py",
+      "line": 189,
+      "patterns": [
+        "DATASET?"
+      ],
+      "text": "root / \"DATASET?\" / f\"SPXRAW_{cycle}.sas7bdat\","
+    },
+    {
+      "path": "predictx/dataset_resolver.py",
+      "line": 206,
+      "patterns": [
+        "DATASET?"
+      ],
+      "text": "root / \"DATASET?\" / f\"SPXRAW_{cycle}.zip\","
+    },
+    {
+      "path": "predictx/gate3_diagnosis.py",
+      "line": 211,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "fits_path = root / \"results\" / \"gate3_F_curve_fits.csv\""
+    },
+    {
+      "path": "predictx/gate3_diagnosis.py",
+      "line": 390,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "fig.savefig(figures_dir / \"gate3_F_diagnosis_examples.png\", dpi=170, bbox_inches=\"tight\")"
+    },
+    {
+      "path": "predictx/gate3_diagnosis.py",
+      "line": 456,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "(results_dir / \"gate3_F_diagnosis.md\").write_text(\"\\n\".join(lines), encoding=\"utf-8\")"
+    },
+    {
+      "path": "predictx/gate3_diagnosis.py",
+      "line": 457,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "(results_dir / \"gate3_F_diagnosis.json\").write_text(json.dumps(result, indent=2) + \"\\n\", encoding=\"utf-8\")"
+    },
+    {
+      "path": "predictx/gate3_diagnosis.py",
+      "line": 458,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "rows.to_csv(results_dir / \"gate3_F_diagnosis_sample.csv\", index=False)"
+    },
+    {
+      "path": "predictx/gate3_f_rerun.py",
+      "line": 256,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "fig.savefig(figures_dir / \"gate3_F_residual_shape.png\", dpi=170, bbox_inches=\"tight\")"
+    },
+    {
+      "path": "predictx/gate3_f_rerun.py",
+      "line": 266,
+      "patterns": [
+        "cycle F historical",
+        "E and G"
+      ],
+      "text": "\"- scope: F historical gate; E and G analyzed separately in the three-cycle extension. Obstructed-subgroup numbers are cycle-F-specific.\","
+    },
+    {
+      "path": "predictx/gate3_f_rerun.py",
+      "line": 344,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "(results_dir / \"gate3_F_ombe_rerun.md\").write_text(\"\\n\".join(lines), encoding=\"utf-8\")"
+    },
+    {
+      "path": "predictx/gate3_f_rerun.py",
+      "line": 345,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "(results_dir / \"gate3_F_ombe_rerun.json\").write_text(json.dumps(result, indent=2) + \"\\n\", encoding=\"utf-8\")"
+    },
+    {
+      "path": "predictx/gate3_f_rerun.py",
+      "line": 346,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "rows.to_csv(results_dir / \"gate3_F_residual_shape.csv\", index=False)"
+    },
+    {
+      "path": "predictx/gate3_f_rerun.py",
+      "line": 352,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "fits_path = results_dir / \"gate3_F_curve_fits.csv\""
+    },
+    {
+      "path": "predictx/gate3_gamma_onset.py",
+      "line": 207,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "fits = pd.read_csv(root / \"results\" / \"gate3_F_curve_fits.csv\")"
+    },
+    {
+      "path": "predictx/gate3_gamma_onset.py",
+      "line": 320,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "fig.savefig(figures_dir / \"gate3_F_gamma_onset_examples.png\", dpi=170, bbox_inches=\"tight\")"
+    },
+    {
+      "path": "predictx/gate3_gamma_onset.py",
+      "line": 396,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "(results_dir / \"gate3_F_gamma_onset.md\").write_text(\"\\n\".join(lines), encoding=\"utf-8\")"
+    },
+    {
+      "path": "predictx/gate3_gamma_onset.py",
+      "line": 397,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "(results_dir / \"gate3_F_gamma_onset.json\").write_text(json.dumps(result, indent=2) + \"\\n\", encoding=\"utf-8\")"
+    },
+    {
+      "path": "predictx/gate3_gamma_onset.py",
+      "line": 398,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "rows.to_csv(results_dir / \"gate3_F_gamma_onset_sample.csv\", index=False)"
+    },
+    {
+      "path": "predictx/gate3_registration_fix.py",
+      "line": 353,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "(results_dir / \"gate3_F_registered_fix.md\").write_text(\"\\n\".join(lines), encoding=\"utf-8\")"
+    },
+    {
+      "path": "predictx/gate3_registration_fix.py",
+      "line": 354,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "(results_dir / \"gate3_F_registered_fix.json\").write_text(json.dumps(result, indent=2) + \"\\n\", encoding=\"utf-8\")"
+    },
+    {
+      "path": "predictx/gate3_registration_fix.py",
+      "line": 355,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "sample_rows.to_csv(results_dir / \"gate3_F_registered_sample.csv\", index=False)"
+    },
+    {
+      "path": "predictx/gate3_registration_fix.py",
+      "line": 357,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "full_rows.to_csv(results_dir / \"gate3_F_registered_full.csv\", index=False)"
+    },
+    {
+      "path": "predictx/gate3_registration_fix.py",
+      "line": 361,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "fits = pd.read_csv(root / \"results\" / \"gate3_F_curve_fits.csv\")"
+    },
+    {
+      "path": "predictx/gate3_registration_fix.py",
+      "line": 386,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "draw_registered_examples(sample_rows, sample_plots, root / \"figures\", \"gate3_F_registered_sample_examples.png\")"
+    },
+    {
+      "path": "predictx/gate3_registration_fix.py",
+      "line": 404,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "draw_registered_examples(full_rows, full_plots, root / \"figures\", \"gate3_F_registered_full_examples.png\")"
+    },
+    {
+      "path": "predictx/gate_fit_optimization_f.py",
+      "line": 108,
+      "patterns": [
+        "gate2_F"
+      ],
+      "text": "gate2 = read_json(root / \"results\" / \"gate2_F_parse.json\")"
+    },
+    {
+      "path": "predictx/gate_fit_optimization_f.py",
+      "line": 118,
+      "patterns": [
+        "gate2_F"
+      ],
+      "text": "source=\"results/gate2_F_parse.json:criterion\","
+    },
+    {
+      "path": "predictx/gate_fit_optimization_f.py",
+      "line": 126,
+      "patterns": [
+        "gate2_F"
+      ],
+      "text": "source=\"results/gate2_F_parse.json:criterion\","
+    },
+    {
+      "path": "predictx/gate_fit_optimization_f.py",
+      "line": 134,
+      "patterns": [
+        "gate2_F"
+      ],
+      "text": "source=\"results/gate2_F_parse.json:criterion\","
+    },
+    {
+      "path": "predictx/gate_fit_optimization_f.py",
+      "line": 142,
+      "patterns": [
+        "gate2_F"
+      ],
+      "text": "source=\"results/gate2_F_parse.json:criterion\","
+    },
+    {
+      "path": "predictx/gate_reconciliation_audit_f.py",
+      "line": 121,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "\"gate3_fits\": root / \"results\" / \"gate3_F_curve_fits.csv\","
+    },
+    {
+      "path": "predictx/gate_reconciliation_audit_f.py",
+      "line": 807,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "\"fit_source\": \"results/gate3_F_curve_fits.csv flow-domain deterministic OMBE fit\","
+    },
+    {
+      "path": "predictx/gate_truncation_hardening_f.py",
+      "line": 161,
+      "patterns": [
+        "cycle F historical",
+        "E and G",
+        "gate2_F"
+      ],
+      "text": "{\"item\": \"Gate 2 parse\", \"value\": \"PASS; cycle F historical; E and G analyzed separately in the three-cycle extension; n 7079; FEV1 2.91%; FVC 3.53%\", \"source\": source_ref(\"results/gate2_F_parse.md\", \"3-5,37-39\")},"
+    },
+    {
+      "path": "predictx/gate_truncation_hardening_f.py",
+      "line": 162,
+      "patterns": [
+        "cycle F historical",
+        "E and G",
+        "gate3_F"
+      ],
+      "text": "{\"item\": \"Gate 3 adequacy\", \"value\": \"FAIL; cycle F historical; E and G analyzed separately in the three-cycle extension; 0/31851 (0.0% of all curves; 0.0% of NRSS-valid curves)\", \"source\": source_ref(\"results/gate3_F_ombe_rerun.md\", \"3-5,26\")},"
+    },
+    {
+      "path": "predictx/gate_truncation_hardening_f.py",
+      "line": 729,
+      "patterns": [
+        "cycle F historical",
+        "E and G"
+      ],
+      "text": "\"limitation\": \"Cycle F historical gate; E and G analyzed separately in the three-cycle extension.\","
+    },
+    {
+      "path": "predictx/gate_truncation_hardening_f.py",
+      "line": 730,
+      "patterns": [
+        "gate2_F",
+        "gate3_F"
+      ],
+      "text": "\"source\": \"results/gate2_F_parse.md:3-5; results/gate3_F_ombe_rerun.md:3-5\","
+    },
+    {
+      "path": "predictx/gate_truncation_hardening_f.py",
+      "line": 734,
+      "patterns": [
+        "gate3_F"
+      ],
+      "text": "\"source\": \"results/gate3_F_ombe_rerun.md:26,62\","
+    },
+    {
+      "path": "predictx/synthetic_gates.py",
+      "line": 23,
+      "patterns": [
+        "SPXRAW_F"
+      ],
+      "text": "RAW_RDS = (\"SPXRAW_E.rds\", \"SPXRAW_F.rds\", \"SPXRAW_G.rds\")"
+    },
+    {
+      "path": "predictx/synthetic_gates.py",
+      "line": 24,
+      "patterns": [
+        "SPXRAW_F"
+      ],
+      "text": "RAW_XPT = (\"SPXRAW_E.xpt\", \"SPXRAW_F.xpt\", \"SPXRAW_G.xpt\")"
+    }
+  ],
+  "regression_rows": [
+    {
+      "metric": "gate2.med_abs_FEV1",
+      "old": 2.908327132804675,
+      "new": 2.908327132804675,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.med_abs_FVC",
+      "old": 3.5273255813953415,
+      "new": 3.5273255813953415,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.signed_FEV1",
+      "old": -2.885889141458292,
+      "new": -2.885889141458292,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.signed_FVC",
+      "old": -3.489326433958947,
+      "new": -3.489326433958947,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.parse_errors",
+      "old": 45,
+      "new": 45,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "gate2.participants_with_truth",
+      "old": 7079,
+      "new": 7079,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "clinical.fixed.sensitivity",
+      "old": 0.9824561403508771,
+      "new": 0.9824561403508771,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "clinical.fixed.specificity",
+      "old": 0.9566666666666667,
+      "new": 0.9566666666666667,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "clinical.fixed.kappa",
+      "old": 0.9118473724554977,
+      "new": 0.9118473724554977,
+      "delta": 0.0,
+      "pass": true
+    },
+    {
+      "metric": "clinical.fixed.n",
+      "old": 414,
+      "new": 414,
+      "delta": 0.0,
+      "pass": true
+    }
+  ],
+  "regression_passed": true,
+  "smoke_status": "PASS",
+  "smoke_rows": [
+    {
+      "cycle": "E",
+      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+      "raw_source": "new-extracted",
+      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/SPX_E.xpt",
+      "spx_source": "new-nested",
+      "metadata_rows": 34857,
+      "loaded_rows": 34857,
+      "expected_raw_rows": 34857,
+      "parse_errors": 26,
+      "participants_with_truth": 6319,
+      "distinct_from_f": true
+    },
+    {
+      "cycle": "G",
+      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
+      "raw_source": "new-extracted",
+      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
+      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/SPX_G.xpt",
+      "spx_source": "new-nested",
+      "metadata_rows": 37661,
+      "loaded_rows": 37661,
+      "expected_raw_rows": 37661,
+      "parse_errors": 60,
+      "participants_with_truth": 6652,
+      "distinct_from_f": true
+    }
+  ],
+  "stale_audit": {
+    "reuse_as_is": [
+      {
+        "file": "results/gate_clinical_classification_F.json",
+        "exists": true,
+        "reason": "regenerated by the migrated cycle-parametric clinical path during Part 5"
+      },
+      {
+        "file": "results/gate_clinical_classification_F.md",
+        "exists": true,
+        "reason": "regenerated by the migrated cycle-parametric clinical path during Part 5"
+      },
+      {
+        "file": "results/gate_clinical_classification_F_rows.csv",
+        "exists": true,
+        "reason": "regenerated by the migrated cycle-parametric clinical path during Part 5"
+      }
+    ],
+    "regenerate": [
+      {
+        "file": "results/gate_truncation_recovery_F.json",
+        "exists": true,
+        "reason": "predates this resolver migration and/or embeds F-only raw-source provenance; regenerate before three-cycle analysis"
+      },
+      {
+        "file": "results/gate_truncation_recovery_F.md",
+        "exists": true,
+        "reason": "predates this resolver migration and/or embeds F-only raw-source provenance; regenerate before three-cycle analysis"
+      },
+      {
+        "file": "results/gate_truncation_hardening_F.json",
+        "exists": true,
+        "reason": "predates this resolver migration and/or embeds F-only raw-source provenance; regenerate before three-cycle analysis"
+      },
+      {
+        "file": "results/gate_truncation_hardening_F.md",
+        "exists": true,
+        "reason": "predates this resolver migration and/or embeds F-only raw-source provenance; regenerate before three-cycle analysis"
+      },
+      {
+        "file": "results/gate_severe_truncation_diagnosis_F.json",
+        "exists": true,
+        "reason": "predates this resolver migration and/or embeds F-only raw-source provenance; regenerate before three-cycle analysis"
+      },
+      {
+        "file": "results/gate_severe_truncation_diagnosis_F.md",
+        "exists": true,
+        "reason": "predates this resolver migration and/or embeds F-only raw-source provenance; regenerate before three-cycle analysis"
+      }
+    ]
+  },
+  "protocol_decisions": [
+    "Implemented a dedicated dataset_resolver.py instead of broadening io.data_path because raw SAS7BDAT/ZIP integrity checks are specific to the validation gates.",
+    "Kept default cycle=F on migrated functions and CLIs so old invocations continue to target F.",
+    "Used the new NHANES_SpiroSBI nested root whenever present; legacy data/ and DATASET?/ fallback is available only when the new root is absent.",
+    "For E/G smoke, parsed curves and counted truth participants but did not run Gate 2 scoring, Gate 3 fitting, truncation, or clinical scoring.",
+    "Classified truncation and severe cached F artifacts for regeneration because they predate resolver provenance and embed F-only/old-path evidence.",
+    "Left a non-F guard in gate_four_part_fix_f.py because that gate still consumes F-named cached clinical/policy rows outside the registered SPX path-only scope."
+  ]
+}

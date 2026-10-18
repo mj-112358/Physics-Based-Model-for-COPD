@@ -1,0 +1,80 @@
+{
+  "cycle": "F",
+  "verdict": "ALIVE",
+  "verdict_reason": "obstruction sensitivity clears 0.90 and severe demotion-to-normal is <=0.05; onset failure does not propagate to the screening decision.",
+  "random_seed": 20260708,
+  "selection_rule": "Use Pre curves with `SPAACC == 'Y'` and raw manoeuvre grade `SPAQEFF in {'A','B'}`; parse each curve; select the per-participant manoeuvre with maximum parsed FEV1.",
+  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_loaded_rows": 36421,
+  "raw_candidate_rows_pre_acc_ab": 24127,
+  "raw_candidate_parse_errors": 112,
+  "selected_participants_with_usable_raw": 6883,
+  "source_actual_fev1": "SPXNFEV1",
+  "source_actual_fvc": "SPXNFVC",
+  "truth_severe_n": 38,
+  "truth_moderate_n": 91,
+  "selected_severe_n": 31,
+  "selected_moderate_n": 83,
+  "dropped_severe_n": 7,
+  "dropped_moderate_n": 8,
+  "normal_available_n": 6214,
+  "normal_sample_n": 300,
+  "fit_attempted_n": 414,
+  "fit_valid_n": 414,
+  "fit_error_n": 0,
+  "fixed": {
+    "n": 414,
+    "tp": 112,
+    "tn": 287,
+    "fp": 13,
+    "fn": 2,
+    "sensitivity": 0.9824561403508771,
+    "specificity": 0.9566666666666667,
+    "agreement": 0.9637681159420289,
+    "cohens_kappa": 0.9118473724554977
+  },
+  "lln": {
+    "n": 412,
+    "tp": 114,
+    "tn": 276,
+    "fp": 18,
+    "fn": 4,
+    "sensitivity": 0.9661016949152542,
+    "specificity": 0.9387755102040817,
+    "agreement": 0.9466019417475728,
+    "cohens_kappa": 0.8738447834316891
+  },
+  "lln_valid_n": 412,
+  "lln_excluded_fraction": 0.004830917874396157,
+  "severe_valid_n": 31,
+  "severe_demoted_moderate_or_higher_n": 7,
+  "severe_demoted_moderate_or_higher_rate": 0.22580645161290322,
+  "severe_demoted_normal_n": 0,
+  "severe_demoted_normal_rate": 0.0,
+  "errors_obstructed": {
+    "n": 114,
+    "fev1_abs_pct_median": 1.3758479117170537,
+    "fev1_abs_pct_iqr": [
+      0.6150267820737756,
+      3.3149471155258303
+    ],
+    "fvc_abs_pct_median": 5.779305455463795,
+    "fvc_abs_pct_iqr": [
+      3.499868794265809,
+      8.16163533042459
+    ],
+    "ratio_abs_median": 0.021861911232188835,
+    "ratio_abs_iqr": [
+      0.011916743563101989,
+      0.03827251796730441
+    ],
+    "ratio_signed_median": 0.019731369676321026,
+    "ratio_signed_iqr": [
+      0.007252559074206771,
+      0.03269159675570968
+    ],
+    "ratio_signed_iqr_width": 0.025439037681502907
+  },
+  "consistent_bias": false
+}

@@ -1,0 +1,816 @@
+{
+  "seed": 20260710,
+  "leakage_guard_tripped": false,
+  "banned_present": [
+    "fev1_fvc_ratio",
+    "fev1_mL",
+    "fvc_mL",
+    "parsed_fev1_l",
+    "parsed_fvc_l",
+    "parsed_ratio",
+    "truth_obstructed_fixed",
+    "truth_severity",
+    "workflow_obstructed_action",
+    "workflow_predicted_obstructed_when_final"
+  ],
+  "quarantined_features": [
+    "model_ratio",
+    "corrected_ratio_c1",
+    "corrected_ratio_c2",
+    "gli_lln_ratio",
+    "fet_s",
+    "duration_s",
+    "fit_alpha"
+  ],
+  "clean_features": [
+    "volume_r2",
+    "volume_nrss_norm",
+    "fit_tau_f",
+    "fit_tau_s",
+    "fit_tau_o",
+    "dV_last_L",
+    "maneuver_count",
+    "model_ratio_sd",
+    "model_fev1_sd_l",
+    "model_fvc_sd_l",
+    "model_classification_majority_fraction"
+  ],
+  "feature_audit_top_corr": [
+    {
+      "feature": "model_ratio",
+      "partition": "QUARANTINED",
+      "pearson_corr_train_ratio": 0.8493437072162359,
+      "spearman_corr_train_ratio": 0.8850521064437584,
+      "max_abs_corr": 0.8850521064437584,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "TRAIN max |corr(feature, observed ratio)| = 0.885 > 0.60"
+    },
+    {
+      "feature": "corrected_ratio_c1",
+      "partition": "QUARANTINED",
+      "pearson_corr_train_ratio": 0.849343707216236,
+      "spearman_corr_train_ratio": 0.8850521064437584,
+      "max_abs_corr": 0.8850521064437584,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "TRAIN max |corr(feature, observed ratio)| = 0.885 > 0.60"
+    },
+    {
+      "feature": "corrected_ratio_c2",
+      "partition": "QUARANTINED",
+      "pearson_corr_train_ratio": 0.849343707216236,
+      "spearman_corr_train_ratio": 0.8850521064437584,
+      "max_abs_corr": 0.8850521064437584,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "TRAIN max |corr(feature, observed ratio)| = 0.885 > 0.60"
+    },
+    {
+      "feature": "fet_s",
+      "partition": "QUARANTINED",
+      "pearson_corr_train_ratio": -0.7040640065629581,
+      "spearman_corr_train_ratio": -0.7044787207500713,
+      "max_abs_corr": 0.7044787207500713,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "TRAIN max |corr(feature, observed ratio)| = 0.704 > 0.60"
+    },
+    {
+      "feature": "duration_s",
+      "partition": "QUARANTINED",
+      "pearson_corr_train_ratio": -0.7040640065629581,
+      "spearman_corr_train_ratio": -0.7044787207500713,
+      "max_abs_corr": 0.7044787207500713,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "TRAIN max |corr(feature, observed ratio)| = 0.704 > 0.60"
+    },
+    {
+      "feature": "fit_alpha",
+      "partition": "QUARANTINED",
+      "pearson_corr_train_ratio": 0.5596205598949933,
+      "spearman_corr_train_ratio": 0.6307180315462482,
+      "max_abs_corr": 0.6307180315462482,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "TRAIN max |corr(feature, observed ratio)| = 0.631 > 0.60"
+    },
+    {
+      "feature": "gli_lln_ratio",
+      "partition": "QUARANTINED",
+      "pearson_corr_train_ratio": 0.5983277667828348,
+      "spearman_corr_train_ratio": 0.5898214898756371,
+      "max_abs_corr": 0.5983277667828348,
+      "corr_n": 559,
+      "missing_train_fraction": 0.005338078291814947,
+      "missing_test_fraction": 0.0017761989342806395,
+      "rationale": "standing task identifies GLI LLN as a ratio/threshold proxy; measured max |corr| is within rounding of 0.60"
+    },
+    {
+      "feature": "fit_tau_s",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": -0.5430302296088139,
+      "spearman_corr_train_ratio": -0.5333067432064132,
+      "max_abs_corr": 0.5430302296088139,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "dV_last_L",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": -0.1649078782023716,
+      "spearman_corr_train_ratio": -0.33323561679607705,
+      "max_abs_corr": 0.33323561679607705,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "fit_tau_f",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": -0.28347330147152583,
+      "spearman_corr_train_ratio": -0.3118288472935196,
+      "max_abs_corr": 0.3118288472935196,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "fit_tau_o",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": 0.04520417397022152,
+      "spearman_corr_train_ratio": 0.2481510344014548,
+      "max_abs_corr": 0.2481510344014548,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "model_fvc_sd_l",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": -0.08475361475830584,
+      "spearman_corr_train_ratio": -0.14212022214164946,
+      "max_abs_corr": 0.14212022214164946,
+      "corr_n": 544,
+      "missing_train_fraction": 0.03202846975088968,
+      "missing_test_fraction": 0.04085257548845471,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "volume_r2",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": -0.0647165263809811,
+      "spearman_corr_train_ratio": 0.1051853401239949,
+      "max_abs_corr": 0.1051853401239949,
+      "corr_n": 562,
+      "missing_train_fraction": 0.0,
+      "missing_test_fraction": 0.0,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "volume_nrss_norm",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": 0.09270572460243703,
+      "spearman_corr_train_ratio": -0.08210533970948457,
+      "max_abs_corr": 0.09270572460243703,
+      "corr_n": 561,
+      "missing_train_fraction": 0.0017793594306049821,
+      "missing_test_fraction": 0.003552397868561279,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "model_fev1_sd_l",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": 0.08516347249714208,
+      "spearman_corr_train_ratio": 0.04917648847769631,
+      "max_abs_corr": 0.08516347249714208,
+      "corr_n": 544,
+      "missing_train_fraction": 0.03202846975088968,
+      "missing_test_fraction": 0.04085257548845471,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "model_ratio_sd",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": 0.04660632359189239,
+      "spearman_corr_train_ratio": -0.015694051456053047,
+      "max_abs_corr": 0.04660632359189239,
+      "corr_n": 544,
+      "missing_train_fraction": 0.03202846975088968,
+      "missing_test_fraction": 0.04085257548845471,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "maneuver_count",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": 0.029732810094637498,
+      "spearman_corr_train_ratio": 0.038202305724090134,
+      "max_abs_corr": 0.038202305724090134,
+      "corr_n": 544,
+      "missing_train_fraction": 0.03202846975088968,
+      "missing_test_fraction": 0.04085257548845471,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    },
+    {
+      "feature": "model_classification_majority_fraction",
+      "partition": "CLEAN",
+      "pearson_corr_train_ratio": -0.0031536076525515225,
+      "spearman_corr_train_ratio": -0.032346633845502994,
+      "max_abs_corr": 0.032346633845502994,
+      "corr_n": 544,
+      "missing_train_fraction": 0.03202846975088968,
+      "missing_test_fraction": 0.04085257548845471,
+      "rationale": "passes banned-name and TRAIN correlation audit"
+    }
+  ],
+  "clean_missingness": [
+    {
+      "feature": "volume_r2",
+      "train_missing_fraction": 0.0,
+      "test_missing_fraction": 0.0,
+      "train_median_imputation": 0.997630989719014,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "volume_nrss_norm",
+      "train_missing_fraction": 0.0017793594306049821,
+      "test_missing_fraction": 0.003552397868561279,
+      "train_median_imputation": 1742.7040213644373,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "fit_tau_f",
+      "train_missing_fraction": 0.0,
+      "test_missing_fraction": 0.0,
+      "train_median_imputation": 0.3174812534774047,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "fit_tau_s",
+      "train_missing_fraction": 0.0,
+      "test_missing_fraction": 0.0,
+      "train_median_imputation": 3.08058952153493,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "fit_tau_o",
+      "train_missing_fraction": 0.0,
+      "test_missing_fraction": 0.0,
+      "train_median_imputation": 0.03,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "dV_last_L",
+      "train_missing_fraction": 0.0,
+      "test_missing_fraction": 0.0,
+      "train_median_imputation": -0.00753549999999985,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "maneuver_count",
+      "train_missing_fraction": 0.03202846975088968,
+      "test_missing_fraction": 0.04085257548845471,
+      "train_median_imputation": 3.0,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "model_ratio_sd",
+      "train_missing_fraction": 0.03202846975088968,
+      "test_missing_fraction": 0.04085257548845471,
+      "train_median_imputation": 0.015056440915598851,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "model_fev1_sd_l",
+      "train_missing_fraction": 0.03202846975088968,
+      "test_missing_fraction": 0.04085257548845471,
+      "train_median_imputation": 0.0861163382185484,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "model_fvc_sd_l",
+      "train_missing_fraction": 0.03202846975088968,
+      "test_missing_fraction": 0.04085257548845471,
+      "train_median_imputation": 0.0783839374791289,
+      "flag_gt_20pct_missing": false
+    },
+    {
+      "feature": "model_classification_majority_fraction",
+      "train_missing_fraction": 0.03202846975088968,
+      "test_missing_fraction": 0.04085257548845471,
+      "train_median_imputation": 1.0,
+      "flag_gt_20pct_missing": false
+    }
+  ],
+  "prevalence": {
+    "path": "empirical_full_unenriched_cohort",
+    "source": "<PROJECT_ROOT>/results/merged_summary.parquet",
+    "valid_ratio_n": 20050,
+    "obstructed_n": 1932,
+    "target_prevalence": 0.09635910224438902,
+    "sensitivity_prevalences": [
+      0.05,
+      0.1,
+      0.15,
+      0.2
+    ]
+  },
+  "constructed_train_prevalence": 0.5551601423487544,
+  "clean_model_auc": {
+    "model": "clean_gbt",
+    "test_auc": {
+      "auc": 0.8865750798722046,
+      "ci_low": 0.8589272700791584,
+      "ci_high": 0.9145836952383788,
+      "bootstrap_n": 1000
+    },
+    "test_auc_reweighted": {
+      "auc": 0.8865750798722042,
+      "ci_low": 0.8574654055952062,
+      "ci_high": 0.9154380899226143,
+      "bootstrap_n": 1000
+    },
+    "boundary_definition": "true fev1_fvc_ratio in [0.65, 0.75); true [0.60, 0.70) is one-class-only and AUC-undefined",
+    "boundary_n": 190,
+    "boundary_positive_n": 162,
+    "boundary_negative_n": 28,
+    "boundary_auc": {
+      "auc": 0.5916005291005291,
+      "ci_low": 0.4860436669977559,
+      "ci_high": 0.7045043087591509,
+      "bootstrap_n": 1000
+    },
+    "boundary_auc_reweighted": {
+      "auc": 0.591600529100529,
+      "ci_low": 0.4804140980970248,
+      "ci_high": 0.6961628295745367,
+      "bootstrap_n": 1000
+    }
+  },
+  "logistic_auc": {
+    "model": "clean_logistic",
+    "test_auc": {
+      "auc": 0.8409392971246006,
+      "ci_low": 0.8075481961890347,
+      "ci_high": 0.8737938335851677,
+      "bootstrap_n": 1000
+    },
+    "test_auc_reweighted": {
+      "auc": 0.8409392971246001,
+      "ci_low": 0.8083168678147923,
+      "ci_high": 0.8725678102973056,
+      "bootstrap_n": 1000
+    },
+    "boundary_definition": "true fev1_fvc_ratio in [0.65, 0.75); true [0.60, 0.70) is one-class-only and AUC-undefined",
+    "boundary_n": 190,
+    "boundary_positive_n": 162,
+    "boundary_negative_n": 28,
+    "boundary_auc": {
+      "auc": 0.5921516754850088,
+      "ci_low": 0.47206491451336247,
+      "ci_high": 0.698959405111018,
+      "bootstrap_n": 1000
+    },
+    "boundary_auc_reweighted": {
+      "auc": 0.5921516754850087,
+      "ci_low": 0.47739116767708306,
+      "ci_high": 0.7048125676406926,
+      "bootstrap_n": 1000
+    }
+  },
+  "ratio_aware_auc": {
+    "model": "ratio_aware_gbt",
+    "test_auc": {
+      "auc": 0.986447284345048,
+      "ci_low": 0.9784988249644062,
+      "ci_high": 0.9925467644820508,
+      "bootstrap_n": 1000
+    },
+    "test_auc_reweighted": {
+      "auc": 0.986447284345048,
+      "ci_low": 0.9794960767032126,
+      "ci_high": 0.9930611154040068,
+      "bootstrap_n": 1000
+    },
+    "boundary_definition": "true fev1_fvc_ratio in [0.65, 0.75); true [0.60, 0.70) is one-class-only and AUC-undefined",
+    "boundary_n": 190,
+    "boundary_positive_n": 162,
+    "boundary_negative_n": 28,
+    "boundary_auc": {
+      "auc": 0.9190917107583774,
+      "ci_low": 0.8732382451885463,
+      "ci_high": 0.9566175255704171,
+      "bootstrap_n": 1000
+    },
+    "boundary_auc_reweighted": {
+      "auc": 0.9190917107583774,
+      "ci_low": 0.8737073293172689,
+      "ci_high": 0.9557393684746626,
+      "bootstrap_n": 1000
+    }
+  },
+  "permutation_importance": [
+    {
+      "feature": "fit_tau_s",
+      "importance_mean_auc_drop": 0.20862076677316313,
+      "importance_sd": 0.01768610917577578
+    },
+    {
+      "feature": "fit_tau_f",
+      "importance_mean_auc_drop": 0.021660063897763742,
+      "importance_sd": 0.00500731455704318
+    },
+    {
+      "feature": "volume_nrss_norm",
+      "importance_mean_auc_drop": 0.021589456869009725,
+      "importance_sd": 0.004761422737492703
+    },
+    {
+      "feature": "model_classification_majority_fraction",
+      "importance_mean_auc_drop": 0.02158722044728447,
+      "importance_sd": 0.0038694126313970393
+    },
+    {
+      "feature": "dV_last_L",
+      "importance_mean_auc_drop": 0.011586581469648749,
+      "importance_sd": 0.005311798487943146
+    },
+    {
+      "feature": "fit_tau_o",
+      "importance_mean_auc_drop": 0.009127156549520921,
+      "importance_sd": 0.0034361912198119693
+    },
+    {
+      "feature": "model_fvc_sd_l",
+      "importance_mean_auc_drop": 0.00755654952076692,
+      "importance_sd": 0.0027657956348541776
+    },
+    {
+      "feature": "model_ratio_sd",
+      "importance_mean_auc_drop": 0.0018399361022365334,
+      "importance_sd": 0.0024444869897423662
+    },
+    {
+      "feature": "volume_r2",
+      "importance_mean_auc_drop": 0.001094568690096026,
+      "importance_sd": 0.0021066038321965828
+    },
+    {
+      "feature": "model_fev1_sd_l",
+      "importance_mean_auc_drop": 0.00029456869009599206,
+      "importance_sd": 0.002510137984201617
+    },
+    {
+      "feature": "maneuver_count",
+      "importance_mean_auc_drop": -0.0014562300319487464,
+      "importance_sd": 0.0010948838438511735
+    }
+  ],
+  "zone_boundaries": {
+    "p_low": 0.660915750916,
+    "p_high": 0.66536019536,
+    "train_confident_coverage": 1.0,
+    "train_confident_n": 562,
+    "train_confident_normal_n": 263,
+    "train_confident_obstructed_n": 299,
+    "train_ppv_reweighted": 1.0,
+    "train_npv_reweighted": 0.9955765585075692,
+    "train_severe_fn_confident_normal": 0,
+    "boundary_status": "FEASIBLE"
+  },
+  "candidate_zone_metrics": {
+    "zone_counts": [
+      {
+        "zone": "CONFIDENT_NORMAL",
+        "n": 298,
+        "fraction": 0.5293072824156305
+      },
+      {
+        "zone": "CONFIDENT_OBSTRUCTED",
+        "n": 263,
+        "fraction": 0.46714031971580816
+      },
+      {
+        "zone": "INDETERMINATE_GRADED",
+        "n": 2,
+        "fraction": 0.003552397868561279
+      }
+    ],
+    "confident_n": 561,
+    "confident_coverage": 0.9964476021314387,
+    "tp": 230,
+    "tn": 215,
+    "fp": 33,
+    "fn": 83,
+    "accuracy": 0.7932263814616756,
+    "sensitivity": 0.7348242811501597,
+    "specificity": 0.8669354838709677,
+    "cohens_kappa": 0.589420686696362,
+    "ppv_raw": 0.8745247148288974,
+    "npv_raw": 0.7214765100671141,
+    "ppv_reweighted": 0.3732449925701769,
+    "npv_reweighted": 0.9680678820004173,
+    "severe_confident_n": 16,
+    "severe_fn_n": 2,
+    "severe_fn_ci_low": 0.015513603815413885,
+    "severe_fn_ci_high": 0.38347623684926346
+  },
+  "candidate_zone_rejected": true,
+  "candidate_zone_reject_reasons": [
+    "candidate confident-normal zone has severe false negatives on TEST",
+    "candidate confident-obstructed PPV is below the reweighted 0.90 floor on TEST"
+  ],
+  "graded_zone_metrics": {
+    "zone_counts": [
+      {
+        "zone": "INDETERMINATE_GRADED",
+        "n": 563,
+        "fraction": 1.0
+      }
+    ],
+    "confident_n": 0,
+    "confident_coverage": 0.0,
+    "tp": 0,
+    "tn": 0,
+    "fp": 0,
+    "fn": 0,
+    "accuracy": null,
+    "sensitivity": null,
+    "specificity": null,
+    "cohens_kappa": null,
+    "ppv_raw": null,
+    "npv_raw": null,
+    "ppv_reweighted": null,
+    "npv_reweighted": null,
+    "severe_confident_n": 0,
+    "severe_fn_n": 0,
+    "severe_fn_ci_low": null,
+    "severe_fn_ci_high": null
+  },
+  "calibration_summary": {
+    "test_all_raw": {
+      "scope": "test_all",
+      "weighting": "raw",
+      "ece": 0.039756220996452776,
+      "brier": 0.1325583283289105,
+      "n": 563
+    },
+    "test_all_reweighted": {
+      "scope": "test_all",
+      "weighting": "reweighted",
+      "ece": 0.22578743012000518,
+      "brier": 0.15046377994279336,
+      "n": 563
+    },
+    "indeterminate_raw": {
+      "scope": "indeterminate",
+      "weighting": "raw",
+      "ece": 0.039756220996452776,
+      "brier": 0.1325583283289105,
+      "n": 563
+    },
+    "indeterminate_reweighted": {
+      "scope": "indeterminate",
+      "weighting": "reweighted",
+      "ece": 0.22578743012000518,
+      "brier": 0.15046377994279336,
+      "n": 563
+    }
+  },
+  "prevalence_sensitivity": [
+    {
+      "target_prevalence": 0.05,
+      "auc_reweighted": 0.8865750798722046,
+      "ppv_reweighted": 0.22716139125487908,
+      "npv_reweighted": 0.9839801740177723,
+      "ece_reweighted": 0.2501199867700686,
+      "brier_reweighted": 0.1522759476586078
+    },
+    {
+      "target_prevalence": 0.1,
+      "auc_reweighted": 0.8865750798722039,
+      "ppv_reweighted": 0.3829146799499214,
+      "npv_reweighted": 0.9667718225054847,
+      "ece_reweighted": 0.22387673397482474,
+      "brier_reweighted": 0.15032148080346242
+    },
+    {
+      "target_prevalence": 0.15,
+      "auc_reweighted": 0.8865750798722035,
+      "ppv_reweighted": 0.4963571699872243,
+      "npv_reweighted": 0.9482375832564173,
+      "ece_reweighted": 0.19764188843660307,
+      "brier_reweighted": 0.1483676400789769
+    },
+    {
+      "target_prevalence": 0.2,
+      "auc_reweighted": 0.8865750798722047,
+      "ppv_reweighted": 0.5826679096915407,
+      "npv_reweighted": 0.928218078666067,
+      "ece_reweighted": 0.1714154461160426,
+      "brier_reweighted": 0.14641442518431988
+    }
+  ],
+  "deterministic_baseline": {
+    "strict_workflow": {
+      "finalized_n": 255,
+      "finalized_fraction": 0.45293072824156305,
+      "tp": 50,
+      "tn": 191,
+      "fp": 5,
+      "fn": 9,
+      "sensitivity": 0.847457627118644,
+      "specificity": 0.9744897959183674,
+      "cohens_kappa": 0.8418954827280778,
+      "severe_finalized_n": 2,
+      "severe_fn_n": 0,
+      "severe_fn_rate": 0.0,
+      "severe_fn_ci_low": 0.0,
+      "severe_fn_ci_high": 0.841886116991581
+    },
+    "operational_recovery": {
+      "finalized_n": 375,
+      "finalized_fraction": 0.6660746003552398,
+      "tp": 150,
+      "tn": 211,
+      "fp": 5,
+      "fn": 9,
+      "sensitivity": 0.9433962264150944,
+      "specificity": 0.9768518518518519,
+      "cohens_kappa": 0.9233128834355828,
+      "severe_finalized_n": 6,
+      "severe_fn_n": 0,
+      "severe_fn_rate": 0.0,
+      "severe_fn_ci_low": 0.0,
+      "severe_fn_ci_high": 0.4592581264399005
+    }
+  },
+  "clean_deferred_forced_accuracy": {
+    "strict_deferred_n": 308,
+    "strict_forced_accuracy_at_0p5": 0.7922077922077922,
+    "strict_correct_n": 244,
+    "operational_deferred_n": 188,
+    "operational_forced_accuracy_at_0p5": 0.7393617021276596,
+    "operational_correct_n": 139
+  },
+  "demographic_availability_deferred_test": [
+    {
+      "feature": "RIDAGEYR",
+      "available_n": 188,
+      "deferred_test_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "feature": "BMXHT",
+      "available_n": 188,
+      "deferred_test_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "feature": "RIAGENDR",
+      "available_n": 188,
+      "deferred_test_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "feature": "RIDRETH1",
+      "available_n": 188,
+      "deferred_test_n": 188,
+      "available_fraction": 1.0
+    },
+    {
+      "feature": "ever_smoker",
+      "available_n": 188,
+      "deferred_test_n": 188,
+      "available_fraction": 1.0
+    }
+  ],
+  "demographic_notes": [],
+  "demographic_model_auc": {
+    "model": "clean_plus_demographics",
+    "test_auc": {
+      "auc": 0.9078210862619808,
+      "ci_low": 0.8803784447504499,
+      "ci_high": 0.931333161383191,
+      "bootstrap_n": 1000
+    },
+    "test_auc_reweighted": {
+      "auc": 0.9078210862619804,
+      "ci_low": 0.8793650994961847,
+      "ci_high": 0.9304958283275232,
+      "bootstrap_n": 1000
+    },
+    "boundary_definition": "true fev1_fvc_ratio in [0.65, 0.75); true [0.60, 0.70) is one-class-only and AUC-undefined",
+    "boundary_n": 190,
+    "boundary_positive_n": 162,
+    "boundary_negative_n": 28,
+    "boundary_auc": {
+      "auc": 0.5850970017636684,
+      "ci_low": 0.46853899120547543,
+      "ci_high": 0.701173715801661,
+      "bootstrap_n": 1000
+    },
+    "boundary_auc_reweighted": {
+      "auc": 0.5850970017636683,
+      "ci_low": 0.4608413352272726,
+      "ci_high": 0.6977148629148628,
+      "bootstrap_n": 1000
+    }
+  },
+  "demographic_zone_boundaries": {
+    "p_low": 0.561799695045,
+    "p_high": 0.56822457728,
+    "train_confident_coverage": 1.0,
+    "train_confident_n": 562,
+    "train_confident_normal_n": 250,
+    "train_confident_obstructed_n": 312,
+    "train_ppv_reweighted": 1.0,
+    "train_npv_reweighted": 1.0,
+    "train_severe_fn_confident_normal": 0,
+    "boundary_status": "FEASIBLE"
+  },
+  "demographic_zone_metrics": {
+    "zone_counts": [
+      {
+        "zone": "CONFIDENT_NORMAL",
+        "n": 269,
+        "fraction": 0.477797513321492
+      },
+      {
+        "zone": "CONFIDENT_OBSTRUCTED",
+        "n": 294,
+        "fraction": 0.522202486678508
+      }
+    ],
+    "confident_n": 563,
+    "confident_coverage": 1.0,
+    "tp": 259,
+    "tn": 215,
+    "fp": 35,
+    "fn": 54,
+    "accuracy": 0.8419182948490231,
+    "sensitivity": 0.8274760383386581,
+    "specificity": 0.86,
+    "cohens_kappa": 0.6822577474523929,
+    "ppv_raw": 0.8809523809523809,
+    "npv_raw": 0.7992565055762082,
+    "ppv_reweighted": 0.3873625015931477,
+    "npv_reweighted": 0.9789904838056116,
+    "severe_confident_n": 16,
+    "severe_fn_n": 0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.2059072142078227
+  },
+  "demographics_only_deferred_auc": 0.7344346829640948,
+  "demographic_lift_verdict": "DEMOGRAPHICS-NEUTRAL",
+  "knife_edge_decomposition": [
+    {
+      "bucket": "true_abs_lt_0.02",
+      "n": 84,
+      "fraction_deferred": 0.44680851063829785,
+      "graded_confident_recovered_n": 0,
+      "graded_confident_recovered_fraction": 0.0
+    },
+    {
+      "bucket": "true_abs_0.02_to_0.05",
+      "n": 49,
+      "fraction_deferred": 0.26063829787234044,
+      "graded_confident_recovered_n": 0,
+      "graded_confident_recovered_fraction": 0.0
+    },
+    {
+      "bucket": "true_abs_ge_0.05",
+      "n": 55,
+      "fraction_deferred": 0.2925531914893617,
+      "graded_confident_recovered_n": 0,
+      "graded_confident_recovered_fraction": 0.0
+    }
+  ],
+  "protocol_decisions": [
+    "TEST split is scored once; all model fitting and zone boundary selection use TRAIN only.",
+    "The requested true 0.60-0.70 band is one-class-only and cannot support AUC; the reported boundary AUC uses true FEV1/FVC in [0.65, 0.75), matching the prior around-threshold check.",
+    "CLEAN candidate features are limited to the task-specified shape/fit-quality/repeatability fields plus the expected ratio-proxy fields needed for audit/quarantine.",
+    "fit_alpha was expected to survive from prior notes, but its TRAIN Spearman correlation to observed ratio is above 0.60, so the leakage audit excludes it from CLEAN.",
+    "gli_lln_ratio measured just below 0.60 but is excluded because the task explicitly identifies it as an expected ratio/threshold proxy that must not enter CLEAN.",
+    "Median imputation values are learned on TRAIN only and applied to TEST.",
+    "The empirical target prevalence is computed from results/merged_summary.parquet, then TRAIN constructed prevalence is used to form class reweighting factors.",
+    "Zone boundaries maximize TRAIN confident coverage subject to severe FN=0 among confident normal and reweighted PPV/NPV >=0.90.",
+    "Reweighted ECE > 0.10 is treated as uncalibrated for the verdict.",
+    "Forced p>=0.5 deferred-case accuracy is reported only as a diagnostic; it is not retained as recovery because the TRAIN-frozen zones fail TEST safety/calibration floors.",
+    "The RATIO-AWARE model is diagnostic only and is never used for graded output."
+  ],
+  "verdict": "GRADED-UNCALIBRATED",
+  "verdict_reason": "Reweighted TEST ECE exceeds the conservative 0.10 calibration warning threshold."
+}

@@ -1,0 +1,15 @@
+{
+  "track": "raw-curve",
+  "status": "GATED",
+  "reason": "SPXRAW inputs are absent or invalid; raw-curve parsing skipped without fabricating data.",
+  "awaited_files": [
+    "<PROJECT_ROOT>/data/SPXRAW_E.xpt",
+    "<PROJECT_ROOT>/data/SPXRAW_F.xpt",
+    "<PROJECT_ROOT>/data/SPXRAW_G.xpt"
+  ],
+  "problems": [
+    "missing: <PROJECT_ROOT>/data/SPXRAW_E.xpt",
+    "missing: <PROJECT_ROOT>/data/SPXRAW_F.xpt",
+    "too small (20905 bytes): <PROJECT_ROOT>/data/SPXRAW_G.xpt"
+  ]
+}

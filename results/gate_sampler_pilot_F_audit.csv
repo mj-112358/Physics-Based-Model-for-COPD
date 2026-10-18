@@ -1,0 +1,25 @@
+gate_file,result_file,nuts_instantiated,mcmc_instantiated,call_sites,chains,warmup,draws,deterministic_lm_header,audit_status,reason
+predictx/gate5_coverage.py,,True,True,"[{""call"": ""NUTS"", ""line"": 43}, {""call"": ""MCMC"", ""line"": 51}]",,,,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate5_sbc.py,,True,True,"[{""call"": ""NUTS"", ""line"": 64}, {""call"": ""MCMC"", ""line"": 70}]",,,,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate_clinical_classification_f.py,results/gate_clinical_classification_F.json,False,False,[],,,,False,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_estimand_hybrid_f.py,results/gate_estimand_hybrid_F.json,False,False,[],,,,True,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_four_part_fix_f.py,,False,False,[],,,,False,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_fvc_correction_f.py,results/gate_fvc_correction_F.json,False,False,[],,,,False,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_koh_discrepancy_f.py,results/gate_koh_discrepancy_F.json,True,True,"[{""call"": ""NUTS"", ""line"": 438}, {""call"": ""MCMC"", ""line"": 439}]",,,,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate_likelihood_repair_f.py,results/gate_likelihood_repair_F.json,True,True,"[{""call"": ""NUTS"", ""line"": 304}, {""call"": ""MCMC"", ""line"": 305}]",2.0,250.0,250.0,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate_misspecification_isolation_f.py,results/gate_misspecification_isolation_F.json,True,True,"[{""call"": ""NUTS"", ""line"": 324}, {""call"": ""MCMC"", ""line"": 325}]",,,,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate_model_vs_observed_f.py,results/gate_model_vs_observed_F.json,False,False,[],,,,True,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_offset_lungsize_f.py,results/gate_offset_lungsize_F.json,False,False,[],,,,True,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_policy_calibrated_flag_f.py,results/gate_policy_calibrated_flag_F.json,False,False,[],,,,False,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_posterior_calibration_repair_f.py,results/gate_posterior_calibration_repair_F.json,True,True,"[{""call"": ""NUTS"", ""line"": 570}, {""call"": ""MCMC"", ""line"": 577}]",2.0,300.0,300.0,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate_posterior_method_f.py,results/gate_posterior_method_F.json,False,False,[],,,,False,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_posterior_width_f.py,results/gate_posterior_width_F.json,True,True,"[{""call"": ""NUTS"", ""line"": 245}, {""call"": ""MCMC"", ""line"": 246}]",,,,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate_reclassification_fixed_integration_f.py,results/gate_reclassification_fixed_integration_F.json,False,False,[],,,,False,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_reconciliation_audit_f.py,results/gate_reconciliation_audit_F.json,False,False,[],,,,False,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_reproducibility_volume_f.py,results/gate_reproducibility_volume_F.json,False,False,[],,,,True,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_sampler_convergence_f.py,results/gate_sampler_convergence_F.json,True,True,"[{""call"": ""NUTS"", ""line"": 174}, {""call"": ""MCMC"", ""line"": 175}, {""call"": ""run_one_curve->NUTS"", ""line"": 256}]",,,,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate_sampler_pilot_f.py,results/gate_sampler_pilot_F.json,True,False,"[{""call"": ""run_one_curve->NUTS"", ""line"": 133}]",,,,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/gate_truncation_recovery_f.py,results/gate_truncation_recovery_F.json,False,False,[],,,,True,UNAFFECTED,no NUTS constructor call in AST
+predictx/gate_two_path_reconciliation_f.py,results/gate_two_path_reconciliation_F.json,False,False,[],,,,False,UNAFFECTED,no NUTS constructor call in AST
+predictx/synthetic_gates.py,,True,True,"[{""call"": ""MCMC"", ""line"": 187}, {""call"": ""NUTS"", ""line"": 188}]",4.0,2500.0,2500.0,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established
+predictx/tsnpe.py,,True,True,"[{""call"": ""NUTS"", ""line"": 322}, {""call"": ""MCMC"", ""line"": 323}]",,,,False,NUTS_DEPENDENT_PENDING_S_MIN,NUTS is instantiated; S_min not established

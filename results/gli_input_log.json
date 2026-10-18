@@ -1,0 +1,5 @@
+{
+  "input_rows": 30442,
+  "exported_rows": 26908,
+  "dropped_missing_age_height_or_sex": 3534
+}

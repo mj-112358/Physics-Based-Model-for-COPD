@@ -1,0 +1,133 @@
+{
+  "status": "FAIL",
+  "reason": "Corrected noise-normalized NRSS still fails the 85% adequacy bar.",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_info": {
+    "path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "metadata_rows": 36421,
+    "loaded_rows": 36421,
+    "columns": [
+      "SEQN",
+      "SPATTYPE",
+      "SPAMANU",
+      "SPAFACT",
+      "SPAPOS",
+      "SPAPLAT",
+      "SPAACC",
+      "SPAQEFF",
+      "SPXPTS",
+      "SPXRAW"
+    ]
+  },
+  "n_curves": 31851,
+  "fit_error_n": 326,
+  "diagnostic_error_n": 326,
+  "sigma_hat_valid_n": 31525,
+  "sigma_hat_quantiles_lps": {
+    "p05": 0.022344432391536162,
+    "p25": 0.042343429412661844,
+    "median": 0.05098119144745658,
+    "p75": 0.060265904842502674,
+    "p95": 0.08032274031219971
+  },
+  "nrss_valid_n": 31299,
+  "nrss_norm_quantiles": {
+    "p25": 11.456615959375927,
+    "median": 19.57229296055994,
+    "p75": 36.1953576177754
+  },
+  "nrss_threshold_quantiles": {
+    "p25": 1.0735679198589292,
+    "median": 1.084557305828737,
+    "p75": 1.1039451263232707
+  },
+  "adequate_norm_n": 0,
+  "adequate_norm_fraction_all": 0.0,
+  "adequate_norm_fraction_valid": 0.0,
+  "shape_valid_n": 31060,
+  "peak_concentrated_n": 29702,
+  "peak_concentrated_fraction": 0.9562781712813908,
+  "region_fraction_medians": {
+    "onset_to_pef": 7.235343606415096,
+    "pef_to_1s": 1.2198233270548482,
+    "tail_gt_1s": 0.4954092758588838
+  },
+  "by_spaqeff": [
+    {
+      "group": "A",
+      "n": 18673,
+      "norm_valid_n": 18514,
+      "adequate_norm_n": 0,
+      "adequate_norm_fraction": 0.0,
+      "peak_valid_n": 18642,
+      "peak_concentrated_n": 18586,
+      "peak_concentrated_fraction": 0.9969960304688338,
+      "median_onset_to_pef_rms_frac_total": 8.514598679633886,
+      "median_pef_to_1s_rms_frac_total": 1.3293784133049602,
+      "median_tail_gt_1s_rms_frac_total": 0.4644243802872169
+    },
+    {
+      "group": "B",
+      "n": 5446,
+      "norm_valid_n": 5317,
+      "adequate_norm_n": 0,
+      "adequate_norm_fraction": 0.0,
+      "peak_valid_n": 5314,
+      "peak_concentrated_n": 5138,
+      "peak_concentrated_fraction": 0.9668799397817087,
+      "median_onset_to_pef_rms_frac_total": 5.672043009798772,
+      "median_pef_to_1s_rms_frac_total": 1.3494205913126573,
+      "median_tail_gt_1s_rms_frac_total": 0.5148097361364861
+    },
+    {
+      "group": "C",
+      "n": 7732,
+      "norm_valid_n": 7468,
+      "adequate_norm_n": 0,
+      "adequate_norm_fraction": 0.0,
+      "peak_valid_n": 7104,
+      "peak_concentrated_n": 5978,
+      "peak_concentrated_fraction": 0.8414977477477478,
+      "median_onset_to_pef_rms_frac_total": 3.6459224673788615,
+      "median_pef_to_1s_rms_frac_total": 0.91454558651541,
+      "median_tail_gt_1s_rms_frac_total": 0.6269292247567063
+    }
+  ],
+  "by_obstruction": [
+    {
+      "group": "non_obstructed_derived_ratio_ge_0.70",
+      "n": 28023,
+      "norm_valid_n": 27472,
+      "adequate_norm_n": 0,
+      "adequate_norm_fraction": 0.0,
+      "peak_valid_n": 27290,
+      "peak_concentrated_n": 26104,
+      "peak_concentrated_fraction": 0.956540857456944,
+      "median_onset_to_pef_rms_frac_total": 7.098761183583193,
+      "median_pef_to_1s_rms_frac_total": 1.1735279966419214,
+      "median_tail_gt_1s_rms_frac_total": 0.4872852681392507
+    },
+    {
+      "group": "obstructed_derived_ratio_lt_0.70",
+      "n": 3828,
+      "norm_valid_n": 3827,
+      "adequate_norm_n": 0,
+      "adequate_norm_fraction": 0.0,
+      "peak_valid_n": 3770,
+      "peak_concentrated_n": 3598,
+      "peak_concentrated_fraction": 0.9543766578249336,
+      "median_onset_to_pef_rms_frac_total": 8.570478841192136,
+      "median_pef_to_1s_rms_frac_total": 1.6320457939976571,
+      "median_tail_gt_1s_rms_frac_total": 0.5596144883178831
+    }
+  ],
+  "inversion_check": {
+    "A_adequate_fraction": 0.0,
+    "B_adequate_fraction": 0.0,
+    "non_obstructed_adequate_fraction": 0.0,
+    "obstructed_adequate_fraction": 0.0,
+    "A_non_obstructed_peak_fraction": 0.9967244357096063,
+    "interpretation": "A-grade non-obstructed curves are peak-concentrated, supporting a fast-rise/onset limitation."
+  },
+  "verdict_logic": "Corrected NRSS still fails under per-curve noise normalization, so this is a genuine model-adequacy problem under the specified gate."
+}

@@ -1,0 +1,111 @@
+{
+  "verdict": "BUDGET-INSUFFICIENT",
+  "realized_stratum_counts": {
+    "mild_0.60_0.70": 9,
+    "normal": 9,
+    "moderate": 1,
+    "severe": 1
+  },
+  "overall_pass": {
+    "n": 20,
+    "passed": 9,
+    "fraction": 0.45
+  },
+  "kappa_lt_50000_pass": {
+    "n": 10,
+    "passed": 5,
+    "fraction": 0.5
+  },
+  "kappa_gte_50000_pass": {
+    "n": 10,
+    "passed": 4,
+    "fraction": 0.4
+  },
+  "best_kappa_split": {
+    "cutoff": 92800.7557741458,
+    "correct": 13,
+    "low_fail_exceptions": 5,
+    "high_pass_exceptions": 2
+  },
+  "severity_pass": {
+    "mild_0.60_0.70": {
+      "n": 9,
+      "passed": 7,
+      "fraction": 0.7777777777777778,
+      "conclusion_allowed": true
+    },
+    "moderate": {
+      "n": 1,
+      "passed": 0,
+      "fraction": 0.0,
+      "conclusion_allowed": false
+    },
+    "normal": {
+      "n": 9,
+      "passed": 2,
+      "fraction": 0.2222222222222222,
+      "conclusion_allowed": true
+    },
+    "severe": {
+      "n": 1,
+      "passed": 0,
+      "fraction": 0.0,
+      "conclusion_allowed": false
+    }
+  },
+  "wall_clock_s": {
+    "median": 14.259378479036968,
+    "iqr": [
+      10.321554301772267,
+      27.97414502117317
+    ]
+  },
+  "coverage_all": {
+    "n": 20,
+    "coverage_50": 0.5,
+    "coverage_50_ci_low": 0.3,
+    "coverage_50_ci_high": 0.7,
+    "coverage_50_nominal": true,
+    "coverage_80": 0.9,
+    "coverage_80_ci_low": 0.6,
+    "coverage_80_ci_high": 0.95,
+    "coverage_80_nominal": true,
+    "coverage_95": 1.0,
+    "coverage_95_ci_low": 0.85,
+    "coverage_95_ci_high": 1.0,
+    "coverage_95_nominal": true
+  },
+  "coverage_converged_only": {
+    "n": 9,
+    "coverage_50": 0.4444444444444444,
+    "coverage_50_ci_low": 0.2222222222222222,
+    "coverage_50_ci_high": 0.7777777777777778,
+    "coverage_50_nominal": true,
+    "coverage_80": 0.7777777777777778,
+    "coverage_80_ci_low": 0.5555555555555556,
+    "coverage_80_ci_high": 1.0,
+    "coverage_80_nominal": true,
+    "coverage_95": 1.0,
+    "coverage_95_ci_low": 0.7777777777777778,
+    "coverage_95_ci_high": 1.0,
+    "coverage_95_nominal": true
+  },
+  "worst_rhat_curve_ids": [
+    141,
+    120,
+    18
+  ],
+  "worst_chain_tiny_step_fraction": 0.5,
+  "worst_chain_max_treedepth_fraction": 0.5,
+  "failure_mechanism": "Mixed frozen-chain non-mixing: 0.500 of worst-curve chains have adapted step size <1e-5, 0.500 hit max treedepth on nearly all transitions, and per-chain parameter means are widely separated.",
+  "wall_clock_total_s": 31.2640019999817,
+  "config": {
+    "rung": "S8",
+    "chains": 4,
+    "warmup": 2000,
+    "draws": 2000,
+    "target_accept": 0.95,
+    "dense_mass": true,
+    "max_tree_depth": 10
+  }
+}

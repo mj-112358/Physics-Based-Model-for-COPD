@@ -1,0 +1,337 @@
+{
+  "seed": 20260710,
+  "raw_source": "<PROJECT_ROOT>/DATASET?/spxraw_f.sas7bdat",
+  "raw_source_note": "using existing SAS7BDAT: <PROJECT_ROOT>/DATASET?/spxraw_f.sas7bdat",
+  "raw_loaded_rows": 36421,
+  "field_realistic_meta": {
+    "flag_rule": "SPAQEFF in {C,D} OR SPAACC != Y OR SPAPLAT != Y",
+    "target_clean_sample_n": 497,
+    "flagged_raw_pre_rows_n": 10286,
+    "matched_flagged_candidate_rows_n": 593,
+    "matched_patients_with_any_flagged_curve_n": 286,
+    "usable_flagged_candidate_rows_n": 582,
+    "selected_one_per_patient_n": 286,
+    "selected_endpoint_bucket_counts": {
+      "field_2_3": 42,
+      "field_3_4": 42,
+      "field_4_5": 20,
+      "field_gt_5": 119,
+      "field_le_2": 63
+    },
+    "decision": "Selected the shortest usable field-realistic flagged Pre curve per clean-target patient to avoid repeated correlated rows and to stress early termination."
+  },
+  "part0": {
+    "clean_counts_overall": [
+      {
+        "n_total": 497,
+        "n_severe": 17,
+        "n_moderate": 80,
+        "n_mild_0.60_0.70": 200,
+        "n_normal": 200,
+        "n_obstructed": 297
+      }
+    ],
+    "clean_counts_obstructed_subset": [
+      {
+        "n_total": 297,
+        "n_severe": 17,
+        "n_moderate": 80,
+        "n_mild_0.60_0.70": 200,
+        "n_normal": 0,
+        "n_obstructed": 297
+      }
+    ],
+    "field_counts_overall": [
+      {
+        "n_total": 286,
+        "n_severe": 13,
+        "n_moderate": 55,
+        "n_mild_0.60_0.70": 110,
+        "n_normal": 108,
+        "n_obstructed": 178
+      }
+    ],
+    "field_counts_by_endpoint_bucket": [
+      {
+        "field_endpoint_bucket": "field_2_3",
+        "n_total": 42,
+        "n_severe": 1,
+        "n_moderate": 6,
+        "n_mild_0.60_0.70": 19,
+        "n_normal": 16,
+        "n_obstructed": 26
+      },
+      {
+        "field_endpoint_bucket": "field_3_4",
+        "n_total": 42,
+        "n_severe": 1,
+        "n_moderate": 6,
+        "n_mild_0.60_0.70": 14,
+        "n_normal": 21,
+        "n_obstructed": 21
+      },
+      {
+        "field_endpoint_bucket": "field_4_5",
+        "n_total": 20,
+        "n_severe": 0,
+        "n_moderate": 4,
+        "n_mild_0.60_0.70": 9,
+        "n_normal": 7,
+        "n_obstructed": 13
+      },
+      {
+        "field_endpoint_bucket": "field_gt_5",
+        "n_total": 119,
+        "n_severe": 11,
+        "n_moderate": 33,
+        "n_mild_0.60_0.70": 46,
+        "n_normal": 29,
+        "n_obstructed": 90
+      },
+      {
+        "field_endpoint_bucket": "field_le_2",
+        "n_total": 63,
+        "n_severe": 0,
+        "n_moderate": 6,
+        "n_mild_0.60_0.70": 22,
+        "n_normal": 35,
+        "n_obstructed": 28
+      }
+    ],
+    "field_true_severe_and_endpoint_le_3s_n": 1,
+    "field_true_severe_and_endpoint_le_3s_seqn": [
+      57217.0
+    ],
+    "field_severe_short_interpretation": "No severity conclusion can be drawn from the field-realistic severe+short cell; n < 10, so the 18.8% recovered-case severe+moderate figure is denominator-limited, not a method finding."
+  },
+  "paired_severe_cohort_n": 13,
+  "paired_severe_powered": false,
+  "part1_stopped_without_recovery_benchmark": true,
+  "clean_severity_recovery": [
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "2",
+      "truth_severity": "severe",
+      "n": 17,
+      "false_negative_n": 0,
+      "false_negative_rate": 0.0,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "2",
+      "truth_severity": "moderate",
+      "n": 80,
+      "false_negative_n": 22,
+      "false_negative_rate": 0.275,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "2",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 200,
+      "false_negative_n": 153,
+      "false_negative_rate": 0.765,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "3",
+      "truth_severity": "severe",
+      "n": 17,
+      "false_negative_n": 0,
+      "false_negative_rate": 0.0,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "3",
+      "truth_severity": "moderate",
+      "n": 80,
+      "false_negative_n": 18,
+      "false_negative_rate": 0.225,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "3",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 200,
+      "false_negative_n": 159,
+      "false_negative_rate": 0.795,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "4",
+      "truth_severity": "severe",
+      "n": 17,
+      "false_negative_n": 0,
+      "false_negative_rate": 0.0,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "4",
+      "truth_severity": "moderate",
+      "n": 80,
+      "false_negative_n": 8,
+      "false_negative_rate": 0.1,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "4",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 200,
+      "false_negative_n": 146,
+      "false_negative_rate": 0.73,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "5",
+      "truth_severity": "severe",
+      "n": 17,
+      "false_negative_n": 0,
+      "false_negative_rate": 0.0,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "5",
+      "truth_severity": "moderate",
+      "n": 80,
+      "false_negative_n": 2,
+      "false_negative_rate": 0.025,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "E1_OMBE",
+      "T_label": "5",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 200,
+      "false_negative_n": 137,
+      "false_negative_rate": 0.685,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "2",
+      "truth_severity": "severe",
+      "n": 17,
+      "false_negative_n": 0,
+      "false_negative_rate": 0.0,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "2",
+      "truth_severity": "moderate",
+      "n": 80,
+      "false_negative_n": 19,
+      "false_negative_rate": 0.2375,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "2",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 200,
+      "false_negative_n": 153,
+      "false_negative_rate": 0.765,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "3",
+      "truth_severity": "severe",
+      "n": 17,
+      "false_negative_n": 0,
+      "false_negative_rate": 0.0,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "3",
+      "truth_severity": "moderate",
+      "n": 80,
+      "false_negative_n": 14,
+      "false_negative_rate": 0.175,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "3",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 200,
+      "false_negative_n": 158,
+      "false_negative_rate": 0.79,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "4",
+      "truth_severity": "severe",
+      "n": 17,
+      "false_negative_n": 0,
+      "false_negative_rate": 0.0,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "4",
+      "truth_severity": "moderate",
+      "n": 80,
+      "false_negative_n": 5,
+      "false_negative_rate": 0.0625,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "4",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 200,
+      "false_negative_n": 142,
+      "false_negative_rate": 0.71,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "5",
+      "truth_severity": "severe",
+      "n": 17,
+      "false_negative_n": 0,
+      "false_negative_rate": 0.0,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "5",
+      "truth_severity": "moderate",
+      "n": 80,
+      "false_negative_n": 2,
+      "false_negative_rate": 0.025,
+      "adequate_cell_n_ge_10": true
+    },
+    {
+      "estimator": "H1",
+      "T_label": "5",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 200,
+      "false_negative_n": 129,
+      "false_negative_rate": 0.645,
+      "adequate_cell_n_ge_10": true
+    }
+  ],
+  "verdict": {
+    "verdict": "DENOMINATOR-LIMITED",
+    "reason": "field severe+short n < 10 and clean-cut severe-band E1/H1 FN is not high where severe n is adequate.",
+    "claim": "recovery holds across severity where severe cases are present; the field-realistic severe+short population is too small to assess.",
+    "field_severe_short_n": 1,
+    "paired_severe_cohort_n": 13,
+    "max_clean_severe_fn_rate_E1_H1": 0.0,
+    "clean_severe_adequate_by_threshold": true
+  }
+}

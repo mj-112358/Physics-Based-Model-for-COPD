@@ -1,0 +1,201 @@
+{
+  "verdict": "UNSTABLE",
+  "random_seed": 20260708,
+  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "fit_domain_assertion": "volume-domain fit path confirmed: gate_clinical_classification_f.fit_ombe_volume_lm is gate3_diagnosis.fit_ombe_volume_lm",
+  "fit_path_used": "predictx.gate3_diagnosis.fit_ombe_volume_lm",
+  "same_fitter_as_gate_clinical_classification_f": true,
+  "participants_with_at_least_2_acceptable_ab_manoeuvres": 6696,
+  "acceptable_ab_manoeuvre_count_distribution": {
+    "2": 271,
+    "3": 3947,
+    "4": 1491,
+    "5": 560,
+    "6": 269,
+    "7": 109,
+    "8": 49
+  },
+  "candidate_manoeuvre_rows": 23916,
+  "fit_rows_total": 23916,
+  "fit_success_rows": 23821,
+  "fit_failure_rows": 95,
+  "participants_with_at_least_2_successful_volume_fits": 6677,
+  "fit_failure_counts": {
+    "parse_error: curve segment too short for volume fit": 89,
+    "parse_error: PEF must be positive for back-extrapolation.": 6
+  },
+  "within_participant_sd_common_successful_fits": {
+    "observed": {
+      "fev1_l": {
+        "n": 6677,
+        "median": 0.08314080924975407,
+        "iqr": [
+          0.04789452466572475,
+          0.1416537786763308
+        ]
+      },
+      "fvc_l": {
+        "n": 6677,
+        "median": 0.09312931567408671,
+        "iqr": [
+          0.05532478700912826,
+          0.15139534630195434
+        ]
+      },
+      "ratio": {
+        "n": 6677,
+        "median": 0.018493677454617437,
+        "iqr": [
+          0.010445844083971957,
+          0.032386723285280354
+        ]
+      }
+    },
+    "model": {
+      "fev1_l": {
+        "n": 6677,
+        "median": 0.08647178901434599,
+        "iqr": [
+          0.04916564290226278,
+          0.1477085423239318
+        ]
+      },
+      "fvc_l": {
+        "n": 6677,
+        "median": 0.07449584871131786,
+        "iqr": [
+          0.03690213142969933,
+          0.12797226860448566
+        ]
+      },
+      "ratio": {
+        "n": 6677,
+        "median": 0.014353980004603303,
+        "iqr": [
+          0.00789240356484433,
+          0.028881194342686926
+        ]
+      }
+    }
+  },
+  "icc_2_1_ratio_first_two": {
+    "observed": {
+      "n_participants": 6677,
+      "k": 2,
+      "icc_2_1": 0.7931811506001849,
+      "note": "ICC(2,1) computed on the first two acceptable A/B manoeuvres per participant after sorting by SPAMANU."
+    },
+    "model": {
+      "n_participants": 6677,
+      "k": 2,
+      "icc_2_1": 0.7776414588915056,
+      "note": "ICC(2,1) computed on the first two acceptable A/B manoeuvres per participant after sorting by SPAMANU."
+    }
+  },
+  "classification_stability_fixed_070": {
+    "all": {
+      "observed": {
+        "n": 6677,
+        "unanimous_fraction": 0.8837801407817882,
+        "split_fraction": 0.11621985921821178,
+        "majority_fraction": {
+          "n": 6677,
+          "median": 1.0,
+          "iqr": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "model": {
+        "n": 6677,
+        "unanimous_fraction": 0.8694024262393291,
+        "split_fraction": 0.13059757376067097,
+        "majority_fraction": {
+          "n": 6677,
+          "median": 1.0,
+          "iqr": [
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "borderline_0.60_0.70": {
+      "observed": {
+        "n": 483,
+        "unanimous_fraction": 0.6666666666666666,
+        "split_fraction": 0.3333333333333333,
+        "majority_fraction": {
+          "n": 483,
+          "median": 1.0,
+          "iqr": [
+            0.6666666666666667,
+            1.0
+          ]
+        }
+      },
+      "model": {
+        "n": 483,
+        "unanimous_fraction": 0.6977225672877847,
+        "split_fraction": 0.3022774327122153,
+        "majority_fraction": {
+          "n": 483,
+          "median": 1.0,
+          "iqr": [
+            0.75,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "ats_repeatability_common_successful_fits": {
+    "observed": {
+      "n": 6677,
+      "repeatable_n": 5630,
+      "repeatable_fraction": 0.8431930507713045,
+      "fev1_top2_diff_l": {
+        "n": 6677,
+        "median": 0.04413293920454464,
+        "iqr": [
+          0.02042897297297297,
+          0.08322780099220406
+        ]
+      },
+      "fvc_top2_diff_l": {
+        "n": 6677,
+        "median": 0.05343481527093541,
+        "iqr": [
+          0.024397958762886418,
+          0.10002193548387073
+        ]
+      }
+    },
+    "model": {
+      "n": 6677,
+      "repeatable_n": 5841,
+      "repeatable_fraction": 0.8747940691927513,
+      "fev1_top2_diff_l": {
+        "n": 6677,
+        "median": 0.04548829295068102,
+        "iqr": [
+          0.02023977113773956,
+          0.08429638293760733
+        ]
+      },
+      "fvc_top2_diff_l": {
+        "n": 6677,
+        "median": 0.04063586480442405,
+        "iqr": [
+          0.013376889486315768,
+          0.07996646994316503
+        ]
+      }
+    },
+    "model_minus_observed_fraction": 0.0316010184214468,
+    "model_more_repeatable_than_observed": true
+  },
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_loaded_rows": 36421
+}

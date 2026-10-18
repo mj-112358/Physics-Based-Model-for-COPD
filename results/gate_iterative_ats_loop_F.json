@@ -1,0 +1,400 @@
+{
+  "seed": 20260710,
+  "test_n": 563,
+  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_loaded_rows": 36421,
+  "ats_source": "https://doi.org/10.1164/rccm.201908-1590ST",
+  "ats_repeatability_l": 0.15,
+  "ats_max_attempts": 8,
+  "c1_offset_from_existing_policy": 0.008637018273988883,
+  "protocol_decisions": [
+    "TEST split only; TRAIN rows are ignored.",
+    "The single-pass baseline is the current deployable recovery gate: post_recovery_finalized from gate_deferral_recovery_f.apply_recovery.",
+    "The loop uses raw PRE attempt order from SPXRAW, but uses only existing OMBE-fitted maneuver rows for FEV1/FVC/ratio values; no solver is rerun.",
+    "POST/Bron rows are audited as availability only and are never pooled into PRE repeats.",
+    "A maneuver is model-usable only when it is SPAACC == Y and has a successful finite existing OMBE fit. Raw SPAACC counts are also retained in the output.",
+    "At each k, prefix_stats receives only part.iloc[:k]. Later maneuvers are used only after termination for held-out proxy scoring.",
+    "The ATS stop criterion is >=3 model-usable acceptable PRE maneuvers plus top-two FEV1 and FVC repeatability within 150 mL.",
+    "Before ATS criteria are met, the loop keeps requesting PRE blows unless the 8-attempt cap is hit, the participant runs out of recorded PRE blows, or the best-test ratio is severe enough to refer.",
+    "When ATS criteria are met, the same baseline finalization bands are retained: obstructed only below 0.60, normal only at or above 0.72, near-threshold results are referred rather than forced.",
+    "At the ATS 8-cap, the best-test ratio is emitted with grade unless it is severe-range or the conservative normal-call guard blocks a normal call.",
+    "The conservative normal-call guard is enforced at every terminal normal call: no ACCEPT_NORMAL if any model-usable acceptable prefix maneuver has corrected ratio <0.70.",
+    "CENSORED means NHANES recorded no additional PRE maneuver; censored rows are never counted as finalized in the honest floor.",
+    "Held-out accuracy uses only fitted PRE maneuvers after the stopping attempt. NHANES truth is used only for sens/spec/kappa and severe-FN safety scoring."
+  ],
+  "availability": {
+    "test_n": 563,
+    "pre_distribution": [
+      {
+        "bucket": "1",
+        "n": 0,
+        "fraction": 0.0
+      },
+      {
+        "bucket": "2",
+        "n": 2,
+        "fraction": 0.003552397868561279
+      },
+      {
+        "bucket": "3",
+        "n": 164,
+        "fraction": 0.2912966252220249
+      },
+      {
+        "bucket": "4",
+        "n": 149,
+        "fraction": 0.26465364120781526
+      },
+      {
+        "bucket": "5",
+        "n": 97,
+        "fraction": 0.17229129662522202
+      },
+      {
+        "bucket": "6",
+        "n": 54,
+        "fraction": 0.09591474245115453
+      },
+      {
+        "bucket": "7",
+        "n": 30,
+        "fraction": 0.05328596802841918
+      },
+      {
+        "bucket": "8+",
+        "n": 67,
+        "fraction": 0.11900532859680284
+      }
+    ],
+    "post_distribution": [
+      {
+        "bucket": "0",
+        "n": 410,
+        "fraction": 0.7282415630550622
+      },
+      {
+        "bucket": "1",
+        "n": 0,
+        "fraction": 0.0
+      },
+      {
+        "bucket": "2",
+        "n": 0,
+        "fraction": 0.0
+      },
+      {
+        "bucket": "3",
+        "n": 76,
+        "fraction": 0.1349911190053286
+      },
+      {
+        "bucket": "4",
+        "n": 38,
+        "fraction": 0.0674955595026643
+      },
+      {
+        "bucket": "5",
+        "n": 22,
+        "fraction": 0.03907637655417407
+      },
+      {
+        "bucket": "6",
+        "n": 6,
+        "fraction": 0.010657193605683837
+      },
+      {
+        "bucket": "7",
+        "n": 6,
+        "fraction": 0.010657193605683837
+      },
+      {
+        "bucket": "8+",
+        "n": 5,
+        "fraction": 0.008880994671403197
+      }
+    ],
+    "pre_median": 4.0,
+    "post_median": 0.0,
+    "pre_ge3_n": 561,
+    "pre_ge3_fraction": 0.9964476021314387,
+    "post_any_n": 153,
+    "post_any_fraction": 0.27175843694493784,
+    "raw_pre_rows": 2647,
+    "raw_post_rows": 608,
+    "post_type_counts": {
+      "Bron": 608
+    }
+  },
+  "baseline_metrics": {
+    "finalized_n": 375,
+    "finalized_fraction": 0.6660746003552398,
+    "tp": 150,
+    "tn": 211,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9433962264150944,
+    "specificity": 0.9768518518518519,
+    "cohens_kappa": 0.9233128834355828,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "coverage_metrics": {
+    "single_pass_baseline_coverage": 0.6660746003552398,
+    "post_repeat_finalized_n": 391,
+    "post_repeat_total_n": 563,
+    "post_repeat_honest_floor_coverage": 0.69449378330373,
+    "post_repeat_non_censored_n": 532,
+    "post_repeat_non_censored_finalized_n": 391,
+    "post_repeat_non_censored_coverage": 0.7349624060150376,
+    "coverage_delta_vs_single_pass": 0.028419182948490218,
+    "strict_from_scratch_loop_finalized_n": 228,
+    "strict_from_scratch_loop_total_n": 563,
+    "strict_from_scratch_loop_honest_floor_coverage": 0.4049733570159858,
+    "strict_from_scratch_loop_non_censored_n": 496,
+    "strict_from_scratch_loop_non_censored_finalized_n": 228,
+    "strict_from_scratch_loop_non_censored_coverage": 0.4596774193548387,
+    "strict_from_scratch_loop_delta_vs_single_pass": -0.261101243339254,
+    "mean_blows_requested": 4.145648312611012,
+    "median_blows_requested": 4.0,
+    "ats_cap_n": 37,
+    "ats_cap_fraction": 0.06571936056838366,
+    "censored_n": 67,
+    "censored_fraction": 0.11900532859680284,
+    "deferred_censored_n": 31,
+    "deferred_censored_fraction": 0.16489361702127658
+  },
+  "post_repeat_truth_metrics": {
+    "finalized_n": 391,
+    "finalized_fraction": 0.69449378330373,
+    "tp": 160,
+    "tn": 216,
+    "fp": 5,
+    "fn": 10,
+    "sensitivity": 0.9411764705882353,
+    "specificity": 0.9773755656108597,
+    "cohens_kappa": 0.9216799091940977,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "loop_truth_metrics": {
+    "finalized_n": 228,
+    "finalized_fraction": 0.4049733570159858,
+    "tp": 36,
+    "tn": 183,
+    "fp": 3,
+    "fn": 6,
+    "sensitivity": 0.8571428571428571,
+    "specificity": 0.9838709677419355,
+    "cohens_kappa": 0.8649289099526066,
+    "severe_finalized_n": 0,
+    "severe_fn_n": 0,
+    "severe_fn_rate": null,
+    "severe_fn_ci_low": null,
+    "severe_fn_ci_high": null
+  },
+  "heldout_maneuver_accuracy": {
+    "participants_finalized_n": 228,
+    "participants_with_proxy_n": 63,
+    "participants_without_proxy_n": 165,
+    "observed_blow_correct_n": 86,
+    "observed_blow_n": 92,
+    "observed_blow_accuracy": 0.9347826086956522,
+    "model_blow_correct_n": 89,
+    "model_blow_n": 92,
+    "model_blow_accuracy": 0.967391304347826,
+    "participant_majority_observed_correct_n": 59,
+    "participant_majority_observed_n": 63,
+    "participant_majority_observed_accuracy": 0.9365079365079365,
+    "participant_all_observed_accuracy": 0.9365079365079365
+  },
+  "heldout_newly_resolved_accuracy": {
+    "participants_finalized_n": 16,
+    "participants_with_proxy_n": 4,
+    "participants_without_proxy_n": 12,
+    "observed_blow_correct_n": 5,
+    "observed_blow_n": 7,
+    "observed_blow_accuracy": 0.7142857142857143,
+    "model_blow_correct_n": 6,
+    "model_blow_n": 7,
+    "model_blow_accuracy": 0.8571428571428571,
+    "participant_majority_observed_correct_n": 3,
+    "participant_majority_observed_n": 4,
+    "participant_majority_observed_accuracy": 0.75,
+    "participant_all_observed_accuracy": 0.75
+  },
+  "loop_decision_counts": [
+    {
+      "termination_type": "ATS_CAP",
+      "loop_decision": "ACCEPT_NORMAL",
+      "n": 5,
+      "fraction": 0.008880994671403197
+    },
+    {
+      "termination_type": "ATS_CAP",
+      "loop_decision": "ACCEPT_OBSTRUCTED",
+      "n": 14,
+      "fraction": 0.02486678507992895
+    },
+    {
+      "termination_type": "ATS_CAP",
+      "loop_decision": "REFER",
+      "n": 18,
+      "fraction": 0.03197158081705151
+    },
+    {
+      "termination_type": "CENSORED",
+      "loop_decision": "CENSORED",
+      "n": 67,
+      "fraction": 0.11900532859680284
+    },
+    {
+      "termination_type": "FINALIZE",
+      "loop_decision": "ACCEPT_NORMAL",
+      "n": 184,
+      "fraction": 0.3268206039076377
+    },
+    {
+      "termination_type": "FINALIZE",
+      "loop_decision": "ACCEPT_OBSTRUCTED",
+      "n": 25,
+      "fraction": 0.04440497335701599
+    },
+    {
+      "termination_type": "REFER",
+      "loop_decision": "REFER",
+      "n": 250,
+      "fraction": 0.44404973357015987
+    }
+  ],
+  "deferred_resolution": {
+    "single_pass_deferred_n": 188,
+    "resolved_n": 16,
+    "resolved_by_0_additional_blow_n": 0,
+    "resolved_by_1_additional_blow_n": 0,
+    "resolved_by_2_additional_blows_n": 2,
+    "resolved_by_3plus_additional_blows_n": 14,
+    "never_resolved_n": 172,
+    "never_resolved_by_reason": [
+      {
+        "reason": "R3_FAILED_REPEATABILITY",
+        "n": 94,
+        "fraction_never_resolved": 0.5465116279069767
+      },
+      {
+        "reason": "R2_BORDERLINE_RATIO",
+        "n": 38,
+        "fraction_never_resolved": 0.22093023255813954
+      },
+      {
+        "reason": "R4_GENUINELY_UNINTERPRETABLE",
+        "n": 33,
+        "fraction_never_resolved": 0.19186046511627908
+      },
+      {
+        "reason": "R1_TRUNCATED_INCOMPLETE",
+        "n": 7,
+        "fraction_never_resolved": 0.040697674418604654
+      }
+    ]
+  },
+  "resolved_ratio_spread": {
+    "cases_n": 16,
+    "with_ratio_n": 16,
+    "median_spread": 0.055536070811571414,
+    "iqr_spread": [
+      0.041589040283482814,
+      0.10672504132608959
+    ],
+    "straddles_070_n": 3,
+    "straddles_070_fraction": 0.1875,
+    "median_margin_to_070": 0.06260450805290485
+  },
+  "never_resolved_ratio_spread": {
+    "cases_n": 172,
+    "with_ratio_n": 162,
+    "median_spread": 0.03814145681246117,
+    "iqr_spread": [
+      0.020355617594233932,
+      0.09011267839795345
+    ],
+    "straddles_070_n": 72,
+    "straddles_070_fraction": 0.4444444444444444,
+    "median_margin_to_070": 0.02122214813073059
+  },
+  "repeat_help_statement": "KEY QUESTION: repeated blows often keep landing on both sides of 0.70 in the never-resolved set. More blows do not reliably resolve those cases; this supports the biological-ambiguity interpretation.",
+  "severe_by_path": [
+    {
+      "path": "LOOP_FINALIZE",
+      "finalized_n": 209,
+      "severe_finalized_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_rate": null,
+      "severe_fn_ci_low": null,
+      "severe_fn_ci_high": null
+    },
+    {
+      "path": "LOOP_ATS_CAP",
+      "finalized_n": 19,
+      "severe_finalized_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_rate": null,
+      "severe_fn_ci_low": null,
+      "severe_fn_ci_high": null
+    },
+    {
+      "path": "STRICT_LOOP_OVERALL",
+      "finalized_n": 228,
+      "severe_finalized_n": 0,
+      "severe_fn_n": 0,
+      "severe_fn_rate": null,
+      "severe_fn_ci_low": null,
+      "severe_fn_ci_high": null
+    },
+    {
+      "path": "POST_REPEAT_POLICY",
+      "finalized_n": 391,
+      "severe_finalized_n": 6,
+      "severe_fn_n": 0,
+      "severe_fn_rate": 0.0,
+      "severe_fn_ci_low": 0.0,
+      "severe_fn_ci_high": 0.4592581264399005
+    }
+  ],
+  "normal_guard_violation_n": 0,
+  "finalized_grade_distribution": [
+    {
+      "grade": "A",
+      "n": 209,
+      "fraction": 0.9166666666666666
+    },
+    {
+      "grade": "B",
+      "n": 3,
+      "fraction": 0.013157894736842105
+    },
+    {
+      "grade": "C",
+      "n": 3,
+      "fraction": 0.013157894736842105
+    },
+    {
+      "grade": "D",
+      "n": 6,
+      "fraction": 0.02631578947368421
+    },
+    {
+      "grade": "E",
+      "n": 7,
+      "fraction": 0.03070175438596491
+    }
+  ],
+  "verdict": "LOOP-NEUTRAL",
+  "verdict_reason": "Repeats did not materially improve deployable coverage; unresolved cases remain censored, borderline, or discordant around 0.70."
+}

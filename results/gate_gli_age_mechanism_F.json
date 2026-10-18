@@ -1,0 +1,402 @@
+{
+  "seed": 20260710,
+  "output_stem": "gate_gli_age_mechanism_F",
+  "part0": {
+    "primary_sample": "participant_P3:all",
+    "primary_age_signal": {
+      "row_type": "part0_signal",
+      "sample_level": "participant_P3",
+      "sample_scope": "all",
+      "primary": true,
+      "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+      "outcome_units": "ratio",
+      "predictor": "age_years",
+      "predictor_units": "years",
+      "slope_units": "ratio error per decade",
+      "n": 6655,
+      "pearson_r": 0.3184938261917445,
+      "p_value": 9.200484439216338e-157,
+      "slope": 0.010477692640169612,
+      "intercept": -0.05879482134431609,
+      "r2": 0.10143831732225715
+    },
+    "primary_true_fvc_contrast": {
+      "row_type": "part0_signal",
+      "sample_level": "participant_P3",
+      "sample_scope": "all",
+      "primary": true,
+      "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+      "outcome_units": "ratio",
+      "predictor": "true_fvc_l",
+      "predictor_units": "L",
+      "slope_units": "ratio error per L",
+      "n": 6655,
+      "pearson_r": 0.4159092656220218,
+      "p_value": 9.709936378432173e-277,
+      "slope": 0.02404068112359225,
+      "intercept": -0.11033876808310088,
+      "r2": 0.1729805172302495
+    },
+    "primary_explained_variance_gap": {
+      "row_type": "part0_explained_variance_gap",
+      "sample_level": "participant_P3",
+      "sample_scope": "all",
+      "primary": true,
+      "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+      "age_r2": 0.10143831732225715,
+      "true_fvc_r2": 0.1729805172302495,
+      "age_r2_over_true_fvc_r2": 0.5864146954031562,
+      "true_fvc_r2_over_age_r2": 1.7052778653722291
+    },
+    "ratio_error_signals": {
+      "participant_P3:all": {
+        "age_years": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "all",
+          "primary": true,
+          "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+          "outcome_units": "ratio",
+          "predictor": "age_years",
+          "predictor_units": "years",
+          "slope_units": "ratio error per decade",
+          "n": 6655,
+          "pearson_r": 0.3184938261917445,
+          "p_value": 9.200484439216338e-157,
+          "slope": 0.010477692640169612,
+          "intercept": -0.05879482134431609,
+          "r2": 0.10143831732225715
+        },
+        "true_fvc_l": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "all",
+          "primary": true,
+          "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+          "outcome_units": "ratio",
+          "predictor": "true_fvc_l",
+          "predictor_units": "L",
+          "slope_units": "ratio error per L",
+          "n": 6655,
+          "pearson_r": 0.4159092656220218,
+          "p_value": 9.709936378432173e-277,
+          "slope": 0.02404068112359225,
+          "intercept": -0.11033876808310088,
+          "r2": 0.1729805172302495
+        }
+      },
+      "participant_P3:train": {
+        "age_years": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "train",
+          "primary": false,
+          "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+          "outcome_units": "ratio",
+          "predictor": "age_years",
+          "predictor_units": "years",
+          "slope_units": "ratio error per decade",
+          "n": 3326,
+          "pearson_r": 0.3217541460011348,
+          "p_value": 5.627313685754029e-81,
+          "slope": 0.011155893248376412,
+          "intercept": -0.062447406663567205,
+          "r2": 0.10352573046891955
+        },
+        "true_fvc_l": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "train",
+          "primary": false,
+          "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+          "outcome_units": "ratio",
+          "predictor": "true_fvc_l",
+          "predictor_units": "L",
+          "slope_units": "ratio error per L",
+          "n": 3326,
+          "pearson_r": 0.43851449524511593,
+          "p_value": 2.252608049691843e-156,
+          "slope": 0.026405084907121023,
+          "intercept": -0.1210846368940843,
+          "r2": 0.1922949625400788
+        }
+      },
+      "participant_P3:test": {
+        "age_years": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "test",
+          "primary": false,
+          "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+          "outcome_units": "ratio",
+          "predictor": "age_years",
+          "predictor_units": "years",
+          "slope_units": "ratio error per decade",
+          "n": 3329,
+          "pearson_r": 0.3146913052923349,
+          "p_value": 2.004271871337158e-77,
+          "slope": 0.009760294836238201,
+          "intercept": -0.05491933719728212,
+          "r2": 0.09903061762659353
+        },
+        "true_fvc_l": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "test",
+          "primary": false,
+          "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+          "outcome_units": "ratio",
+          "predictor": "true_fvc_l",
+          "predictor_units": "L",
+          "slope_units": "ratio error per L",
+          "n": 3329,
+          "pearson_r": 0.3913535380991655,
+          "p_value": 2.800373936422831e-122,
+          "slope": 0.021565475696017217,
+          "intercept": -0.09920244371902137,
+          "r2": 0.153157591782735
+        }
+      },
+      "maneuver:all": {
+        "age_years": {
+          "row_type": "part0_signal",
+          "sample_level": "maneuver",
+          "sample_scope": "all",
+          "primary": false,
+          "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+          "outcome_units": "ratio",
+          "predictor": "age_years",
+          "predictor_units": "years",
+          "slope_units": "ratio error per decade",
+          "n": 23743,
+          "pearson_r": 0.2725646214967422,
+          "p_value": 0.0,
+          "slope": 0.011546599194694182,
+          "intercept": -0.07234408224194327,
+          "r2": 0.07429147289166235
+        },
+        "true_fvc_l": {
+          "row_type": "part0_signal",
+          "sample_level": "maneuver",
+          "sample_scope": "all",
+          "primary": false,
+          "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+          "outcome_units": "ratio",
+          "predictor": "true_fvc_l",
+          "predictor_units": "L",
+          "slope_units": "ratio error per L",
+          "n": 23743,
+          "pearson_r": 0.45498699394082237,
+          "p_value": 0.0,
+          "slope": 0.03359102689902503,
+          "intercept": -0.15655313155104555,
+          "r2": 0.20701316465530592
+        }
+      }
+    },
+    "ratio_error_explained_variance_gaps": {
+      "participant_P3:all": {
+        "row_type": "part0_explained_variance_gap",
+        "sample_level": "participant_P3",
+        "sample_scope": "all",
+        "primary": true,
+        "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+        "age_r2": 0.10143831732225715,
+        "true_fvc_r2": 0.1729805172302495,
+        "age_r2_over_true_fvc_r2": 0.5864146954031562,
+        "true_fvc_r2_over_age_r2": 1.7052778653722291
+      },
+      "participant_P3:train": {
+        "row_type": "part0_explained_variance_gap",
+        "sample_level": "participant_P3",
+        "sample_scope": "train",
+        "primary": false,
+        "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+        "age_r2": 0.10352573046891955,
+        "true_fvc_r2": 0.1922949625400788,
+        "age_r2_over_true_fvc_r2": 0.5383694356909758,
+        "true_fvc_r2_over_age_r2": 1.8574605720633819
+      },
+      "participant_P3:test": {
+        "row_type": "part0_explained_variance_gap",
+        "sample_level": "participant_P3",
+        "sample_scope": "test",
+        "primary": false,
+        "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+        "age_r2": 0.09903061762659353,
+        "true_fvc_r2": 0.153157591782735,
+        "age_r2_over_true_fvc_r2": 0.6465929404732058,
+        "true_fvc_r2_over_age_r2": 1.5465680761502825
+      },
+      "maneuver:all": {
+        "row_type": "part0_explained_variance_gap",
+        "sample_level": "maneuver",
+        "sample_scope": "all",
+        "primary": false,
+        "outcome": "model_minus_observed_fev1_fvc_ratio_error",
+        "age_r2": 0.07429147289166235,
+        "true_fvc_r2": 0.20701316465530592,
+        "age_r2_over_true_fvc_r2": 0.3588731809175702,
+        "true_fvc_r2_over_age_r2": 2.786499669446435
+      }
+    },
+    "gli_context_signals": {
+      "gli_context:all": {
+        "age_years": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "all",
+          "primary": false,
+          "outcome": "gli_lln_ratio_context",
+          "outcome_units": "ratio",
+          "predictor": "age_years",
+          "predictor_units": "years",
+          "slope_units": "GLI LLN ratio per decade",
+          "n": 6627,
+          "pearson_r": -0.9507965721371701,
+          "p_value": 0.0,
+          "slope": -0.022579951097813456,
+          "intercept": 0.806242887339229,
+          "r2": 0.9040141215877928
+        },
+        "true_fvc_l": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "all",
+          "primary": false,
+          "outcome": "gli_lln_ratio_context",
+          "outcome_units": "ratio",
+          "predictor": "true_fvc_l",
+          "predictor_units": "L",
+          "slope_units": "GLI LLN ratio per L",
+          "n": 6627,
+          "pearson_r": -0.1943300711850912,
+          "p_value": 2.0949623209452426e-57,
+          "slope": -0.008102821398454712,
+          "intercept": 0.7557747770874209,
+          "r2": 0.037764176566802615
+        }
+      },
+      "gli_context:train": {
+        "age_years": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "train",
+          "primary": false,
+          "outcome": "gli_lln_ratio_context",
+          "outcome_units": "ratio",
+          "predictor": "age_years",
+          "predictor_units": "years",
+          "slope_units": "GLI LLN ratio per decade",
+          "n": 3310,
+          "pearson_r": -0.9513702459087342,
+          "p_value": 0.0,
+          "slope": -0.022576096081381447,
+          "intercept": 0.8061357576458275,
+          "r2": 0.9051053448004454
+        },
+        "true_fvc_l": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "train",
+          "primary": false,
+          "outcome": "gli_lln_ratio_context",
+          "outcome_units": "ratio",
+          "predictor": "true_fvc_l",
+          "predictor_units": "L",
+          "slope_units": "GLI LLN ratio per L",
+          "n": 3310,
+          "pearson_r": -0.19379329347889093,
+          "p_value": 2.262722800255465e-29,
+          "slope": -0.007971531563230811,
+          "intercept": 0.7565478155060867,
+          "r2": 0.03755584059739555
+        }
+      },
+      "gli_context:test": {
+        "age_years": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "test",
+          "primary": false,
+          "outcome": "gli_lln_ratio_context",
+          "outcome_units": "ratio",
+          "predictor": "age_years",
+          "predictor_units": "years",
+          "slope_units": "GLI LLN ratio per decade",
+          "n": 3317,
+          "pearson_r": -0.9501642174616461,
+          "p_value": 0.0,
+          "slope": -0.022586367761133003,
+          "intercept": 0.806359543066328,
+          "r2": 0.9028120401445023
+        },
+        "true_fvc_l": {
+          "row_type": "part0_signal",
+          "sample_level": "participant_P3",
+          "sample_scope": "test",
+          "primary": false,
+          "outcome": "gli_lln_ratio_context",
+          "outcome_units": "ratio",
+          "predictor": "true_fvc_l",
+          "predictor_units": "L",
+          "slope_units": "GLI LLN ratio per L",
+          "n": 3317,
+          "pearson_r": -0.19519965793204344,
+          "p_value": 7.649217164346002e-30,
+          "slope": -0.008248082614519505,
+          "intercept": 0.755055005434564,
+          "r2": 0.03810290645678677
+        }
+      }
+    },
+    "gli_context_explained_variance_gaps": {
+      "gli_context:all": {
+        "row_type": "part0_explained_variance_gap",
+        "sample_level": "participant_P3",
+        "sample_scope": "all",
+        "primary": false,
+        "outcome": "gli_lln_ratio_context",
+        "age_r2": 0.9040141215877928,
+        "true_fvc_r2": 0.037764176566802615,
+        "age_r2_over_true_fvc_r2": 23.938404164291647,
+        "true_fvc_r2_over_age_r2": 0.04177387904126359
+      },
+      "gli_context:train": {
+        "row_type": "part0_explained_variance_gap",
+        "sample_level": "participant_P3",
+        "sample_scope": "train",
+        "primary": false,
+        "outcome": "gli_lln_ratio_context",
+        "age_r2": 0.9051053448004454,
+        "true_fvc_r2": 0.03755584059739555,
+        "age_r2_over_true_fvc_r2": 24.10025525731977,
+        "true_fvc_r2_over_age_r2": 0.04149333645320119
+      },
+      "gli_context:test": {
+        "row_type": "part0_explained_variance_gap",
+        "sample_level": "participant_P3",
+        "sample_scope": "test",
+        "primary": false,
+        "outcome": "gli_lln_ratio_context",
+        "age_r2": 0.9028120401445023,
+        "true_fvc_r2": 0.03810290645678677,
+        "age_r2_over_true_fvc_r2": 23.69404657275682,
+        "true_fvc_r2_over_age_r2": 0.042204694623576455
+      }
+    },
+    "age_signal_abs_r_threshold": 0.7,
+    "age_signal_reproduced": false,
+    "status": "HALTED-PREMISE-NOT-STABLE",
+    "halt_reason": "signed model-minus-observed FEV1/FVC ratio error vs age did not reproduce at |r| > 0.70"
+  },
+  "parts_1_to_3": {
+    "run": false,
+    "skipped_reason": "signed model-minus-observed FEV1/FVC ratio error vs age did not reproduce at |r| > 0.70"
+  },
+  "verdict": {
+    "verdict": "MECHANISM-REFUTED",
+    "gate_status": "HALTED-PREMISE-NOT-STABLE",
+    "interpretation": "The tau_s age-drift hypothesis is not supported because the required age-dependent forward-model ratio-error signal is absent. GLI degradation remains unexplained after the five tested mechanisms, with the added clarification that the strong age dependence is carried by the GLI threshold, not by current OMBE model-minus-observed ratio error."
+  }
+}

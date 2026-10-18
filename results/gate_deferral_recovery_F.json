@@ -1,0 +1,188 @@
+{
+  "verdict": "RECOVERY-SUBSTANTIAL",
+  "verdict_reason": "coverage rises materially via label-independent recovery rules, final-call metrics hold, and severe FN remains zero.",
+  "seed": 20260710,
+  "test_n": 563,
+  "baseline_deferred_n": 308,
+  "baseline_deferred_fraction": 0.5470692717584369,
+  "c1_offset_from_existing_policy": 0.008637018273988883,
+  "protocol_decisions": [
+    "TEST split only; TRAIN rows are ignored.",
+    "The existing workflow gate is reused as the baseline; this gate only analyzes and recovers its deferred rows.",
+    "Primary deferral reason uses a strict priority: invalid/artifact, failed repeatability, truncation, borderline, then residual uninterpretable.",
+    "Volume fit R2 < 0.90 is treated as R4 artifact/no-valid-fit, not as a recoverable borderline case.",
+    "Recovered cases are selected by deterministic, label-independent candidate rules. TEST truth is used only after selection to score correctness.",
+    "No confidence threshold is lowered; R1/R2/R3 recovery uses stricter evidence than the baseline finalization rule."
+  ],
+  "primary_deferral_reasons": [
+    {
+      "reason": "R1_TRUNCATED_INCOMPLETE",
+      "label": "R1 truncated/incomplete",
+      "n": 38,
+      "fraction_of_deferred": 0.12337662337662338,
+      "recovered_n": 25,
+      "candidate_attempt_n": 25,
+      "candidate_error_n": 0
+    },
+    {
+      "reason": "R2_BORDERLINE_RATIO",
+      "label": "R2 borderline near 0.70",
+      "n": 127,
+      "fraction_of_deferred": 0.41233766233766234,
+      "recovered_n": 88,
+      "candidate_attempt_n": 88,
+      "candidate_error_n": 0
+    },
+    {
+      "reason": "R3_FAILED_REPEATABILITY",
+      "label": "R3 failed repeatability",
+      "n": 110,
+      "fraction_of_deferred": 0.35714285714285715,
+      "recovered_n": 7,
+      "candidate_attempt_n": 7,
+      "candidate_error_n": 0
+    },
+    {
+      "reason": "R4_GENUINELY_UNINTERPRETABLE",
+      "label": "R4 uninterpretable/artifact",
+      "n": 33,
+      "fraction_of_deferred": 0.10714285714285714,
+      "recovered_n": 0,
+      "candidate_attempt_n": 0,
+      "candidate_error_n": 0
+    }
+  ],
+  "recovery_by_reason": [
+    {
+      "reason": "R1_TRUNCATED_INCOMPLETE",
+      "deferred_n": 38,
+      "candidate_attempt_n": 25,
+      "candidate_correct_n": 25,
+      "candidate_error_n": 0,
+      "recovered_n": 25,
+      "recovered_correct_n": 25,
+      "recovered_error_n": 0,
+      "recovered_accuracy": 1.0,
+      "recovered_severe_n": 4,
+      "recovered_severe_fn": 0,
+      "recovered_severe_fn_ci_high": 0.6023646356164746,
+      "residual_deferred_n": 13
+    },
+    {
+      "reason": "R2_BORDERLINE_RATIO",
+      "deferred_n": 127,
+      "candidate_attempt_n": 88,
+      "candidate_correct_n": 88,
+      "candidate_error_n": 0,
+      "recovered_n": 88,
+      "recovered_correct_n": 88,
+      "recovered_error_n": 0,
+      "recovered_accuracy": 1.0,
+      "recovered_severe_n": 0,
+      "recovered_severe_fn": 0,
+      "recovered_severe_fn_ci_high": null,
+      "residual_deferred_n": 39
+    },
+    {
+      "reason": "R3_FAILED_REPEATABILITY",
+      "deferred_n": 110,
+      "candidate_attempt_n": 7,
+      "candidate_correct_n": 7,
+      "candidate_error_n": 0,
+      "recovered_n": 7,
+      "recovered_correct_n": 7,
+      "recovered_error_n": 0,
+      "recovered_accuracy": 1.0,
+      "recovered_severe_n": 0,
+      "recovered_severe_fn": 0,
+      "recovered_severe_fn_ci_high": null,
+      "residual_deferred_n": 103
+    },
+    {
+      "reason": "R4_GENUINELY_UNINTERPRETABLE",
+      "deferred_n": 33,
+      "candidate_attempt_n": 0,
+      "candidate_correct_n": 0,
+      "candidate_error_n": 0,
+      "recovered_n": 0,
+      "recovered_correct_n": 0,
+      "recovered_error_n": 0,
+      "recovered_accuracy": null,
+      "recovered_severe_n": 0,
+      "recovered_severe_fn": 0,
+      "recovered_severe_fn_ci_high": null,
+      "residual_deferred_n": 33
+    }
+  ],
+  "r2_resolution_split": {
+    "resolvable_n": 88,
+    "ambiguous_n": 39
+  },
+  "r3_consistency_split": {
+    "one_bad_blow_recoverable_n": 7,
+    "all_inconsistent_n": 103
+  },
+  "baseline_metrics": {
+    "finalized_n": 255,
+    "finalized_fraction": 0.45293072824156305,
+    "tp": 50,
+    "tn": 191,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.847457627118644,
+    "specificity": 0.9744897959183674,
+    "cohens_kappa": 0.8418954827280778,
+    "severe_finalized_n": 2,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.841886116991581
+  },
+  "post_recovery_metrics": {
+    "finalized_n": 375,
+    "finalized_fraction": 0.6660746003552398,
+    "tp": 150,
+    "tn": 211,
+    "fp": 5,
+    "fn": 9,
+    "sensitivity": 0.9433962264150944,
+    "specificity": 0.9768518518518519,
+    "cohens_kappa": 0.9233128834355828,
+    "severe_finalized_n": 6,
+    "severe_fn_n": 0,
+    "severe_fn_rate": 0.0,
+    "severe_fn_ci_low": 0.0,
+    "severe_fn_ci_high": 0.4592581264399005
+  },
+  "coverage_delta": 0.21314387211367675,
+  "net_recovered_n": 120,
+  "residual_deferred_n": 188,
+  "residual_deferred_fraction": 0.3339253996447602,
+  "residual_deferred_reasons": [
+    {
+      "residual_reason": "R3_FAILED_REPEATABILITY",
+      "n": 103,
+      "fraction_all": 0.18294849023090587,
+      "fraction_residual": 0.5478723404255319
+    },
+    {
+      "residual_reason": "R2_BORDERLINE_RATIO",
+      "n": 39,
+      "fraction_all": 0.06927175843694494,
+      "fraction_residual": 0.2074468085106383
+    },
+    {
+      "residual_reason": "R4_GENUINELY_UNINTERPRETABLE",
+      "n": 33,
+      "fraction_all": 0.0586145648312611,
+      "fraction_residual": 0.17553191489361702
+    },
+    {
+      "residual_reason": "R1_TRUNCATED_INCOMPLETE",
+      "n": 13,
+      "fraction_all": 0.023090586145648313,
+      "fraction_residual": 0.06914893617021277
+    }
+  ],
+  "residual_r4_fraction_all": 0.0586145648312611
+}

@@ -1,0 +1,447 @@
+{
+  "verdict": "BORDERLINE-FLAG-USEFUL",
+  "train_test_counts": {
+    "train": {
+      "normal": 3029,
+      "mild_0.60_0.70": 241,
+      "moderate": 44,
+      "severe": 12
+    },
+    "test": {
+      "normal": 3029,
+      "mild_0.60_0.70": 242,
+      "moderate": 45,
+      "severe": 13
+    }
+  },
+  "spread_threshold_train_85pct": 0.0986814849708797,
+  "spread_train_flag_rate": 0.15003006614552014,
+  "pooling_metrics": [
+    {
+      "row_type": "part_b_b1_pooling_metric",
+      "source": "model",
+      "method": "P1_best_fev1",
+      "n": 3329,
+      "tp": 221,
+      "tn": 2870,
+      "fp": 159,
+      "fn": 79,
+      "sensitivity": 0.7366666666666667,
+      "specificity": 0.9475074281941235,
+      "agreement": 0.92850705917693,
+      "cohens_kappa": 0.6108001100347787,
+      "signed_ratio_error_median": 0.0029310507329615154,
+      "signed_ratio_error_iqr_low": -0.0061012287842656665,
+      "signed_ratio_error_iqr_high": 0.011890462822745418,
+      "borderline_confident_false_negative_rate": 0.3181818181818182,
+      "borderline_n": 242
+    },
+    {
+      "row_type": "part_b_b1_pooling_metric",
+      "source": "model",
+      "method": "P2_median_ratio",
+      "n": 3329,
+      "tp": 242,
+      "tn": 2782,
+      "fp": 247,
+      "fn": 58,
+      "sensitivity": 0.8066666666666666,
+      "specificity": 0.9184549356223176,
+      "agreement": 0.9083808951637128,
+      "cohens_kappa": 0.5648237320636501,
+      "signed_ratio_error_median": -0.002760400436541466,
+      "signed_ratio_error_iqr_low": -0.01648385772780525,
+      "signed_ratio_error_iqr_high": 0.00608979822248823,
+      "borderline_confident_false_negative_rate": 0.23553719008264462,
+      "borderline_n": 242
+    },
+    {
+      "row_type": "part_b_b1_pooling_metric",
+      "source": "model",
+      "method": "P3_ATS_largest",
+      "n": 3329,
+      "tp": 246,
+      "tn": 2885,
+      "fp": 144,
+      "fn": 54,
+      "sensitivity": 0.82,
+      "specificity": 0.9524595576097722,
+      "agreement": 0.9405226794833283,
+      "cohens_kappa": 0.6804950048715226,
+      "signed_ratio_error_median": 0.000479093387870666,
+      "signed_ratio_error_iqr_low": -0.008706948535364134,
+      "signed_ratio_error_iqr_high": 0.0078111532923217375,
+      "borderline_confident_false_negative_rate": 0.2190082644628099,
+      "borderline_n": 242
+    },
+    {
+      "row_type": "part_b_b1_pooling_metric",
+      "source": "observed",
+      "method": "P1_best_fev1",
+      "n": 3329,
+      "tp": 242,
+      "tn": 3016,
+      "fp": 13,
+      "fn": 58,
+      "sensitivity": 0.8066666666666666,
+      "specificity": 0.9957081545064378,
+      "agreement": 0.978672273956143,
+      "cohens_kappa": 0.8605218356008367,
+      "signed_ratio_error_median": 0.007696560238971917,
+      "signed_ratio_error_iqr_low": 0.00010279516932021338,
+      "signed_ratio_error_iqr_high": 0.02667500518915311,
+      "borderline_confident_false_negative_rate": 0.23140495867768596,
+      "borderline_n": 242
+    },
+    {
+      "row_type": "part_b_b1_pooling_metric",
+      "source": "observed",
+      "method": "P2_median_ratio",
+      "n": 3329,
+      "tp": 271,
+      "tn": 2969,
+      "fp": 60,
+      "fn": 29,
+      "sensitivity": 0.9033333333333333,
+      "specificity": 0.980191482337405,
+      "agreement": 0.9732652448182637,
+      "cohens_kappa": 0.8442265216753528,
+      "signed_ratio_error_median": 0.002771216001139609,
+      "signed_ratio_error_iqr_low": -0.006385680612010836,
+      "signed_ratio_error_iqr_high": 0.01630944023862535,
+      "borderline_confident_false_negative_rate": 0.11570247933884298,
+      "borderline_n": 242
+    },
+    {
+      "row_type": "part_b_b1_pooling_metric",
+      "source": "observed",
+      "method": "P3_ATS_largest",
+      "n": 3329,
+      "tp": 278,
+      "tn": 3006,
+      "fp": 23,
+      "fn": 22,
+      "sensitivity": 0.9266666666666666,
+      "specificity": 0.9924067348960053,
+      "agreement": 0.9864824271553019,
+      "cohens_kappa": 0.9176953941176695,
+      "signed_ratio_error_median": 0.003117512515674714,
+      "signed_ratio_error_iqr_low": -0.0018192501695586394,
+      "signed_ratio_error_iqr_high": 0.012477716556262286,
+      "borderline_confident_false_negative_rate": 0.08677685950413223,
+      "borderline_n": 242
+    }
+  ],
+  "leave_one_out_sd_summary": [
+    {
+      "row_type": "part_b_loo_summary",
+      "source": "model",
+      "method": "P1",
+      "n": 3188,
+      "median": 0.0056440802976799355,
+      "iqr": [
+        0.002503008232587778,
+        0.011315874613852035
+      ]
+    },
+    {
+      "row_type": "part_b_loo_summary",
+      "source": "model",
+      "method": "P2",
+      "n": 3188,
+      "median": 0.0054287860501385345,
+      "iqr": [
+        0.00281932172631046,
+        0.0108588917250198
+      ]
+    },
+    {
+      "row_type": "part_b_loo_summary",
+      "source": "model",
+      "method": "P3",
+      "n": 3188,
+      "median": 0.005504833321436255,
+      "iqr": [
+        0.002581529340145023,
+        0.010684734152651877
+      ]
+    },
+    {
+      "row_type": "part_b_loo_summary",
+      "source": "observed",
+      "method": "P1",
+      "n": 3188,
+      "median": 0.007877310094084412,
+      "iqr": [
+        0.0036381253069652695,
+        0.015920534583365394
+      ]
+    },
+    {
+      "row_type": "part_b_loo_summary",
+      "source": "observed",
+      "method": "P2",
+      "n": 3188,
+      "median": 0.006994006443346118,
+      "iqr": [
+        0.0037239136972637295,
+        0.013004850808899949
+      ]
+    },
+    {
+      "row_type": "part_b_loo_summary",
+      "source": "observed",
+      "method": "P3",
+      "n": 3188,
+      "median": 0.0072181024006746095,
+      "iqr": [
+        0.0035342281331199868,
+        0.013658896350269732
+      ]
+    }
+  ],
+  "flag_rates": [
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "DISAGREE",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 242,
+      "flag_rate": 0.32231404958677684
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "DISAGREE",
+      "truth_severity": "moderate",
+      "n": 45,
+      "flag_rate": 0.022222222222222223
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "DISAGREE",
+      "truth_severity": "normal",
+      "n": 3029,
+      "flag_rate": 0.12017167381974249
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "DISAGREE",
+      "truth_severity": "severe",
+      "n": 13,
+      "flag_rate": 0.0
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "DISAGREE",
+      "truth_severity": "ALL",
+      "n": 3329,
+      "flag_rate": 0.13307299489336136
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "SPREAD",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 242,
+      "flag_rate": 0.08677685950413223
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "SPREAD",
+      "truth_severity": "moderate",
+      "n": 45,
+      "flag_rate": 0.13333333333333333
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "SPREAD",
+      "truth_severity": "normal",
+      "n": 3029,
+      "flag_rate": 0.13898976559920767
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "SPREAD",
+      "truth_severity": "severe",
+      "n": 13,
+      "flag_rate": 0.0
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "SPREAD",
+      "truth_severity": "ALL",
+      "n": 3329,
+      "flag_rate": 0.13457494743166115
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "ATS_TRUNCATION_EXISTING_POLICY",
+      "truth_severity": "mild_0.60_0.70",
+      "n": 250,
+      "flag_rate": 0.096
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "ATS_TRUNCATION_EXISTING_POLICY",
+      "truth_severity": "moderate",
+      "n": 47,
+      "flag_rate": 0.2127659574468085
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "ATS_TRUNCATION_EXISTING_POLICY",
+      "truth_severity": "normal",
+      "n": 250,
+      "flag_rate": 0.164
+    },
+    {
+      "row_type": "part_b_b2_flag_rate",
+      "flag": "ATS_TRUNCATION_EXISTING_POLICY",
+      "truth_severity": "severe",
+      "n": 16,
+      "flag_rate": 0.5625
+    }
+  ],
+  "policy_metrics": [
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "model_P2",
+      "flag": "DISAGREE",
+      "n": 3329,
+      "obstructed_truth_obstructed_fraction": 0.67,
+      "obstructed_truth_flagged_fraction": 0.2633333333333333,
+      "obstructed_truth_normal_fraction": 0.06666666666666667,
+      "borderline_residual_false_negative_rate": 0.07851239669421488,
+      "borderline_flagged_fraction": 0.32231404958677684,
+      "normal_truth_flagged_fraction": 0.12017167381974249,
+      "confident_sensitivity": 0.9095022624434389,
+      "confident_specificity": 0.949343339587242,
+      "confident_kappa": 0.6933974873028601
+    },
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "model_P2",
+      "flag": "SPREAD",
+      "n": 3329,
+      "obstructed_truth_obstructed_fraction": 0.7266666666666667,
+      "obstructed_truth_flagged_fraction": 0.09,
+      "obstructed_truth_normal_fraction": 0.18333333333333332,
+      "borderline_residual_false_negative_rate": 0.2231404958677686,
+      "borderline_flagged_fraction": 0.08677685950413223,
+      "normal_truth_flagged_fraction": 0.13898976559920767,
+      "confident_sensitivity": 0.7985347985347986,
+      "confident_specificity": 0.9566717791411042,
+      "confident_kappa": 0.6896186861853101
+    },
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "model_P3",
+      "flag": "DISAGREE",
+      "n": 3329,
+      "obstructed_truth_obstructed_fraction": 0.67,
+      "obstructed_truth_flagged_fraction": 0.2633333333333333,
+      "obstructed_truth_normal_fraction": 0.06666666666666667,
+      "borderline_residual_false_negative_rate": 0.07851239669421488,
+      "borderline_flagged_fraction": 0.32231404958677684,
+      "normal_truth_flagged_fraction": 0.12017167381974249,
+      "confident_sensitivity": 0.9095022624434389,
+      "confident_specificity": 0.949343339587242,
+      "confident_kappa": 0.6933974873028601
+    },
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "model_P3",
+      "flag": "SPREAD",
+      "n": 3329,
+      "obstructed_truth_obstructed_fraction": 0.74,
+      "obstructed_truth_flagged_fraction": 0.09,
+      "obstructed_truth_normal_fraction": 0.17,
+      "borderline_residual_false_negative_rate": 0.2066115702479339,
+      "borderline_flagged_fraction": 0.08677685950413223,
+      "normal_truth_flagged_fraction": 0.13898976559920767,
+      "confident_sensitivity": 0.8131868131868132,
+      "confident_specificity": 0.9666411042944786,
+      "confident_kappa": 0.7363590065966944
+    },
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "observed_P2",
+      "flag": "DISAGREE",
+      "n": 3329,
+      "obstructed_truth_obstructed_fraction": 0.6933333333333334,
+      "obstructed_truth_flagged_fraction": 0.2633333333333333,
+      "obstructed_truth_normal_fraction": 0.043333333333333335,
+      "borderline_residual_false_negative_rate": 0.049586776859504134,
+      "borderline_flagged_fraction": 0.32231404958677684,
+      "normal_truth_flagged_fraction": 0.12017167381974249,
+      "confident_sensitivity": 0.9411764705882353,
+      "confident_specificity": 0.9958724202626642,
+      "confident_kappa": 0.9409535208458009
+    },
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "observed_P2",
+      "flag": "SPREAD",
+      "n": 3329,
+      "obstructed_truth_obstructed_fraction": 0.8166666666666667,
+      "obstructed_truth_flagged_fraction": 0.09,
+      "obstructed_truth_normal_fraction": 0.09333333333333334,
+      "borderline_residual_false_negative_rate": 0.1115702479338843,
+      "borderline_flagged_fraction": 0.08677685950413223,
+      "normal_truth_flagged_fraction": 0.13898976559920767,
+      "confident_sensitivity": 0.8974358974358975,
+      "confident_specificity": 0.9892638036809815,
+      "confident_kappa": 0.8866997011168789
+    },
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "observed_P3",
+      "flag": "DISAGREE",
+      "n": 3329,
+      "obstructed_truth_obstructed_fraction": 0.7,
+      "obstructed_truth_flagged_fraction": 0.2633333333333333,
+      "obstructed_truth_normal_fraction": 0.03666666666666667,
+      "borderline_residual_false_negative_rate": 0.04132231404958678,
+      "borderline_flagged_fraction": 0.32231404958677684,
+      "normal_truth_flagged_fraction": 0.12017167381974249,
+      "confident_sensitivity": 0.9502262443438914,
+      "confident_specificity": 0.9966228893058161,
+      "confident_kappa": 0.9507946007048343
+    },
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "observed_P3",
+      "flag": "SPREAD",
+      "n": 3329,
+      "obstructed_truth_obstructed_fraction": 0.84,
+      "obstructed_truth_flagged_fraction": 0.09,
+      "obstructed_truth_normal_fraction": 0.07,
+      "borderline_residual_false_negative_rate": 0.08264462809917356,
+      "borderline_flagged_fraction": 0.08677685950413223,
+      "normal_truth_flagged_fraction": 0.13898976559920767,
+      "confident_sensitivity": 0.9230769230769231,
+      "confident_specificity": 0.9950153374233128,
+      "confident_kappa": 0.9302961385851156
+    },
+    {
+      "row_type": "part_b_b3_policy_metric",
+      "source_policy": "current_single_c1_ATS",
+      "flag": "ATS_TRUNCATION",
+      "n": 563,
+      "obstructed_truth_obstructed_fraction": 0.8306709265175719,
+      "obstructed_truth_flagged_fraction": 0.009584664536741214,
+      "obstructed_truth_normal_fraction": 0.1597444089456869,
+      "borderline_residual_false_negative_rate": 0.192,
+      "borderline_flagged_fraction": 0.012,
+      "normal_truth_flagged_fraction": 0.128,
+      "confident_sensitivity": 0.8387096774193549,
+      "confident_specificity": 0.9311926605504587,
+      "confident_kappa": 0.7519872813990461
+    }
+  ],
+  "irreducibility": {
+    "row_type": "part_b_b4_irreducibility",
+    "borderline_n": 242,
+    "observed_p2_borderline_fn_rate_no_flag": 0.11570247933884298,
+    "observed_p2_borderline_confident_fn_after_observed_disagree_flag": 0.01652892561983471,
+    "label_aware_perfect_flag_bound": 0.0
+  }
+}
