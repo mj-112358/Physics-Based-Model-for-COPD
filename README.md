@@ -19,7 +19,6 @@
 | Keywords | spirometry, forced expiration, FEV1, FVC, airflow obstruction, mechanistic models, constrained extrapolation, NHANES |
 | Maintainer and correspondence | Repository owner via [GitHub issues](https://github.com/mj-112358/Physics-Based-Model-for-COPD/issues) |
 | Version identification | Git commit SHA; the Python distribution currently declares version `0.1.0` |
-| Funding | No funding declaration supplied in repository metadata |
 
 **Study focus.** Premature termination of a forced-expiration maneuver can yield an incomplete forced vital capacity (FVC) measurement and alter the ratio of forced expiratory volume in one second (FEV1) to FVC. This project studies the recovery of respiratory-volume measurements from sampled expiratory traces using a compact, physiologically constrained flow model. The workflow brings together signal decoding, respiratory-feature estimation, mechanistic fitting, benchmark comparisons, and protocol-controlled truncation experiments.
 
@@ -201,7 +200,3 @@ When publishing results, also cite the relevant CDC/NCHS NHANES source datasets,
 ## 11. Research interpretation
 
 This repository is a computational research study of spirometric signals and airflow-obstruction surrogates. It is not a clinical device or a substitute for professionally administered spirometry or post-bronchodilator clinical assessment. The documentation distinguishes prespecified evaluations, subsequent protocol corrections, historical exploratory artifacts and the independent evidence required for clinical translation.
-
----
-
-**Documentation standard.** The metadata structure follows the [Cornell Data Services guide to writing READMEs for research data](https://data.research.cornell.edu/data-management/sharing/readme/), including general information, file overview, access, methods and data-specific definitions. Its accompanying scientific-software documentation is tailored to this code-centered repository.
