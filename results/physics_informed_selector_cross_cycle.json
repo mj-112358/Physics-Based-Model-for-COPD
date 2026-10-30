@@ -1,0 +1,860 @@
+{
+  "cross_cycle": {
+    "E": {
+      "coverage_target": 0.75,
+      "cycle": "E",
+      "metrics": {
+        "direct_margin": {
+          "bootstrap_95_ci": {
+            "coverage": [
+              0.7394623299037504,
+              0.7610355127779621
+            ],
+            "kappa": [
+              0.9158588265126819,
+              0.967201366251966
+            ],
+            "sensitivity": [
+              0.9125,
+              0.9783812845103168
+            ],
+            "specificity": [
+              0.996275583535487,
+              0.9990753689807491
+            ]
+          },
+          "coverage": 0.7500829737802854,
+          "fn": 9,
+          "fp": 10,
+          "kappa": 0.943682291530048,
+          "n": 4520,
+          "sensitivity": 0.9485714285714286,
+          "specificity": 0.997698504027618,
+          "tn": 4335,
+          "tp": 166
+        },
+        "physics_reliability": {
+          "bootstrap_95_ci": {
+            "coverage": [
+              0.7391304347826086,
+              0.7607036176568205
+            ],
+            "kappa": [
+              0.9323285934666355,
+              0.9693475607016745
+            ],
+            "sensitivity": [
+              0.9358490566037736,
+              0.9818198287220026
+            ],
+            "specificity": [
+              0.9948429139811009,
+              0.9983097699574026
+            ]
+          },
+          "coverage": 0.7500829737802854,
+          "fn": 11,
+          "fp": 14,
+          "kappa": 0.9516830545203279,
+          "n": 4520,
+          "sensitivity": 0.9598540145985401,
+          "specificity": 0.9967027790861988,
+          "tn": 4232,
+          "tp": 263
+        },
+        "ridge_margin": {
+          "bootstrap_95_ci": {
+            "coverage": [
+              0.7394623299037504,
+              0.7603717225356788
+            ],
+            "kappa": [
+              0.8754368354804235,
+              0.9340189348168944
+            ],
+            "sensitivity": [
+              0.9285714285714286,
+              0.9818181818181818
+            ],
+            "specificity": [
+              0.9903313803756703,
+              0.9953293671317942
+            ]
+          },
+          "coverage": 0.7500829737802854,
+          "fn": 9,
+          "fp": 30,
+          "kappa": 0.9070400253124509,
+          "n": 4520,
+          "sensitivity": 0.9571428571428572,
+          "specificity": 0.9930394431554525,
+          "tn": 4280,
+          "tp": 201
+        },
+        "ridge_reliability": {
+          "bootstrap_95_ci": {
+            "coverage": [
+              0.7396282774643212,
+              0.7605376700962496
+            ],
+            "kappa": [
+              0.9099136678976085,
+              0.9538498004219204
+            ],
+            "sensitivity": [
+              0.9589552238805971,
+              0.9927013934970139
+            ],
+            "specificity": [
+              0.9902182220434433,
+              0.9955129137612528
+            ]
+          },
+          "coverage": 0.7500829737802854,
+          "fn": 6,
+          "fp": 30,
+          "kappa": 0.9325998513816779,
+          "n": 4520,
+          "sensitivity": 0.978021978021978,
+          "specificity": 0.9929361902519426,
+          "tn": 4217,
+          "tp": 267
+        }
+      },
+      "no_complete_acceptable_manoeuvre_metrics": {
+        "direct_margin": {
+          "coverage": 0.9213973799126638,
+          "fn": 2,
+          "fp": 6,
+          "kappa": 0.7796632293434281,
+          "n": 422,
+          "sensitivity": 0.8823529411764706,
+          "specificity": 0.9851851851851852,
+          "tn": 399,
+          "tp": 15
+        },
+        "physics_reliability": {
+          "coverage": 0.5655021834061136,
+          "fn": 1,
+          "fp": 6,
+          "kappa": 0.8226894865525677,
+          "n": 259,
+          "sensitivity": 0.9473684210526315,
+          "specificity": 0.975,
+          "tn": 234,
+          "tp": 18
+        },
+        "ridge_margin": {
+          "coverage": 0.8187772925764192,
+          "fn": 1,
+          "fp": 22,
+          "kappa": 0.5938309394866962,
+          "n": 375,
+          "sensitivity": 0.95,
+          "specificity": 0.9380281690140845,
+          "tn": 333,
+          "tp": 19
+        },
+        "ridge_reliability": {
+          "coverage": 0.8034934497816594,
+          "fn": 1,
+          "fp": 21,
+          "kappa": 0.6466480446927371,
+          "n": 368,
+          "sensitivity": 0.9583333333333334,
+          "specificity": 0.938953488372093,
+          "tn": 323,
+          "tp": 23
+        }
+      },
+      "paired_participant_bootstrap_differences": {
+        "physics_reliability_minus_direct_margin": {
+          "kappa": {
+            "95_ci": [
+              -0.00912270521808684,
+              0.02520824706206505
+            ],
+            "difference": 0.008000762990279853
+          },
+          "sensitivity": {
+            "95_ci": [
+              -0.008716966856735195,
+              0.03143263655714161
+            ],
+            "difference": 0.011282586027111519
+          },
+          "specificity": {
+            "95_ci": [
+              -0.002394937588825213,
+              0.00018604780969645152
+            ],
+            "difference": -0.000995724941419196
+          }
+        },
+        "physics_reliability_minus_ridge_margin": {
+          "kappa": {
+            "95_ci": [
+              0.024365246418402178,
+              0.06588016712242432
+            ],
+            "difference": 0.044643029207876994
+          },
+          "sensitivity": {
+            "95_ci": [
+              -0.00990334735290018,
+              0.013457436697296956
+            ],
+            "difference": 0.0027111574556829554
+          },
+          "specificity": {
+            "95_ci": [
+              0.001606352304628389,
+              0.005793995678990835
+            ],
+            "difference": 0.003663335930746303
+          }
+        },
+        "physics_reliability_minus_ridge_reliability": {
+          "kappa": {
+            "95_ci": [
+              0.001758001268916934,
+              0.035864015707449744
+            ],
+            "difference": 0.019083203138649973
+          },
+          "sensitivity": {
+            "95_ci": [
+              -0.034527528438918244,
+              -0.004015869352617403
+            ],
+            "difference": -0.01816796342343785
+          },
+          "specificity": {
+            "95_ci": [
+              0.0018867061189520474,
+              0.005822383382394463
+            ],
+            "difference": 0.0037665888342561793
+          }
+        }
+      },
+      "physics_informed_selection": {
+        "deferred_feature_counts": {
+          "physics_ridge_class_disagreement": 203,
+          "physics_ridge_fvc_gap_above_0_25_l": 266,
+          "physics_volume_r2_below_0_90": 282,
+          "ridge_ratio_within_0_05_of_boundary": 1021,
+          "truncated_measurement": 391
+        },
+        "deferred_n": 1506,
+        "deferred_no_complete_acceptable_manoeuvre_n": 199,
+        "deferred_severity": {
+          "mild_0.60_0.70": 330,
+          "moderate": 3,
+          "normal": 1173
+        },
+        "selected_n": 4520,
+        "selected_no_complete_acceptable_manoeuvre_n": 259,
+        "selected_severity": {
+          "mild_0.60_0.70": 158,
+          "moderate": 91,
+          "normal": 4246,
+          "severe": 25
+        },
+        "severe_false_negatives": 0,
+        "severe_selected_n": 25
+      }
+    },
+    "G": {
+      "coverage_target": 0.75,
+      "cycle": "G",
+      "metrics": {
+        "direct_margin": {
+          "bootstrap_95_ci": {
+            "coverage": [
+              0.7390761548064919,
+              0.7599875156054932
+            ],
+            "kappa": [
+              0.9262579037187427,
+              0.9767414945576312
+            ],
+            "sensitivity": [
+              0.931022509578544,
+              0.9927549264935877
+            ],
+            "specificity": [
+              0.9970014992503748,
+              0.9993570544514103
+            ]
+          },
+          "coverage": 0.75,
+          "fn": 5,
+          "fp": 8,
+          "kappa": 0.9533098878893278,
+          "n": 4806,
+          "sensitivity": 0.9647887323943662,
+          "specificity": 0.9982847341337907,
+          "tn": 4656,
+          "tp": 137
+        },
+        "physics_reliability": {
+          "bootstrap_95_ci": {
+            "coverage": [
+              0.7390761548064919,
+              0.7606117353308365
+            ],
+            "kappa": [
+              0.9381118448697725,
+              0.9765965108484946
+            ],
+            "sensitivity": [
+              0.933326359832636,
+              0.9832653417015341
+            ],
+            "specificity": [
+              0.9967133552461799,
+              0.9991310062394619
+            ]
+          },
+          "coverage": 0.75,
+          "fn": 9,
+          "fp": 9,
+          "kappa": 0.958732336449668,
+          "n": 4806,
+          "sensitivity": 0.9606986899563319,
+          "specificity": 0.9980336464933363,
+          "tn": 4568,
+          "tp": 220
+        },
+        "ridge_margin": {
+          "bootstrap_95_ci": {
+            "coverage": [
+              0.739540418227216,
+              0.7610799001248439
+            ],
+            "kappa": [
+              0.8859588490302059,
+              0.9453278480126063
+            ],
+            "sensitivity": [
+              0.9303789596322186,
+              0.9885730519480519
+            ],
+            "specificity": [
+              0.9928983381277353,
+              0.9969730056834444
+            ]
+          },
+          "coverage": 0.75,
+          "fn": 7,
+          "fp": 23,
+          "kappa": 0.9169707272576496,
+          "n": 4806,
+          "sensitivity": 0.9611111111111111,
+          "specificity": 0.9950281020319931,
+          "tn": 4603,
+          "tp": 173
+        },
+        "ridge_reliability": {
+          "bootstrap_95_ci": {
+            "coverage": [
+              0.7390761548064919,
+              0.7602996254681648
+            ],
+            "kappa": [
+              0.9022582732451515,
+              0.9536529501224135
+            ],
+            "sensitivity": [
+              0.9336278595821247,
+              0.9836751285880206
+            ],
+            "specificity": [
+              0.9928009685635345,
+              0.9969593142599494
+            ]
+          },
+          "coverage": 0.75,
+          "fn": 9,
+          "fp": 23,
+          "kappa": 0.9284178307519585,
+          "n": 4806,
+          "sensitivity": 0.9605263157894737,
+          "specificity": 0.9949759720401922,
+          "tn": 4555,
+          "tp": 219
+        }
+      },
+      "no_complete_acceptable_manoeuvre_metrics": {
+        "direct_margin": {
+          "coverage": 0.9364161849710982,
+          "fn": 1,
+          "fp": 2,
+          "kappa": 0.8539955938313634,
+          "n": 486,
+          "sensitivity": 0.9,
+          "specificity": 0.9957983193277311,
+          "tn": 474,
+          "tp": 9
+        },
+        "physics_reliability": {
+          "coverage": 0.4951830443159923,
+          "fn": 0,
+          "fp": 1,
+          "kappa": 0.9503573498164961,
+          "n": 257,
+          "sensitivity": 1.0,
+          "specificity": 0.9959514170040485,
+          "tn": 246,
+          "tp": 10
+        },
+        "ridge_margin": {
+          "coverage": 0.7822736030828517,
+          "fn": 1,
+          "fp": 14,
+          "kappa": 0.5548896360181265,
+          "n": 406,
+          "sensitivity": 0.9090909090909091,
+          "specificity": 0.9645569620253165,
+          "tn": 381,
+          "tp": 10
+        },
+        "ridge_reliability": {
+          "coverage": 0.7745664739884393,
+          "fn": 1,
+          "fp": 14,
+          "kappa": 0.577553593947036,
+          "n": 402,
+          "sensitivity": 0.9166666666666666,
+          "specificity": 0.9641025641025641,
+          "tn": 376,
+          "tp": 11
+        }
+      },
+      "paired_participant_bootstrap_differences": {
+        "physics_reliability_minus_direct_margin": {
+          "kappa": {
+            "95_ci": [
+              -0.012187402107151787,
+              0.02353824315396244
+            ],
+            "difference": 0.005422448560340243
+          },
+          "sensitivity": {
+            "95_ci": [
+              -0.02927516317416698,
+              0.02065394293180843
+            ],
+            "difference": -0.004090042438034347
+          },
+          "specificity": {
+            "95_ci": [
+              -0.0009483004304111336,
+              0.00041251093358319615
+            ],
+            "difference": -0.0002510876404544504
+          }
+        },
+        "physics_reliability_minus_ridge_margin": {
+          "kappa": {
+            "95_ci": [
+              0.02002465853273159,
+              0.06621840419538692
+            ],
+            "difference": 0.041761609192018434
+          },
+          "sensitivity": {
+            "95_ci": [
+              -0.019479484370161164,
+              0.01762850636205893
+            ],
+            "difference": -0.00041242115477924113
+          },
+          "specificity": {
+            "95_ci": [
+              0.0014740133855557697,
+              0.004774871118846521
+            ],
+            "difference": 0.003005544461343157
+          }
+        },
+        "physics_reliability_minus_ridge_reliability": {
+          "kappa": {
+            "95_ci": [
+              0.012890081237869555,
+              0.05018881776927643
+            ],
+            "difference": 0.03031450569770955
+          },
+          "sensitivity": {
+            "95_ci": [
+              -0.013419332744717547,
+              0.011983509509715244
+            ],
+            "difference": 0.0001723741668582246
+          },
+          "specificity": {
+            "95_ci": [
+              0.0015106949903939348,
+              0.004881308333177387
+            ],
+            "difference": 0.003057674453144088
+          }
+        }
+      },
+      "physics_informed_selection": {
+        "deferred_feature_counts": {
+          "physics_ridge_class_disagreement": 268,
+          "physics_ridge_fvc_gap_above_0_25_l": 342,
+          "physics_volume_r2_below_0_90": 373,
+          "ridge_ratio_within_0_05_of_boundary": 1018,
+          "truncated_measurement": 475
+        },
+        "deferred_n": 1602,
+        "deferred_no_complete_acceptable_manoeuvre_n": 262,
+        "deferred_severity": {
+          "mild_0.60_0.70": 323,
+          "moderate": 9,
+          "normal": 1269,
+          "severe": 1
+        },
+        "selected_n": 4806,
+        "selected_no_complete_acceptable_manoeuvre_n": 257,
+        "selected_severity": {
+          "mild_0.60_0.70": 122,
+          "moderate": 71,
+          "normal": 4577,
+          "severe": 36
+        },
+        "severe_false_negatives": 0,
+        "severe_selected_n": 36
+      }
+    }
+  },
+  "cross_cycle_evaluation_cycles": [
+    "E",
+    "G"
+  ],
+  "development": {
+    "physics_reliability": {
+      "coverage_search": [
+        {
+          "coverage": 0.7508896797153025,
+          "fn": 8,
+          "fp": 1,
+          "kappa": 0.9568673768369409,
+          "n": 422,
+          "sensitivity": 0.9583333333333334,
+          "specificity": 0.9956521739130435,
+          "target_coverage": 0.75,
+          "tn": 229,
+          "tp": 184
+        },
+        {
+          "coverage": 0.7758007117437722,
+          "fn": 10,
+          "fp": 1,
+          "kappa": 0.9491129785247432,
+          "n": 436,
+          "sensitivity": 0.9504950495049505,
+          "specificity": 0.9957264957264957,
+          "target_coverage": 0.775,
+          "tn": 233,
+          "tp": 192
+        },
+        {
+          "coverage": 0.800711743772242,
+          "fn": 13,
+          "fp": 1,
+          "kappa": 0.937375745526839,
+          "n": 450,
+          "sensitivity": 0.9386792452830188,
+          "specificity": 0.9957983193277311,
+          "target_coverage": 0.8,
+          "tn": 237,
+          "tp": 199
+        },
+        {
+          "coverage": 0.8256227758007118,
+          "fn": 17,
+          "fp": 1,
+          "kappa": 0.9221360381861574,
+          "n": 464,
+          "sensitivity": 0.9241071428571429,
+          "specificity": 0.9958333333333333,
+          "target_coverage": 0.8250000000000001,
+          "tn": 239,
+          "tp": 207
+        },
+        {
+          "coverage": 0.8505338078291815,
+          "fn": 22,
+          "fp": 1,
+          "kappa": 0.9036881296539641,
+          "n": 478,
+          "sensitivity": 0.9071729957805907,
+          "specificity": 0.995850622406639,
+          "target_coverage": 0.8500000000000001,
+          "tn": 240,
+          "tp": 215
+        },
+        {
+          "coverage": 0.8754448398576512,
+          "fn": 25,
+          "fp": 1,
+          "kappa": 0.8943857331571996,
+          "n": 492,
+          "sensitivity": 0.8991935483870968,
+          "specificity": 0.9959016393442623,
+          "target_coverage": 0.8750000000000001,
+          "tn": 243,
+          "tp": 223
+        },
+        {
+          "coverage": 0.900355871886121,
+          "fn": 27,
+          "fp": 1,
+          "kappa": 0.8895575441988088,
+          "n": 506,
+          "sensitivity": 0.8961538461538462,
+          "specificity": 0.9959349593495935,
+          "target_coverage": 0.9000000000000001,
+          "tn": 245,
+          "tp": 233
+        },
+        {
+          "coverage": 0.9252669039145908,
+          "fn": 30,
+          "fp": 2,
+          "kappa": 0.8772716544725041,
+          "n": 520,
+          "sensitivity": 0.8897058823529411,
+          "specificity": 0.9919354838709677,
+          "target_coverage": 0.9250000000000002,
+          "tn": 246,
+          "tp": 242
+        },
+        {
+          "coverage": 0.9501779359430605,
+          "fn": 33,
+          "fp": 2,
+          "kappa": 0.869331767272117,
+          "n": 534,
+          "sensitivity": 0.8846153846153846,
+          "specificity": 0.9919354838709677,
+          "target_coverage": 0.9500000000000002,
+          "tn": 246,
+          "tp": 253
+        }
+      ],
+      "features": [
+        "ridge_margin",
+        "duration_s",
+        "dV_last_L",
+        "truncated_ats",
+        "physics_margin",
+        "physics_ridge_disagreement",
+        "signed_ratio_disagreement",
+        "physics_ridge_fvc_gap_l",
+        "physics_volume_r2"
+      ],
+      "minimum_coverage_constraint": 0.75,
+      "participant_separated_nested_oof": true,
+      "selected_operating_point": {
+        "coverage": 0.7508896797153025,
+        "fn": 8,
+        "fp": 1,
+        "kappa": 0.9568673768369409,
+        "n": 422,
+        "sensitivity": 0.9583333333333334,
+        "specificity": 0.9956521739130435,
+        "target_coverage": 0.75,
+        "tn": 229,
+        "tp": 184
+      }
+    },
+    "ridge_reliability": {
+      "coverage_search": [
+        {
+          "coverage": 0.7508896797153025,
+          "fn": 9,
+          "fp": 0,
+          "kappa": 0.9567829589677066,
+          "n": 422,
+          "sensitivity": 0.9528795811518325,
+          "specificity": 1.0,
+          "target_coverage": 0.75,
+          "tn": 231,
+          "tp": 182
+        },
+        {
+          "coverage": 0.7758007117437722,
+          "fn": 11,
+          "fp": 0,
+          "kappa": 0.9491237747698053,
+          "n": 436,
+          "sensitivity": 0.9458128078817734,
+          "specificity": 1.0,
+          "target_coverage": 0.775,
+          "tn": 233,
+          "tp": 192
+        },
+        {
+          "coverage": 0.800711743772242,
+          "fn": 12,
+          "fp": 0,
+          "kappa": 0.9464668094218417,
+          "n": 450,
+          "sensitivity": 0.9444444444444444,
+          "specificity": 1.0,
+          "target_coverage": 0.8,
+          "tn": 234,
+          "tp": 204
+        },
+        {
+          "coverage": 0.8256227758007118,
+          "fn": 17,
+          "fp": 1,
+          "kappa": 0.9222621418864833,
+          "n": 464,
+          "sensitivity": 0.9251101321585903,
+          "specificity": 0.9957805907172996,
+          "target_coverage": 0.8250000000000001,
+          "tn": 236,
+          "tp": 210
+        },
+        {
+          "coverage": 0.8505338078291815,
+          "fn": 21,
+          "fp": 1,
+          "kappa": 0.9078788303519808,
+          "n": 478,
+          "sensitivity": 0.9113924050632911,
+          "specificity": 0.995850622406639,
+          "target_coverage": 0.8500000000000001,
+          "tn": 240,
+          "tp": 216
+        },
+        {
+          "coverage": 0.8754448398576512,
+          "fn": 25,
+          "fp": 2,
+          "kappa": 0.8903526148969888,
+          "n": 492,
+          "sensitivity": 0.8995983935742972,
+          "specificity": 0.9917695473251029,
+          "target_coverage": 0.8750000000000001,
+          "tn": 241,
+          "tp": 224
+        },
+        {
+          "coverage": 0.900355871886121,
+          "fn": 30,
+          "fp": 2,
+          "kappa": 0.8738547834216267,
+          "n": 506,
+          "sensitivity": 0.8854961832061069,
+          "specificity": 0.9918032786885246,
+          "target_coverage": 0.9000000000000001,
+          "tn": 242,
+          "tp": 232
+        },
+        {
+          "coverage": 0.9252669039145908,
+          "fn": 30,
+          "fp": 2,
+          "kappa": 0.8772770853307766,
+          "n": 520,
+          "sensitivity": 0.8901098901098901,
+          "specificity": 0.9919028340080972,
+          "target_coverage": 0.9250000000000002,
+          "tn": 245,
+          "tp": 243
+        },
+        {
+          "coverage": 0.9501779359430605,
+          "fn": 33,
+          "fp": 2,
+          "kappa": 0.8693171488903494,
+          "n": 534,
+          "sensitivity": 0.8850174216027874,
+          "specificity": 0.9919028340080972,
+          "target_coverage": 0.9500000000000002,
+          "tn": 245,
+          "tp": 254
+        }
+      ],
+      "features": [
+        "ridge_margin",
+        "duration_s",
+        "dV_last_L",
+        "truncated_ats"
+      ],
+      "minimum_coverage_constraint": 0.75,
+      "participant_separated_nested_oof": true,
+      "selected_operating_point": {
+        "coverage": 0.7508896797153025,
+        "fn": 9,
+        "fp": 0,
+        "kappa": 0.9567829589677066,
+        "n": 422,
+        "sensitivity": 0.9528795811518325,
+        "specificity": 1.0,
+        "target_coverage": 0.75,
+        "tn": 231,
+        "tp": 182
+      }
+    }
+  },
+  "development_cycle": "F TRAIN only",
+  "endpoint_comparison": {
+    "E": {
+      "paired_hybrid_minus_ridge_mae_ml": {
+        "95_ci": [
+          -1.9238037583512075,
+          -0.49130162590758963
+        ],
+        "difference_mae_ml": -1.2173333859405489,
+        "n": 6026
+      },
+      "physics_plus_ridge_fvc_mae_ml": 182.75509832596663,
+      "state_aware_ridge_fvc_mae_ml": 183.97243171190718
+    },
+    "G": {
+      "paired_hybrid_minus_ridge_mae_ml": {
+        "95_ci": [
+          -1.720589958858212,
+          -0.24729012980417547
+        ],
+        "difference_mae_ml": -0.9649102269751779,
+        "n": 6408
+      },
+      "physics_plus_ridge_fvc_mae_ml": 180.78387545559633,
+      "state_aware_ridge_fvc_mae_ml": 181.7487856825715
+    }
+  },
+  "method": {
+    "base_prediction": "state-aware ridge classification",
+    "coverage_rule": "maximize Cycle F nested-OOF kappa subject to coverage >= 0.75; freeze before cross-cycle scoring",
+    "cycle_E_G_labels_enter_training_or_threshold_fitting": false,
+    "participant_separation": "nested participant-hash cross-fitting on Cycle F TRAIN",
+    "reliability_model": "ExtraTreesClassifier",
+    "reliability_model_parameters": {
+      "class_weight": "balanced",
+      "max_features": 0.7,
+      "min_samples_leaf": 5,
+      "n_estimators": 500,
+      "random_state": 20261029
+    },
+    "ridge_alpha": 0.15848931924611143
+  },
+  "overall_success_rule": {
+    "classification": "physics-informed reliability kappa exceeds same-capacity non-physics reliability and ridge-margin selection at identical coverage in both cycles",
+    "classification_pass": true,
+    "endpoint": "Cycle-F-trained physics-plus-ridge hybrid FVC MAE is below state-aware ridge in both cycles",
+    "endpoint_pass": true,
+    "overall_pass": true
+  },
+  "status": "post-audit locked cross-cycle re-evaluation"
+}

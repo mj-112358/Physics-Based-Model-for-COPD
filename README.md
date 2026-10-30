@@ -19,7 +19,8 @@ The workflow:
 7. Aggregates acceptable repeated manoeuvres using session-level best-test evidence.
 8. Applies boundary-aware uncertainty and selective decision rules.
 9. Compares the physics workflow with quality-control-first handling, FEV1/FEV6, direct-ratio selection, state-aware ridge regression, and a physics-plus-ridge hybrid.
-10. Evaluates locked rules on participant-disjoint NHANES Cycles E and G.
+10. Learns a selective reliability rule from physics-ridge agreement, FVC discrepancy, fit quality, measurement state, and ridge confidence using nested participant-separated cross-fitting.
+11. Evaluates Cycle-F-trained rules on participant-disjoint NHANES Cycles E and G.
 
 The routed endpoint table retains the unmodified physiological fit in explicit
 `physics_*` audit columns. This makes the state decision testable and prevents a
@@ -80,6 +81,7 @@ python -m predictx.gate_three_cycle_efg --root .
 python tools/evaluate_manuscript_baselines.py
 python tools/audit_ridge_experiment.py
 python tools/run_frozen_cross_cycle_validation.py
+python tools/evaluate_physics_informed_selector.py
 ```
 
 The frozen validation configuration and consolidated results are stored in:
@@ -87,6 +89,8 @@ The frozen validation configuration and consolidated results are stored in:
 - `results/frozen_validation_configuration.json`
 - `results/frozen_cross_cycle_validation.json`
 - `results/frozen_validation_consolidated.csv`
+- `results/physics_informed_selector_cross_cycle.json`
+- `results/physics_informed_selector_cross_cycle.md`
 - `results/publication_grade_validation_audit.md`
 - `results/ridge_experiment_validation_audit.json`
 
@@ -117,6 +121,26 @@ participants with no complete acceptable manoeuvre, the reduction was 11.63 mL
 in Cycle E (3.81-19.78 mL) and 7.68 mL in Cycle G (interval -0.29 to 16.15 mL).
 The standalone physics workflow and classification comparisons remain reported
 separately in the consolidated artifacts.
+
+## Physics-informed reliability result
+
+The final selective system retains the state-aware ridge decision and uses the
+physics model as an independent reliability signal. The selector was trained
+with nested participant-separated cross-fitting on Cycle F TRAIN; a 75% minimum
+coverage constraint, model parameters, and operating rule were then applied
+unchanged to Cycles E and G.
+
+At identical 75% coverage, physics-informed selection achieved Cohen's kappa of
+0.952 in Cycle E and 0.959 in Cycle G. The same-capacity ExtraTrees selector
+without physics features achieved 0.933 and 0.928. Paired participant-bootstrap
+kappa gains were +0.019 (95% CI 0.002-0.036) and +0.030 (0.013-0.050).
+Relative to ordinary ridge-margin selection, the gains were +0.045
+(0.024-0.066) and +0.042 (0.020-0.066). The selected subsets contained zero
+severe false negatives across 25 Cycle E and 36 Cycle G severe cases.
+
+Together with the statistically lower FVC error of the Cycle-F-trained
+physics-plus-ridge endpoint hybrid in both cycles, these results satisfy the
+audited criterion for measurable physics-derived value beyond ridge alone.
 
 ## Paper
 

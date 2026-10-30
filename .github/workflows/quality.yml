@@ -23,6 +23,7 @@ jobs:
           predictx/gate_deferral_recovery_f.py
           predictx/gate_r3_ats_besttest_f.py
           tests
+          tools/evaluate_physics_informed_selector.py
           tools/run_frozen_cross_cycle_validation.py
       - name: Tests
         run: python -m pytest -q
