@@ -9,6 +9,7 @@ description = "Physics-constrained PredictX extension for incomplete spirometry 
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+  "jax[cpu]>=0.6,<0.7",
   "matplotlib>=3.8,<4",
   "numpy>=2,<3",
   "pandas>=2.2,<3",
@@ -22,7 +23,6 @@ dependencies = [
 
 [project.optional-dependencies]
 inference = [
-  "jax[cpu]>=0.6,<0.7",
   "numpyro==0.19.0",
   "sbi>=0.24,<0.26",
   "torch>=2.4,<3",
