@@ -21,6 +21,7 @@ from numpyro.infer import MCMC, NUTS
 from scipy.interpolate import BSpline
 from scipy.stats import chisquare
 
+from .gate23_f import find_or_unzip_raw, read_raw
 from .gate_clinical_classification_f import RANDOM_SEED, extract_curve_for_fit
 from .gate_likelihood_repair_f import (
     CONVERGED_ESS_MIN,
@@ -34,12 +35,14 @@ from .gate_likelihood_repair_f import (
     PARAM_NAMES,
     PIT_BINS,
     PIT_P_THRESHOLD,
+    SUBSET_N,
     WIDE_PRIOR_RANGES,
     build_subsets,
     load_rows_and_raw,
 )
 from .gate_posterior_calibration_repair_f import bulk_ess, natural_ranges_for_report, split_rhat, to_jsonable
 from .ombe import ombe_volume, phi_from_natural
+
 
 KOH_KNOTS = (2, 4, 6, 8)
 REPORT_TIMES_S = (0.0, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0)

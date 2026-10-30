@@ -7,6 +7,7 @@ from typing import Any
 import pandas as pd
 from pandas.io.sas.sas_xport import XportReader
 
+
 CYCLES = ("E", "F", "G")
 TRACK_A_FILES = ("DEMO", "BMX", "SPX")
 TRACK_B_FILES = ("SPXRAW",)

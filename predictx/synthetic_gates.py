@@ -19,6 +19,7 @@ from .ombe import (
     unpack_phi,
 )
 
+
 RAW_RDS = ("SPXRAW_E.rds", "SPXRAW_F.rds", "SPXRAW_G.rds")
 RAW_XPT = ("SPXRAW_E.xpt", "SPXRAW_F.xpt", "SPXRAW_G.xpt")
 SIGMA_LPS = 0.10

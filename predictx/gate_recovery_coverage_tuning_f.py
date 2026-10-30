@@ -12,6 +12,7 @@ import pandas as pd
 from . import gate_deferral_recovery_f as recovery
 from .gate_workflow_policy_f import clean_json, fmt, md_table
 
+
 OUTPUT_STEM = "gate_recovery_coverage_tuning_F"
 TARGET_COVERAGE = 0.70
 
@@ -610,7 +611,7 @@ def run(root: Path) -> dict[str, Any]:
         "grid_profiles_tested_n": len(candidate_grid()),
         "grid_profiles_reaching_target_n": int(len(cheap_grid)),
         "ranked_holdout_candidates": ranked,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "This tuning pass does not edit the production recovery gate; it writes an audited candidate profile only.",
             "Selection is label-independent: thresholds use fit quality, CIs, distance from 0.70, and maneuver consistency before truth scoring.",
             "Profiles must reach >=70% finalized TEST coverage, preserve severe FN=0, and have zero recovered-case errors against the NHANES summary label to be eligible.",
@@ -636,10 +637,10 @@ def write_outputs(root: Path, result: dict[str, Any]) -> None:
         "",
         f"VERDICT: {result['verdict']} - {result['verdict_reason']}",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",

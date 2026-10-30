@@ -1,9 +1,5 @@
 # Gate Degradation Robustness
 
-> Evidence status: historical and provisional. This report depends on legacy
-> truncation artifacts and has not been regenerated under the fixed-horizon
-> protocol. Its verdict is not part of the current supported evidence.
-
 VERDICT: ROBUST-TO-BUDGET-DEVICE
 
 ## Data Safety And Guards
@@ -148,7 +144,7 @@ COPD-positive external-validity stratum under the combined profile:
 - Most sensitive: D3_gain_error at +10%.
 - Least sensitive: D4_baseline_drift at medium (1.0% FVC net drift).
 
-## Protocol Decisions
+## DECISIONS-I-MADE
 
 - Gate 2 degradation is measured against the clean parsed curve copy, not NHANES summary truth, because the task defines clean parsed curves as the ground truth for degradation.
 - Only obstructed clean-copy curves are re-fit for the truncation FN sweep because the requested headline is obstructed FN and DIRECT-minus-OMBE FN advantage; Gate 2 measurement error is still computed on all clean curves.

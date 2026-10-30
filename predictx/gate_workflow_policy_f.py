@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import beta
 
+
 OUTPUT_STEM = "gate_workflow_policy_F"
 RANDOM_SEED = 20260710
 BOOTSTRAP_N = 2000
@@ -518,10 +519,10 @@ def write_outputs(
         "",
         f"VERDICT: {result['verdict']} - {result['verdict_reason']}",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",
@@ -714,7 +715,7 @@ def run(root: Path) -> dict[str, Any]:
                 "role": "cross-maneuver repeatability and stopping proxy",
             },
         ],
-        "protocol_decisions": [
+        "decisions_i_made": [
             "Cycle F is the first workflow target because the existing calibrated policy artifacts are strongest there.",
             "The headline evaluation uses held-out TEST rows from the existing policy gate; all rows are reported secondarily.",
             "No NUTS, SNPE, posterior draws, refits, threshold movement, or dashboard code is used.",

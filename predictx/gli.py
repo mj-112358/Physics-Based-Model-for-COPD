@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
+
 GLI_INPUT_COLUMNS = ["SEQN", "age_years", "sex", "height_cm", "race_ethnicity"]
 
 

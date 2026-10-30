@@ -2674,7 +2674,7 @@
     "body_measurements_loaded": "BMXHT, BMXWT, BMXBMI"
   },
   "verdict": "ROBUST-TO-BUDGET-DEVICE",
-  "protocol_decisions": [
+  "decisions_i_made": [
     "Gate 2 degradation is measured against the clean parsed curve copy, not NHANES summary truth, because the task defines clean parsed curves as the ground truth for degradation.",
     "Only obstructed clean-copy curves are re-fit for the truncation FN sweep because the requested headline is obstructed FN and DIRECT-minus-OMBE FN advantage; Gate 2 measurement error is still computed on all clean curves.",
     "The existing SciPy bounded-TRF OMBE loop fit is called unchanged via fit_ombe_truncated; no NUTS and no vectorized solver path is used.",

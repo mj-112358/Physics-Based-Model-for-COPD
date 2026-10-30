@@ -14,15 +14,10 @@ import pandas as pd
 from scipy.interpolate import UnivariateSpline
 from scipy.optimize import least_squares
 
-from .gate3_diagnosis import np_ombe_volume, savgol_sigma
 from .gate23_f import find_or_unzip_raw, read_raw
-from .gate_clinical_classification_f import (
-    decode_grade,
-    extract_curve_for_fit,
-    load_column_map,
-    load_truth,
-    severity_category,
-)
+from .gate3_diagnosis import np_ombe_volume, savgol_sigma
+from .gate_clinical_classification_f import decode_grade, extract_curve_for_fit, load_column_map, load_truth, severity_category
+
 
 RANDOM_SEED = 20260708
 TRUNCATION_TIMES = (2.0, 3.0, 4.0, 5.0)
@@ -32,7 +27,6 @@ SAMPLE_MAX_PER_STRATUM = 200
 PLATEAU_L = 0.025
 MIN_FET_S = 6.0
 MATERIAL_FN_MARGIN = 0.05
-PREDICTION_HORIZON_S = 12.0
 
 
 def clean_json(value: Any) -> Any:
@@ -108,31 +102,14 @@ def insert_time_point(t: np.ndarray, y: np.ndarray, stop_s: float) -> tuple[np.n
     return out_t, out_y
 
 
-def model_grid_with_stop(
-    observed_t: np.ndarray,
-    stop_s: float,
-    prediction_horizon_s: float = PREDICTION_HORIZON_S,
-) -> tuple[np.ndarray, np.ndarray]:
-    """Build a fixed-horizon model grid without using the true curve end time.
-
-    A deployable truncation method knows the observed samples through ``stop_s``
-    but does not know when the unobserved maneuver would have ended. The model
-    grid therefore combines the observed sampling interval with a horizon fixed
-    before evaluation. This prevents the complete curve duration from entering
-    either model normalization or extrapolation.
-    """
-    t = np.asarray(observed_t, dtype=float)
-    if t.size < 2:
-        raise ValueError("At least two observed time points are required")
-    if stop_s <= 0.0:
-        raise ValueError("stop_s must be positive")
-    horizon = max(float(prediction_horizon_s), float(stop_s))
-    dt = round(float(np.nanmedian(np.diff(t))), 12)
-    if not np.isfinite(dt) or dt <= 0.0:
-        raise ValueError("Observed time grid must be strictly increasing")
-    n_steps = int(np.floor(horizon / dt + 1e-10))
-    grid = np.arange(n_steps + 1, dtype=float) * dt
-    grid = np.unique(np.round(np.r_[grid, float(stop_s), horizon], 12))
+def model_grid_with_stop(full_t: np.ndarray, stop_s: float) -> tuple[np.ndarray, np.ndarray]:
+    t = np.asarray(full_t, dtype=float)
+    if stop_s >= t[-1]:
+        return t.copy(), np.arange(len(t), dtype=int)
+    if np.any(np.isclose(t, stop_s, atol=1e-10)):
+        grid = t.copy()
+    else:
+        grid = np.sort(np.concatenate([t, [float(stop_s)]]))
     fit_idx = np.where(grid <= stop_s + 1e-10)[0]
     return grid, fit_idx
 
@@ -149,13 +126,8 @@ def mono_exp_volume(params: np.ndarray, t: np.ndarray) -> np.ndarray:
     return np.concatenate([[0.0], np.cumsum(increments)])
 
 
-def fit_ombe_truncated(
-    full_t: np.ndarray,
-    full_y: np.ndarray,
-    stop_s: float,
-    prediction_horizon_s: float = PREDICTION_HORIZON_S,
-) -> dict[str, Any]:
-    grid, fit_idx = model_grid_with_stop(full_t, stop_s, prediction_horizon_s)
+def fit_ombe_truncated(full_t: np.ndarray, full_y: np.ndarray, stop_s: float) -> dict[str, Any]:
+    grid, fit_idx = model_grid_with_stop(full_t, stop_s)
     y_fit = np.interp(grid[fit_idx], full_t, full_y)
     obs_end = float(y_fit[-1])
     x0 = np.array([0.35, 2.50, 0.60, np.clip(obs_end, 2.0, 6.0), 0.12], dtype=float)
@@ -179,13 +151,8 @@ def fit_ombe_truncated(
     }
 
 
-def fit_mono_truncated(
-    full_t: np.ndarray,
-    full_y: np.ndarray,
-    stop_s: float,
-    prediction_horizon_s: float = PREDICTION_HORIZON_S,
-) -> dict[str, Any]:
-    grid, fit_idx = model_grid_with_stop(full_t, stop_s, prediction_horizon_s)
+def fit_mono_truncated(full_t: np.ndarray, full_y: np.ndarray, stop_s: float) -> dict[str, Any]:
+    grid, fit_idx = model_grid_with_stop(full_t, stop_s)
     y_fit = np.interp(grid[fit_idx], full_t, full_y)
     obs_end = float(y_fit[-1])
     x0 = np.array([1.50, np.clip(obs_end, 2.0, 6.0), 0.12], dtype=float)
@@ -347,13 +314,12 @@ def estimate_one_curve(curve_row: Any, raw_row: Any) -> list[dict[str, Any]]:
     for t_label, stop_s in stop_specs:
         t_fit, y_fit = insert_time_point(full_t, full_y, stop_s)
         observed_fev1_l = float(np.interp(1.0, t_fit, y_fit))
-        prediction_horizon = full_end if t_label == "full" else PREDICTION_HORIZON_S
         fits = {
             "E0_DIRECT": {"success": True, "fvc_l": float(y_fit[-1]), "failure": ""},
-            "E1_OMBE": fit_ombe_truncated(full_t, full_y, stop_s, prediction_horizon),
-            "E2_SPLINE": fit_spline_extrapolate(t_fit, y_fit, prediction_horizon),
-            "E3_LINEAR_TAIL": fit_linear_tail(t_fit, y_fit, prediction_horizon),
-            "E4_MONO_EXPONENTIAL": fit_mono_truncated(full_t, full_y, stop_s, prediction_horizon),
+            "E1_OMBE": fit_ombe_truncated(full_t, full_y, stop_s),
+            "E2_SPLINE": fit_spline_extrapolate(t_fit, y_fit, full_end),
+            "E3_LINEAR_TAIL": fit_linear_tail(t_fit, y_fit, full_end),
+            "E4_MONO_EXPONENTIAL": fit_mono_truncated(full_t, full_y, stop_s),
         }
         for estimator, fit in fits.items():
             est_fvc_l = float(fit["fvc_l"]) if np.isfinite(fit.get("fvc_l", np.nan)) else np.nan
@@ -387,15 +353,8 @@ def estimate_one_curve(curve_row: Any, raw_row: Any) -> list[dict[str, Any]]:
                     "truth_obstructed_fixed": bool(true_ratio < 0.70) if np.isfinite(true_ratio) else False,
                     "est_obstructed_fixed": bool(est_ratio < 0.70) if np.isfinite(est_ratio) else False,
                     "full_end_s": full_end,
-                    "prediction_horizon_s": float(prediction_horizon),
                     "fit_n": int(len(t_fit)),
-                    "no_untruncated_information_after_T_used": bool(
-                        t_label == "full"
-                        or (
-                            t_fit[-1] <= stop_s + 1e-9
-                            and abs(prediction_horizon - PREDICTION_HORIZON_S) <= 1e-9
-                        )
-                    ),
+                    "no_untruncated_volume_after_T_used": bool(t_label == "full" or t_fit[-1] <= stop_s + 1e-9),
                 }
             )
     return rows
@@ -518,11 +477,8 @@ def honesty_checks(rows: pd.DataFrame, truth: pd.DataFrame, sample: pd.DataFrame
         "excluded_original_obstructed_ratio_median": float(np.nanmedian(excluded["fev1_fvc_ratio"])) if len(excluded) else np.nan,
         "excluded_original_obstructed_ratio_iqr": q(excluded["fev1_fvc_ratio"]) if len(excluded) else [np.nan, np.nan],
         "e1_overshoot_by_T": by_t,
-        "no_estimator_saw_untruncated_information_after_T": bool(
-            rows[rows["T_label"] != "full"]["no_untruncated_information_after_T_used"].all()
-        ),
-        "prediction_horizon_s": PREDICTION_HORIZON_S,
-        "note": "For truncated rows, every estimator used only volume samples up to T and a fixed 12 s prediction horizon. The true complete-curve duration was not used by the fit.",
+        "no_estimator_saw_untruncated_volume_after_T": bool(rows[rows["T_label"] != "full"]["no_untruncated_volume_after_T_used"].all()),
+        "note": "For truncated T rows, estimators used only volume samples up to T. The full-curve end time was supplied only as the requested extrapolation target.",
     }
 
 
@@ -635,7 +591,7 @@ def make_report(result: dict[str, Any]) -> str:
         f"- VERDICT: {verdict['verdict']} - {verdict['reason']}",
         "- Deterministic LM only. No NUTS, SNPE, gamma, registration, or ML residual.",
         "- Manoeuvre rule: Pre, SPAACC == Y, SPAQEFF == A for this complete-curve gate, max parsed FEV1, ties to lowest manoeuvre number.",
-        f"- Every truncated estimator used only volume samples up to T and the protocol-fixed {PREDICTION_HORIZON_S:.0f} s prediction horizon; the complete curve was used only for scoring.",
+        "- Every truncated estimator used only volume samples up to T; full curve was used only for scoring and as the requested extrapolation target time.",
         "",
         "## Motivation",
         "",
@@ -721,7 +677,7 @@ def make_report(result: dict[str, Any]) -> str:
             f"- Original Cycle-F obstructed participants: {honesty['original_cycle_f_obstructed_n']}",
             f"- Obstructed participants in this complete-plateau sample: {honesty['sample_obstructed_n']}",
             f"- Excluded original obstructed participants: {honesty['excluded_original_obstructed_n']}; NHANES ratio median {honesty['excluded_original_obstructed_ratio_median']:.4f}, IQR {honesty['excluded_original_obstructed_ratio_iqr'][0]:.4f} to {honesty['excluded_original_obstructed_ratio_iqr'][1]:.4f}.",
-            f"- No truncated estimator received information from after T: {honesty['no_estimator_saw_untruncated_information_after_T']}. {honesty['note']}",
+            f"- No truncated estimator saw untruncated volume samples after T: {honesty['no_estimator_saw_untruncated_volume_after_T']}. {honesty['note']}",
             "",
             "E1 OMBE overshoot/undershoot by T:",
             "",
@@ -776,10 +732,10 @@ def run(root: Path) -> dict[str, Any]:
         "honesty_checks": honest,
         "estimator_definitions": {
             "E0_DIRECT": "FVC is observed truncated end-volume.",
-            "E1_OMBE": f"Two-compartment OMBE fit to volume samples up to T; FVC is model volume at the fixed {PREDICTION_HORIZON_S:.0f} s horizon.",
-            "E2_SPLINE": f"Cubic smoothing spline fit to samples up to T; FVC is evaluated at the fixed {PREDICTION_HORIZON_S:.0f} s horizon.",
-            "E3_LINEAR_TAIL": f"Line fit to the final 1.0 s before T; FVC is evaluated at the fixed {PREDICTION_HORIZON_S:.0f} s horizon.",
-            "E4_MONO_EXPONENTIAL": f"Single exponential with onset rise fit like E1; FVC is model volume at the fixed {PREDICTION_HORIZON_S:.0f} s horizon.",
+            "E1_OMBE": "Two-compartment OMBE fit to volume samples up to T; FVC is model volume at full-curve end time.",
+            "E2_SPLINE": "Cubic smoothing spline fit to samples up to T; FVC is spline at full-curve end time.",
+            "E3_LINEAR_TAIL": "Line fit to final 1.0 s before T; FVC is line at full-curve end time.",
+            "E4_MONO_EXPONENTIAL": "Single exponential with onset rise fit like E1; FVC is model volume at full-curve end time.",
         },
     }
     out = root / "results"

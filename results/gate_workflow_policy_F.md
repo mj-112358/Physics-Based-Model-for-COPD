@@ -2,7 +2,7 @@
 
 VERDICT: WORKFLOW-RECOVERED - held-out severe accepted-normal FN is zero, borderline accepted-normal FN is <=0.10, and normal non-accept burden is <=0.35.
 
-## Protocol Decisions
+## Decisions I Made
 
 - Cycle F is the first workflow target because the existing calibrated policy artifacts are strongest there.
 - The headline evaluation uses held-out TEST rows from the existing policy gate; all rows are reported secondarily.

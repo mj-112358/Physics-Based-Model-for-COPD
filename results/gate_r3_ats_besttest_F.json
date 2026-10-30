@@ -3,11 +3,11 @@
   "test_n": 563,
   "c1_offset_from_existing_policy": 0.008637018273988883,
   "ats_source": "https://doi.org/10.1164/rccm.201908-1590ST",
-  "protocol_decisions": [
+  "decisions_i_made": [
     "TEST split only; training rows are ignored.",
     "The current deferral-recovery gate is the baseline: 66.6% coverage before this ATS best-test pass.",
-    "NHANES/repro maneuver rows do not expose separate BEV, cough, glottis, leak, or plateau subflags. SPAACC == 'Y' was used as the individual acceptability flag, and this limitation is reported explicitly.",
-    "A maneuver also must have a successful finite model fit to be usable by the PredictX model best-test computation; this is a computational availability requirement, not a repeatability threshold.",
+    "NHANES/repro maneuver rows do not expose separate BEV, cough, glottis, leak, or plateau subflags. I used SPAACC == 'Y' as the individual acceptability flag and reported this limitation explicitly.",
+    "A maneuver also must have a successful finite model fit to be usable by the PredictX Spirometry Extension model best-test computation; this is a computational availability requirement, not a repeatability threshold.",
     "Best-test FEV1 is max model FEV1 across acceptable usable maneuvers, and best-test FVC is max model FVC across acceptable usable maneuvers; the FEV1 and FVC may come from different maneuvers.",
     "The existing C1 ratio correction is applied after forming max(FEV1)/max(FVC), keeping the recovered ratio on the same calibrated scale as the workflow.",
     "Repeatability is converted to an ATS-style session grade and is not used as a hard exclusion.",

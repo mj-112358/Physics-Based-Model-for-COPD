@@ -2,7 +2,7 @@
 
 VERDICT: GRADED-UNCALIBRATED - Reweighted TEST ECE exceeds the conservative 0.10 calibration warning threshold.
 
-## Protocol Decisions
+## Decisions I Made
 
 - TEST split is scored once; all model fitting and zone boundary selection use TRAIN only.
 - The requested true 0.60-0.70 band is one-class-only and cannot support AUC; the reported boundary AUC uses true FEV1/FVC in [0.65, 0.75), matching the prior around-threshold check.

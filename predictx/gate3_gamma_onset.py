@@ -16,7 +16,11 @@ import pandas as pd
 from scipy.optimize import least_squares
 from scipy.stats import chi2
 
+from .gate23_f import find_or_unzip_raw, read_raw
 from .gate3_diagnosis import (
+    N_PARAMS,
+    SAMPLE_N,
+    SAMPLE_SEED,
     classify_peak_residual,
     clinical_metrics_from_volume,
     coerce_bool,
@@ -26,7 +30,6 @@ from .gate3_diagnosis import (
     savgol_sigma,
     select_sample,
 )
-from .gate23_f import find_or_unzip_raw, read_raw
 from .ombe_gamma import (
     NATURAL_PARAM_NAMES,
     OmbeGammaGrid,
@@ -35,6 +38,7 @@ from .ombe_gamma import (
     midrange_phi,
     sample_prior_phi,
 )
+
 
 BASELINE_DIPOLE_FRACTION = 0.845
 BASELINE_FLOW_NRSS_UNREGISTERED = 19.572

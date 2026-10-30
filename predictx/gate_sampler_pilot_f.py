@@ -4,6 +4,7 @@ import argparse
 import ast
 import json
 import os
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -19,6 +20,7 @@ from scipy.stats import kstest
 
 from .gate_misspecification_isolation_f import (
     COVERAGE_LEVELS,
+    SEED,
     TARGET_COUNTS,
     binomial_interval,
     clean_json,
@@ -29,20 +31,14 @@ from .gate_misspecification_isolation_f import (
 )
 from .gate_sampler_convergence_f import (
     CACHE_VERSION as PRIOR_CACHE_VERSION,
-)
-from .gate_sampler_convergence_f import (
     cond_cache_path as prior_cond_cache_path,
-)
-from .gate_sampler_convergence_f import (
     div_cache_path as prior_div_cache_path,
-)
-from .gate_sampler_convergence_f import (
+    phi_condition_number,
     run_one_curve,
-)
-from .gate_sampler_convergence_f import (
     rung_cache_path as prior_rung_cache_path,
 )
-from .ombe import OmbeGrid, batched_fisher_information
+from .ombe import OmbeGrid, batched_fisher_information, sample_prior_phi
+
 
 OUTPUT_STEM = "gate_sampler_pilot_F"
 CACHE_VERSION = "v1_pilot30"
@@ -325,6 +321,7 @@ def corrected_audit(root: Path, s_min: dict[str, Any] | None) -> pd.DataFrame:
         warmup = int_constant_from_assign(tree, ("NUTS_WARMUP",))
         draws = int_constant_from_assign(tree, ("NUTS_DRAWS",))
         chains = int_constant_from_assign(tree, ("NUTS_CHAINS",))
+        header = "\n".join(text.splitlines()[:20])
         deterministic_header = "Deterministic LM only. No NUTS" in text and file.name != "gate_sampler_pilot_f.py"
         nuts_instantiated = any(c["call"] in {"NUTS", "run_one_curve->NUTS"} for c in calls)
         result_file = infer_result_file(root, file)
@@ -386,7 +383,7 @@ def write_outputs(root: Path, result: dict[str, Any], ladder: pd.DataFrame, audi
     lines = [
         "# Gate - Sampler Convergence Pilot, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         "- S1-S4 were carried forward as standing facts and were not rerun.",
         "- S7 was run first, then S6. Both run all 30 pilot curves; there is no population-fraction early stopping.",

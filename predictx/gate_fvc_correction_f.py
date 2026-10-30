@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -21,7 +22,9 @@ from .gate_clinical_classification_f import (
     load_truth,
     q,
     select_best_manoeuvre,
+    severity_category,
 )
+
 
 BORDERLINE_SAMPLE_MAX = 150
 GRADE_SCORE = {"A": 1.0, "B": 2.0, "C": 3.0, "D": 4.0, "F": 5.0}

@@ -1,0 +1,141 @@
+{
+  "source_raw_manoeuvres": 108939,
+  "source_participants_with_truth": 20050,
+  "usable_ab_participants": 19459,
+  "cohorts": [
+    {
+      "experiment": "NHANES summary-truth source",
+      "cycles": "E/F/G",
+      "participants": 20050,
+      "age_years": {
+        "n": 20050,
+        "median": 33.0,
+        "q1": 16.0,
+        "q3": 53.0,
+        "minimum": 6.0,
+        "maximum": 79.0
+      },
+      "severity_distribution": {
+        "normal": 18118,
+        "mild_0.60_0.70": 1503,
+        "moderate": 312,
+        "severe": 117
+      },
+      "criteria": "Finite released FEV1 and FVC; participant-level summary truth."
+    },
+    {
+      "experiment": "Controlled truncation sample",
+      "cycles": "E/F/G",
+      "participants": 1492,
+      "age_years": {
+        "n": 1492,
+        "median": 52.0,
+        "q1": 31.0,
+        "q3": 66.0,
+        "minimum": 6.0,
+        "maximum": 79.0
+      },
+      "severity_distribution": {
+        "mild_0.60_0.70": 600,
+        "normal": 600,
+        "moderate": 225,
+        "severe": 67
+      },
+      "criteria": "Pre-bronchodilator, SPAACC=Y, SPAQEFF=A, FET>=6 s, terminal-second volume<=0.025 L; best complete curve per participant; cap 200 per severity-cycle."
+    },
+    {
+      "experiment": "Controlled truncation obstructed set",
+      "cycles": "E/F/G",
+      "participants": 892,
+      "age_years": {
+        "n": 892,
+        "median": 60.0,
+        "q1": 46.0,
+        "q3": 70.0,
+        "minimum": 6.0,
+        "maximum": 79.0
+      },
+      "severity_distribution": {
+        "mild_0.60_0.70": 600,
+        "moderate": 225,
+        "severe": 67
+      },
+      "criteria": "Controlled-truncation sample with complete-curve FEV1/FVC<0.70."
+    },
+    {
+      "experiment": "Natural incomplete pairs",
+      "cycles": "F",
+      "participants": 286,
+      "age_years": {
+        "n": 286,
+        "median": 51.0,
+        "q1": 28.0,
+        "q3": 66.0,
+        "minimum": 6.0,
+        "maximum": 79.0
+      },
+      "severity_distribution": {
+        "mild_0.60_0.70": 110,
+        "normal": 108,
+        "moderate": 55,
+        "severe": 13
+      },
+      "criteria": "Clean target plus separate flagged Pre manoeuvre; shortest usable incomplete candidate; one pair per participant."
+    },
+    {
+      "experiment": "Cycle F policy-development test",
+      "cycles": "F",
+      "participants": 563,
+      "age_years": {
+        "n": 563,
+        "median": 49.0,
+        "q1": 26.0,
+        "q3": 63.0,
+        "minimum": 6.0,
+        "maximum": 79.0
+      },
+      "severity_distribution": {
+        "mild_0.60_0.70": 250,
+        "normal": 250,
+        "moderate": 47,
+        "severe": 16
+      },
+      "criteria": "Participant-separated TEST partition after frozen TRAIN-only estimation."
+    },
+    {
+      "experiment": "Frozen cross-cycle workflow",
+      "cycles": "E/G",
+      "participants": 12434,
+      "age_years": {
+        "n": 12434,
+        "median": 33.0,
+        "q1": 16.0,
+        "q3": 53.0,
+        "minimum": 6.0,
+        "maximum": 79.0
+      },
+      "severity_distribution": {
+        "normal": 11265,
+        "mild_0.60_0.70": 933,
+        "moderate": 174,
+        "severe": 62
+      },
+      "criteria": "Finite released truth plus at least one usable A/B pre-bronchodilator candidate; Cycle F configuration frozen before scoring."
+    }
+  ],
+  "overlap": {
+    "F_controlled_and_natural": 286,
+    "F_controlled_and_workflow_test": 133,
+    "F_natural_and_workflow_test": 75,
+    "F_all_three": 75,
+    "E_controlled_within_frozen_workflow": 501,
+    "G_controlled_within_frozen_workflow": 494,
+    "cross_cycle_identifier_overlap": 0
+  },
+  "severity_definition": {
+    "severe": "ratio <0.50",
+    "moderate": "0.50<=ratio<0.60",
+    "mild_0.60_0.70": "0.60<=ratio<0.70",
+    "normal": "ratio>=0.70"
+  }
+}

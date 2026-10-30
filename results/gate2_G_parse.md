@@ -4,8 +4,8 @@
 - reason: Gate 2 parser recovery criterion passed under max/best-test comparison.
 - cycle: G
 - parser callable: predictx.gate23_f.derive_curve
-- raw source: <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat
-- raw source note: using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat
+- raw source: ./data/spxraw_g.sas7bdat
+- raw source note: using legacy SAS7BDAT because NHANES_SpiroSBI is absent: ./data/spxraw_g.sas7bdat
 - raw metadata rows: 37661
 - raw loaded rows: 37661
 - required columns present: SEQN, SPATTYPE, SPAMANU, SPAFACT, SPAPLAT, SPAACC, SPAQEFF, SPXPTS, SPXRAW

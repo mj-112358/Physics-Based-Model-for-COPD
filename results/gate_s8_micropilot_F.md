@@ -1,6 +1,6 @@
 # Gate - S8 Micro-Pilot, Cycle F
 
-## Protocol Decisions
+## Decisions I Made
 
 - S8 is identical to S7 except warmup/draws are 2000/2000 instead of 1000/1000.
 - The 20 curves are sampled across Cell A stratum blocks at target proportions 9 mild / 9 normal / 1 moderate / 1 severe.

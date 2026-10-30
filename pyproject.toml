@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "predictx"
-version = "0.1.0"
-description = "PredictX research extension for physics-based analysis of raw spirometry curves"
+version = "0.2.0"
+description = "Physics-constrained PredictX extension for incomplete spirometry and airflow-obstruction screening"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -15,6 +15,7 @@ dependencies = [
   "pillow>=10,<13",
   "pyarrow>=16,<23",
   "pyreadstat>=1.2.7,<2",
+  "python-docx>=1.1,<2",
   "scikit-learn>=1.5,<2",
   "scipy>=1.13,<2",
 ]

@@ -15,6 +15,7 @@ from scipy.stats import chisquare
 
 from .ombe import NATURAL_PARAM_NAMES, OmbeGrid, ombe_flow, phi_from_natural
 
+
 SIGMA_LPS = 0.10
 SBC_WARMUP = 1000
 SBC_DRAWS = 1000

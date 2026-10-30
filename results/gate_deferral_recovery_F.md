@@ -2,7 +2,7 @@
 
 VERDICT: RECOVERY-SUBSTANTIAL - coverage rises materially via label-independent recovery rules, final-call metrics hold, and severe FN remains zero.
 
-## Protocol Decisions
+## Decisions I Made
 
 - TEST split only; TRAIN rows are ignored.
 - The existing workflow gate is reused as the baseline; this gate only analyzes and recovers its deferred rows.

@@ -19,6 +19,7 @@ from .gate_graded_probability_f import (
     DEMOGRAPHIC_BASE_FEATURES,
     PPV_NPV_FLOOR,
     add_demographics,
+    apply_zones,
     boundary_mask,
     choose_boundaries,
     class_reweight,
@@ -28,8 +29,10 @@ from .gate_graded_probability_f import (
     prevalence_from_full_cohort,
     reliability_bins,
     truth_obstructed,
+    zone_metrics,
 )
 from .gate_workflow_policy_f import RANDOM_SEED, clean_json, fmt, md_table
+
 
 OUTPUT_STEM = "gate_graded_probability_repair_F"
 
@@ -499,7 +502,7 @@ def run(root: Path) -> dict[str, Any]:
         "operational_baseline_coverage": operational_coverage,
         "clean_features": clean_features,
         "variant_rows": rows,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "This is a repair audit, not a replacement for the leakage-free gate unless a variant clears the same guards.",
             "Headline eligibility excludes ratio-aware variants even when they perform better.",
             "TEST-oracle thresholds are reported only as upper bounds; deployable thresholds are TRAIN-frozen.",

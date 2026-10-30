@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 
+
 QUALITY_VALUES = {"A", "B"}
 
 
@@ -203,6 +204,7 @@ def _filter_with_log(
 
 
 def _counts(df: pd.DataFrame, obstructed_mask: pd.Series) -> dict[str, int]:
+    ratio = df["fev1_fvc_ratio"]
     obstructed = df.loc[obstructed_mask]
     obstructed_ratio = obstructed["fev1_fvc_ratio"]
     return {

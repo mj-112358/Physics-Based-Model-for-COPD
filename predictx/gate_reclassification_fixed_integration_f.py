@@ -13,6 +13,7 @@ from . import gate_clinical_classification_f, gate_fvc_correction_f, gate_policy
 from .gate_clinical_classification_f import q
 from .ombe import midrange_phi, ombe_flow, ombe_volume
 
+
 GATES = {
     "clinical": "gate_clinical_classification_F",
     "fvc": "gate_fvc_correction_F",
@@ -390,7 +391,7 @@ def audit_markdown(audit: list[dict]) -> str:
 
 def metric_markdown(rows: list[dict], dimensions: tuple[str, str]) -> str:
     dim_a, dim_b = dimensions
-    out = [f"| {dim_a} | {dim_b} | old | new | delta |", "|---|---|---:|---:|---:|"]
+    out = [f"| {dim_a} | {dim_b} | old | new | delta |", f"|---|---|---:|---:|---:|"]
     for row in rows:
         out.append(
             f"| {row[dim_a]} | {row[dim_b]} | {fmt_num(row['old'])} | {fmt_num(row['new'])} | {fmt_delta(row['new'], row['old'])} |"
@@ -454,7 +455,7 @@ def reconciliation(old_clinical: dict, new_clinical: dict, old_fvc: dict, new_fv
         ),
         "retractions": (
             "No point-estimate conclusion is retracted from this rerun because the point-estimate gates were already using the "
-            "NumPy nonuniform-grid volume fitter. The review premise that clinical/FVC/policy used the broken JAX dt path is not supported by the code audit. "
+            "NumPy nonuniform-grid volume fitter. The prompt premise that clinical/FVC/policy used the broken JAX dt path is not supported by the code audit. "
             "Retract only the narrower implementation statement that the shared JAX OMBE volume helper was safe on nonuniform real-curve grids before this patch."
         ),
     }

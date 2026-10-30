@@ -1,6 +1,6 @@
 # Gate - Sampler Convergence Establishment, Cycle F
 
-## Protocol Decisions
+## Decisions I Made
 
 - Cell A construction is reused from `gate_misspecification_isolation_f.py` with seed 20260710 and target counts 67/67/12/4.
 - The ladder varies sampler settings only: chains, warmup, draws, target_accept, dense_mass.

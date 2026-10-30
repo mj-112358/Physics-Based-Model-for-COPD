@@ -8,10 +8,12 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+import pandas as pd
 
 from .dataset_resolver import CYCLE_TO_YEAR, RAW_ROW_COUNTS, resolve_dataset_path, resolver_check
 from .gate23_f import derive_all, read_ground_truth, read_raw, run_gate2
 from .gate_clinical_classification_f import run as run_clinical
+
 
 SEED = 20260710
 
@@ -51,13 +53,13 @@ STALE_ARTIFACTS = [
     ("severe cohort", "results/gate_severe_truncation_diagnosis_F.md"),
 ]
 
-PROTOCOL_DECISIONS = [
+DECISIONS_I_MADE = [
     "Implemented a dedicated dataset_resolver.py instead of broadening io.data_path because raw SAS7BDAT/ZIP integrity checks are specific to the validation gates.",
     "Kept default cycle=F on migrated functions and CLIs so old invocations continue to target F.",
     "Used the new NHANES_SpiroSBI nested root whenever present; legacy data/ and DATASET?/ fallback is available only when the new root is absent.",
     "For E/G smoke, parsed curves and counted truth participants but did not run Gate 2 scoring, Gate 3 fitting, truncation, or clinical scoring.",
     "Classified truncation and severe cached F artifacts for regeneration because they predate resolver provenance and embed F-only/old-path evidence.",
-    "Left a non-F guard in gate_four_part_fix_f.py because that gate still consumes F-named cached clinical/policy rows outside the registered SPX path-only scope.",
+    "Left a non-F guard in gate_four_part_fix_f.py because that gate still consumes F-named cached clinical/policy rows outside the prompt's SPX path-only change.",
 ]
 
 
@@ -293,8 +295,8 @@ def write_regression_report(root: Path, result: dict[str, Any]) -> None:
         lines.append(
             f"| {row['metric']} | {format_md(row['old'])} | {format_md(row['new'])} | {format_md(row['delta'])} | {row['pass']} |"
         )
-    lines.extend(["", "## Protocol Decisions", ""])
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(["", "## Decisions I Made", ""])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     (root / "results" / "migration_regression_F.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -425,7 +427,7 @@ def run(root: Path) -> dict[str, Any]:
         "smoke_status": smoke_status,
         "smoke_rows": smoke_rows,
         "stale_audit": stale,
-        "protocol_decisions": PROTOCOL_DECISIONS,
+        "decisions_i_made": DECISIONS_I_MADE,
     }
     write_regression_report(root, result)
     write_smoke_report(root, result)
@@ -443,7 +445,7 @@ def main() -> int:
     if args.reports_only:
         result = read_json(root / "results" / "migration_EFG.json")
         result["source_audit"] = source_audit(root)
-        result["protocol_decisions"] = PROTOCOL_DECISIONS
+        result["decisions_i_made"] = DECISIONS_I_MADE
         write_regression_report(root, result)
         write_smoke_report(root, result)
         write_stale_report(root, result)

@@ -6,7 +6,7 @@
 
 ## Sample
 
-- source: <PROJECT_ROOT>/results/gate_policy_calibrated_flag_F_rows.csv
+- source: ./results/gate_policy_calibrated_flag_F_rows.csv
 - split counts: {'test': {'mild_0.60_0.70': 250, 'normal': 250, 'moderate': 47, 'severe': 16}, 'train': {'mild_0.60_0.70': 250, 'normal': 250, 'moderate': 47, 'severe': 15}}
 
 ## Step A - Widen Prior

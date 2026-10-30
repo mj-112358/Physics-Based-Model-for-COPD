@@ -9,7 +9,8 @@ import numpy as np
 import pandas as pd
 
 from . import gate_deferral_recovery_f as recovery
-from .gate_workflow_policy_f import clean_json, exact_ci, md_table
+from .gate_workflow_policy_f import clean_json, exact_ci, fmt, md_table
+
 
 OUTPUT_STEM = "gate_recovery_accuracy_audit_F"
 STRICT_RESCUE_PARAMS = {
@@ -728,7 +729,7 @@ def write_outputs(root: Path, result: dict[str, Any]) -> None:
         "",
         "## Part 3 - Stress The Criteria",
         "",
-        "Current code uses R1 volume R2 >= 0.98. The requested stress analysis names 0.90 -> 0.85, so both R1 >=0.90 and R1 >=0.85 variants are reported.",
+        "Current code uses R1 volume R2 >= 0.98. Because the prompt named 0.90 -> 0.85, I report both R1 >=0.90 and R1 >=0.85 stress variants.",
         "",
         md_table(
             result["stress_variants"],
@@ -749,7 +750,7 @@ def write_outputs(root: Path, result: dict[str, Any]) -> None:
         "",
         "## De-Circularized Same-Session Proxy",
         "",
-        "Because this dataset does not contain an external independent clinical adjudication label, a fully corrected independent clinical-label accuracy is not identifiable from these files. As the closest available check, recovered decisions were scored against held-out raw maneuvers from the same session: for R2/R3, the candidate was regenerated after leaving one maneuver out; for R1, the selected-maneuver decision was scored against other available maneuvers.",
+        "Because this dataset does not contain an external independent clinical adjudication label, a fully corrected independent clinical-label accuracy is not identifiable from these files. As the closest available check, I scored recovered decisions against held-out raw maneuvers from the same session: for R2/R3, the candidate was regenerated after leaving one maneuver out; for R1, the selected-maneuver decision was scored against other available maneuvers.",
         "",
         md_table(
             result["heldout_proxy_by_bucket"],
@@ -771,7 +772,7 @@ def write_outputs(root: Path, result: dict[str, Any]) -> None:
         "",
         "## Strict Rescue Profile",
         "",
-        "A stricter deployable subset was evaluated using only recovery confidence signals. This does not rescue the full 120-case claim, but it does find a smaller profile whose held-out-maneuver proxy is perfect.",
+        "I searched for a stricter deployable subset using only recovery confidence signals. This does not rescue the full 120-case claim, but it does find a smaller profile whose held-out-maneuver proxy is perfect.",
         "",
         md_table(
             [

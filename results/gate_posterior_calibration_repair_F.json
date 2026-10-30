@@ -3,7 +3,7 @@
   "posterior_classification_unblocked": false,
   "cause_attribution": "Not isolated to a simple prior-bound or training-budget issue; residual shape/model-likelihood mismatch remains.",
   "pool_meta": {
-    "source": "<PROJECT_ROOT>/results/gate_policy_calibrated_flag_F_rows.csv",
+    "source": "./results/gate_policy_calibrated_flag_F_rows.csv",
     "split_counts": {
       "test": {
         "mild_0.60_0.70": 250,

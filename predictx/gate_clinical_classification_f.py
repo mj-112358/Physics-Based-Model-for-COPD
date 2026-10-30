@@ -8,7 +8,6 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from .gate3_diagnosis import clinical_metrics_from_volume, fit_ombe_volume_lm
 from .gate23_f import (
     HZ,
     backextrap_t0,
@@ -17,6 +16,8 @@ from .gate23_f import (
     parse_increments,
     read_raw,
 )
+from .gate3_diagnosis import clinical_metrics_from_volume, fit_ombe_volume_lm
+
 
 RANDOM_SEED = 20260708
 NORMAL_SAMPLE_MAX = 300
@@ -350,7 +351,7 @@ def make_report(result: dict, rows: pd.DataFrame, fixed_table: pd.DataFrame, lln
         "",
         f"- median signed model-minus-NHANES FEV1/FVC error on obstructed set: {e['ratio_signed_median']:.4f}",
         f"- signed-error IQR: {e['ratio_signed_iqr'][0]:.4f} to {e['ratio_signed_iqr'][1]:.4f}",
-        "- consistent-bias rule used for MARGINAL: abs(median) > 0.02, IQR width <= 0.04, and IQR does not cross zero.",
+        f"- consistent-bias rule used for MARGINAL: abs(median) > 0.02, IQR width <= 0.04, and IQR does not cross zero.",
         f"- consistent bias detected: {result['consistent_bias']}",
         "",
         "## Gate Logic",

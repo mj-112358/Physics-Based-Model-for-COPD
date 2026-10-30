@@ -89,9 +89,9 @@
     "step3_gamma_helps": false,
     "step3_gate_reason": "dipoles<30%=False; tau_o/tau_s/k bound-piling<50 each=False; ratio-within-0.02 materially above baseline=False; all-within-5% not below baseline=False"
   },
-  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
   "raw_info": {
-    "path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "path": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
     "metadata_rows": 36421,
     "loaded_rows": 36421,
     "columns": [

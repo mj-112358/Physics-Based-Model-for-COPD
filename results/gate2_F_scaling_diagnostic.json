@@ -1,5 +1,5 @@
 {
-  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
   "raw_rows": 36421,
   "parse_error_count": 45,
   "ratio_diagnostics": [

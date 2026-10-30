@@ -1,6 +1,6 @@
 # Gate - Deterministic Fit Optimization Pass, Cycle F
 
-## Protocol Decisions
+## Decisions I Made
 
 - This is a guarded optimization gate, not a production rewrite. No production estimator is changed unless every guard accepts the new configuration.
 - Baseline headlines are locked by reading existing result files before any refit.

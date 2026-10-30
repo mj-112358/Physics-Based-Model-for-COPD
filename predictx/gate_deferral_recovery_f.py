@@ -57,7 +57,12 @@ def load_inputs(root: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
 
 
 def correction_offset(workflow: pd.DataFrame) -> float:
-    delta = workflow["model_ratio"].astype(float) - workflow["corrected_ratio_c1"].astype(float)
+    source = workflow
+    if "c1_applied" in workflow:
+        source = workflow[workflow["c1_applied"].map(bool_value)]
+    elif "truncated_ats" in workflow:
+        source = workflow[workflow["truncated_ats"].map(bool_value)]
+    delta = source["model_ratio"].astype(float) - source["corrected_ratio_c1"].astype(float)
     delta = delta[np.isfinite(delta)]
     if delta.empty:
         raise RuntimeError("Cannot infer existing c1 correction offset.")
@@ -102,7 +107,12 @@ def primary_deferral_reason(row: pd.Series) -> tuple[str, str]:
 def corrected_maneuvers(repro: pd.DataFrame, c1: float) -> pd.DataFrame:
     maneuvers = repro[repro["row_type"].eq("maneuver_fit")].copy()
     maneuvers = maneuvers[maneuvers["model_ratio"].map(finite)].copy()
-    maneuvers["corrected_ratio_c1"] = maneuvers["model_ratio"].astype(float) - c1
+    if "corrected_ratio_c1" not in maneuvers:
+        maneuvers["corrected_ratio_c1"] = maneuvers["model_ratio"].astype(float) - c1
+    else:
+        existing = pd.to_numeric(maneuvers["corrected_ratio_c1"], errors="coerce")
+        fallback = maneuvers["model_ratio"].astype(float) - c1
+        maneuvers["corrected_ratio_c1"] = existing.where(np.isfinite(existing), fallback)
     return maneuvers
 
 
@@ -397,10 +407,10 @@ def write_report(root: Path, result: dict[str, Any], rows: pd.DataFrame) -> None
         "",
         f"VERDICT: {result['verdict']} - {result['verdict_reason']}",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",
@@ -519,7 +529,7 @@ def run(root: Path) -> dict[str, Any]:
         "baseline_deferred_n": int((~test["workflow_final_diagnostic"].astype(bool)).sum()),
         "baseline_deferred_fraction": float((~test["workflow_final_diagnostic"].astype(bool)).mean()),
         "c1_offset_from_existing_policy": c1,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "TEST split only; TRAIN rows are ignored.",
             "The existing workflow gate is reused as the baseline; this gate only analyzes and recovers its deferred rows.",
             "Primary deferral reason uses a strict priority: invalid/artifact, failed repeatability, truncation, borderline, then residual uninterpretable.",

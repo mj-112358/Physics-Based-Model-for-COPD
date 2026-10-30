@@ -10,6 +10,7 @@ import pyreadstat
 
 from .io import validate_xpt
 
+
 CYCLE_TO_YEAR = {
     "E": "2007-2008",
     "F": "2009-2010",

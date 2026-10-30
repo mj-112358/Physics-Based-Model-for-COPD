@@ -10,6 +10,7 @@ import pandas as pd
 
 from .fit import np_ombe_flow
 from .gate23_f import find_or_unzip_raw, read_raw
+from .gate3_diagnosis import clinical_metrics_from_volume, np_ombe_volume
 from .gate_clinical_classification_f import (
     RANDOM_SEED,
     build_usable_raw_candidates,
@@ -24,6 +25,7 @@ from .gate_truncation_recovery_f import (
     classification_summary,
     fit_ombe_truncated,
 )
+
 
 OUTPUT_STEM = "gate_reconciliation_audit_F"
 MATERIAL_FN_DELTA = 0.02

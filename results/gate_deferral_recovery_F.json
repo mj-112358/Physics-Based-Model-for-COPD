@@ -6,7 +6,7 @@
   "baseline_deferred_n": 308,
   "baseline_deferred_fraction": 0.5470692717584369,
   "c1_offset_from_existing_policy": 0.008637018273988883,
-  "protocol_decisions": [
+  "decisions_i_made": [
     "TEST split only; TRAIN rows are ignored.",
     "The existing workflow gate is reused as the baseline; this gate only analyzes and recovers its deferred rows.",
     "Primary deferral reason uses a strict priority: invalid/artifact, failed repeatability, truncation, borderline, then residual uninterpretable.",

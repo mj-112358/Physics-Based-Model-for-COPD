@@ -26,6 +26,7 @@ from .gate_r3_ats_besttest_f import (
 )
 from .gate_workflow_policy_f import RANDOM_SEED, clean_json, fmt, md_table
 
+
 OUTPUT_STEM = "gate_r3_quality_improvement_F"
 FIXED_RATIO_THRESHOLD = 0.70
 GOOD_HELDOUT_R2_MIN = 0.95
@@ -479,7 +480,7 @@ def run(root: Path) -> dict[str, Any]:
         "verdict": verdict,
         "verdict_reason": verdict_reason,
         "test_n": test_n,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "TEST split only; TRAIN rows are ignored.",
             "R3 truth accuracy is not quoted as an R3 quality metric; R3 method quality is judged by held-out maneuver proxy only.",
             "Held-out blow labels use observed held-out FEV1/FVC < 0.70, matching the fixed-threshold gate.",
@@ -519,10 +520,10 @@ def write_outputs(root: Path, result: dict[str, Any], rows: pd.DataFrame) -> Non
         "",
         f"VERDICT: {result['verdict']} - {result['verdict_reason']}",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",

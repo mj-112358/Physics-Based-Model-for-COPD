@@ -17,23 +17,24 @@ import numpyro
 import pandas as pd
 from numpyro.infer import MCMC, NUTS
 
-from .gate_likelihood_repair_f import (
-    VARIANT_SEED_OFFSETS,
-    mcmc_diagnostics,
-    ombe_likelihood_model,
-    samples_to_phi,
-)
+from .gate_likelihood_repair_f import PARAM_NAMES, VARIANT_SEED_OFFSETS, mcmc_diagnostics, ombe_likelihood_model, samples_to_phi
 from .gate_misspecification_isolation_f import COVERAGE_LEVELS, SEED, binomial_interval, clean_json, md_table
 from .gate_posterior_calibration_repair_f import WIDE_PRIOR_RANGES, ratio_samples_from_phi
 from .gate_s8_micropilot_f import (
     KAPPA_CUTOFF,
     SPEC,
+    TARGET_COUNTS,
+    TRACE_PARAMS,
+    best_kappa_split,
     build_data,
     chain_diag_from_extra,
+    coverage_summary,
     fisher_kappa_for_rows,
+    pass_fraction,
     select_stratified,
     trace_rows,
 )
+
 
 OUTPUT_STEM = "gate_s9_modeinit_F"
 CACHE_VERSION = "v1_s9_modeinit20"
@@ -363,7 +364,7 @@ def write_outputs(root: Path, result: dict[str, Any], curves: pd.DataFrame, trac
     lines = [
         "# Gate - S9 Mode-Initialized Micro-Pilot, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         "- S9 reuses the exact S8 20-curve selection and sampler settings.",
         "- The only sampler change is per-chain initialization from a Gaussian ball around the stored deterministic LM fit.",

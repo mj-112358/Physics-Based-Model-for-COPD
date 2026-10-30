@@ -1,7 +1,7 @@
 {
   "random_seed": 20260708,
-  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
-  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
   "raw_loaded_rows": 36421,
   "part_a": {
     "verdict": "TRUTH-CONFIRMED",

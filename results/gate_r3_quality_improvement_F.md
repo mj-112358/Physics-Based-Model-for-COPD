@@ -2,7 +2,7 @@
 
 VERDICT: R3-UNRELIABLE - fit_weighted_r2 had the best restricted held-out accuracy (0.747) but stayed below the 0.90 bar; expanded R3 recovery is not retained.
 
-## Protocol Decisions
+## Decisions I Made
 
 - TEST split only; TRAIN rows are ignored.
 - R3 truth accuracy is not quoted as an R3 quality metric; R3 method quality is judged by held-out maneuver proxy only.

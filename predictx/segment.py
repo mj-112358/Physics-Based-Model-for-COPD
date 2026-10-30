@@ -3,8 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+import jax.numpy as jnp
 import numpy as np
 from PIL import Image, ImageDraw
+
+from .ombe import OmbeGrid, ombe_flow, ombe_volume, sample_prior_phi
 
 
 @dataclass(frozen=True)
@@ -30,10 +33,6 @@ def moving_average(x: np.ndarray, width: int = 5) -> np.ndarray:
 
 
 def clean_ats_zeroed_curve(phi: np.ndarray, hz: int = 100) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    import jax.numpy as jnp
-
-    from .ombe import OmbeGrid, ombe_flow, ombe_volume
-
     grid = OmbeGrid(hz=hz)
     t = np.asarray(grid.t)
     flow = np.asarray(ombe_flow(jnp.asarray(phi), jnp.asarray(t)))
@@ -92,8 +91,6 @@ def synthesize_recording(
 
 
 def generate_synthetic_recordings(n: int = 200, seed: int = 0) -> list[SyntheticRecording]:
-    from .ombe import sample_prior_phi
-
     phis = sample_prior_phi(n, seed=seed)
     rng = np.random.default_rng(seed + 1)
     return [synthesize_recording(phi, rng, seq=i) for i, phi in enumerate(phis)]

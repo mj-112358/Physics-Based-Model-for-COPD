@@ -7,6 +7,7 @@ from pathlib import Path
 import jax
 import jax.numpy as jnp
 import numpy as np
+import numpyro
 from numpyro.infer import MCMC, NUTS
 from PIL import Image, ImageDraw
 

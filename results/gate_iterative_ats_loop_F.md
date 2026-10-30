@@ -7,7 +7,7 @@ VERDICT: LOOP-NEUTRAL - Repeats did not materially improve deployable coverage; 
 - Source: ATS/ERS 2019 Standardization of Spirometry, https://doi.org/10.1164/rccm.201908-1590ST.
 - Protocol constants used here: at least 3 acceptable maneuvers, repeatability of the two largest FEV1 within 150 mL and the two largest FVC within 150 mL, maximum 8 attempts.
 
-## Protocol Decisions
+## Decisions I Made
 
 - TEST split only; TRAIN rows are ignored.
 - The single-pass baseline is the current deployable recovery gate: post_recovery_finalized from gate_deferral_recovery_f.apply_recovery.
@@ -25,8 +25,8 @@ VERDICT: LOOP-NEUTRAL - Repeats did not materially improve deployable coverage; 
 
 ## Part 0 - Blow Availability and Censoring
 
-- Raw source: `<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat`.
-- Raw source note: using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat.
+- Raw source: `./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat`.
+- Raw source note: using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat.
 - TEST participants: 563.
 - PRE median maneuvers: 4.0; PRE fraction with >=3 maneuvers: 0.996 (561/563).
 - POST/Bron audit only: 153/563 TEST participants have POST/Bron rows. These are never pooled into the loop.

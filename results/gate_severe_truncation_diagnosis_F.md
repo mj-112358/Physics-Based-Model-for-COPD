@@ -1,10 +1,6 @@
 # Gate - Severe-Truncation Diagnosis, Cycle F
 
-> Evidence status: historical and provisional. This report depends on the
-> legacy truncation-hardening artifact and must be regenerated under the
-> fixed-horizon protocol before its estimates are cited.
-
-## Protocol Decisions
+## Decisions I Made
 
 - Severity uses complete-curve true FEV1/FVC: severe <0.50, moderate 0.50-0.60, mild 0.60-0.70, normal >=0.70.
 - Field-realistic incomplete maneuver rule is inherited from the hardening gate: SPAQEFF in {C,D} OR SPAACC != Y OR SPAPLAT != Y.

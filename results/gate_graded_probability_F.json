@@ -316,7 +316,7 @@
   ],
   "prevalence": {
     "path": "empirical_full_unenriched_cohort",
-    "source": "<PROJECT_ROOT>/results/merged_summary.parquet",
+    "source": "./results/merged_summary.parquet",
     "valid_ratio_n": 20050,
     "obstructed_n": 1932,
     "target_prevalence": 0.09635910224438902,
@@ -798,7 +798,7 @@
       "graded_confident_recovered_fraction": 0.0
     }
   ],
-  "protocol_decisions": [
+  "decisions_i_made": [
     "TEST split is scored once; all model fitting and zone boundary selection use TRAIN only.",
     "The requested true 0.60-0.70 band is one-class-only and cannot support AUC; the reported boundary AUC uses true FEV1/FVC in [0.65, 0.75), matching the prior around-threshold check.",
     "CLEAN candidate features are limited to the task-specified shape/fit-quality/repeatability fields plus the expected ratio-proxy fields needed for audit/quarantine.",

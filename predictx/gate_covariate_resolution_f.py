@@ -22,6 +22,7 @@ from .gate_deferral_recovery_f import (
 from .gate_r3_ats_besttest_f import model_usable_acceptable, raw_maneuvers_with_correction
 from .gate_workflow_policy_f import RANDOM_SEED, clean_json, fmt, md_table
 
+
 OUTPUT_STEM = "gate_covariate_resolution_F"
 FIXED_RATIO_THRESHOLD = 0.70
 BORDERLINE_LOW = 0.65
@@ -478,7 +479,7 @@ def run(root: Path) -> dict[str, Any]:
         ],
         "baseline_metrics": baseline_metrics,
         "final_metrics": retained_final_metrics,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "TEST split only.",
             "Operated only on residual deferred cases from gate_deferral_recovery_f: deferred_baseline == True and recovered == False.",
             "The clinical context rule was declared before evaluation and was not fit to outcomes.",
@@ -505,10 +506,10 @@ def write_outputs(root: Path, result: dict[str, Any], rows: pd.DataFrame) -> Non
         "",
         f"VERDICT: {result['verdict']} - {result['verdict_reason']}",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",

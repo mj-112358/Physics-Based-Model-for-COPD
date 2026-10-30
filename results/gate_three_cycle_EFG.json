@@ -3614,7 +3614,7 @@
     "severe_power": "SEVERE-POWERED-RECOVERED",
     "external_validity": "CLINICALLY-GENERALIZES"
   },
-  "protocol_decisions": [
+  "decisions_i_made": [
     "F Gate 2 and clinical rows are reused from the migration-validated cache; F truncation and severe rows are regenerated through this script.",
     "Clean truncation uses the existing F rule: Pre, SPAACC == Y, SPAQEFF == A, complete plateau FET >= 6.0 s and terminal-second dV <= 0.025 L, max parsed FEV1, tie to lowest SPAMANU.",
     "Clean per-cycle truncation keeps cycles separate for replication and uses the prior 200-per-stratum cap.",

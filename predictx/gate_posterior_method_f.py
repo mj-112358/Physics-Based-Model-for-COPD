@@ -22,11 +22,13 @@ from .gate_clinical_classification_f import (
     load_column_map,
     load_gli,
     load_truth,
+    q,
 )
 from .gate_fvc_correction_f import drop_bias_audit
-from .gate_policy_calibrated_flag_f import build_pool
+from .gate_policy_calibrated_flag_f import build_pool, policy_outcomes, three_outcome_metrics
 from .ombe import OmbeGrid
 from .tsnpe import features_from_phi, prior_bounds_phi, sample_prior_phi
+
 
 POSTERIOR_DRAWS = 400
 TRAINING_SIMS = 6_000

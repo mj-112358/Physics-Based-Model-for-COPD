@@ -1,6 +1,6 @@
 # Gate - Onset / Back-Extrapolation Bias Test, Cycle F
 
-## Protocol Decisions
+## Decisions I Made
 
 - This gate is standalone from the fit-optimization vectorization path.
 - No solver code is changed; no vectorization is used.

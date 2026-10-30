@@ -2,7 +2,7 @@
 
 - Deterministic only: no NUTS, SNPE, gamma onset, registration, or ML residual.
 - Random seed: 20260708
-- Raw source: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat
+- Raw source: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat
 
 ## Verdicts
 

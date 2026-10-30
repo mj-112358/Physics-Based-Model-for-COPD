@@ -12,6 +12,7 @@ from .gate23_f import find_or_unzip_raw, read_raw
 from .gate_truncation_hardening_f import current_clean_detail, realistic_candidates
 from .gate_truncation_recovery_f import clean_json
 
+
 OUTPUT_STEM = "gate_severe_truncation_diagnosis_F"
 SEED = 20260710
 SEVERITY_ORDER = ("severe", "moderate", "mild_0.60_0.70", "normal")
@@ -185,7 +186,7 @@ def make_report(result: dict[str, Any], cohort: pd.DataFrame) -> str:
     lines = [
         "# Gate - Severe-Truncation Diagnosis, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         "- Severity uses complete-curve true FEV1/FVC: severe <0.50, moderate 0.50-0.60, mild 0.60-0.70, normal >=0.70.",
         "- Field-realistic incomplete maneuver rule is inherited from the hardening gate: SPAQEFF in {C,D} OR SPAACC != Y OR SPAPLAT != Y.",

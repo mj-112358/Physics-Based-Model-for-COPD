@@ -16,7 +16,7 @@
       "role": "cross-maneuver repeatability and stopping proxy"
     }
   ],
-  "protocol_decisions": [
+  "decisions_i_made": [
     "Cycle F is the first workflow target because the existing calibrated policy artifacts are strongest there.",
     "The headline evaluation uses held-out TEST rows from the existing policy gate; all rows are reported secondarily.",
     "No NUTS, SNPE, posterior draws, refits, threshold movement, or dashboard code is used.",

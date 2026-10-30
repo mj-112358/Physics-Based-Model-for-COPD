@@ -3680,7 +3680,7 @@
       "looseness_score": 0.699999999999999
     }
   ],
-  "protocol_decisions": [
+  "decisions_i_made": [
     "This tuning pass does not edit the production recovery gate; it writes an audited candidate profile only.",
     "Selection is label-independent: thresholds use fit quality, CIs, distance from 0.70, and maneuver consistency before truth scoring.",
     "Profiles must reach >=70% finalized TEST coverage, preserve severe FN=0, and have zero recovered-case errors against the NHANES summary label to be eligible.",

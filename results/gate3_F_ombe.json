@@ -1,9 +1,9 @@
 {
   "status": "FAIL",
   "reason": "Corrected noise-normalized NRSS still fails the 85% adequacy bar.",
-  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
   "raw_info": {
-    "path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "path": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
     "metadata_rows": 36421,
     "loaded_rows": 36421,
     "columns": [

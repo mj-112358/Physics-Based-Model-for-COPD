@@ -17,6 +17,7 @@ from .gate_clinical_classification_f import load_column_map, load_gli, load_trut
 from .gate_offset_lungsize_f import attach_split_and_gli, base_pool, load_manoeuvres_fast
 from .gate_truncation_recovery_f import clean_json
 
+
 OUTPUT_STEM = "gate_gli_age_mechanism_F"
 SEED = 20260710
 AGE_SIGNAL_ABS_R_THRESHOLD = 0.70
@@ -346,7 +347,7 @@ def make_report(result: dict[str, Any], rows: pd.DataFrame) -> str:
     lines = [
         "# Gate - GLI/Age Mechanism, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         f"- Seed recorded as {SEED}; Part 0 is deterministic on existing Cycle F clinical/offset artifacts and does not resample.",
         "- Primary Part 0 sample is participant-level P3, all valid clinical/offset participants with age, true FEV1/FVC, and true FVC.",

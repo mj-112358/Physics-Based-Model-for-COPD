@@ -1,0 +1,7 @@
+experiment,cycles,participants,age_median,age_q1,age_q3,criteria,severity_normal,severity_mild_0.60_0.70,severity_moderate,severity_severe
+NHANES summary-truth source,E/F/G,20050,33.0,16.0,53.0,Finite released FEV1 and FVC; participant-level summary truth.,18118.0,1503,312,117
+Controlled truncation sample,E/F/G,1492,52.0,31.0,66.0,"Pre-bronchodilator, SPAACC=Y, SPAQEFF=A, FET>=6 s, terminal-second volume<=0.025 L; best complete curve per participant; cap 200 per severity-cycle.",600.0,600,225,67
+Controlled truncation obstructed set,E/F/G,892,60.0,46.0,70.0,Controlled-truncation sample with complete-curve FEV1/FVC<0.70.,,600,225,67
+Natural incomplete pairs,F,286,51.0,28.0,66.0,Clean target plus separate flagged Pre manoeuvre; shortest usable incomplete candidate; one pair per participant.,108.0,110,55,13
+Cycle F policy-development test,F,563,49.0,26.0,63.0,Participant-separated TEST partition after frozen TRAIN-only estimation.,250.0,250,47,16
+Frozen cross-cycle workflow,E/G,12434,33.0,16.0,53.0,Finite released truth plus at least one usable A/B pre-bronchodilator candidate; Cycle F configuration frozen before scoring.,11265.0,933,174,62

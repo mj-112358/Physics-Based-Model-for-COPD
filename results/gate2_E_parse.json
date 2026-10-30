@@ -3,9 +3,9 @@
   "status": "PASS",
   "reason": "Gate 2 parser recovery criterion passed under max/best-test comparison.",
   "parser_callable": "predictx.gate23_f.derive_curve",
-  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+  "raw_source_note": "using legacy SAS7BDAT because NHANES_SpiroSBI is absent: ./data/spxraw_e.sas7bdat",
   "raw_info": {
-    "path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+    "path": "./data/spxraw_e.sas7bdat",
     "metadata_rows": 34857,
     "loaded_rows": 34857,
     "columns": [

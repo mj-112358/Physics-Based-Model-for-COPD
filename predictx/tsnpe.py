@@ -19,10 +19,11 @@ from scipy.stats import chisquare
 from .gate5_sbc import PRIOR_RANGES, SIGMA_LPS, ombe_numpyro_model
 from .ombe import NATURAL_PARAM_NAMES, OmbeGrid, flow_integral_l, midrange_phi, sample_prior_phi, unpack_phi
 
+
 BOUNDARY_STATEMENT = (
     "This validates that TSNPE approximates NUTS on curves drawn from the OMBE\n"
     "generative model. It does NOT establish that either engine fits real NHANES\n"
-    "curves - that is Gate 3, which requires the raw-curve file and is outstanding.\n"
+    "curves — that is Gate 3, which requires the raw-curve file and is outstanding.\n"
     "Modules 2 and 3 confirm the inference machinery is internally correct, not that\n"
     "OMBE describes real physiology."
 )

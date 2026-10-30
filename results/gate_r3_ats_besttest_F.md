@@ -8,12 +8,12 @@ VERDICT: ATS-RULE-RECOVERS - ATS best-test plus the conservative normal-call gua
 - The report uses the ATS/ERS rule that reported FEV1 is the largest acceptable FEV1 and reported FVC is the largest acceptable FVC; repeatability is carried as a session quality grade rather than used as a hard stop for reporting.
 - The same statement defines repeatability grading from the two largest FEV1 and FVC values, with A/B/C/D/E/F quality levels.
 
-## Protocol Decisions
+## Decisions I Made
 
 - TEST split only; training rows are ignored.
 - The current deferral-recovery gate is the baseline: 66.6% coverage before this ATS best-test pass.
-- NHANES/repro maneuver rows do not expose separate BEV, cough, glottis, leak, or plateau subflags. SPAACC == 'Y' was used as the individual acceptability flag, and this limitation is reported explicitly.
-- A maneuver also must have a successful finite model fit to be usable by the PredictX model best-test computation; this is a computational availability requirement, not a repeatability threshold.
+- NHANES/repro maneuver rows do not expose separate BEV, cough, glottis, leak, or plateau subflags. I used SPAACC == 'Y' as the individual acceptability flag and reported this limitation explicitly.
+- A maneuver also must have a successful finite model fit to be usable by the PredictX Spirometry Extension model best-test computation; this is a computational availability requirement, not a repeatability threshold.
 - Best-test FEV1 is max model FEV1 across acceptable usable maneuvers, and best-test FVC is max model FVC across acceptable usable maneuvers; the FEV1 and FVC may come from different maneuvers.
 - The existing C1 ratio correction is applied after forming max(FEV1)/max(FVC), keeping the recovered ratio on the same calibrated scale as the workflow.
 - Repeatability is converted to an ATS-style session grade and is not used as a hard exclusion.

@@ -301,7 +301,7 @@
   "thinning_monotone_coverage50": false,
   "posterior_classification_unblocked": false,
   "random_seed": 20260708,
-  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
   "subset_n": 150,
   "subset_counts": {
     "mild_0.60_0.70": 67,

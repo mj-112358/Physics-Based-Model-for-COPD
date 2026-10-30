@@ -18,21 +18,25 @@ import pandas as pd
 from scipy.signal import resample_poly
 
 from .dataset_resolver import CYCLE_TO_YEAR
-from .gate23_f import find_or_unzip_raw, read_ground_truth, read_raw
+from .gate23_f import derive_all, find_or_unzip_raw, read_ground_truth, read_raw
 from .gate_clinical_classification_f import extract_curve_for_fit
 from .gate_fit_optimization_f import forward_model_guard
 from .gate_three_cycle_efg import (
     BOOTSTRAP_B,
+    boolish,
     bootstrap_binary,
     clean_json,
     finite,
+    fmt,
     incomplete_flagged_pool,
     load_covariates,
     md_table,
     participant_candidates,
+    rate_string,
     sample_by_stratum,
 )
 from .gate_truncation_recovery_f import fit_ombe_truncated, insert_time_point
+
 
 SEED = 20260710
 SOURCE_HZ = 100
@@ -308,6 +312,7 @@ def build_curve_copies(root: Path) -> tuple[list[CurveRecord], list[SevereRecord
         raw, _raw_info = read_raw(raw_path, cycle)
         truth = read_ground_truth(root, cycle)
         raw_by_cycle[cycle] = raw
+        derived = derive_all(raw)
         selected_a, selected_complete = participant_candidates(raw, truth, cycle)
         selected_complete_by_cycle[cycle] = selected_complete
         sample, sample_rows = sample_by_stratum(selected_a, selected_complete, cycle)
@@ -504,7 +509,7 @@ def evaluate_severe(records: list[SevereRecord], profile: dict[str, Any]) -> lis
     rows: list[dict[str, Any]] = []
     for rec in records:
         t, y = degrade_curve(f"{rec.global_key}:field", rec.t, rec.y, profile)
-        stop_s = float(t[-1])
+        stop_s = min(float(t[-1]), rec.target_fet_s)
         t_fit, y_fit = insert_time_point(t, y, stop_s)
         observed_fev1_l = float(np.interp(min(1.0, float(t_fit[-1])), t_fit, y_fit))
         direct_fvc_l = float(y_fit[-1])
@@ -923,11 +928,11 @@ def write_report(root: Path, result: dict[str, Any], sweep_rows: list[dict[str, 
             f"- Most sensitive: {result['sensitivity']['most_sensitive']['operator']} at {result['sensitivity']['most_sensitive']['worst_level']}.",
             f"- Least sensitive: {result['sensitivity']['least_sensitive']['operator']} at {result['sensitivity']['least_sensitive']['worst_level']}.",
             "",
-            "## Protocol Decisions",
+            "## DECISIONS-I-MADE",
             "",
         ]
     )
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.append("")
     (out / RESULT_MD).write_text("\n".join(lines), encoding="utf-8")
 
@@ -1019,7 +1024,7 @@ def run(root: Path) -> dict[str, Any]:
         "covariate_notes": cov_notes,
         "covariate_variables": cov_variables,
         "verdict": verdict,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "Gate 2 degradation is measured against the clean parsed curve copy, not NHANES summary truth, because the task defines clean parsed curves as the ground truth for degradation.",
             "Only obstructed clean-copy curves are re-fit for the truncation FN sweep because the requested headline is obstructed FN and DIRECT-minus-OMBE FN advantage; Gate 2 measurement error is still computed on all clean curves.",
             "The existing SciPy bounded-TRF OMBE loop fit is called unchanged via fit_ombe_truncated; no NUTS and no vectorized solver path is used.",

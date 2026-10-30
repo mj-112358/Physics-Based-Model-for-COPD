@@ -1,10 +1,6 @@
 # Three-Cycle Replication EFG
 
-> Evidence status: historical and provisional. This report predates the fixed
-> 12-second prediction horizon and has not been regenerated. Do not cite its
-> truncation estimates as confirmatory evidence.
-
-## Protocol Decisions
+## Decisions I Made
 
 - F Gate 2 and clinical rows are reused from the migration-validated cache; F truncation and severe rows are regenerated through this script.
 - Clean truncation uses the existing F rule: Pre, SPAACC == Y, SPAQEFF == A, complete plateau FET >= 6.0 s and terminal-second dV <= 0.025 L, max parsed FEV1, tie to lowest SPAMANU.

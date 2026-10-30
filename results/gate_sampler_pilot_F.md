@@ -1,6 +1,6 @@
 # Gate - Sampler Convergence Pilot, Cycle F
 
-## Protocol Decisions
+## Decisions I Made
 
 - S1-S4 were carried forward as standing facts and were not rerun.
 - S7 was run first, then S6. Both run all 30 pilot curves; there is no population-fraction early stopping.

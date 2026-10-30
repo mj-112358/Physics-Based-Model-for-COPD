@@ -1,6 +1,6 @@
 # Gate - S9 Mode-Initialized Micro-Pilot, Cycle F
 
-## Protocol Decisions
+## Decisions I Made
 
 - S9 reuses the exact S8 20-curve selection and sampler settings.
 - The only sampler change is per-chain initialization from a Gaussian ball around the stored deterministic LM fit.

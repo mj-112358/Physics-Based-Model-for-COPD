@@ -10,8 +10,8 @@ import numpy as np
 import pandas as pd
 from scipy.stats import linregress, pearsonr
 
-from .gate3_diagnosis import np_ombe_volume
 from .gate23_f import find_or_unzip_raw, read_raw
+from .gate3_diagnosis import np_ombe_volume
 from .gate_clinical_classification_f import (
     confusion_binary,
     extract_curve_for_fit,
@@ -20,10 +20,11 @@ from .gate_clinical_classification_f import (
     load_truth,
     severity_category,
 )
-from .gate_estimand_hybrid_f import finite_pair, fit_multiplicative
+from .gate_estimand_hybrid_f import finite_pair, fit_multiplicative, pct_error
 from .gate_model_vs_observed_f import fixed_metrics, signed_summary
 from .gate_policy_calibrated_flag_f import stratified_half_split
-from .gate_truncation_recovery_f import fit_ombe_truncated, model_grid_with_stop
+from .gate_truncation_recovery_f import TRUNCATION_TIMES, fit_ombe_truncated, model_grid_with_stop
+
 
 OUTPUT_STEM = "gate_offset_lungsize_F"
 RANDOM_SEED = 20260708

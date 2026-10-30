@@ -14,12 +14,13 @@ import numpy as np
 import pandas as pd
 from scipy.optimize import least_squares
 
-from .gate3_diagnosis import clinical_metrics_from_volume, np_ombe_volume, savgol_sigma
 from .gate23_f import find_or_unzip_raw, read_raw
+from .gate3_diagnosis import clinical_metrics_from_volume, np_ombe_volume, savgol_sigma
 from .gate_clinical_classification_f import extract_curve_for_fit
 from .gate_likelihood_repair_f import NUTS_GRID_STRIDE
 from .ombe import OmbeGrid, ombe_volume, phi_from_natural
 from .tsnpe import features_from_phi
+
 
 PARAM_NAMES = ("tau_f", "tau_s", "alpha", "fvc_l", "tau_o")
 BOUNDS_LO = np.array([0.15, 1.00, 0.25, 2.00, 0.03], dtype=float)

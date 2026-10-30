@@ -41,7 +41,7 @@ Recovered cases are the easy tail: their median true-ratio margin is much larger
 
 ## Part 3 - Stress The Criteria
 
-Current code uses R1 volume R2 >= 0.98. The requested stress analysis names 0.90 -> 0.85, so both R1 >=0.90 and R1 >=0.85 variants are reported.
+Current code uses R1 volume R2 >= 0.98. Because the prompt named 0.90 -> 0.85, I report both R1 >=0.90 and R1 >=0.85 stress variants.
 
 | variant | finalized | NHANES accuracy | wrong | severe finalized | severe FN | R1 | R2 | R3 |
 |---|---|---|---|---|---|---|---|---|
@@ -56,7 +56,7 @@ Accuracy remains 1.000 under all requested loosened criteria. That does not prov
 
 ## De-Circularized Same-Session Proxy
 
-Because this dataset does not contain an external independent clinical adjudication label, a fully corrected independent clinical-label accuracy is not identifiable from these files. As the closest available check, recovered decisions were scored against held-out raw maneuvers from the same session: for R2/R3, the candidate was regenerated after leaving one maneuver out; for R1, the selected-maneuver decision was scored against other available maneuvers.
+Because this dataset does not contain an external independent clinical adjudication label, a fully corrected independent clinical-label accuracy is not identifiable from these files. As the closest available check, I scored recovered decisions against held-out raw maneuvers from the same session: for R2/R3, the candidate was regenerated after leaving one maneuver out; for R1, the selected-maneuver decision was scored against other available maneuvers.
 
 | bucket | heldout blows | blow correct | blow accuracy | participants | all-correct participants | all-correct fraction |
 |---|---|---|---|---|---|---|
@@ -71,7 +71,7 @@ Because this dataset does not contain an external independent clinical adjudicat
 
 ## Strict Rescue Profile
 
-A stricter deployable subset was evaluated using only recovery confidence signals. This does not rescue the full 120-case claim, but it does find a smaller profile whose held-out-maneuver proxy is perfect.
+I searched for a stricter deployable subset using only recovery confidence signals. This does not rescue the full 120-case claim, but it does find a smaller profile whose held-out-maneuver proxy is perfect.
 
 | profile | selected | dropped from 120 | coverage if used | NHANES accuracy | heldout blow accuracy | participant all-correct | without proxy | verdict if used |
 |---|---|---|---|---|---|---|---|---|

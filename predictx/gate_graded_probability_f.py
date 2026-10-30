@@ -13,7 +13,7 @@ from sklearn.calibration import CalibratedClassifierCV
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.inspection import permutation_importance
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import cohen_kappa_score, roc_auc_score
+from sklearn.metrics import brier_score_loss, cohen_kappa_score, roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -35,6 +35,7 @@ from .gate_workflow_policy_f import (
     load_inputs,
     md_table,
 )
+
 
 OUTPUT_STEM = "gate_graded_probability_F"
 FIXED_RATIO_THRESHOLD = 0.70
@@ -618,6 +619,8 @@ def add_demographics(root: Path, df: pd.DataFrame) -> tuple[pd.DataFrame, list[d
     race = pd.get_dummies(cov2.get("RIDRETH1"), prefix="race", dummy_na=True).astype(float)
     cov2 = pd.concat([cov2, race], axis=1)
     out = df.merge(cov2.drop(columns=["smoking_status"], errors="ignore"), on="SEQN", how="left")
+    race_cols = list(race.columns)
+    demo_features = DEMOGRAPHIC_BASE_FEATURES + race_cols
     deferred_test = out[out["split"].eq("test") & out.get("post_recovery_finalized", False).eq(False)] if "post_recovery_finalized" in out else out[out["split"].eq("test")]
     availability = []
     for feature in ["RIDAGEYR", "BMXHT", "RIAGENDR", "RIDRETH1", "ever_smoker"]:
@@ -749,10 +752,10 @@ def write_outputs(
         "",
         f"VERDICT: {result['verdict']} - {result['verdict_reason']}",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",
@@ -1200,7 +1203,7 @@ def run(root: Path) -> dict[str, Any]:
         "demographics_only_deferred_auc": demo_deferred_auc,
         "demographic_lift_verdict": demo_verdict,
         "knife_edge_decomposition": knife_edge_decomposition(test_zones),
-        "protocol_decisions": [
+        "decisions_i_made": [
             "TEST split is scored once; all model fitting and zone boundary selection use TRAIN only.",
             "The requested true 0.60-0.70 band is one-class-only and cannot support AUC; the reported boundary AUC uses true FEV1/FVC in [0.65, 0.75), matching the prior around-threshold check.",
             "CLEAN candidate features are limited to the task-specified shape/fit-quality/repeatability fields plus the expected ratio-proxy fields needed for audit/quarantine.",

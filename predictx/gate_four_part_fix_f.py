@@ -11,8 +11,8 @@ import pandas as pd
 from scipy.optimize import least_squares
 
 from .dataset_resolver import resolve_dataset_path
-from .gate3_diagnosis import clinical_metrics_from_volume, np_ombe_volume, savgol_sigma
 from .gate23_f import HZ, backextrap_t0, detect_forced_exhale_segment, find_or_unzip_raw, parse_increments, read_raw
+from .gate3_diagnosis import clinical_metrics_from_volume, np_ombe_volume, savgol_sigma
 from .gate_clinical_classification_f import (
     RANDOM_SEED,
     confusion_binary,
@@ -24,10 +24,14 @@ from .gate_clinical_classification_f import (
     severity_category,
 )
 from .gate_policy_calibrated_flag_f import (
+    ats_flag,
+    fit_corrections,
+    policy_outcomes,
     stratified_half_split,
     three_outcome_metrics,
 )
-from .gate_reconciliation_audit_f import clean_json, md_table, median_iqr
+from .gate_reconciliation_audit_f import clean_json, fmt, md_table, median_iqr
+
 
 PART_A_STEM = "gate_c1_artifact_F"
 PART_B_STEM = "gate_pooling_disagreement_F"
@@ -626,6 +630,7 @@ def run_part_c(root: Path, raw: pd.DataFrame, truth: pd.DataFrame) -> dict[str, 
     modsev = tier2[tier2["fev1_fvc_ratio"] < 0.60].copy()
     retained = set(clinical[clinical["sample_group"] == "obstructed"]["SEQN"].astype(float))
     dropped = modsev[~modsev["SEQN"].astype(float).isin(retained)].copy()
+    raw_idx = raw_by_index(raw)
     rng = np.random.default_rng(RANDOM_SEED + 303)
     rows_out: list[dict[str, Any]] = []
     recovered = []

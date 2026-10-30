@@ -20,7 +20,6 @@ import pandas as pd
 from numpyro.infer import MCMC, NUTS
 from scipy.stats import chisquare
 
-from .gate23_f import find_or_unzip_raw, read_raw
 from .gate_clinical_classification_f import RANDOM_SEED, extract_curve_for_fit
 from .gate_posterior_calibration_repair_f import (
     PIT_BINS,
@@ -32,7 +31,9 @@ from .gate_posterior_calibration_repair_f import (
     split_rhat,
     to_jsonable,
 )
+from .gate23_f import find_or_unzip_raw, read_raw
 from .ombe import OmbeGrid, ombe_volume, phi_from_natural
+
 
 COVERAGE_LEVELS = (0.50, 0.80, 0.95)
 FIXED_SIGMA_L = 0.050

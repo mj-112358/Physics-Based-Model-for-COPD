@@ -1,7 +1,17 @@
-# Real-curve evidence status
+# Real-Curve Gate Status
 
-Historical real-curve analyses were completed on public NHANES raw files for cycles E, F, and G. The raw files are not committed to this repository and must be restored from the official source for reproduction.
+Status: BLOCKED pending real NHANES SPXRAW raw-curve files.
 
-The decisive complete-curve adequacy result is negative: 0 of 31,851 cycle-F curves passed the corrected noise-normalized criterion. Later classification and workflow reports must be read as pragmatic measurement or triage experiments, not as evidence that the mechanistic curve shape is physiologically adequate.
+Do not run Gate 2 or Gate 3 yet. The current raw-curve files are stubs or corrupt-sized placeholders, not usable real curves:
 
-The primary Cycle F truncation report has been regenerated with a fixed 12-second horizon and explicit exclusion of post-cutoff information. It shows a relative recovery advantage at 2 to 3 seconds, but sensitivity remains approximately 40 percent and the experiment is not an external clinical validation. Older three-cycle and dependent robustness reports remain provisional because they used the legacy complete-curve duration.
+| file | observed size | status |
+|---|---:|---|
+| `data/SPXRAW_E.rds` | 44 B | stub |
+| `data/SPXRAW_F.rds` | 44 B | stub |
+| `data/SPXRAW_G.rds` | 44 B | stub |
+| `data/SPXRAW_G.xpt` | 20 KB | corrupt/error-page-sized stub |
+| `data/SPXRAW_G.csv` | 3 B | stub |
+
+Next action when real curves land: run the staged prompt in `results/gate2_3_staged_verdict_prompt.md`.
+
+Do not optimize the TSNPE CNN encoder before Gate 3. The remaining project verdict is whether OMBE fits real NHANES curves, especially obstructed curves.

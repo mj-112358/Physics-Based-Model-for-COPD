@@ -2,7 +2,7 @@
 
 No fix applied. This diagnoses whether the Gate 2 low bias is multiplicative/BTPS-related or definitional.
 
-- raw source: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat
+- raw source: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat
 - raw rows: 36421
 - parse errors: 45
 

@@ -1,0 +1,4 @@
+panel,cycle,SEQN,raw_index,severity,stop_s,reference_fvc_l,recovered_fvc_l,reference_ratio,recovered_ratio,stratum_median_abs_fvc_pct_error,selection_rule
+A,F,55091,12034,severe,2.0,3.2515242222222227,2.579104592177488,0.48267544130926904,0.608517736600922,20.680135966512008,closest to stratum median absolute FVC percent error among correctly classified non-bound-active fits
+B,F,52509,3188,moderate,3.0,3.719469285714286,3.230972710403785,0.5849747765474222,0.6734181651487235,13.133502062184851,closest to stratum median absolute FVC percent error among correctly classified non-bound-active fits
+C,F,57811,21394,mild_0.60_0.70,4.0,3.266656902439024,3.100560219064429,0.6470706051065125,0.6817341090618765,5.0846075462732685,closest to stratum median absolute FVC percent error among correctly classified non-bound-active fits

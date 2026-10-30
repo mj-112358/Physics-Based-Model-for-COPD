@@ -23,8 +23,8 @@ import torch
 from numpyro.infer import MCMC, NUTS
 from scipy.stats import chisquare
 
-from .gate5_sbc import PRIOR_RANGES
 from .gate23_f import find_or_unzip_raw, read_raw
+from .gate5_sbc import PRIOR_RANGES
 from .gate_clinical_classification_f import (
     RANDOM_SEED,
     extract_curve_for_fit,
@@ -35,6 +35,7 @@ from .gate_clinical_classification_f import (
 from .gate_policy_calibrated_flag_f import build_pool
 from .ombe import OmbeGrid, ombe_volume, phi_from_natural
 from .tsnpe import features_from_phi
+
 
 PARAM_NAMES = ("tau_f", "tau_s", "alpha", "fvc_l", "tau_o")
 PHI_NAMES = ("log_tau_f", "log_tau_s", "logit_alpha", "log_fvc", "log_tau_o")
@@ -684,6 +685,8 @@ def run(root: Path) -> dict:
         "current_prior",
         MAX_TRAIN_EPOCHS_BASELINE,
     )
+    current_train = baseline["sample_rows"][baseline["sample_rows"]["split"] == "train"].copy()
+
     wide = run_snpe_step(
         root,
         raw,

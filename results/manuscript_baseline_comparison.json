@@ -1,0 +1,423 @@
+{
+  "seed": 20261029,
+  "bootstrap_replicates": 2000,
+  "cycle": "F",
+  "split": {
+    "train_n": 562,
+    "test_n": 563
+  },
+  "truth_definition": "released summary FEV1/FVC < 0.70",
+  "final_policy_status": "internal policy-development evaluation; Cycle F informed policy comparison",
+  "quality_control_first_definition": "defer ATS-truncated manoeuvres; classify remaining manoeuvres from the directly measured ratio",
+  "fev1_fev6_definition": "released summary FEV1/FEV6 < 0.73",
+  "ridge_definition": {
+    "target": "released summary FVC in litres",
+    "features": [
+      "parsed_fev1_l",
+      "parsed_fvc_l",
+      "duration_s",
+      "age_years",
+      "height_cm",
+      "sex"
+    ],
+    "training_partition": "Cycle F TRAIN only",
+    "alpha_selection": "five participant-deterministic folds minimizing FVC mean absolute error",
+    "selected_alpha": 0.0001,
+    "alpha_search": [
+      {
+        "alpha": 0.0001,
+        "cv_mae_l": 0.08391063909310859
+      },
+      {
+        "alpha": 0.00015848931924611142,
+        "cv_mae_l": 0.08391064424068524
+      },
+      {
+        "alpha": 0.00025118864315095795,
+        "cv_mae_l": 0.08391065239916735
+      },
+      {
+        "alpha": 0.00039810717055349735,
+        "cv_mae_l": 0.08391066532979892
+      },
+      {
+        "alpha": 0.000630957344480193,
+        "cv_mae_l": 0.08391068582424478
+      },
+      {
+        "alpha": 0.001,
+        "cv_mae_l": 0.08391071830770117
+      },
+      {
+        "alpha": 0.001584893192461114,
+        "cv_mae_l": 0.08391076979540467
+      },
+      {
+        "alpha": 0.002511886431509582,
+        "cv_mae_l": 0.08391085141020875
+      },
+      {
+        "alpha": 0.003981071705534973,
+        "cv_mae_l": 0.08391098079183007
+      },
+      {
+        "alpha": 0.00630957344480193,
+        "cv_mae_l": 0.0839111859254118
+      },
+      {
+        "alpha": 0.01,
+        "cv_mae_l": 0.08391151123489402
+      },
+      {
+        "alpha": 0.01584893192461114,
+        "cv_mae_l": 0.08391202730432089
+      },
+      {
+        "alpha": 0.025118864315095822,
+        "cv_mae_l": 0.08391284644533209
+      },
+      {
+        "alpha": 0.039810717055349734,
+        "cv_mae_l": 0.0839141477708725
+      },
+      {
+        "alpha": 0.06309573444801936,
+        "cv_mae_l": 0.08391621793479913
+      },
+      {
+        "alpha": 0.1,
+        "cv_mae_l": 0.08391951818692171
+      },
+      {
+        "alpha": 0.15848931924611143,
+        "cv_mae_l": 0.0839255138998777
+      },
+      {
+        "alpha": 0.25118864315095824,
+        "cv_mae_l": 0.08394039958699843
+      },
+      {
+        "alpha": 0.3981071705534973,
+        "cv_mae_l": 0.08396727311938684
+      },
+      {
+        "alpha": 0.6309573444801936,
+        "cv_mae_l": 0.0840448688231742
+      },
+      {
+        "alpha": 1.0,
+        "cv_mae_l": 0.08421936424068756
+      },
+      {
+        "alpha": 1.584893192461114,
+        "cv_mae_l": 0.08468403570077895
+      },
+      {
+        "alpha": 2.5118864315095824,
+        "cv_mae_l": 0.08559990315217332
+      },
+      {
+        "alpha": 3.9810717055349776,
+        "cv_mae_l": 0.08735765076816464
+      },
+      {
+        "alpha": 6.309573444801943,
+        "cv_mae_l": 0.09096043021218314
+      },
+      {
+        "alpha": 10.0,
+        "cv_mae_l": 0.09689146142880226
+      },
+      {
+        "alpha": 15.848931924611142,
+        "cv_mae_l": 0.10639414479899073
+      },
+      {
+        "alpha": 25.11886431509582,
+        "cv_mae_l": 0.11899347729663332
+      },
+      {
+        "alpha": 39.81071705534978,
+        "cv_mae_l": 0.1338383647015328
+      },
+      {
+        "alpha": 63.09573444801943,
+        "cv_mae_l": 0.15142100960012717
+      },
+      {
+        "alpha": 100.0,
+        "cv_mae_l": 0.17361285427883144
+      },
+      {
+        "alpha": 158.48931924611142,
+        "cv_mae_l": 0.20399502626247046
+      },
+      {
+        "alpha": 251.18864315095823,
+        "cv_mae_l": 0.24585023918583593
+      },
+      {
+        "alpha": 398.1071705534977,
+        "cv_mae_l": 0.30518349042778886
+      },
+      {
+        "alpha": 630.9573444801943,
+        "cv_mae_l": 0.38282328417541156
+      },
+      {
+        "alpha": 1000.0,
+        "cv_mae_l": 0.4764124513953179
+      },
+      {
+        "alpha": 1584.893192461114,
+        "cv_mae_l": 0.5772515782928058
+      },
+      {
+        "alpha": 2511.886431509582,
+        "cv_mae_l": 0.6742240734445175
+      },
+      {
+        "alpha": 3981.0717055349774,
+        "cv_mae_l": 0.7590996290482721
+      },
+      {
+        "alpha": 6309.573444801943,
+        "cv_mae_l": 0.8273851069867411
+      },
+      {
+        "alpha": 10000.0,
+        "cv_mae_l": 0.8782436652714396
+      }
+    ]
+  },
+  "matched_coverage_n": 464,
+  "metrics": {
+    "quality_control_first": {
+      "n": 479,
+      "coverage": 0.8507992895204263,
+      "tp": 219,
+      "tn": 208,
+      "fp": 1,
+      "fn": 51,
+      "sensitivity": 0.8111111111111111,
+      "specificity": 0.9952153110047847,
+      "kappa": 0.7851091363989302,
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8206039076376554,
+          0.8792184724689165
+        ],
+        "sensitivity": [
+          0.764467918962301,
+          0.8566311376795247
+        ],
+        "specificity": [
+          0.9846134020618558,
+          1.0
+        ],
+        "kappa": [
+          0.7305120191236828,
+          0.8377141285493095
+        ]
+      },
+      "name": "quality_control_first"
+    },
+    "direct_ratio_matched_coverage": {
+      "n": 464,
+      "coverage": 0.8241563055062167,
+      "tp": 201,
+      "tn": 242,
+      "fp": 0,
+      "fn": 21,
+      "sensitivity": 0.9054054054054054,
+      "specificity": 1.0,
+      "kappa": 0.9089584034084539,
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.7921847246891652,
+          0.8543516873889876
+        ],
+        "sensitivity": [
+          0.8657358776844071,
+          0.941183644189383
+        ],
+        "specificity": [
+          1.0,
+          1.0
+        ],
+        "kappa": [
+          0.8692479807025082,
+          0.9440094492540373
+        ]
+      },
+      "name": "direct_ratio_matched_coverage"
+    },
+    "fev1_fev6": {
+      "n": 563,
+      "coverage": 1.0,
+      "tp": 229,
+      "tn": 247,
+      "fp": 3,
+      "fn": 84,
+      "sensitivity": 0.731629392971246,
+      "specificity": 0.988,
+      "kappa": 0.6969053792318212,
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.6794871794871795,
+          0.7800063694267516
+        ],
+        "specificity": [
+          0.9721059536952591,
+          1.0
+        ],
+        "kappa": [
+          0.6402831875375107,
+          0.7534941446221388
+        ]
+      },
+      "name": "fev1_fev6"
+    },
+    "ridge_all": {
+      "n": 563,
+      "coverage": 1.0,
+      "tp": 302,
+      "tn": 234,
+      "fp": 16,
+      "fn": 11,
+      "sensitivity": 0.9648562300319489,
+      "specificity": 0.936,
+      "kappa": 0.902673112014598,
+      "fvc_mae_ml": 85.1348322149811,
+      "fvc_median_signed_error_ml": 12.2646513451582,
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.9431118775108013,
+          0.9837701486616277
+        ],
+        "specificity": [
+          0.9032226806701675,
+          0.9637096774193549
+        ],
+        "kappa": [
+          0.8633956028254458,
+          0.9358414085042396
+        ]
+      },
+      "name": "ridge_all"
+    },
+    "ridge_matched_coverage": {
+      "n": 464,
+      "coverage": 0.8241563055062167,
+      "tp": 255,
+      "tn": 205,
+      "fp": 2,
+      "fn": 2,
+      "sensitivity": 0.9922178988326849,
+      "specificity": 0.9903381642512077,
+      "kappa": 0.9825560630838927,
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.7921847246891652,
+          0.8543516873889876
+        ],
+        "sensitivity": [
+          0.9798387096774194,
+          1.0
+        ],
+        "specificity": [
+          0.9753664097936887,
+          1.0
+        ],
+        "kappa": [
+          0.9645168797230643,
+          0.9957344989947498
+        ]
+      },
+      "name": "ridge_matched_coverage"
+    },
+    "ridge_fixed_specificity": {
+      "n": 563,
+      "coverage": 1.0,
+      "tp": 266,
+      "tn": 246,
+      "fp": 4,
+      "fn": 47,
+      "sensitivity": 0.8498402555910544,
+      "specificity": 0.984,
+      "kappa": 0.819652155342977,
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8095238095238095,
+          0.8892690073124311
+        ],
+        "specificity": [
+          0.9669090950695631,
+          0.9961832061068703
+        ],
+        "kappa": [
+          0.7741927885483079,
+          0.8645308010228269
+        ]
+      },
+      "name": "ridge_fixed_specificity"
+    },
+    "final_selective_policy": {
+      "n": 464,
+      "coverage": 0.8241563055062167,
+      "tp": 233,
+      "tn": 217,
+      "fp": 5,
+      "fn": 9,
+      "sensitivity": 0.9628099173553719,
+      "specificity": 0.9774774774774775,
+      "kappa": 0.9395878282865858,
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.7904085257548845,
+          0.8525754884547069
+        ],
+        "sensitivity": [
+          0.9372487262621584,
+          0.9841912794497526
+        ],
+        "specificity": [
+          0.9563318777292577,
+          0.9953488372093023
+        ],
+        "kappa": [
+          0.9067667528332805,
+          0.9695952404607658
+        ]
+      },
+      "name": "final_selective_policy"
+    }
+  },
+  "fixed_specificity_threshold": {
+    "threshold": 0.6725193184076773,
+    "training_metrics": {
+      "n": 562,
+      "coverage": 1.0,
+      "tp": 273,
+      "tn": 245,
+      "fp": 5,
+      "fn": 39,
+      "sensitivity": 0.875,
+      "specificity": 0.98,
+      "kappa": 0.8436005768209073
+    }
+  },
+  "scope_note": "All comparator metrics use the same Cycle F internal split. No Cycle E or G workflow feature table is present in this checkout, so these results are not independent external validation."
+}

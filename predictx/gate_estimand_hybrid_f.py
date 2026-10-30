@@ -12,19 +12,14 @@ import pyreadstat
 from scipy.stats import linregress, pearsonr
 
 from .dataset_resolver import resolve_dataset_path
-from .gate3_diagnosis import np_ombe_volume
 from .gate23_f import find_or_unzip_raw, read_raw
-from .gate_clinical_classification_f import (
-    confusion_binary,
-    extract_curve_for_fit,
-    load_column_map,
-    load_gli,
-    load_truth,
-)
-from .gate_model_vs_observed_f import build_manoeuvres, fixed_metrics, signed_summary
+from .gate3_diagnosis import np_ombe_volume
+from .gate_clinical_classification_f import confusion_binary, extract_curve_for_fit, load_column_map, load_gli, load_truth
+from .gate_model_vs_observed_f import CONVENTIONS, build_manoeuvres, fixed_metrics, signed_summary
 from .gate_policy_calibrated_flag_f import stratified_half_split
 from .gate_reconciliation_audit_f import clean_json, md_table
-from .gate_truncation_recovery_f import fit_ombe_truncated, model_grid_with_stop
+from .gate_truncation_recovery_f import TRUNCATION_TIMES, fit_ombe_truncated, model_grid_with_stop
+
 
 RANDOM_SEED = 20260708
 CURRENT_CONVENTION = "segmented_btps"
@@ -475,12 +470,14 @@ def run(root: Path, cycle: str = "F") -> dict[str, Any]:
     participants_base, maneuvers_current = pool_estimators(maneuvers_base, CURRENT_CONVENTION, mult=None)
     split_base = split_participants(participants_base, gli)
     train_base = split_base[split_base["split"].eq("train")].copy()
+    test_base = split_base[split_base["split"].eq("test")].copy()
 
     log_reg_model_on_obs = regression_row(np.log(train_base["P3_model_fvc_l"]), np.log(train_base["P3_observed_fvc_l"]), "log_observed_fvc", "part2_log_regression")
     mult = fit_multiplicative(train_base)
     participants_mult, maneuvers_mult = pool_estimators(maneuvers_base, CURRENT_CONVENTION, mult=mult)
     split = split_base[["SEQN", "split"]].merge(participants_mult, on="SEQN", how="left")
     split = split.merge(gli, on="SEQN", how="left")
+    train = split[split["split"].eq("train")].copy()
     test = split[split["split"].eq("test")].copy()
 
     rows: list[dict[str, Any]] = []
@@ -655,7 +652,7 @@ def write_outputs(root: Path, result: dict[str, Any], rows: pd.DataFrame) -> Non
             "",
             f"Held-out P3 kappa gap: model {h['heldout_model_p3_kappa']:.3f}, observed {h['heldout_observed_p3_kappa']:.3f}, H1 {h['heldout_h1_p3_kappa']:.3f}. The observed advantage survives the non-circular held-out-blow evaluation.",
             "",
-            "Metadata/holdout note: SPXB is labelled as second test, not best-of, so the SPXB comparison is not evidence that observed_P3 reconstructs a best-field algorithm.",
+            f"Metadata/holdout note: SPXB is labelled as second test, not best-of, so the SPXB comparison is not evidence that observed_P3 reconstructs a best-field algorithm.",
             "",
             "## Part 2 - Multiplicative FVC Correction",
             "",

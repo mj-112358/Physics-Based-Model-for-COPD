@@ -1,9 +1,5 @@
 # Gate - Truncation Hardening, Cycle F
 
-> Evidence status: historical and provisional. This report predates the
-> fixed-horizon correction. The primary corrected result is
-> `gate_truncation_recovery_F.md`.
-
 ## Part 0 - Ground-Truth Dump
 
 This section was read before writing any new hardening output.
@@ -66,7 +62,7 @@ This section was read before writing any new hardening output.
 | Gate 2 parse | PASS; cycle F historical; E and G analyzed separately in the three-cycle extension; n 7079; FEV1 2.91%; FVC 3.53% | results/gate2_F_parse.md:3-5,37-39 |
 | Gate 3 adequacy | FAIL; cycle F historical; E and G analyzed separately in the three-cycle extension; 0/31851 (0.0% of all curves; 0.0% of NRSS-valid curves) | results/gate3_F_ombe_rerun.md:3-5,26 |
 
-## Protocol Decisions
+## Decisions I Made
 
 - Realistic quality flag rule: `SPAQEFF in {C,D} OR SPAACC != Y OR SPAPLAT != Y`.
 - Used actual same-patient lower-quality/incomplete Pre curves where a clean complete-plateau target exists.

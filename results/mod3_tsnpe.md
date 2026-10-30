@@ -7,7 +7,7 @@
 
 This validates that TSNPE approximates NUTS on curves drawn from the OMBE
 generative model. It does NOT establish that either engine fits real NHANES
-curves - that is Gate 3, which requires the raw-curve file and is outstanding.
+curves — that is Gate 3, which requires the raw-curve file and is outstanding.
 Modules 2 and 3 confirm the inference machinery is internally correct, not that
 OMBE describes real physiology.
 

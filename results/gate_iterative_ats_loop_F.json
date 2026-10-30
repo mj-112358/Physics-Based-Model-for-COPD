@@ -1,14 +1,14 @@
 {
   "seed": 20260710,
   "test_n": 563,
-  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
-  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
   "raw_loaded_rows": 36421,
   "ats_source": "https://doi.org/10.1164/rccm.201908-1590ST",
   "ats_repeatability_l": 0.15,
   "ats_max_attempts": 8,
   "c1_offset_from_existing_policy": 0.008637018273988883,
-  "protocol_decisions": [
+  "decisions_i_made": [
     "TEST split only; TRAIN rows are ignored.",
     "The single-pass baseline is the current deployable recovery gate: post_recovery_finalized from gate_deferral_recovery_f.apply_recovery.",
     "The loop uses raw PRE attempt order from SPXRAW, but uses only existing OMBE-fitted maneuver rows for FEV1/FVC/ratio values; no solver is rerun.",

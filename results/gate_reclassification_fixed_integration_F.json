@@ -1344,7 +1344,7 @@
     "ratio_bias": "Signed obstructed-set ratio median changed from 0.0197 to 0.0197 (delta +0.0000).",
     "fvc_mechanism": "Obstructed signed FVC percent median changed from -5.18% to -5.18%.",
     "borderline_leak": "Baseline TEST borderline residual false-negative rate changed from 0.288 to 0.288.",
-    "retractions": "No point-estimate conclusion is retracted from this rerun because the point-estimate gates were already using the NumPy nonuniform-grid volume fitter. The review premise that clinical/FVC/policy used the broken JAX dt path is not supported by the code audit. Retract only the narrower implementation statement that the shared JAX OMBE volume helper was safe on nonuniform real-curve grids before this patch."
+    "retractions": "No point-estimate conclusion is retracted from this rerun because the point-estimate gates were already using the NumPy nonuniform-grid volume fitter. The prompt premise that clinical/FVC/policy used the broken JAX dt path is not supported by the code audit. Retract only the narrower implementation statement that the shared JAX OMBE volume helper was safe on nonuniform real-curve grids before this patch."
   },
   "integrity_note": "The c1 correction remains numerically identical in this rerun, so its empirical effect is unchanged. However, it should not be justified as a repair for the shared JAX constant-dt bug in these point-estimate gates; that bug did not feed this path. The defensible justification remains the observed held-out signed-ratio bias and ATS truncation behavior in the point-estimate gate itself."
 }

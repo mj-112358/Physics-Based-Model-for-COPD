@@ -12,10 +12,12 @@ os.environ.setdefault("XDG_CACHE_HOME", "/private/tmp/predictx-xdg-cache")
 
 import numpy as np
 import pandas as pd
+import pyreadstat
 
-from .dataset_resolver import CYCLE_TO_YEAR, resolve_dataset_path
-from .gate3_diagnosis import np_ombe_volume
+from .dataset_resolver import CYCLE_TO_YEAR, RAW_ROW_COUNTS, resolve_dataset_path
 from .gate23_f import (
+    RAW_REQUIRED,
+    RAW_OPTIONAL,
     comparison_summary,
     derive_all,
     find_or_unzip_raw,
@@ -24,15 +26,12 @@ from .gate23_f import (
     read_raw,
     write_gate2_report,
 )
-from .gate_clinical_classification_f import decode_grade, extract_curve_for_fit, severity_category
+from .gate_clinical_classification_f import decode_grade, extract_curve_for_fit, load_column_map, severity_category
 from .gate_fit_optimization_f import forward_model_guard
 from .gate_truncation_recovery_f import (
     ESTIMATORS as BASE_ESTIMATORS,
-)
-from .gate_truncation_recovery_f import (
     MIN_FET_S,
     PLATEAU_L,
-    PREDICTION_HORIZON_S,
     SAMPLE_MAX_PER_STRATUM,
     STRATA,
     TRUNCATION_TIMES,
@@ -44,7 +43,10 @@ from .gate_truncation_recovery_f import (
     insert_time_point,
     model_grid_with_stop,
     pct_error,
+    q,
 )
+from .gate3_diagnosis import np_ombe_volume
+
 
 SEED = 20260710
 BOOTSTRAP_B = 2000
@@ -379,6 +381,7 @@ def estimate_clean_curve(sample_row: Any, raw_row: Any) -> list[dict[str, Any]]:
     true_fev1_l = float(np.interp(1.0, full_t, full_y))
     true_fvc_l = float(full_y[-1])
     true_ratio = true_fev1_l / true_fvc_l if true_fvc_l > 0 else np.nan
+    full_end = float(full_t[-1])
     rows: list[dict[str, Any]] = []
     for t_s in TRUNCATION_TIMES:
         t_label = str(int(t_s))
@@ -387,8 +390,8 @@ def estimate_clean_curve(sample_row: Any, raw_row: Any) -> list[dict[str, Any]]:
         fits = {
             "E0_DIRECT": {"success": True, "fvc_l": float(y_fit[-1]), "failure": ""},
             "E1_OMBE": fit_ombe_truncated(full_t, full_y, t_s),
-            "E2_SPLINE": fit_spline_extrapolate(t_fit, y_fit, PREDICTION_HORIZON_S),
-            "E3_LINEAR_TAIL": fit_linear_tail(t_fit, y_fit, PREDICTION_HORIZON_S),
+            "E2_SPLINE": fit_spline_extrapolate(t_fit, y_fit, full_end),
+            "E3_LINEAR_TAIL": fit_linear_tail(t_fit, y_fit, full_end),
             "E4_MONO_EXPONENTIAL": fit_mono_truncated(full_t, full_y, t_s),
         }
         for estimator, fit in fits.items():
@@ -673,15 +676,16 @@ def estimate_incomplete_curve(row: Any, raw_row: Any) -> list[dict[str, Any]]:
     curve = extract_curve_for_fit(raw_row)
     field_t = np.asarray(curve["vol_t"], dtype=float)
     field_y = np.asarray(curve["vol_l"], dtype=float)
-    stop_s = min(float(field_t[-1]), PREDICTION_HORIZON_S)
+    target_end = float(row.fet_s)
+    stop_s = min(float(field_t[-1]), target_end)
     t_fit, y_fit = insert_time_point(field_t, field_y, stop_s)
     observed_fev1 = float(np.interp(1.0, t_fit, y_fit))
     direct_fvc = float(y_fit[-1])
     fits = {
         "E0_DIRECT": {"success": np.isfinite(direct_fvc) and direct_fvc > 0, "fvc_l": direct_fvc, "failure": ""},
         "E1_OMBE": fit_ombe_truncated(field_t, field_y, stop_s),
-        "E2_SPLINE": fit_spline_extrapolate(t_fit, y_fit, PREDICTION_HORIZON_S),
-        "E3_LINEAR_TAIL": fit_linear_tail(t_fit, y_fit, PREDICTION_HORIZON_S),
+        "E2_SPLINE": fit_spline_extrapolate(t_fit, y_fit, target_end),
+        "E3_LINEAR_TAIL": fit_linear_tail(t_fit, y_fit, target_end),
         "E4_MONO_EXPONENTIAL": fit_mono_truncated(field_t, field_y, stop_s),
     }
     rows = []
@@ -1028,10 +1032,10 @@ def make_replication_report(result: dict[str, Any], cross_cycle: pd.DataFrame, c
     lines = [
         "# Three-Cycle Replication EFG",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",
@@ -1171,6 +1175,7 @@ def run(root: Path) -> dict[str, Any]:
     if not guard_start["passed"]:
         raise RuntimeError(f"Forward-model guard failed at start: {guard_start}")
 
+    column_map = load_column_map(root)
     gate2_f = cached_gate2_f(root)
     gate2_by_cycle: dict[str, dict[str, Any]] = {"F": gate2_f}
     raw_by_cycle: dict[str, pd.DataFrame] = {}
@@ -1326,7 +1331,7 @@ def run(root: Path) -> dict[str, Any]:
         "external_notes": external_notes,
         "external_variables": external_variables,
         "verdicts": verdicts,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "F Gate 2 and clinical rows are reused from the migration-validated cache; F truncation and severe rows are regenerated through this script.",
             "Clean truncation uses the existing F rule: Pre, SPAACC == Y, SPAQEFF == A, complete plateau FET >= 6.0 s and terminal-second dV <= 0.025 L, max parsed FEV1, tie to lowest SPAMANU.",
             "Clean per-cycle truncation keeps cycles separate for replication and uses the prior 200-per-stratum cap.",

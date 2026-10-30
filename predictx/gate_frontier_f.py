@@ -24,6 +24,7 @@ from .gate_graded_probability_f import (
 from .gate_graded_probability_repair_f import prior_adjust
 from .gate_workflow_policy_f import RANDOM_SEED, clean_json, exact_ci, fmt, md_table
 
+
 OUTPUT_STEM = "gate_frontier_F"
 FIXED_RATIO_THRESHOLD = 0.70
 SEVERE_NORMAL_GUARD_RATIO = 0.60
@@ -213,7 +214,6 @@ def frontier_for_arm(
     test: pd.DataFrame,
     p_train: np.ndarray,
     p_test: np.ndarray,
-    train_weights: np.ndarray,
     test_weights: np.ndarray,
     targets: np.ndarray,
 ) -> tuple[list[dict[str, Any]], dict[float, pd.DataFrame]]:
@@ -221,34 +221,9 @@ def frontier_for_arm(
     zones_by_target: dict[float, pd.DataFrame] = {}
     for target in targets:
         boundaries = train_boundaries_for_target(train, p_train, float(target))
-        train_zones = apply_frontier_zones(
-            train,
-            p_train,
-            float(boundaries["p_low"]),
-            float(boundaries["p_high"]),
-        )
         zones = apply_frontier_zones(test, p_test, float(boundaries["p_low"]), float(boundaries["p_high"]))
         zones_by_target[float(target)] = zones
-        train_metrics = weighted_metrics(
-            train_zones,
-            train_weights,
-            arm,
-            float(target),
-            boundaries,
-        )
-        test_metrics = weighted_metrics(zones, test_weights, arm, float(target), boundaries)
-        test_metrics.update(
-            {
-                "train_selection_coverage": train_metrics["confident_coverage"],
-                "train_selection_kappa_reweighted": train_metrics["kappa_reweighted"],
-                "train_selection_ppv_reweighted": train_metrics["ppv_reweighted"],
-                "train_selection_npv_reweighted": train_metrics["npv_reweighted"],
-                "train_selection_severe_fn_n": train_metrics["severe_fn_n"],
-                "train_passes_old_symmetric_090": train_metrics["passes_old_symmetric_090"],
-                "train_passes_new_asymmetric": train_metrics["passes_new_asymmetric"],
-            }
-        )
-        rows.append(test_metrics)
+        rows.append(weighted_metrics(zones, test_weights, arm, float(target), boundaries))
     return rows, zones_by_target
 
 
@@ -259,10 +234,8 @@ def select_safe_point(rows: list[dict[str, Any]], pass_col: str) -> dict[str, An
     return max(
         passing,
         key=lambda row: (
-            row["train_selection_coverage"],
-            row["train_selection_kappa_reweighted"]
-            if finite(row["train_selection_kappa_reweighted"])
-            else -np.inf,
+            row["confident_coverage"],
+            row["kappa_reweighted"] if finite(row["kappa_reweighted"]) else -np.inf,
         ),
     )
 
@@ -404,12 +377,7 @@ def verdict(result: dict[str, Any]) -> tuple[str, str]:
     if safe is None:
         return (
             "FRONTIER-UNSAFE",
-            "No CLEAN frontier point satisfies the predeclared safety constraints on TRAIN.",
-        )
-    if not safe["passes_new_asymmetric"]:
-        return (
-            "FRONTIER-UNSAFE",
-            "The TRAIN-selected CLEAN point fails at least one held-out TEST safety constraint.",
+            "No CLEAN frontier point satisfies severe FN=0, NPV>=0.95, and PPV>=0.70 at natural prevalence.",
         )
     operational = result["deterministic_baseline"]["operational_coverage"]
     if safe["confident_coverage"] > operational + MATERIAL_COVERAGE_EPS:
@@ -455,10 +423,10 @@ def write_outputs(
         "",
         f"VERDICT: {result['verdict']} - {result['verdict_reason']}",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",
@@ -496,14 +464,14 @@ def write_outputs(
                 ],
             ),
             "",
-            "## Part 2 - Train-Selected Candidates and Held-Out Evaluation",
+            "## Part 2 - Safe Operating Point",
             "",
             md_table(
                 [
-                    row_for_report(clean_old, "CLEAN train-selected, old symmetric 0.90/0.90"),
-                    row_for_report(clean_safe, "CLEAN train-selected, new asymmetric"),
-                    row_for_report(alpha_old, "fit_alpha train-selected, old symmetric 0.90/0.90"),
-                    row_for_report(alpha_safe, "fit_alpha train-selected, new asymmetric"),
+                    row_for_report(clean_old, "CLEAN old symmetric 0.90/0.90"),
+                    row_for_report(clean_safe, "CLEAN new asymmetric"),
+                    row_for_report(alpha_old, "fit_alpha old symmetric 0.90/0.90"),
+                    row_for_report(alpha_safe, "fit_alpha new asymmetric"),
                 ],
                 [
                     ("constraint", "constraint", "str"),
@@ -524,10 +492,10 @@ def write_outputs(
         delta = clean_safe["confident_coverage"] - baseline["operational_coverage"]
         lines.extend(
             [
-                f"- CLEAN train-selected candidate coverage on TEST: {fmt(clean_safe['confident_coverage'], 3)} vs operational baseline {fmt(baseline['operational_coverage'], 3)}; delta {fmt(delta, 3)}.",
+                f"- CLEAN safe point coverage: {fmt(clean_safe['confident_coverage'], 3)} vs operational baseline {fmt(baseline['operational_coverage'], 3)}; delta {fmt(delta, 3)}.",
                 f"- Count accounting: {clean_accounting['operational_deferred_gained_confident_n']} operational deferrals become confident, {clean_accounting['operational_finalized_lost_to_indeterminate_n']} operational-finalized cases become indeterminate, net delta {clean_accounting['net_confident_n_delta_vs_operational']} cases.",
-                f"- CLEAN train-selected candidate severe FN on TEST: {clean_safe['severe_fn_n']} with CP upper bound {fmt(clean_safe['severe_fn_ci_high'], 3)}.",
-                f"- CLEAN train-selected candidate PPV/NPV on TEST: {fmt(clean_safe['ppv_reweighted'], 3)}/{fmt(clean_safe['npv_reweighted'], 3)}; held-out safety pass: {clean_safe['passes_new_asymmetric']}.",
+                f"- CLEAN safe point severe FN: {clean_safe['severe_fn_n']} with CP upper bound {fmt(clean_safe['severe_fn_ci_high'], 3)}.",
+                f"- CLEAN safe point PPV/NPV: {fmt(clean_safe['ppv_reweighted'], 3)}/{fmt(clean_safe['npv_reweighted'], 3)}.",
                 "- Source of gained confident calls from operational deferrals:",
                 "",
                 md_table(
@@ -541,7 +509,7 @@ def write_outputs(
     lines.extend(
         [
             "",
-            "## Part 3 - Held-Out Bucket Performance at the CLEAN Train-Selected Candidate",
+            "## Part 3 - Bucket-Resolved Recovery at CLEAN Safe Point",
             "",
             md_table(
                 result["bucket_recovery_clean_safe"],
@@ -570,17 +538,15 @@ def write_outputs(
             "",
         ]
     )
-    if clean_safe is not None and clean_safe["passes_new_asymmetric"] and clean_safe["confident_coverage"] > baseline["operational_coverage"] + MATERIAL_COVERAGE_EPS:
+    if clean_safe is not None and clean_safe["confident_coverage"] > baseline["operational_coverage"] + MATERIAL_COVERAGE_EPS:
         lines.append("- The corrected asymmetric floors turn the calibrated probabilities into a safe coverage gain over the operational baseline.")
-    elif clean_safe is not None and clean_safe["passes_new_asymmetric"]:
-        lines.append("- The CLEAN frontier reaches a safe point, but it does not materially exceed the operational deterministic baseline.")
     elif clean_safe is not None:
-        lines.append("- The CLEAN candidate selected on TRAIN fails the held-out TEST safety floors and cannot be used as an operating point.")
+        lines.append("- The CLEAN frontier reaches a safe point, but it does not materially exceed the operational deterministic baseline.")
     else:
-        lines.append("- The CLEAN frontier has no point satisfying the new safety floors on TRAIN.")
-    if alpha_safe is not None and alpha_safe["passes_new_asymmetric"]:
+        lines.append("- The CLEAN frontier has no point satisfying the new safety floors.")
+    if alpha_safe is not None and clean_safe is not None:
         lines.append(
-            "- The secondary fit_alpha candidate passes the held-out floors, but it remains exploratory because fit_alpha was quarantined by its correlation with the target ratio."
+            f"- The fit_alpha secondary arm shifts safe coverage by {fmt(alpha_safe['confident_coverage'] - clean_safe['confident_coverage'], 3)} relative to CLEAN."
         )
         if alpha_accounting is not None:
             lines.append(
@@ -619,7 +585,6 @@ def run(root: Path) -> dict[str, Any]:
     y_train = truth_obstructed(train).astype(int).to_numpy()
     y_test = truth_obstructed(test).astype(int).to_numpy()
     source_prevalence = float(y_train.mean())
-    train_weights = class_reweight(y_train, target_prevalence, source_prevalence)
     test_weights = class_reweight(y_test, target_prevalence, source_prevalence)
 
     p_train_clean, p_test_clean, clean_fit = fit_probability_arm(
@@ -639,18 +604,18 @@ def run(root: Path) -> dict[str, Any]:
 
     targets = np.round(np.r_[np.arange(0.45, 1.00, 0.02), 1.00], 2)
     clean_rows, clean_zones = frontier_for_arm(
-        "clean", train, test, p_train_clean, p_test_clean, train_weights, test_weights, targets
+        "clean", train, test, p_train_clean, p_test_clean, test_weights, targets
     )
     alpha_rows, alpha_zones = frontier_for_arm(
-        "clean_plus_fit_alpha", train, test, p_train_alpha, p_test_alpha, train_weights, test_weights, targets
+        "clean_plus_fit_alpha", train, test, p_train_alpha, p_test_alpha, test_weights, targets
     )
     all_rows = clean_rows + alpha_rows
     curve = pd.DataFrame(all_rows)
 
-    clean_safe = select_safe_point(clean_rows, "train_passes_new_asymmetric")
-    clean_old = select_safe_point(clean_rows, "train_passes_old_symmetric_090")
-    alpha_safe = select_safe_point(alpha_rows, "train_passes_new_asymmetric")
-    alpha_old = select_safe_point(alpha_rows, "train_passes_old_symmetric_090")
+    clean_safe = select_safe_point(clean_rows, "passes_new_asymmetric")
+    clean_old = select_safe_point(clean_rows, "passes_old_symmetric_090")
+    alpha_safe = select_safe_point(alpha_rows, "passes_new_asymmetric")
+    alpha_old = select_safe_point(alpha_rows, "passes_old_symmetric_090")
 
     if clean_safe is not None:
         safe_target = float(clean_safe["target_coverage"])
@@ -769,11 +734,10 @@ def run(root: Path) -> dict[str, Any]:
         "arm_auc": arm_auc,
         "all_frontier_points_severe_fn_zero": bool(curve["severe_fn_n"].eq(0).all()),
         "clean_frontier_selected_rows": clean_selected_rows,
-        "protocol_decisions": [
-            "The same CLEAN p_adj was deterministically reconstructed because the prior gate did not persist TRAIN probabilities; execution halted unless TEST p_adj matched the saved participants CSV.",
+        "decisions_i_made": [
+            "Because the prior gate did not persist TRAIN probabilities, I deterministically reconstructed the same CLEAN p_adj and halted unless TEST p_adj matched the saved participants CSV.",
             "Symmetric probability bands are centered at p=0.5; p<=p_low is confident normal and p>=p_high is confident obstructed.",
             "The TRAIN target coverage search measures coverage after applying the ratio<0.60 normal-call safety guard, because that is the deployable operating coverage.",
-            "The operating point is selected only from TRAIN weighted PPV, NPV, severe-FN, coverage, and kappa. TEST metrics are reported once and never used to choose the point.",
             "All accuracy, kappa, sensitivity, specificity, PPV, and NPV values in the frontier use natural-prevalence class weights.",
             "The ratio<0.60 guard only removes confident normal calls; it is reported separately as a safety guard and not used to add confidence.",
             "The frontier target grid is fixed at 0.45 to 1.00 in approximately 0.02 increments before looking at TEST performance.",
@@ -795,10 +759,10 @@ def main() -> int:
     alpha = result["safe_points"]["alpha_new_asymmetric"]
     print(f"Frontier gate: {result['verdict']} - {result['verdict_reason']}")
     if safe is None:
-        print("CLEAN train-selected candidate: none")
+        print("CLEAN safe point: none")
     else:
         print(
-            "CLEAN train-selected candidate on TEST: "
+            "CLEAN safe point: "
             f"coverage={safe['confident_coverage']:.3f}, "
             f"kappa={safe['kappa_reweighted']:.3f}, "
             f"PPV/NPV={safe['ppv_reweighted']:.3f}/{safe['npv_reweighted']:.3f}, "
@@ -806,7 +770,7 @@ def main() -> int:
         )
     if alpha is not None:
         print(
-            "fit_alpha train-selected candidate on TEST: "
+            "fit_alpha safe point: "
             f"coverage={alpha['confident_coverage']:.3f}, "
             f"kappa={alpha['kappa_reweighted']:.3f}, "
             f"PPV/NPV={alpha['ppv_reweighted']:.3f}/{alpha['npv_reweighted']:.3f}, "

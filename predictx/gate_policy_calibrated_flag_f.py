@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -12,6 +13,7 @@ from .gate_clinical_classification_f import (
     RANDOM_SEED,
     build_usable_raw_candidates,
     confusion_binary,
+    decode_grade,
     extract_curve_for_fit,
     fit_selected_rows,
     load_column_map,
@@ -22,6 +24,7 @@ from .gate_clinical_classification_f import (
     severity_category,
 )
 from .gate_fvc_correction_f import drop_bias_audit
+
 
 MAX_BORDERLINE = 500
 MAX_NORMAL = 500
@@ -505,6 +508,7 @@ def write_report(root: Path, result: dict, rows: pd.DataFrame) -> None:
     pref = result["preferred_correction"]
     pref_variant = result["preferred_policy_variant"]
     baseline = result["baseline_test_metrics"]
+    policy = cand[pref]["fixed"][pref_variant]
     diag = cand[pref]["diagnostics"]
     lines = [
         "# Gate - Bias-Calibrated Classification + ATS Flag Policy, Cycle F",

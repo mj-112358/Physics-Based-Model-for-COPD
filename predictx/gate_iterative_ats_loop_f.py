@@ -20,6 +20,7 @@ from .gate_deferral_recovery_f import (
 )
 from .gate_workflow_policy_f import RANDOM_SEED, clean_json, fmt, md_table
 
+
 OUTPUT_STEM = "gate_iterative_ats_loop_F"
 ATS_ERS_2019_URL = "https://doi.org/10.1164/rccm.201908-1590ST"
 ATS_REPEATABILITY_L = 0.150
@@ -691,10 +692,10 @@ def write_report(root: Path, result: dict[str, Any], rows: pd.DataFrame) -> None
         f"- Source: ATS/ERS 2019 Standardization of Spirometry, {ATS_ERS_2019_URL}.",
         f"- Protocol constants used here: at least 3 acceptable maneuvers, repeatability of the two largest FEV1 within {int(ATS_REPEATABILITY_L * 1000)} mL and the two largest FVC within {int(ATS_REPEATABILITY_L * 1000)} mL, maximum {ATS_MAX_ATTEMPTS} attempts.",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",
@@ -959,7 +960,7 @@ def run(root: Path) -> dict[str, Any]:
         "ats_repeatability_l": ATS_REPEATABILITY_L,
         "ats_max_attempts": ATS_MAX_ATTEMPTS,
         "c1_offset_from_existing_policy": c1,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "TEST split only; TRAIN rows are ignored.",
             "The single-pass baseline is the current deployable recovery gate: post_recovery_finalized from gate_deferral_recovery_f.apply_recovery.",
             "The loop uses raw PRE attempt order from SPXRAW, but uses only existing OMBE-fitted maneuver rows for FEV1/FVC/ratio values; no solver is rerun.",

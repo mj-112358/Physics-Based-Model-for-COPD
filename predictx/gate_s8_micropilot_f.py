@@ -16,17 +16,14 @@ import numpy as np
 import numpyro
 import pandas as pd
 from numpyro.infer import MCMC, NUTS
+from scipy.stats import kstest
 
-from .gate_likelihood_repair_f import (
-    VARIANT_SEED_OFFSETS,
-    mcmc_diagnostics,
-    ombe_likelihood_model,
-    samples_to_phi,
-)
+from .gate_likelihood_repair_f import PARAM_NAMES, VARIANT_SEED_OFFSETS, mcmc_diagnostics, ombe_likelihood_model, samples_to_phi
 from .gate_misspecification_isolation_f import COVERAGE_LEVELS, SEED, binomial_interval, clean_json, md_table
 from .gate_posterior_calibration_repair_f import ratio_samples_from_phi
 from .gate_sampler_pilot_f import build_data
 from .ombe import OmbeGrid, batched_fisher_information
+
 
 OUTPUT_STEM = "gate_s8_micropilot_F"
 CACHE_VERSION = "v1_s8_micro20"
@@ -379,7 +376,7 @@ def write_outputs(root: Path, result: dict[str, Any], curves: pd.DataFrame, trac
     lines = [
         "# Gate - S8 Micro-Pilot, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         "- S8 is identical to S7 except warmup/draws are 2000/2000 instead of 1000/1000.",
         "- The 20 curves are sampled across Cell A stratum blocks at target proportions 9 mild / 9 normal / 1 moderate / 1 severe.",

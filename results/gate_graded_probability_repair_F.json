@@ -292,7 +292,7 @@
       "oracle_raw_fn_normal": 52
     }
   ],
-  "protocol_decisions": [
+  "decisions_i_made": [
     "This is a repair audit, not a replacement for the leakage-free gate unless a variant clears the same guards.",
     "Headline eligibility excludes ratio-aware variants even when they perform better.",
     "TEST-oracle thresholds are reported only as upper bounds; deployable thresholds are TRAIN-frozen.",

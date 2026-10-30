@@ -1,7 +1,7 @@
 {
   "verdict": "UNSTABLE",
   "random_seed": 20260708,
-  "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
   "fit_domain_assertion": "volume-domain fit path confirmed: gate_clinical_classification_f.fit_ombe_volume_lm is gate3_diagnosis.fit_ombe_volume_lm",
   "fit_path_used": "predictx.gate3_diagnosis.fit_ombe_volume_lm",
   "same_fitter_as_gate_clinical_classification_f": true,
@@ -196,6 +196,6 @@
     "model_minus_observed_fraction": 0.0316010184214468,
     "model_more_repeatable_than_observed": true
   },
-  "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+  "raw_source_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
   "raw_loaded_rows": 36421
 }

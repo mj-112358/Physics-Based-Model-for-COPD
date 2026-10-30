@@ -264,7 +264,7 @@
     "severe_fn_ci_low": 0.0,
     "severe_fn_ci_high": 0.4592581264399005
   },
-  "protocol_decisions": [
+  "decisions_i_made": [
     "TEST split only.",
     "Operated only on residual deferred cases from gate_deferral_recovery_f: deferred_baseline == True and recovered == False.",
     "The clinical context rule was declared before evaluation and was not fit to outcomes.",

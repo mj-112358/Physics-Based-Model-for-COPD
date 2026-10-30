@@ -6,6 +6,7 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 
+
 PARAM_NAMES = ("log_tau_f", "log_tau_s", "logit_alpha", "log_fvc", "log_tau_o", "log_k_minus_1")
 NATURAL_PARAM_NAMES = ("tau_f", "tau_s", "alpha", "fvc_l", "tau_o", "k")
 

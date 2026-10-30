@@ -232,7 +232,7 @@ c. Obstructed signed FVC percent median changed from -5.18% to -5.18%.
 
 d. Baseline TEST borderline residual false-negative rate changed from 0.288 to 0.288.
 
-e. No point-estimate conclusion is retracted from this rerun because the point-estimate gates were already using the NumPy nonuniform-grid volume fitter. The review premise that clinical/FVC/policy used the broken JAX dt path is not supported by the code audit. Retract only the narrower implementation statement that the shared JAX OMBE volume helper was safe on nonuniform real-curve grids before this patch.
+e. No point-estimate conclusion is retracted from this rerun because the point-estimate gates were already using the NumPy nonuniform-grid volume fitter. The prompt premise that clinical/FVC/policy used the broken JAX dt path is not supported by the code audit. Retract only the narrower implementation statement that the shared JAX OMBE volume helper was safe on nonuniform real-curve grids before this patch.
 
 ## Step 5 - Integrity Note
 

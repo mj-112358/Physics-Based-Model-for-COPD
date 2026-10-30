@@ -3,13 +3,16 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+import jax.numpy as jnp
 import numpy as np
 from PIL import Image, ImageDraw
 from scipy.optimize import least_squares
 
+from .ombe import NATURAL_PARAM_NAMES, OmbeGrid, ombe_flow, sample_prior_phi, unpack_phi
+
+
 SIGMA_LPS = 0.10
 ADEQUATE_NRSS_THRESHOLD = 2.76
-NATURAL_PARAM_NAMES = ("tau_f", "tau_s", "alpha", "fvc_l", "tau_o")
 
 
 @dataclass(frozen=True)
@@ -108,10 +111,6 @@ def fit_ombe_registered_lm(
 
 
 def generate_fit_curves(n: int = 200, seed: int = 10) -> list[dict]:
-    import jax.numpy as jnp
-
-    from .ombe import OmbeGrid, ombe_flow, sample_prior_phi, unpack_phi
-
     phis = sample_prior_phi(n, seed=seed)
     t = np.asarray(OmbeGrid().t)
     rng = np.random.default_rng(seed + 1)

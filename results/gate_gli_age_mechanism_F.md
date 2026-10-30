@@ -1,6 +1,6 @@
 # Gate - GLI/Age Mechanism, Cycle F
 
-## Protocol Decisions
+## Decisions I Made
 
 - Seed recorded as 20260710; Part 0 is deterministic on existing Cycle F clinical/offset artifacts and does not resample.
 - Primary Part 0 sample is participant-level P3, all valid clinical/offset participants with age, true FEV1/FVC, and true FVC.

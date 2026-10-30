@@ -17,6 +17,7 @@ from .gate_fit_optimization_f import baseline_lock, forward_model_guard, md_tabl
 from .gate_truncation_recovery_f import clean_json
 from .segment import backextrap_t0, derive_fev1_fvc, detect_forced_exhale_segment
 
+
 OUTPUT_STEM = "gate_onset_bias_F"
 SEED = 20260710
 BOOTSTRAP_B = 1000
@@ -239,7 +240,7 @@ def make_report(result: dict[str, Any]) -> str:
     lines = [
         "# Gate - Onset / Back-Extrapolation Bias Test, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         "- This gate is standalone from the fit-optimization vectorization path.",
         "- No solver code is changed; no vectorization is used.",

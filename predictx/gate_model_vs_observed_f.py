@@ -10,17 +10,21 @@ import numpy as np
 import pandas as pd
 from scipy.stats import linregress
 
-from .gate23_f import find_or_unzip_raw, read_raw
+from .gate23_f import HZ, backextrap_t0, detect_forced_exhale_segment, find_or_unzip_raw, parse_increments, read_raw
 from .gate_clinical_classification_f import (
+    RANDOM_SEED,
     confusion_binary,
+    decode_grade,
     load_column_map,
     load_gli,
     load_truth,
+    q,
     severity_category,
 )
 from .gate_four_part_fix_f import curve_variant_metrics
 from .gate_policy_calibrated_flag_f import stratified_half_split
 from .gate_reconciliation_audit_f import clean_json, md_table
+
 
 OUTPUT_STEM = "gate_model_vs_observed_F"
 CONVENTIONS = ("segmented_btps", "segmented_no_btps", "max_cumulative_btps", "final_record_btps")
@@ -407,6 +411,7 @@ def gli_distance_rows(split: pd.DataFrame, ratio_col: str, c1: float) -> list[di
 
 def run(root: Path) -> dict[str, Any]:
     start = time.perf_counter()
+    out = root / "results"
     column_map = load_column_map(root)
     truth = load_truth(root, column_map)
     gli = load_gli(root)

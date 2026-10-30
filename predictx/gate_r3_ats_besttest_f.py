@@ -51,7 +51,12 @@ def decision_from_ratio(ratio: float) -> str:
 def raw_maneuvers_with_correction(repro: pd.DataFrame, c1: float) -> pd.DataFrame:
     out = repro[repro["row_type"].eq("maneuver_fit")].copy()
     out["model_ratio_numeric"] = pd.to_numeric(out["model_ratio"], errors="coerce")
-    out["corrected_ratio_c1"] = out["model_ratio_numeric"] - c1
+    if "corrected_ratio_c1" not in out:
+        out["corrected_ratio_c1"] = out["model_ratio_numeric"] - c1
+    else:
+        existing = pd.to_numeric(out["corrected_ratio_c1"], errors="coerce")
+        fallback = out["model_ratio_numeric"] - c1
+        out["corrected_ratio_c1"] = existing.where(np.isfinite(existing), fallback)
     out["model_fev1_l_numeric"] = pd.to_numeric(out["model_fev1_l"], errors="coerce")
     out["model_fvc_l_numeric"] = pd.to_numeric(out["model_fvc_l"], errors="coerce")
     out["observed_ratio_numeric"] = pd.to_numeric(out["observed_ratio"], errors="coerce")
@@ -134,7 +139,9 @@ def besttest_details(part: pd.DataFrame, c1: float, boundary_guard: bool) -> dic
     fev1 = float(usable.at[fev1_idx, "model_fev1_l_numeric"])
     fvc = float(usable.at[fvc_idx, "model_fvc_l_numeric"])
     ratio_uncorrected = fev1 / fvc
-    ratio_corrected = ratio_uncorrected - c1
+    fvc_source = str(usable.at[fvc_idx, "endpoint_source"]) if "endpoint_source" in usable else ""
+    c1_used = c1 if fvc_source == "physics_recovered_fvc" or not fvc_source else 0.0
+    ratio_corrected = ratio_uncorrected - c1_used
 
     details.update(
         {
@@ -145,6 +152,8 @@ def besttest_details(part: pd.DataFrame, c1: float, boundary_guard: bool) -> dic
             "ats_besttest_fvc_l": fvc,
             "ats_besttest_ratio_uncorrected": ratio_uncorrected,
             "ats_besttest_ratio_corrected": ratio_corrected,
+            "ats_besttest_fvc_endpoint_source": fvc_source or "legacy_physics_endpoint",
+            "ats_besttest_c1_applied": bool(c1_used),
             "ats_besttest_fev1_raw_index": usable.at[fev1_idx, "raw_index"],
             "ats_besttest_fvc_raw_index": usable.at[fvc_idx, "raw_index"],
         }
@@ -310,7 +319,7 @@ def build_case_rows(rows: pd.DataFrame, raw: pd.DataFrame, c1: float) -> pd.Data
             "besttest_ratio_corrected",
             "repeatability_grade",
         ]:
-            out[f"{prefix}_{col}"] = ""
+            out[f"{prefix}_{col}"] = pd.Series([pd.NA] * len(out), index=out.index, dtype="object")
     out["ats_truth_correct"] = pd.NA
     out["ats_newly_finalized"] = False
     out["ats_extension_reason"] = ""
@@ -494,10 +503,10 @@ def write_report(root: Path, result: dict[str, Any], rows: pd.DataFrame) -> None
         "- The report uses the ATS/ERS rule that reported FEV1 is the largest acceptable FEV1 and reported FVC is the largest acceptable FVC; repeatability is carried as a session quality grade rather than used as a hard stop for reporting.",
         "- The same statement defines repeatability grading from the two largest FEV1 and FVC values, with A/B/C/D/E/F quality levels.",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",
@@ -684,11 +693,11 @@ def run(root: Path) -> dict[str, Any]:
         "test_n": int(len(test)),
         "c1_offset_from_existing_policy": c1,
         "ats_source": ATS_ERS_2019_URL,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "TEST split only; training rows are ignored.",
             "The current deferral-recovery gate is the baseline: 66.6% coverage before this ATS best-test pass.",
-            "NHANES/repro maneuver rows do not expose separate BEV, cough, glottis, leak, or plateau subflags. SPAACC == 'Y' was used as the individual acceptability flag, and this limitation is reported explicitly.",
-            "A maneuver also must have a successful finite model fit to be usable by the PredictX model best-test computation; this is a computational availability requirement, not a repeatability threshold.",
+            "NHANES/repro maneuver rows do not expose separate BEV, cough, glottis, leak, or plateau subflags. I used SPAACC == 'Y' as the individual acceptability flag and reported this limitation explicitly.",
+            "A maneuver also must have a successful finite model fit to be usable by the SpiroFlow model best-test computation; this is a computational availability requirement, not a repeatability threshold.",
             "Best-test FEV1 is max model FEV1 across acceptable usable maneuvers, and best-test FVC is max model FVC across acceptable usable maneuvers; the FEV1 and FVC may come from different maneuvers.",
             "The existing C1 ratio correction is applied after forming max(FEV1)/max(FVC), keeping the recovered ratio on the same calibrated scale as the workflow.",
             "Repeatability is converted to an ATS-style session grade and is not used as a hard exclusion.",

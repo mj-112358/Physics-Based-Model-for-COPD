@@ -1,9 +1,9 @@
 # Gate - Misspecification Isolation, Cycle F
 
-## Protocol Decisions
+## Decisions I Made
 
-- Used the checked-in likelihood-repair sampler settings from `predictx/gate_likelihood_repair_f.py`: 2 chains, 250 warmup, 250 draws, stride 5. The initial specification states 4 chains x 2500 warmup/draws, but the reusable repo configuration does not.
-- Cell A uses IID sigma 50.0 mL so L0 is exactly the data-generating likelihood. The initial specification also states 28 mL; that conflicts with the mandatory exact Cell A/L0 halt check. Cell B and dose-response use AR(1) marginal RMS 28.0 mL.
+- Used the checked-in likelihood-repair sampler settings from `predictx/gate_likelihood_repair_f.py`: 2 chains, 250 warmup, 250 draws, stride 5. The prompt text says 4 chains x 2500 warmup/draws, but the reusable repo configuration does not.
+- Cell A uses IID sigma 50.0 mL so L0 is exactly the data-generating likelihood. The prompt also mentions 28 mL; that conflicts with the mandatory exact Cell A/L0 halt check. Cell B and dose-response use AR(1) marginal RMS 28.0 mL.
 - The only arm-specific branch is data loading/generation. The same NUTS model, priors, seed policy, diagnostics, and coverage code are used for every generated curve.
 - Real Cell C reuses the existing likelihood-repair TEST subset rows from `gate_likelihood_repair_F_rows.csv`; this is the same repo code path and preserves the requested SEQN list.
 - Real-arm coverage targets observed curve FEV1/FVC, not known theta. Synthetic-arm coverage targets known theta. This asymmetry is not hidden.

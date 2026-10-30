@@ -1,53 +1,77 @@
-# macOS / editor noise
+# Operating-system and editor files
 .DS_Store
+Thumbs.db
 *.swp
 *.swo
+.idea/
+.vscode/
 
-# Python bytecode and test caches
+# Python caches, environments, and build products
 __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-.ipynb_checkpoints/
-*.egg-info/
-build/
-dist/
 .coverage
 htmlcov/
-
-# Local Python environments and secrets
+build/
+dist/
+*.egg-info/
 .venv/
 venv/
 env/
+
+# Secrets and machine-local configuration
 .env
 .env.*
 !.env.example
 
-# Local tool caches / logs
-.cache/
-.matplotlib/
-sbi-logs/
-*.log
-
-# Raw NHANES / local dataset copies.
-# These are large and should be restored from source, not committed to GitHub.
+# Raw NHANES and local dataset copies
 data/
 NHANES_SpiroSBI/
-DATASET[?]/
+DATASET?/
 *.sas7bdat
 *.xpt
 *.rds
 
-# Download archives and compressed raw inputs
+# Downloaded archives
 *.zip
 *.tar
 *.tar.gz
 *.tgz
 *.gz
 
-# Regenerable long-running checkpoints
+# Tool caches and logs
+.cache/
+.matplotlib/
+sbi-logs/
+*.log
+
+# Regenerable manuscript and rendering products
+output/
+paper_assets/
+rendered_*/
+*.docx
+*.pages
+
+# Large row-level analysis outputs; summary JSON/Markdown/CSV remains versioned
 results/_cache*/
 results/_*_checkpoint.csv
 results/*_progress.json
+results/*_rows.csv
+results/*_participants.csv
+results/*_maneuver_fits.csv
+results/*_predictions.csv
+results/*_traces.csv
+results/*_curves.csv
+results/*_curve_fits.csv
+results/*_residual_shape.csv
+results/*.parquet
+
+# Minimal derived Cycle F inputs required by the locked validation runner
+!results/gate_policy_calibrated_flag_F_rows.csv
+!results/merged_summary.parquet
+
+# Temporary publication workspaces
+.publish/

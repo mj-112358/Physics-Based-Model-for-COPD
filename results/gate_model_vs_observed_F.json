@@ -1411,8 +1411,8 @@
     }
   },
   "inputs": {
-    "raw_source": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
-    "raw_source_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "raw_source": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+    "raw_source_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
     "raw_loaded_rows": 36421,
     "maneuver_rows_used": 23743,
     "wall_clock_s": 320.9584777910495,

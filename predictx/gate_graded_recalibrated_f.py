@@ -15,6 +15,7 @@ from .gate_graded_probability_f import (
     PPV_NPV_FLOOR,
     all_indeterminate_zones,
     apply_zones,
+    auc_safe,
     bootstrap_auc_ci,
     boundary_mask,
     choose_boundaries,
@@ -33,6 +34,7 @@ from .gate_graded_probability_f import (
 )
 from .gate_graded_probability_repair_f import prior_adjust
 from .gate_workflow_policy_f import RANDOM_SEED, clean_json, exact_ci, fmt, md_table
+
 
 OUTPUT_STEM = "gate_graded_recalibrated_F"
 FIXED_RATIO_THRESHOLD = 0.70
@@ -383,10 +385,10 @@ def write_outputs(
         "",
         f"VERDICT: {result['verdict']} - {result['verdict_reason']}",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
     ]
-    lines.extend(f"- {item}" for item in result["protocol_decisions"])
+    lines.extend(f"- {item}" for item in result["decisions_i_made"])
     lines.extend(
         [
             "",
@@ -860,7 +862,7 @@ def run(root: Path) -> dict[str, Any]:
             "operational_recovery": operational_metrics,
         },
         "physics_inclusive_arm": physics,
-        "protocol_decisions": [
+        "decisions_i_made": [
             "TEST is scored once after TRAIN-only model fitting and TRAIN-only zone selection.",
             "Natural-prevalence calibration metrics use class reweighting on TEST because the TEST split is constructed/enriched.",
             "The post-hoc prior-corrected CLEAN GBT is the primary arm; a weighted-retrained GBT is confirmatory and can be selected only if its ECE is cleaner.",

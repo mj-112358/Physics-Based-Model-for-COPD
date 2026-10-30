@@ -1,0 +1,2165 @@
+{
+  "cycle": "E",
+  "status": "post-audit locked cross-cycle re-evaluation",
+  "cohort": {
+    "summary_rows": 7743,
+    "truth_with_fev1_fvc": 6319,
+    "raw_rows": 34857,
+    "raw_participants": 6444,
+    "acceptable_ab_candidate_rows": 21789,
+    "eligible_participants_with_candidate": 6026,
+    "successful_selected_routed_endpoints": 6026,
+    "selected_physics_recovery_n": 993,
+    "successful_selected_physics_fits": 993,
+    "no_complete_acceptable_manoeuvre_n": 458,
+    "class_distribution": {
+      "normal": 5419,
+      "mild_0.60_0.70": 488,
+      "moderate": 94,
+      "severe": 25
+    },
+    "deferred_n": 621,
+    "deferral_reasons": {
+      "R3_FAILED_REPEATABILITY": 232,
+      "R4_GENUINELY_UNINTERPRETABLE": 226,
+      "R2_BORDERLINE_RATIO": 129,
+      "R1_TRUNCATED_INCOMPLETE": 34
+    },
+    "deferred_severity": {
+      "normal": 506,
+      "mild_0.60_0.70": 94,
+      "severe": 17,
+      "moderate": 4
+    },
+    "raw_info": {
+      "path": "/Users/apple/Downloads/SpiroFlow-main/data/spxraw_e.sas7bdat",
+      "metadata_rows": 34857,
+      "loaded_rows": 34857,
+      "columns": [
+        "SEQN",
+        "SPATTYPE",
+        "SPAMANU",
+        "SPAFACT",
+        "SPAPOS",
+        "SPAPLAT",
+        "SPAACC",
+        "SPAQEFF",
+        "SPXPTS",
+        "SPXRAW"
+      ]
+    }
+  },
+  "metrics": {
+    "state_aware_physics_workflow": {
+      "n": 5405,
+      "coverage": 0.8969465648854962,
+      "tp": 467,
+      "tn": 4780,
+      "fp": 133,
+      "fn": 25,
+      "sensitivity": 0.9491869918699187,
+      "specificity": 0.9729289639731326,
+      "kappa": 0.8392295730685673,
+      "method": "state_aware_physics_workflow",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8889810819780949,
+          0.9044142051111849
+        ],
+        "sensitivity": [
+          0.9281281314168378,
+          0.967741935483871
+        ],
+        "specificity": [
+          0.9683184402924452,
+          0.9773420763688344
+        ],
+        "kappa": [
+          0.8141409041845512,
+          0.8630976569439762
+        ]
+      }
+    },
+    "quality_control_first": {
+      "n": 5033,
+      "coverage": 0.8352140723531364,
+      "tp": 443,
+      "tn": 4471,
+      "fp": 40,
+      "fn": 79,
+      "sensitivity": 0.8486590038314177,
+      "specificity": 0.9911327865218356,
+      "kappa": 0.8684807988207068,
+      "method": "quality_control_first",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8257509127115832,
+          0.8448431795552604
+        ],
+        "sensitivity": [
+          0.818526923076923,
+          0.8778672500465463
+        ],
+        "specificity": [
+          0.9881977629518379,
+          0.99375146447018
+        ],
+        "kappa": [
+          0.8450730215385766,
+          0.8903385057183266
+        ]
+      }
+    },
+    "fev1_fev6": {
+      "n": 6026,
+      "coverage": 1.0,
+      "tp": 420,
+      "tn": 5366,
+      "fp": 53,
+      "fn": 187,
+      "sensitivity": 0.6919275123558485,
+      "specificity": 0.9902195977117549,
+      "kappa": 0.7562732374114781,
+      "method": "fev1_fev6",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.6554883668742436,
+          0.7290297779777978
+        ],
+        "specificity": [
+          0.9876358668935623,
+          0.992607651081131
+        ],
+        "kappa": [
+          0.7274138752307939,
+          0.7847848114882764
+        ]
+      }
+    },
+    "direct_ratio_matched_coverage": {
+      "n": 5405,
+      "coverage": 0.8969465648854962,
+      "tp": 316,
+      "tn": 5042,
+      "fp": 23,
+      "fn": 24,
+      "sensitivity": 0.9294117647058824,
+      "specificity": 0.9954590325765055,
+      "kappa": 0.9261413442458519,
+      "method": "direct_ratio_matched_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8886491868569532,
+          0.9047461002323266
+        ],
+        "sensitivity": [
+          0.89942342140618,
+          0.9554912627761293
+        ],
+        "specificity": [
+          0.9935052155087581,
+          0.9972435654454888
+        ],
+        "kappa": [
+          0.9037373181153805,
+          0.9455932290140642
+        ]
+      }
+    },
+    "direct_ratio_on_physics_cases": {
+      "n": 5405,
+      "coverage": 0.8969465648854962,
+      "tp": 427,
+      "tn": 4868,
+      "fp": 45,
+      "fn": 65,
+      "sensitivity": 0.8678861788617886,
+      "specificity": 0.9908406269082027,
+      "kappa": 0.874725346040811,
+      "method": "direct_ratio_on_physics_cases",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8891428808496515,
+          0.9045801526717557
+        ],
+        "sensitivity": [
+          0.8369312093068567,
+          0.8982044716828573
+        ],
+        "specificity": [
+          0.9883456433759853,
+          0.9934720522235823
+        ],
+        "kappa": [
+          0.8511145828309523,
+          0.8974189026861812
+        ]
+      }
+    },
+    "archived_ridge_all": {
+      "n": 6026,
+      "coverage": 1.0,
+      "tp": 589,
+      "tn": 4976,
+      "fp": 443,
+      "fn": 18,
+      "sensitivity": 0.9703459637561779,
+      "specificity": 0.9182505997416498,
+      "kappa": 0.6778685785305397,
+      "method": "archived_ridge_all",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.9556277367510052,
+          0.9832228793966465
+        ],
+        "specificity": [
+          0.9109505991359783,
+          0.9255762352888811
+        ],
+        "kappa": [
+          0.6493388871572074,
+          0.7051729167608759
+        ]
+      }
+    },
+    "archived_ridge_matched_coverage": {
+      "n": 5405,
+      "coverage": 0.8969465648854962,
+      "tp": 566,
+      "tn": 4650,
+      "fp": 181,
+      "fn": 8,
+      "sensitivity": 0.9860627177700348,
+      "specificity": 0.9625336369281722,
+      "kappa": 0.837397008714277,
+      "method": "archived_ridge_matched_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8894789246598075,
+          0.9044142051111849
+        ],
+        "sensitivity": [
+          0.9762288752049934,
+          0.9946905000156353
+        ],
+        "specificity": [
+          0.9571601525543992,
+          0.9674461726435878
+        ],
+        "kappa": [
+          0.814515643203314,
+          0.8582589934013335
+        ]
+      }
+    },
+    "state_aware_truncated_ridge": {
+      "n": 6026,
+      "coverage": 1.0,
+      "tp": 524,
+      "tn": 5306,
+      "fp": 113,
+      "fn": 83,
+      "sensitivity": 0.8632619439868204,
+      "specificity": 0.9791474441778926,
+      "kappa": 0.8243207746035787,
+      "method": "state_aware_truncated_ridge",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8358878536764032,
+          0.8888888888888888
+        ],
+        "specificity": [
+          0.9752538100154825,
+          0.9828577739212747
+        ],
+        "kappa": [
+          0.8009797704107958,
+          0.8470188109609673
+        ]
+      }
+    },
+    "state_aware_ridge_matched_coverage": {
+      "n": 5405,
+      "coverage": 0.8969465648854962,
+      "tp": 352,
+      "tn": 4984,
+      "fp": 47,
+      "fn": 22,
+      "sensitivity": 0.9411764705882353,
+      "specificity": 0.990657920890479,
+      "kappa": 0.9038705664714494,
+      "method": "state_aware_ridge_matched_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8893129770992366,
+          0.9045801526717557
+        ],
+        "sensitivity": [
+          0.9153005464480874,
+          0.9652644789439435
+        ],
+        "specificity": [
+          0.987825933369898,
+          0.9932287770414151
+        ],
+        "kappa": [
+          0.8804892503705268,
+          0.9256778207112895
+        ]
+      }
+    },
+    "state_aware_ridge_on_physics_cases": {
+      "n": 5405,
+      "coverage": 0.8969465648854962,
+      "tp": 432,
+      "tn": 4847,
+      "fp": 66,
+      "fn": 60,
+      "sensitivity": 0.8780487804878049,
+      "specificity": 0.9865662527986974,
+      "kappa": 0.8598968343016689,
+      "method": "state_aware_ridge_on_physics_cases",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8894747759707933,
+          0.9044142051111849
+        ],
+        "sensitivity": [
+          0.8480171806167401,
+          0.9057884019616169
+        ],
+        "specificity": [
+          0.9831196167675375,
+          0.9896474012221708
+        ],
+        "kappa": [
+          0.8346354116001495,
+          0.8827345286787277
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid": {
+      "n": 6026,
+      "coverage": 1.0,
+      "tp": 524,
+      "tn": 5299,
+      "fp": 120,
+      "fn": 83,
+      "sensitivity": 0.8632619439868204,
+      "specificity": 0.9778556929322754,
+      "kappa": 0.818953603158934,
+      "method": "physics_plus_ridge_hybrid",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.834162316496336,
+          0.8890702143405033
+        ],
+        "specificity": [
+          0.9738292261408417,
+          0.9816653876819424
+        ],
+        "kappa": [
+          0.7933006896030469,
+          0.8414922722425717
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_matched_coverage": {
+      "n": 5405,
+      "coverage": 0.8969465648854962,
+      "tp": 354,
+      "tn": 4974,
+      "fp": 55,
+      "fn": 22,
+      "sensitivity": 0.9414893617021277,
+      "specificity": 0.9890634320938556,
+      "kappa": 0.8942446644611916,
+      "method": "physics_plus_ridge_hybrid_matched_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8891470295386658,
+          0.9049120477928975
+        ],
+        "sensitivity": [
+          0.9171065699006875,
+          0.9647074764865295
+        ],
+        "specificity": [
+          0.9861220564996699,
+          0.9917078395388181
+        ],
+        "kappa": [
+          0.8694398599729384,
+          0.9159727252079767
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_on_physics_cases": {
+      "n": 5405,
+      "coverage": 0.8969465648854962,
+      "tp": 432,
+      "tn": 4844,
+      "fp": 69,
+      "fn": 60,
+      "sensitivity": 0.8780487804878049,
+      "specificity": 0.9859556279259108,
+      "kappa": 0.8569513524425948,
+      "method": "physics_plus_ridge_hybrid_on_physics_cases",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8889810819780949,
+          0.90458430136077
+        ],
+        "sensitivity": [
+          0.8480468796906708,
+          0.9072647849462365
+        ],
+        "specificity": [
+          0.982562146574403,
+          0.9890606860151832
+        ],
+        "kappa": [
+          0.8327724440455923,
+          0.8808151110408297
+        ]
+      }
+    },
+    "physics_ridge_consensus": {
+      "n": 5273,
+      "coverage": 0.8750414868901427,
+      "tp": 432,
+      "tn": 4765,
+      "fp": 51,
+      "fn": 25,
+      "sensitivity": 0.9452954048140044,
+      "specificity": 0.9894102990033222,
+      "kappa": 0.9112438590188869,
+      "method": "physics_ridge_consensus",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8664080650514439,
+          0.8835048124792566
+        ],
+        "sensitivity": [
+          0.9227239444655763,
+          0.965309538502226
+        ],
+        "specificity": [
+          0.986430011971894,
+          0.9922806502171784
+        ],
+        "kappa": [
+          0.890954434005167,
+          0.930708548919269
+        ]
+      }
+    },
+    "direct_ratio_at_consensus_coverage": {
+      "n": 5273,
+      "coverage": 0.8750414868901427,
+      "tp": 289,
+      "tn": 4945,
+      "fp": 22,
+      "fn": 17,
+      "sensitivity": 0.9444444444444444,
+      "specificity": 0.9955707670626133,
+      "kappa": 0.932863309794069,
+      "method": "direct_ratio_at_consensus_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8665781613010288,
+          0.883006969797544
+        ],
+        "sensitivity": [
+          0.9181452563512467,
+          0.9691780821917808
+        ],
+        "specificity": [
+          0.9937130832199744,
+          0.9973743208162494
+        ],
+        "kappa": [
+          0.910268806396328,
+          0.9532408003425952
+        ]
+      }
+    },
+    "state_aware_ridge_at_consensus_coverage": {
+      "n": 5273,
+      "coverage": 0.8750414868901427,
+      "tp": 316,
+      "tn": 4897,
+      "fp": 44,
+      "fn": 16,
+      "sensitivity": 0.9518072289156626,
+      "specificity": 0.9910949200566687,
+      "kappa": 0.9072165674059701,
+      "method": "state_aware_ridge_at_consensus_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8667441088615997,
+          0.8831729173581149
+        ],
+        "sensitivity": [
+          0.9272094133011854,
+          0.9739940291832982
+        ],
+        "specificity": [
+          0.9882709360487487,
+          0.9937030266097908
+        ],
+        "kappa": [
+          0.882242977088761,
+          0.9296093636377226
+        ]
+      }
+    },
+    "state_aware_ridge_on_consensus_cases": {
+      "n": 5273,
+      "coverage": 0.8750414868901427,
+      "tp": 432,
+      "tn": 4765,
+      "fp": 51,
+      "fn": 25,
+      "sensitivity": 0.9452954048140044,
+      "specificity": 0.9894102990033222,
+      "kappa": 0.9112438590188869,
+      "method": "state_aware_ridge_on_consensus_cases",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8664122137404581,
+          0.8831729173581149
+        ],
+        "sensitivity": [
+          0.9236066802010828,
+          0.9656654815804205
+        ],
+        "specificity": [
+          0.9864308512959025,
+          0.992282059430388
+        ],
+        "kappa": [
+          0.8912783252747924,
+          0.9307673376065944
+        ]
+      }
+    },
+    "direct_ratio_fixed_specificity": {
+      "n": 6026,
+      "coverage": 1.0,
+      "tp": 575,
+      "tn": 5175,
+      "fp": 244,
+      "fn": 32,
+      "sensitivity": 0.9472817133443163,
+      "specificity": 0.9549732422956265,
+      "kappa": 0.7811267816934496,
+      "method": "direct_ratio_fixed_specificity",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.9291351214939794,
+          0.9641722894369474
+        ],
+        "specificity": [
+          0.9496211626049494,
+          0.9604706898579861
+        ],
+        "kappa": [
+          0.7546244193834448,
+          0.8061443364717408
+        ]
+      }
+    },
+    "archived_ridge_fixed_specificity": {
+      "n": 6026,
+      "coverage": 1.0,
+      "tp": 532,
+      "tn": 5306,
+      "fp": 113,
+      "fn": 75,
+      "sensitivity": 0.8764415156507414,
+      "specificity": 0.9791474441778926,
+      "kappa": 0.8324507411201206,
+      "method": "archived_ridge_fixed_specificity",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8500659957102787,
+          0.9025580193802127
+        ],
+        "specificity": [
+          0.9754383696170039,
+          0.9827812054639112
+        ],
+        "kappa": [
+          0.8080231655742094,
+          0.8556154877479741
+        ]
+      }
+    },
+    "state_aware_ridge_fixed_specificity": {
+      "n": 6026,
+      "coverage": 1.0,
+      "tp": 543,
+      "tn": 5286,
+      "fp": 133,
+      "fn": 64,
+      "sensitivity": 0.8945634266886326,
+      "specificity": 0.9754567263332719,
+      "kappa": 0.8282195681070524,
+      "method": "state_aware_ridge_fixed_specificity",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8697001077658787,
+          0.9193107130211561
+        ],
+        "specificity": [
+          0.9710168353178633,
+          0.9793872227274264
+        ],
+        "kappa": [
+          0.803037131615564,
+          0.8513133507146597
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_fixed_specificity": {
+      "n": 6026,
+      "coverage": 1.0,
+      "tp": 546,
+      "tn": 5256,
+      "fp": 163,
+      "fn": 61,
+      "sensitivity": 0.899505766062603,
+      "specificity": 0.9699206495663406,
+      "kappa": 0.8090634543651662,
+      "method": "physics_plus_ridge_hybrid_fixed_specificity",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8745926994979629,
+          0.9217412547797762
+        ],
+        "specificity": [
+          0.9652976672173916,
+          0.9746465148124192
+        ],
+        "kappa": [
+          0.7846421005036973,
+          0.833721369460844
+        ]
+      }
+    }
+  },
+  "paired_differences_physics_minus_comparator": {
+    "quality_control_first": {
+      "coverage": {
+        "difference": 0.061732492532359795,
+        "95_ci": [
+          0.05110769996681047,
+          0.07169349485562562
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.10052798803850105,
+        "95_ci": [
+          0.0725958899361259,
+          0.12833899466991677
+        ]
+      },
+      "specificity": {
+        "difference": -0.018203822548703008,
+        "95_ci": [
+          -0.022346207084730677,
+          -0.013964059127172615
+        ]
+      },
+      "kappa": {
+        "difference": -0.029251225752139565,
+        "95_ci": [
+          -0.05641438737390933,
+          -0.0028759949463405513
+        ]
+      }
+    },
+    "fev1_fev6": {
+      "coverage": {
+        "difference": -0.10305343511450382,
+        "95_ci": [
+          -0.11035512777962164,
+          -0.09558164619980089
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.25725947951407024,
+        "95_ci": [
+          0.2204026951726858,
+          0.29378269660292194
+        ]
+      },
+      "specificity": {
+        "difference": -0.017290633738622385,
+        "95_ci": [
+          -0.02240317704329418,
+          -0.012498409939538
+        ]
+      },
+      "kappa": {
+        "difference": 0.08295633565708915,
+        "95_ci": [
+          0.047124084005709284,
+          0.11823950578436215
+        ]
+      }
+    },
+    "direct_ratio_matched_coverage": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          -0.008135579156986428,
+          0.008301526717557269
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.019775227164036346,
+        "95_ci": [
+          0.0008708335325292721,
+          0.04074229798346658
+        ]
+      },
+      "specificity": {
+        "difference": -0.02253006860337292,
+        "95_ci": [
+          -0.026857464229827994,
+          -0.018362573332431447
+        ]
+      },
+      "kappa": {
+        "difference": -0.08691177117728466,
+        "95_ci": [
+          -0.11193899508718541,
+          -0.06345034115658427
+        ]
+      }
+    },
+    "direct_ratio_on_physics_cases": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          0.0,
+          0.0
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.08130081300813008,
+        "95_ci": [
+          0.05784528789579298,
+          0.10578894079061794
+        ]
+      },
+      "specificity": {
+        "difference": -0.017911662935070183,
+        "95_ci": [
+          -0.02169164479569003,
+          -0.014221838001764037
+        ]
+      },
+      "kappa": {
+        "difference": -0.03549577297224371,
+        "95_ci": [
+          -0.05853903112928857,
+          -0.013340408458777727
+        ]
+      }
+    },
+    "archived_ridge_all": {
+      "coverage": {
+        "difference": -0.10305343511450382,
+        "95_ci": [
+          -0.11118486558247598,
+          -0.09541569863923002
+        ]
+      },
+      "sensitivity": {
+        "difference": -0.021158971886259148,
+        "95_ci": [
+          -0.03671731839025626,
+          -0.00691973155558817
+        ]
+      },
+      "specificity": {
+        "difference": 0.05467836423148276,
+        "95_ci": [
+          0.04702130650446669,
+          0.06236713619763664
+        ]
+      },
+      "kappa": {
+        "difference": 0.16136099453802755,
+        "95_ci": [
+          0.13184003431477173,
+          0.18866064523110165
+        ]
+      }
+    },
+    "archived_ridge_matched_coverage": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          -0.009790906073680716,
+          0.009629107202124098
+        ]
+      },
+      "sensitivity": {
+        "difference": -0.03687572590011612,
+        "95_ci": [
+          -0.054884433945653024,
+          -0.020949264302804794
+        ]
+      },
+      "specificity": {
+        "difference": 0.010395327044960379,
+        "95_ci": [
+          0.004820578291901914,
+          0.016016651601427987
+        ]
+      },
+      "kappa": {
+        "difference": 0.0018325643542902448,
+        "95_ci": [
+          -0.02319040174582024,
+          0.026838400252017867
+        ]
+      }
+    },
+    "state_aware_truncated_ridge": {
+      "coverage": {
+        "difference": -0.10305343511450382,
+        "95_ci": [
+          -0.11085297046133424,
+          -0.09492200464653167
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.0859250478830983,
+        "95_ci": [
+          0.06399591273697787,
+          0.1103453038851584
+        ]
+      },
+      "specificity": {
+        "difference": -0.006218480204760013,
+        "95_ci": [
+          -0.011218300388413472,
+          -0.0014114685935338888
+        ]
+      },
+      "kappa": {
+        "difference": 0.014908798464988604,
+        "95_ci": [
+          -0.011973130924869638,
+          0.04070849925372978
+        ]
+      }
+    },
+    "state_aware_ridge_matched_coverage": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          -0.008301526717557291,
+          0.007965482907401178
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.008010521281683447,
+        "95_ci": [
+          -0.010707914329991694,
+          0.02568116032242241
+        ]
+      },
+      "specificity": {
+        "difference": -0.01772895691734644,
+        "95_ci": [
+          -0.022211271886084172,
+          -0.013153594199555143
+        ]
+      },
+      "kappa": {
+        "difference": -0.0646409934028821,
+        "95_ci": [
+          -0.08893545262832163,
+          -0.03970617713846317
+        ]
+      }
+    },
+    "state_aware_ridge_on_physics_cases": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          0.0,
+          0.0
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.07113821138211385,
+        "95_ci": [
+          0.04911001164377254,
+          0.09489131660785355
+        ]
+      },
+      "specificity": {
+        "difference": -0.013637288825564808,
+        "95_ci": [
+          -0.0176007364161887,
+          -0.009739914340978258
+        ]
+      },
+      "kappa": {
+        "difference": -0.020667261233101586,
+        "95_ci": [
+          -0.043453239487378566,
+          0.002601938597535725
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid": {
+      "coverage": {
+        "difference": -0.10305343511450382,
+        "95_ci": [
+          -0.11101891802190511,
+          -0.09508795220710253
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.0859250478830983,
+        "95_ci": [
+          0.06383793697639482,
+          0.1112145399176284
+        ]
+      },
+      "specificity": {
+        "difference": -0.004926728959142812,
+        "95_ci": [
+          -0.009631014686773192,
+          -0.000621716053448223
+        ]
+      },
+      "kappa": {
+        "difference": 0.020275969909633318,
+        "95_ci": [
+          -0.004640657028931022,
+          0.04510637208328725
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_matched_coverage": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          -0.008131430467972156,
+          0.008463325589113783
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.007697630167791014,
+        "95_ci": [
+          -0.00886459913045865,
+          0.02612071215896281
+        ]
+      },
+      "specificity": {
+        "difference": -0.016134468120723056,
+        "95_ci": [
+          -0.021034186756409286,
+          -0.011752882715342772
+        ]
+      },
+      "kappa": {
+        "difference": -0.05501509139262428,
+        "95_ci": [
+          -0.08016058243517087,
+          -0.03148397759793136
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_on_physics_cases": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          0.0,
+          0.0
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.07113821138211385,
+        "95_ci": [
+          0.048979591836734726,
+          0.09474033756117042
+        ]
+      },
+      "specificity": {
+        "difference": -0.013026663952778295,
+        "95_ci": [
+          -0.016866661992971394,
+          -0.009228592569714995
+        ]
+      },
+      "kappa": {
+        "difference": -0.017721779374027524,
+        "95_ci": [
+          -0.03981577523197484,
+          0.005337292384888585
+        ]
+      }
+    },
+    "physics_ridge_consensus": {
+      "coverage": {
+        "difference": 0.02190507799535346,
+        "95_ci": [
+          0.018254231662794496,
+          0.025721871888483294
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.003891587055914303,
+        "95_ci": [
+          0.0021755543537721965,
+          0.006094297395035041
+        ]
+      },
+      "specificity": {
+        "difference": -0.01648133503018967,
+        "95_ci": [
+          -0.020078536869813046,
+          -0.012999123357487192
+        ]
+      },
+      "kappa": {
+        "difference": -0.07201428595031967,
+        "95_ci": [
+          -0.08885919668503936,
+          -0.055415098996495736
+        ]
+      }
+    },
+    "direct_ratio_at_consensus_coverage": {
+      "coverage": {
+        "difference": 0.02190507799535346,
+        "95_ci": [
+          0.013275804845668815,
+          0.0303725522734816
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.004742547425474308,
+        "95_ci": [
+          -0.011009410528961311,
+          0.020367084860926817
+        ]
+      },
+      "specificity": {
+        "difference": -0.022641803089480717,
+        "95_ci": [
+          -0.02720515300027019,
+          -0.01831973422925566
+        ]
+      },
+      "kappa": {
+        "difference": -0.09363373672550168,
+        "95_ci": [
+          -0.1189872379491866,
+          -0.06964609753140316
+        ]
+      }
+    },
+    "state_aware_ridge_at_consensus_coverage": {
+      "coverage": {
+        "difference": 0.02190507799535346,
+        "95_ci": [
+          0.013773647527381305,
+          0.03036840358446735
+        ]
+      },
+      "sensitivity": {
+        "difference": -0.0026202370457438784,
+        "95_ci": [
+          -0.020262094157196178,
+          0.014681343738719061
+        ]
+      },
+      "specificity": {
+        "difference": -0.018165956083536106,
+        "95_ci": [
+          -0.022561143133932725,
+          -0.013444448777081959
+        ]
+      },
+      "kappa": {
+        "difference": -0.06798699433740285,
+        "95_ci": [
+          -0.0927957488695256,
+          -0.04152517170471624
+        ]
+      }
+    },
+    "state_aware_ridge_on_consensus_cases": {
+      "coverage": {
+        "difference": 0.02190507799535346,
+        "95_ci": [
+          0.018254231662794496,
+          0.025555924327912427
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.003891587055914303,
+        "95_ci": [
+          0.0021696781006620954,
+          0.0060279365945769955
+        ]
+      },
+      "specificity": {
+        "difference": -0.01648133503018967,
+        "95_ci": [
+          -0.02008995073526947,
+          -0.013226718189286377
+        ]
+      },
+      "kappa": {
+        "difference": -0.07201428595031967,
+        "95_ci": [
+          -0.08902332724671522,
+          -0.056505326725855703
+        ]
+      }
+    },
+    "direct_ratio_fixed_specificity": {
+      "coverage": {
+        "difference": -0.10305343511450382,
+        "95_ci": [
+          -0.11085297046133424,
+          -0.09541984732824427
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.0019052785256024052,
+        "95_ci": [
+          -0.012118285032348353,
+          0.015580945571871176
+        ]
+      },
+      "specificity": {
+        "difference": 0.01795572167750603,
+        "95_ci": [
+          0.01165292815633796,
+          0.023751487662145857
+        ]
+      },
+      "kappa": {
+        "difference": 0.058102791375117646,
+        "95_ci": [
+          0.03111501497687514,
+          0.08357973037195807
+        ]
+      }
+    },
+    "archived_ridge_fixed_specificity": {
+      "coverage": {
+        "difference": -0.10305343511450382,
+        "95_ci": [
+          -0.11101891802190511,
+          -0.09591769000995687
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.07274547621917737,
+        "95_ci": [
+          0.05006938212680054,
+          0.09446576261382676
+        ]
+      },
+      "specificity": {
+        "difference": -0.006218480204760013,
+        "95_ci": [
+          -0.011211409492917948,
+          -0.0011613268185464134
+        ]
+      },
+      "kappa": {
+        "difference": 0.00677883194844664,
+        "95_ci": [
+          -0.018621930492408362,
+          0.03226975629349281
+        ]
+      }
+    },
+    "state_aware_ridge_fixed_specificity": {
+      "coverage": {
+        "difference": -0.10305343511450382,
+        "95_ci": [
+          -0.11118486558247598,
+          -0.09558579488881513
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.05462356518128608,
+        "95_ci": [
+          0.03494891732486219,
+          0.07485481371809762
+        ]
+      },
+      "specificity": {
+        "difference": -0.0025277623601392962,
+        "95_ci": [
+          -0.007312736809450909,
+          0.002277791827699129
+        ]
+      },
+      "kappa": {
+        "difference": 0.01101000496151483,
+        "95_ci": [
+          -0.013535597283192405,
+          0.03510717165429285
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_fixed_specificity": {
+      "coverage": {
+        "difference": -0.10305343511450382,
+        "95_ci": [
+          -0.11068702290076338,
+          -0.09558579488881513
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.04968122580731571,
+        "95_ci": [
+          0.03091232284753171,
+          0.0703882160277916
+        ]
+      },
+      "specificity": {
+        "difference": 0.0030083144067919454,
+        "95_ci": [
+          -0.0019172801393947559,
+          0.0080883490064852
+        ]
+      },
+      "kappa": {
+        "difference": 0.030166118703401024,
+        "95_ci": [
+          0.006249236016056922,
+          0.05344373523492555
+        ]
+      }
+    }
+  },
+  "paired_differences_consensus_minus_comparator": {
+    "direct_ratio_at_consensus_coverage": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          -0.008297378028543023,
+          0.00862927314968465
+        ]
+      },
+      "sensitivity": {
+        "difference": 0.0008509603695600054,
+        "95_ci": [
+          -0.015756235813892794,
+          0.01679519434340274
+        ]
+      },
+      "specificity": {
+        "difference": -0.006160468059291047,
+        "95_ci": [
+          -0.008624457249811496,
+          -0.003702404900374912
+        ]
+      },
+      "kappa": {
+        "difference": -0.021619450775182014,
+        "95_ci": [
+          -0.03924527105550831,
+          -0.0042668671953737915
+        ]
+      }
+    },
+    "state_aware_ridge_at_consensus_coverage": {
+      "coverage": {
+        "difference": 0.0,
+        "95_ci": [
+          -0.008131430467972156,
+          0.008131430467972049
+        ]
+      },
+      "sensitivity": {
+        "difference": -0.006511824101658181,
+        "95_ci": [
+          -0.02463712300184308,
+          0.009446594785126156
+        ]
+      },
+      "specificity": {
+        "difference": -0.0016846210533464356,
+        "95_ci": [
+          -0.004509002545860693,
+          0.0009707221350102302
+        ]
+      },
+      "kappa": {
+        "difference": 0.004027291612916817,
+        "95_ci": [
+          -0.01676935072328546,
+          0.023206876934811833
+        ]
+      }
+    }
+  },
+  "fvc_error": {
+    "direct_observed": {
+      "n": 6026,
+      "mae_ml": 197.52584263857997,
+      "median_signed_ml": -159.63317647058784,
+      "mae_95_ci": [
+        194.1224666827996,
+        200.95158926976072
+      ]
+    },
+    "physics_model": {
+      "n": 6026,
+      "mae_ml": 205.86336694861183,
+      "median_signed_ml": -154.96598837209353,
+      "mae_95_ci": [
+        202.52039964667026,
+        209.4151910791263
+      ]
+    },
+    "state_aware_physics": {
+      "n": 6026,
+      "mae_ml": 205.86336694861183,
+      "median_signed_ml": -154.96598837209353,
+      "mae_95_ci": [
+        202.37712859976602,
+        209.42997181531337
+      ]
+    },
+    "standalone_physics_all": {
+      "n": 6026,
+      "mae_ml": 176.63910064121353,
+      "median_signed_ml": -127.84635206949679,
+      "mae_95_ci": [
+        173.07213820894086,
+        180.5143225983853
+      ]
+    },
+    "archived_ridge": {
+      "n": 6026,
+      "mae_ml": 82.51872415665426,
+      "median_signed_ml": 11.531309596986894,
+      "mae_95_ci": [
+        80.14004705230927,
+        85.08428905793902
+      ]
+    },
+    "truncated_only_ridge": {
+      "n": 6026,
+      "mae_ml": 85.10013097470507,
+      "median_signed_ml": 2.020898160771223,
+      "mae_95_ci": [
+        82.47522469596186,
+        87.7343794403793
+      ]
+    },
+    "state_aware_ridge": {
+      "n": 6026,
+      "mae_ml": 183.97243171190718,
+      "median_signed_ml": -147.88573571672936,
+      "mae_95_ci": [
+        180.62815623958403,
+        187.25529440183038
+      ]
+    },
+    "state_aware_physics_plus_ridge_hybrid": {
+      "n": 6026,
+      "mae_ml": 182.75509832596663,
+      "median_signed_ml": -147.79243238496622,
+      "mae_95_ci": [
+        179.62869638338634,
+        186.12824117132607
+      ]
+    },
+    "no_complete_direct_observed": {
+      "n": 458,
+      "mae_ml": 209.68616032680853,
+      "median_signed_ml": -120.13976923076908,
+      "mae_95_ci": [
+        186.94695261972677,
+        233.63921621675152
+      ]
+    },
+    "no_complete_physics_model": {
+      "n": 458,
+      "mae_ml": 293.2764415810199,
+      "median_signed_ml": 13.000000000000455,
+      "mae_95_ci": [
+        270.5370154957378,
+        314.681699895526
+      ]
+    },
+    "no_complete_archived_ridge": {
+      "n": 458,
+      "mae_ml": 124.25807543676427,
+      "median_signed_ml": -28.413606410836458,
+      "mae_95_ci": [
+        103.974025205878,
+        146.39524238997865
+      ]
+    },
+    "no_complete_truncated_only_ridge": {
+      "n": 458,
+      "mae_ml": 130.8704798354929,
+      "median_signed_ml": 43.144982123508484,
+      "mae_95_ci": [
+        112.64600863239939,
+        151.24132993214326
+      ]
+    },
+    "no_complete_physics_plus_ridge_hybrid": {
+      "n": 458,
+      "mae_ml": 119.2398099181391,
+      "median_signed_ml": 20.742848693629632,
+      "mae_95_ci": [
+        103.81456088292151,
+        136.49155079819172
+      ]
+    }
+  },
+  "paired_fvc_mae_differences": {
+    "physics_minus_direct_observed": {
+      "n": 6026,
+      "difference_mae_ml": 8.337524310031853,
+      "95_ci": [
+        5.939324271173152,
+        10.799661278631053
+      ]
+    },
+    "physics_minus_archived_ridge": {
+      "n": 6026,
+      "difference_mae_ml": 123.34464279195757,
+      "95_ci": [
+        120.02149357185266,
+        126.75816015158988
+      ]
+    },
+    "physics_minus_truncated_only_ridge": {
+      "n": 6026,
+      "difference_mae_ml": 120.76323597390676,
+      "95_ci": [
+        117.86869164729615,
+        123.71726905391589
+      ]
+    },
+    "state_aware_physics_minus_state_aware_ridge": {
+      "n": 6026,
+      "difference_mae_ml": 21.89093523670465,
+      "95_ci": [
+        19.223738476532713,
+        24.42488013116602
+      ]
+    },
+    "state_aware_physics_minus_hybrid": {
+      "n": 6026,
+      "difference_mae_ml": 23.1082686226452,
+      "95_ci": [
+        20.84162701655675,
+        25.408055509770627
+      ]
+    },
+    "hybrid_minus_state_aware_ridge": {
+      "n": 6026,
+      "difference_mae_ml": -1.2173333859405489,
+      "95_ci": [
+        -1.9238037583512075,
+        -0.49130162590758963
+      ]
+    },
+    "no_complete_physics_minus_truncated_only_ridge": {
+      "n": 458,
+      "difference_mae_ml": 162.40596174552704,
+      "95_ci": [
+        135.5375724972217,
+        188.7462552088093
+      ]
+    },
+    "no_complete_hybrid_minus_truncated_only_ridge": {
+      "n": 458,
+      "difference_mae_ml": -11.630669917353785,
+      "95_ci": [
+        -19.776995466821763,
+        -3.813522001399074
+      ]
+    }
+  },
+  "no_complete_acceptable_manoeuvre_metrics": {
+    "state_aware_physics_workflow": {
+      "n": 315,
+      "coverage": 0.6877729257641921,
+      "tp": 22,
+      "tn": 218,
+      "fp": 73,
+      "fn": 2,
+      "sensitivity": 0.9166666666666666,
+      "specificity": 0.7491408934707904,
+      "kappa": 0.2824601366742595,
+      "method": "state_aware_physics_workflow",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.6441048034934498,
+          0.7270742358078602
+        ],
+        "sensitivity": [
+          0.7894736842105263,
+          1.0
+        ],
+        "specificity": [
+          0.6996463195226446,
+          0.7992963734789691
+        ],
+        "kappa": [
+          0.18012280614547202,
+          0.3870545931356396
+        ]
+      }
+    },
+    "quality_control_first": {
+      "n": 0,
+      "coverage": 0.0,
+      "tp": 0,
+      "tn": 0,
+      "fp": 0,
+      "fn": 0,
+      "sensitivity": null,
+      "specificity": null,
+      "kappa": null,
+      "method": "quality_control_first",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.0,
+          0.0
+        ],
+        "sensitivity": [
+          null,
+          null
+        ],
+        "specificity": [
+          null,
+          null
+        ],
+        "kappa": [
+          null,
+          null
+        ]
+      }
+    },
+    "fev1_fev6": {
+      "n": 458,
+      "coverage": 1.0,
+      "tp": 21,
+      "tn": 430,
+      "fp": 1,
+      "fn": 6,
+      "sensitivity": 0.7777777777777778,
+      "specificity": 0.9976798143851509,
+      "kappa": 0.8491578055895362,
+      "method": "fev1_fev6",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.6111111111111112,
+          0.92
+        ],
+        "specificity": [
+          0.9929577464788732,
+          1.0
+        ],
+        "kappa": [
+          0.719518984522882,
+          0.9456532487080498
+        ]
+      }
+    },
+    "direct_ratio_matched_coverage": {
+      "n": 444,
+      "coverage": 0.9694323144104804,
+      "tp": 19,
+      "tn": 413,
+      "fp": 9,
+      "fn": 3,
+      "sensitivity": 0.8636363636363636,
+      "specificity": 0.9786729857819905,
+      "kappa": 0.7458985120183141,
+      "method": "direct_ratio_matched_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.9519650655021834,
+          0.9847161572052402
+        ],
+        "sensitivity": [
+          0.6875,
+          1.0
+        ],
+        "specificity": [
+          0.9641961848182552,
+          0.9906542056074766
+        ],
+        "kappa": [
+          0.5860574241181294,
+          0.8661187036988526
+        ]
+      }
+    },
+    "direct_ratio_on_physics_cases": {
+      "n": 315,
+      "coverage": 0.6877729257641921,
+      "tp": 21,
+      "tn": 282,
+      "fp": 9,
+      "fn": 3,
+      "sensitivity": 0.875,
+      "specificity": 0.9690721649484536,
+      "kappa": 0.7572254335260116,
+      "method": "direct_ratio_on_physics_cases",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.6462882096069869,
+          0.7292576419213974
+        ],
+        "sensitivity": [
+          0.7240900383141763,
+          1.0
+        ],
+        "specificity": [
+          0.9464255752636624,
+          0.9864406779661017
+        ],
+        "kappa": [
+          0.6075423546073184,
+          0.8751611032033624
+        ]
+      }
+    },
+    "archived_ridge_all": {
+      "n": 458,
+      "coverage": 1.0,
+      "tp": 25,
+      "tn": 401,
+      "fp": 30,
+      "fn": 2,
+      "sensitivity": 0.9259259259259259,
+      "specificity": 0.9303944315545244,
+      "kappa": 0.5762447232984439,
+      "method": "archived_ridge_all",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8064516129032258,
+          1.0
+        ],
+        "specificity": [
+          0.9054030647275451,
+          0.9538159326803111
+        ],
+        "kappa": [
+          0.44233088116188846,
+          0.7025308726282838
+        ]
+      }
+    },
+    "archived_ridge_matched_coverage": {
+      "n": 444,
+      "coverage": 0.9694323144104804,
+      "tp": 25,
+      "tn": 394,
+      "fp": 24,
+      "fn": 1,
+      "sensitivity": 0.9615384615384616,
+      "specificity": 0.9425837320574163,
+      "kappa": 0.639047866805411,
+      "method": "archived_ridge_matched_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.9519650655021834,
+          0.9847161572052402
+        ],
+        "sensitivity": [
+          0.8695652173913043,
+          1.0
+        ],
+        "specificity": [
+          0.9182643072289156,
+          0.9641148325358851
+        ],
+        "kappa": [
+          0.4963948751460035,
+          0.7586838883466841
+        ]
+      }
+    },
+    "state_aware_truncated_ridge": {
+      "n": 458,
+      "coverage": 1.0,
+      "tp": 25,
+      "tn": 390,
+      "fp": 41,
+      "fn": 2,
+      "sensitivity": 0.9259259259259259,
+      "specificity": 0.9048723897911833,
+      "kappa": 0.4954137842685108,
+      "method": "state_aware_truncated_ridge",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8095238095238095,
+          1.0
+        ],
+        "specificity": [
+          0.8755689888858769,
+          0.9324048625792811
+        ],
+        "kappa": [
+          0.36489443384627623,
+          0.6178811893682059
+        ]
+      }
+    },
+    "state_aware_ridge_matched_coverage": {
+      "n": 427,
+      "coverage": 0.9323144104803494,
+      "tp": 23,
+      "tn": 376,
+      "fp": 26,
+      "fn": 2,
+      "sensitivity": 0.92,
+      "specificity": 0.9353233830845771,
+      "kappa": 0.5898174831892414,
+      "method": "state_aware_ridge_matched_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.9082969432314411,
+          0.9541484716157205
+        ],
+        "sensitivity": [
+          0.8,
+          1.0
+        ],
+        "specificity": [
+          0.9102556109725686,
+          0.9577166765183981
+        ],
+        "kappa": [
+          0.4468173016433743,
+          0.7114571363604982
+        ]
+      }
+    },
+    "state_aware_ridge_on_physics_cases": {
+      "n": 315,
+      "coverage": 0.6877729257641921,
+      "tp": 22,
+      "tn": 270,
+      "fp": 21,
+      "fn": 2,
+      "sensitivity": 0.9166666666666666,
+      "specificity": 0.9278350515463918,
+      "kappa": 0.6195052780841342,
+      "method": "state_aware_ridge_on_physics_cases",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.6462882096069869,
+          0.7270742358078602
+        ],
+        "sensitivity": [
+          0.7894736842105263,
+          1.0
+        ],
+        "specificity": [
+          0.8956228956228957,
+          0.9553264604810997
+        ],
+        "kappa": [
+          0.4678040661292607,
+          0.7501265447367463
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid": {
+      "n": 458,
+      "coverage": 1.0,
+      "tp": 25,
+      "tn": 383,
+      "fp": 48,
+      "fn": 2,
+      "sensitivity": 0.9259259259259259,
+      "specificity": 0.888631090487239,
+      "kappa": 0.4529122270533709,
+      "method": "physics_plus_ridge_hybrid",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8124255952380952,
+          1.0
+        ],
+        "specificity": [
+          0.8588146581138255,
+          0.9182242990654206
+        ],
+        "kappa": [
+          0.32842157220431883,
+          0.5716829043694557
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_matched_coverage": {
+      "n": 419,
+      "coverage": 0.9148471615720524,
+      "tp": 24,
+      "tn": 360,
+      "fp": 33,
+      "fn": 2,
+      "sensitivity": 0.9230769230769231,
+      "specificity": 0.916030534351145,
+      "kappa": 0.5390249269166696,
+      "method": "physics_plus_ridge_hybrid_matched_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.888646288209607,
+          0.9388646288209607
+        ],
+        "sensitivity": [
+          0.8,
+          1.0
+        ],
+        "specificity": [
+          0.8875,
+          0.9420654911838791
+        ],
+        "kappa": [
+          0.38957577396029586,
+          0.661433907247871
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_on_physics_cases": {
+      "n": 315,
+      "coverage": 0.6877729257641921,
+      "tp": 22,
+      "tn": 269,
+      "fp": 22,
+      "fn": 2,
+      "sensitivity": 0.9166666666666666,
+      "specificity": 0.9243986254295533,
+      "kappa": 0.608452454940957,
+      "method": "physics_plus_ridge_hybrid_on_physics_cases",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.6441048034934498,
+          0.7314410480349345
+        ],
+        "sensitivity": [
+          0.7825747282608696,
+          1.0
+        ],
+        "specificity": [
+          0.8931002767846846,
+          0.9540644731506691
+        ],
+        "kappa": [
+          0.45383230517505535,
+          0.7495920738549081
+        ]
+      }
+    },
+    "physics_ridge_consensus": {
+      "n": 247,
+      "coverage": 0.5393013100436681,
+      "tp": 22,
+      "tn": 210,
+      "fp": 13,
+      "fn": 2,
+      "sensitivity": 0.9166666666666666,
+      "specificity": 0.9417040358744395,
+      "kappa": 0.712634763049717,
+      "method": "physics_ridge_consensus",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.49344978165938863,
+          0.5829694323144105
+        ],
+        "sensitivity": [
+          0.7857142857142857,
+          1.0
+        ],
+        "specificity": [
+          0.9069767441860465,
+          0.9714285714285714
+        ],
+        "kappa": [
+          0.5574925215006851,
+          0.8460464385466175
+        ]
+      }
+    },
+    "direct_ratio_at_consensus_coverage": {
+      "n": 443,
+      "coverage": 0.9672489082969432,
+      "tp": 19,
+      "tn": 412,
+      "fp": 9,
+      "fn": 3,
+      "sensitivity": 0.8636363636363636,
+      "specificity": 0.9786223277909739,
+      "kappa": 0.7458648054307293,
+      "method": "direct_ratio_at_consensus_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.9497816593886463,
+          0.982532751091703
+        ],
+        "sensitivity": [
+          0.7058823529411765,
+          1.0
+        ],
+        "specificity": [
+          0.9628748718502131,
+          0.9927365161245044
+        ],
+        "kappa": [
+          0.5938454559728368,
+          0.8729072323726147
+        ]
+      }
+    },
+    "state_aware_ridge_at_consensus_coverage": {
+      "n": 419,
+      "coverage": 0.9148471615720524,
+      "tp": 23,
+      "tn": 370,
+      "fp": 25,
+      "fn": 1,
+      "sensitivity": 0.9583333333333334,
+      "specificity": 0.9367088607594937,
+      "kappa": 0.6090295722078671,
+      "method": "state_aware_ridge_at_consensus_coverage",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.8908296943231441,
+          0.9388646288209607
+        ],
+        "sensitivity": [
+          0.8636363636363636,
+          1.0
+        ],
+        "specificity": [
+          0.9130434782608695,
+          0.9603002235707441
+        ],
+        "kappa": [
+          0.4645961142851281,
+          0.7423101880213474
+        ]
+      }
+    },
+    "state_aware_ridge_on_consensus_cases": {
+      "n": 247,
+      "coverage": 0.5393013100436681,
+      "tp": 22,
+      "tn": 210,
+      "fp": 13,
+      "fn": 2,
+      "sensitivity": 0.9166666666666666,
+      "specificity": 0.9417040358744395,
+      "kappa": 0.712634763049717,
+      "method": "state_aware_ridge_on_consensus_cases",
+      "bootstrap_95_ci": {
+        "coverage": [
+          0.49563318777292575,
+          0.5873362445414847
+        ],
+        "sensitivity": [
+          0.7894736842105263,
+          1.0
+        ],
+        "specificity": [
+          0.9082959416690036,
+          0.9712952836637047
+        ],
+        "kappa": [
+          0.5662775808605194,
+          0.8378263280685856
+        ]
+      }
+    },
+    "direct_ratio_fixed_specificity": {
+      "n": 458,
+      "coverage": 1.0,
+      "tp": 24,
+      "tn": 414,
+      "fp": 17,
+      "fn": 3,
+      "sensitivity": 0.8888888888888888,
+      "specificity": 0.9605568445475638,
+      "kappa": 0.6833736605599724,
+      "method": "direct_ratio_fixed_specificity",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.7586206896551724,
+          1.0
+        ],
+        "specificity": [
+          0.9398113237947924,
+          0.977116704805492
+        ],
+        "kappa": [
+          0.5422786130181632,
+          0.8009342865389429
+        ]
+      }
+    },
+    "archived_ridge_fixed_specificity": {
+      "n": 458,
+      "coverage": 1.0,
+      "tp": 25,
+      "tn": 407,
+      "fp": 24,
+      "fn": 2,
+      "sensitivity": 0.9259259259259259,
+      "specificity": 0.9443155452436195,
+      "kappa": 0.6297493936944217,
+      "method": "archived_ridge_fixed_specificity",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8076923076923077,
+          1.0
+        ],
+        "specificity": [
+          0.9225311917165091,
+          0.9653579676674365
+        ],
+        "kappa": [
+          0.4949095507596986,
+          0.7544208268039722
+        ]
+      }
+    },
+    "state_aware_ridge_fixed_specificity": {
+      "n": 458,
+      "coverage": 1.0,
+      "tp": 25,
+      "tn": 390,
+      "fp": 41,
+      "fn": 2,
+      "sensitivity": 0.9259259259259259,
+      "specificity": 0.9048723897911833,
+      "kappa": 0.4954137842685108,
+      "method": "state_aware_ridge_fixed_specificity",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.809478021978022,
+          1.0
+        ],
+        "specificity": [
+          0.8764236564083919,
+          0.9303984596545501
+        ],
+        "kappa": [
+          0.3658032978537972,
+          0.608293236097601
+        ]
+      }
+    },
+    "physics_plus_ridge_hybrid_fixed_specificity": {
+      "n": 458,
+      "coverage": 1.0,
+      "tp": 25,
+      "tn": 383,
+      "fp": 48,
+      "fn": 2,
+      "sensitivity": 0.9259259259259259,
+      "specificity": 0.888631090487239,
+      "kappa": 0.4529122270533709,
+      "method": "physics_plus_ridge_hybrid_fixed_specificity",
+      "bootstrap_95_ci": {
+        "coverage": [
+          1.0,
+          1.0
+        ],
+        "sensitivity": [
+          0.8076923076923077,
+          1.0
+        ],
+        "specificity": [
+          0.8588235294117647,
+          0.9187935034802784
+        ],
+        "kappa": [
+          0.3220791193198213,
+          0.5642069073782833
+        ]
+      }
+    }
+  }
+}

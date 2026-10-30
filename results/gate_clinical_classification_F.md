@@ -4,7 +4,7 @@
 - model tested: plain bi-exponential OMBE fit in the volume domain only
 - excluded methods: gamma onset, time registration, ML residual correction
 - random seed: 20260708
-- raw source: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat
+- raw source: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat
 - raw loaded rows: 36421
 - source mapping: `merged_summary.parquet` canonical fields resolved from `results/column_map.json`; cycle-F source variables are `SPXNFEV1` for FEV1 and `SPXNFVC` for FVC.
 

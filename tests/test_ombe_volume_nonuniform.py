@@ -2,10 +2,8 @@ from __future__ import annotations
 
 import unittest
 
+import jax.numpy as jnp
 import numpy as np
-import pytest
-
-jnp = pytest.importorskip("jax.numpy")
 
 from predictx.ombe import midrange_phi, ombe_flow, ombe_volume
 

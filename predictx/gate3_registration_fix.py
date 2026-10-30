@@ -15,6 +15,7 @@ import pandas as pd
 from scipy.stats import chi2
 
 from .fit import fit_ombe_registered_lm, np_ombe_registered_flow
+from .gate23_f import find_or_unzip_raw, read_raw
 from .gate3_diagnosis import (
     N_PARAMS,
     SAMPLE_N,
@@ -28,7 +29,7 @@ from .gate3_diagnosis import (
     savgol_sigma,
     select_sample,
 )
-from .gate23_f import find_or_unzip_raw, read_raw
+
 
 BASELINE_DIPOLE_FRACTION = 0.845
 BASELINE_ALL_WITHIN_5PCT = 0.840
@@ -85,7 +86,7 @@ def analyze_registered_curve(fit_row: Any, raw_row: Any) -> tuple[dict, dict]:
             "registered_tau_f": fit.params["tau_f"],
             "registered_tau_s": fit.params["tau_s"],
             "registered_alpha": fit.params["alpha"],
-            "registered_fvc_parameter_l": fit.params["fvc_l"],
+            "registered_fvc_l": fit.params["fvc_l"],
             "registered_tau_o": fit.params["tau_o"],
             "sigma_flow_lps": sigma_flow,
             "registered_flow_nrss_norm": nrss_norm,

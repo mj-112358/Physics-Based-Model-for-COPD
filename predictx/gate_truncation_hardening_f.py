@@ -13,14 +13,11 @@ import numpy as np
 import pandas as pd
 from scipy.optimize import least_squares
 
-from .gate3_diagnosis import np_ombe_volume, savgol_sigma
 from .gate23_f import find_or_unzip_raw, read_raw
+from .gate3_diagnosis import np_ombe_volume, savgol_sigma
 from .gate_clinical_classification_f import decode_grade, extract_curve_for_fit
 from .gate_truncation_recovery_f import (
     ESTIMATORS as BASE_ESTIMATORS,
-)
-from .gate_truncation_recovery_f import (
-    PREDICTION_HORIZON_S,
     TRUNCATION_TIMES,
     clean_json,
     confusion_binary,
@@ -29,7 +26,9 @@ from .gate_truncation_recovery_f import (
     insert_time_point,
     mono_exp_volume,
     pct_error,
+    q,
 )
+
 
 OUTPUT_STEM = "gate_truncation_hardening_F"
 BOOTSTRAP_B = 2000
@@ -140,7 +139,7 @@ def line_value_dump(root: Path) -> dict[str, Any]:
         "clean_classification_existing": trunc_cls,
         "h1_classification_existing": h1_cls,
         "sample_sources": [
-            {"item": "endpoint", "value": f"Every truncated estimator used only volume samples up to T and a fixed {PREDICTION_HORIZON_S:.0f} s prediction horizon; the full curve was used only for scoring.", "source": source_ref("results/gate_truncation_recovery_F.md", "6")},
+            {"item": "endpoint", "value": "Every truncated estimator used only volume samples up to T; full curve was used only for scoring and as the requested extrapolation target time.", "source": source_ref("results/gate_truncation_recovery_F.md", "6")},
             {"item": "total clean-cut n", "value": "497", "source": source_ref("results/gate_truncation_recovery_F.md", "26")},
             {"item": "obstructed denominator", "value": "297 = 17 severe + 80 moderate + 200 mild_0.60_0.70", "source": source_ref("results/gate_truncation_recovery_F.md", "16-18")},
             {"item": "specificity denominator", "value": "200 normal", "source": source_ref("results/gate_truncation_recovery_F.md", "19")},
@@ -366,7 +365,7 @@ def estimate_realistic_curve(row: Any, raw_by_index: dict[int, Any]) -> list[dic
     curve = extract_curve_for_fit(raw_row)
     field_t = np.asarray(curve["vol_t"], dtype=float)
     field_y = np.asarray(curve["vol_l"], dtype=float)
-    target_end = PREDICTION_HORIZON_S
+    target_end = float(row.full_end_s)
     field_endpoint = float(field_t[-1])
     used_stop = min(field_endpoint, target_end)
     t_fit, y_fit = insert_time_point(field_t, field_y, used_stop)
@@ -405,7 +404,7 @@ def estimate_realistic_curve(row: Any, raw_by_index: dict[int, Any]) -> list[dic
                 "endpoint_bucket": row.field_endpoint_bucket,
                 "field_endpoint_s": field_endpoint,
                 "used_stop_s": used_stop,
-                "prediction_horizon_s": target_end,
+                "target_full_end_s": target_end,
                 "estimator": estimator,
                 "fit_success": success,
                 "fit_failure": "" if success else str(fit.get("failure", "nonfinite/nonpositive estimate")),
@@ -815,7 +814,7 @@ def make_report(result: dict[str, Any], cls: pd.DataFrame, boot: pd.DataFrame, r
     lines.extend(part0_markdown(result["part0_dump"]))
     lines.extend(
         [
-            "## Protocol Decisions",
+            "## Decisions I Made",
             "",
             f"- Realistic quality flag rule: `{REALISTIC_FLAG_RULE}`.",
             "- Used actual same-patient lower-quality/incomplete Pre curves where a clean complete-plateau target exists.",

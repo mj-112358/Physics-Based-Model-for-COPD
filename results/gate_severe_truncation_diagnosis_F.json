@@ -1,7 +1,7 @@
 {
   "seed": 20260710,
-  "raw_source": "<PROJECT_ROOT>/DATASET?/spxraw_f.sas7bdat",
-  "raw_source_note": "using existing SAS7BDAT: <PROJECT_ROOT>/DATASET?/spxraw_f.sas7bdat",
+  "raw_source": "./DATASET?/spxraw_f.sas7bdat",
+  "raw_source_note": "using existing SAS7BDAT: ./DATASET?/spxraw_f.sas7bdat",
   "raw_loaded_rows": 36421,
   "field_realistic_meta": {
     "flag_rule": "SPAQEFF in {C,D} OR SPAACC != Y OR SPAPLAT != Y",

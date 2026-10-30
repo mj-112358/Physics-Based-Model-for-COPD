@@ -22,7 +22,9 @@ from .gate_degradation_robustness import (
     evaluate_profile,
     forward_model_guard,
     md_table,
+    profile_defs,
 )
+
 
 RESULT_JSON = "gate_degradation_breaking_confirmation.json"
 RESULT_CSV = "gate_degradation_breaking_confirmation.csv"

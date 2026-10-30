@@ -88,9 +88,9 @@
 
 | cycle | year | raw_path | raw_source | raw_row_count | spx_path | spx_source |
 |---|---|---|---|---|---|---|
-| E | 2007-2008 | <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat | new-extracted | 34857 | <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/SPX_E.xpt | new-nested |
-| F | 2009-2010 | <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat | new-extracted | 36421 | <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/SPX_F.xpt | new-nested |
-| G | 2011-2012 | <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat | new-extracted | 37661 | <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/SPX_G.xpt | new-nested |
+| E | 2007-2008 | ./NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat | new-extracted | 34857 | ./NHANES_SpiroSBI/2007-2008/SPX_E.xpt | new-nested |
+| F | 2009-2010 | ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat | new-extracted | 36421 | ./NHANES_SpiroSBI/2009-2010/SPX_F.xpt | new-nested |
+| G | 2011-2012 | ./NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat | new-extracted | 37661 | ./NHANES_SpiroSBI/2011-2012/SPX_G.xpt | new-nested |
 
 ## Part 5 - F Regression Guard
 
@@ -107,11 +107,11 @@
 | clinical.fixed.kappa | 0.911847372455 | 0.911847372455 | 0 | True |
 | clinical.fixed.n | 414 | 414 | 0 | True |
 
-## Protocol Decisions
+## Decisions I Made
 
 - Implemented a dedicated dataset_resolver.py instead of broadening io.data_path because raw SAS7BDAT/ZIP integrity checks are specific to the validation gates.
 - Kept default cycle=F on migrated functions and CLIs so old invocations continue to target F.
 - Used the new NHANES_SpiroSBI nested root whenever present; legacy data/ and DATASET?/ fallback is available only when the new root is absent.
 - For E/G smoke, parsed curves and counted truth participants but did not run Gate 2 scoring, Gate 3 fitting, truncation, or clinical scoring.
 - Classified truncation and severe cached F artifacts for regeneration because they predate resolver provenance and embed F-only/old-path evidence.
-- Left a non-F guard in gate_four_part_fix_f.py because that gate still consumes F-named cached clinical/policy rows outside the registered SPX path-only scope.
+- Left a non-F guard in gate_four_part_fix_f.py because that gate still consumes F-named cached clinical/policy rows outside the prompt's SPX path-only change.

@@ -8,6 +8,7 @@ import pandas as pd
 
 from .io import CYCLES, data_path, read_xpt
 
+
 OUTPUT_FIELDS = {
     "participant_id": "SEQN",
     "age_years": "age_years",

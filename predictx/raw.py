@@ -8,6 +8,7 @@ import pandas as pd
 
 from .io import CYCLES, XptValidationError, data_path, read_xpt, validate_xpt
 
+
 RAW_REQUIRED_FIELDS = (
     "participant_id",
     "raw_curve",
@@ -18,16 +19,6 @@ RAW_REQUIRED_FIELDS = (
     "acceptable",
 )
 RAW_METADATA_FIELDS = ("position", "plateau", "raw_effort_grade")
-SAMPLE_HZ = 100
-
-
-def interval_end_times(n_points: int, hz: int = SAMPLE_HZ) -> np.ndarray:
-    """Return timestamps for interval-valued raw volume increments."""
-    if n_points < 0:
-        raise ValueError("n_points must be nonnegative")
-    if hz <= 0:
-        raise ValueError("hz must be positive")
-    return (np.arange(n_points, dtype=float) + 1.0) / float(hz)
 
 
 def gate_track_b(data_dir: Path, results_dir: Path) -> dict[str, object]:
@@ -91,7 +82,7 @@ def parse_spxraw_frame(frame: pd.DataFrame, column_map: dict, cycle: str) -> pd.
                 "test_type": row[columns["test_type"]],
                 "acceptable": row[columns["acceptable"]],
                 "point_index": np.arange(n_points, dtype=int),
-                "time_s": interval_end_times(n_points),
+                "time_s": (np.arange(n_points, dtype=float) + 1.0) * 0.01,
                 "flow_interval_mL": flow_interval_ml,
                 "flow_mL_s": flow_interval_ml * 100.0,
                 "volume_mL": volume_ml,

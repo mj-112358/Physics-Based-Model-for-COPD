@@ -2,7 +2,7 @@
 
 VERDICT: CONTEXT-ADDS-NOTHING - covariate-resolved calls did not beat the naive 0.70 spirometry flip on the same cases, so Tier 2 is discarded.
 
-## Protocol Decisions
+## Decisions I Made
 
 - TEST split only.
 - Operated only on residual deferred cases from gate_deferral_recovery_f: deferred_baseline == True and recovered == False.

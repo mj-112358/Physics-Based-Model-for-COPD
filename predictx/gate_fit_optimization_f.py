@@ -21,11 +21,12 @@ from scipy import sparse
 from scipy.optimize import least_squares
 
 from .fit import np_ombe_flow
-from .gate3_diagnosis import fit_ombe_volume_lm, np_ombe_volume, savgol_sigma
 from .gate23_f import find_or_unzip_raw, read_raw
+from .gate3_diagnosis import fit_ombe_volume_lm, np_ombe_volume, savgol_sigma
 from .gate_clinical_classification_f import extract_curve_for_fit
 from .gate_truncation_recovery_f import clean_json
 from .ombe import ombe_flow, phi_from_natural
+
 
 OUTPUT_STEM = "gate_fit_optimization_F"
 SEED = 20260710
@@ -581,7 +582,7 @@ def make_report(result: dict[str, Any], deltas: pd.DataFrame) -> str:
     lines = [
         "# Gate - Deterministic Fit Optimization Pass, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         "- This is a guarded optimization gate, not a production rewrite. No production estimator is changed unless every guard accepts the new configuration.",
         "- Baseline headlines are locked by reading existing result files before any refit.",

@@ -9,8 +9,8 @@ import numpy as np
 import pandas as pd
 
 from . import gate_clinical_classification_f as clinical_gate
-from .gate3_diagnosis import clinical_metrics_from_volume, fit_ombe_volume_lm
 from .gate23_f import find_or_unzip_raw, read_raw
+from .gate3_diagnosis import clinical_metrics_from_volume, fit_ombe_volume_lm
 from .gate_clinical_classification_f import (
     RANDOM_SEED,
     build_usable_raw_candidates,
@@ -19,7 +19,8 @@ from .gate_clinical_classification_f import (
     load_truth,
     severity_category,
 )
-from .gate_reconciliation_audit_f import clean_json, fmt, median_iqr
+from .gate_reconciliation_audit_f import clean_json, fmt, md_table, median_iqr
+
 
 OUTPUT_STEM = "gate_reproducibility_volume_F"
 CHECKPOINT_NAME = "_gate_reproducibility_volume_F_fits_checkpoint.csv"

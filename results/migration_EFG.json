@@ -90,7 +90,7 @@
     {
       "cycle": "E",
       "year": "2007-2008",
-      "folder": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008",
+      "folder": "./NHANES_SpiroSBI/2007-2008",
       "has_extracted_sas7bdat": true,
       "has_raw_zip": true,
       "has_spx_xpt": true,
@@ -112,7 +112,7 @@
     {
       "cycle": "F",
       "year": "2009-2010",
-      "folder": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010",
+      "folder": "./NHANES_SpiroSBI/2009-2010",
       "has_extracted_sas7bdat": true,
       "has_raw_zip": true,
       "has_spx_xpt": true,
@@ -134,7 +134,7 @@
     {
       "cycle": "G",
       "year": "2011-2012",
-      "folder": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012",
+      "folder": "./NHANES_SpiroSBI/2011-2012",
       "has_extracted_sas7bdat": true,
       "has_raw_zip": true,
       "has_spx_xpt": true,
@@ -158,35 +158,35 @@
     {
       "cycle": "E",
       "year": "2007-2008",
-      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+      "raw_path": "./NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
       "raw_source": "new-extracted",
-      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+      "raw_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
       "raw_row_count": 34857,
-      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/SPX_E.xpt",
+      "spx_path": "./NHANES_SpiroSBI/2007-2008/SPX_E.xpt",
       "spx_source": "new-nested",
-      "spx_note": "using SPX_E.xpt from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/SPX_E.xpt"
+      "spx_note": "using SPX_E.xpt from new nested root: ./NHANES_SpiroSBI/2007-2008/SPX_E.xpt"
     },
     {
       "cycle": "F",
       "year": "2009-2010",
-      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+      "raw_path": "./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
       "raw_source": "new-extracted",
-      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
+      "raw_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2009-2010/spxraw_f.sas7bdat",
       "raw_row_count": 36421,
-      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/SPX_F.xpt",
+      "spx_path": "./NHANES_SpiroSBI/2009-2010/SPX_F.xpt",
       "spx_source": "new-nested",
-      "spx_note": "using SPX_F.xpt from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2009-2010/SPX_F.xpt"
+      "spx_note": "using SPX_F.xpt from new nested root: ./NHANES_SpiroSBI/2009-2010/SPX_F.xpt"
     },
     {
       "cycle": "G",
       "year": "2011-2012",
-      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
+      "raw_path": "./NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
       "raw_source": "new-extracted",
-      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
+      "raw_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
       "raw_row_count": 37661,
-      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/SPX_G.xpt",
+      "spx_path": "./NHANES_SpiroSBI/2011-2012/SPX_G.xpt",
       "spx_source": "new-nested",
-      "spx_note": "using SPX_G.xpt from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/SPX_G.xpt"
+      "spx_note": "using SPX_G.xpt from new nested root: ./NHANES_SpiroSBI/2011-2012/SPX_G.xpt"
     }
   ],
   "migrated_checklist": [
@@ -613,10 +613,10 @@
   "smoke_rows": [
     {
       "cycle": "E",
-      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+      "raw_path": "./NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
       "raw_source": "new-extracted",
-      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
-      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2007-2008/SPX_E.xpt",
+      "raw_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2007-2008/spxraw_e.sas7bdat",
+      "spx_path": "./NHANES_SpiroSBI/2007-2008/SPX_E.xpt",
       "spx_source": "new-nested",
       "metadata_rows": 34857,
       "loaded_rows": 34857,
@@ -627,10 +627,10 @@
     },
     {
       "cycle": "G",
-      "raw_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
+      "raw_path": "./NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
       "raw_source": "new-extracted",
-      "raw_note": "using extracted SAS7BDAT from new nested root: <PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
-      "spx_path": "<PROJECT_ROOT>/NHANES_SpiroSBI/2011-2012/SPX_G.xpt",
+      "raw_note": "using extracted SAS7BDAT from new nested root: ./NHANES_SpiroSBI/2011-2012/spxraw_g.sas7bdat",
+      "spx_path": "./NHANES_SpiroSBI/2011-2012/SPX_G.xpt",
       "spx_source": "new-nested",
       "metadata_rows": 37661,
       "loaded_rows": 37661,
@@ -691,12 +691,12 @@
       }
     ]
   },
-  "protocol_decisions": [
+  "decisions_i_made": [
     "Implemented a dedicated dataset_resolver.py instead of broadening io.data_path because raw SAS7BDAT/ZIP integrity checks are specific to the validation gates.",
     "Kept default cycle=F on migrated functions and CLIs so old invocations continue to target F.",
     "Used the new NHANES_SpiroSBI nested root whenever present; legacy data/ and DATASET?/ fallback is available only when the new root is absent.",
     "For E/G smoke, parsed curves and counted truth participants but did not run Gate 2 scoring, Gate 3 fitting, truncation, or clinical scoring.",
     "Classified truncation and severe cached F artifacts for regeneration because they predate resolver provenance and embed F-only/old-path evidence.",
-    "Left a non-F guard in gate_four_part_fix_f.py because that gate still consumes F-named cached clinical/policy rows outside the registered SPX path-only scope."
+    "Left a non-F guard in gate_four_part_fix_f.py because that gate still consumes F-named cached clinical/policy rows outside the prompt's SPX path-only change."
   ]
 }

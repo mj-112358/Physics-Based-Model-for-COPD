@@ -31,18 +31,23 @@ from .gate3_diagnosis import np_ombe_volume
 from .gate23_f import find_or_unzip_raw, read_raw
 from .gate_clinical_classification_f import extract_curve_for_fit
 from .gate_likelihood_repair_f import (
+    CONVERGED_ESS_MIN,
+    CONVERGED_RHAT_MAX,
     FIXED_SIGMA_L,
     NUTS_CHAINS,
     NUTS_DRAWS,
     NUTS_GRID_STRIDE,
     NUTS_WARMUP,
+    PARAM_NAMES,
     VARIANT_SEED_OFFSETS,
+    build_subsets,
     mcmc_diagnostics,
     ombe_likelihood_model,
     samples_to_phi,
 )
 from .gate_posterior_calibration_repair_f import WIDE_PRIOR_RANGES, ratio_samples_from_phi
-from .ombe import OmbeGrid, ombe_volume, sample_prior_phi, unpack_phi
+from .ombe import OmbeGrid, ombe_volume, phi_from_natural, sample_prior_phi, unpack_phi
+
 
 OUTPUT_STEM = "gate_misspecification_isolation_F"
 CACHE_VERSION = "v2_target_tfull"
@@ -571,11 +576,11 @@ def write_outputs(root: Path, result: dict[str, Any], rows: pd.DataFrame, summar
     lines = [
         "# Gate - Misspecification Isolation, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         "- Used the checked-in likelihood-repair sampler settings from `predictx/gate_likelihood_repair_f.py`: "
-        f"{NUTS_CHAINS} chains, {NUTS_WARMUP} warmup, {NUTS_DRAWS} draws, stride {NUTS_GRID_STRIDE}. The initial specification states 4 chains x 2500 warmup/draws, but the reusable repo configuration does not.",
-        f"- Cell A uses IID sigma {CELL_A_SIGMA_L * 1000:.1f} mL so L0 is exactly the data-generating likelihood. The initial specification also states 28 mL; that conflicts with the mandatory exact Cell A/L0 halt check. Cell B and dose-response use AR(1) marginal RMS {AR1_RMS_L * 1000:.1f} mL.",
+        f"{NUTS_CHAINS} chains, {NUTS_WARMUP} warmup, {NUTS_DRAWS} draws, stride {NUTS_GRID_STRIDE}. The prompt text says 4 chains x 2500 warmup/draws, but the reusable repo configuration does not.",
+        f"- Cell A uses IID sigma {CELL_A_SIGMA_L * 1000:.1f} mL so L0 is exactly the data-generating likelihood. The prompt also mentions 28 mL; that conflicts with the mandatory exact Cell A/L0 halt check. Cell B and dose-response use AR(1) marginal RMS {AR1_RMS_L * 1000:.1f} mL.",
         "- The only arm-specific branch is data loading/generation. The same NUTS model, priors, seed policy, diagnostics, and coverage code are used for every generated curve.",
         "- Real Cell C reuses the existing likelihood-repair TEST subset rows from `gate_likelihood_repair_F_rows.csv`; this is the same repo code path and preserves the requested SEQN list.",
         "- Real-arm coverage targets observed curve FEV1/FVC, not known theta. Synthetic-arm coverage targets known theta. This asymmetry is not hidden.",

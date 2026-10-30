@@ -2,7 +2,7 @@
 
 VERDICT: TUNED-70-PLUS - A deterministic label-independent profile reaches at least 70% finalized coverage with severe FN=0; the held-out maneuver proxy is high but not perfect, so this is a coverage/accuracy tradeoff rather than the strict-perfect subset.
 
-## Protocol Decisions
+## Decisions I Made
 
 - This tuning pass does not edit the production recovery gate; it writes an audited candidate profile only.
 - Selection is label-independent: thresholds use fit quality, CIs, distance from 0.70, and maneuver consistency before truth scoring.

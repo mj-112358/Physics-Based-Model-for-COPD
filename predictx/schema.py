@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+import pandas as pd
+
 from .io import CYCLES, TRACK_A_FILES, XptData, data_path, example_values, read_xpt
 
 

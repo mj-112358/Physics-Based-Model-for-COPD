@@ -20,23 +20,20 @@ from numpyro.infer import MCMC, NUTS
 from scipy.stats import binom, kstest
 
 from .gate_likelihood_repair_f import (
+    FIXED_SIGMA_L,
     NUTS_CHAINS as REPO_NUTS_CHAINS,
-)
-from .gate_likelihood_repair_f import (
     NUTS_DRAWS as REPO_NUTS_DRAWS,
-)
-from .gate_likelihood_repair_f import (
     NUTS_GRID_STRIDE,
+    NUTS_WARMUP as REPO_NUTS_WARMUP,
+    PARAM_NAMES,
     VARIANT_SEED_OFFSETS,
     mcmc_diagnostics,
     ombe_likelihood_model,
     samples_to_phi,
 )
-from .gate_likelihood_repair_f import (
-    NUTS_WARMUP as REPO_NUTS_WARMUP,
-)
 from .gate_misspecification_isolation_f import (
     COVERAGE_LEVELS,
+    N_PER_CELL,
     SEED,
     TARGET_COUNTS,
     clean_json,
@@ -47,6 +44,7 @@ from .gate_misspecification_isolation_f import (
 )
 from .gate_posterior_calibration_repair_f import ratio_samples_from_phi
 from .ombe import OmbeGrid
+
 
 OUTPUT_STEM = "gate_sampler_convergence_F"
 CACHE_VERSION = "v2_gateA_seed"
@@ -472,7 +470,7 @@ def write_outputs(root: Path, result: dict[str, Any], ladder: pd.DataFrame, audi
     lines = [
         "# Gate - Sampler Convergence Establishment, Cycle F",
         "",
-        "## Protocol Decisions",
+        "## Decisions I Made",
         "",
         "- Cell A construction is reused from `gate_misspecification_isolation_f.py` with seed 20260710 and target counts 67/67/12/4.",
         "- The ladder varies sampler settings only: chains, warmup, draws, target_accept, dense_mass.",

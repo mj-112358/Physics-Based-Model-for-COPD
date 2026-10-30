@@ -12,8 +12,8 @@ from PIL import Image, ImageDraw
 
 from .dataset_resolver import resolve_dataset_path
 from .fit import ADEQUATE_NRSS_THRESHOLD, fit_ombe_lm, np_ombe_flow
-from .raw import interval_end_times
 from .segment import backextrap_t0, derive_fev1_fvc, detect_forced_exhale_segment
+
 
 RAW_REQUIRED = (
     "SEQN",
@@ -99,10 +99,7 @@ def derive_curve(row: Any) -> dict:
     fact = float(row.SPAFACT)
     flow_lps = incr * 0.1 * fact
     volume_ml = np.cumsum(incr) * fact
-    # Each SPXRAW value is the volume change over a completed 0.01 s
-    # interval. The first cumulative volume therefore belongs at 0.01 s,
-    # rather than at time zero. This convention also matches raw.py.
-    time_s = interval_end_times(len(incr), HZ)
+    time_s = np.arange(len(incr), dtype=float) / HZ
     onset_idx, pef_idx, end_idx = detect_forced_exhale_segment(flow_lps, hz=HZ)
     t0_s = backextrap_t0(time_s, flow_lps, volume_ml, onset_idx, pef_idx)
     fev1_ml, fvc_ml = derive_fev1_fvc(time_s, volume_ml, t0_s, end_idx)
