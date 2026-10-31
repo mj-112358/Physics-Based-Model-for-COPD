@@ -50,7 +50,6 @@ sbi-logs/
 
 # Regenerable manuscript and rendering products
 output/
-paper_assets/
 rendered_*/
 *.docx
 *.pages

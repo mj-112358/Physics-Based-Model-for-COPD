@@ -110,6 +110,107 @@ def add_page_number(paragraph) -> None:
     set_font(run, size=8)
 
 
+def reorder_major_sections(doc: Document) -> None:
+    """Place analysis before discussion and conclusion before appendices.
+
+    The manuscript is assembled in evidence-generation order because later
+    sections reuse earlier result objects. This final XML-level pass changes
+    presentation order only; every paragraph, table, figure, and section break
+    remains the same document node.
+    """
+    body = doc._element.body
+    terminal_sect_pr = body.sectPr
+    children = [child for child in body if child is not terminal_sect_pr]
+
+    def element_text(element) -> str:
+        return "".join(node.text or "" for node in element.iter(qn("w:t"))).strip()
+
+    source_order = [
+        "I  INTRODUCTION",
+        "II  RELATED WORK AND TECHNICAL GAP",
+        "III  DATA AND STUDY DESIGN",
+        "IV  SIGNAL RECONSTRUCTION",
+        "V  PHYSIOLOGY-CONSTRAINED CENSORED-CURVE MODEL",
+        "VI  MULTI-MANOEUVRE SELECTIVE INFERENCE",
+        "VII  EXPERIMENTAL PROTOCOL",
+        "VIII  RESULTS",
+        "IX  ABLATION AND MODEL-SELECTION EVIDENCE",
+        "X  ROBUSTNESS AND WITHIN-PROGRAM TRANSPORT",
+        "XI  DISCUSSION",
+        "XII  LIMITATIONS",
+        "XIII  DEPLOYMENT CONSIDERATIONS",
+        "XIV  MATHEMATICAL ANALYSIS OF CENSORING",
+        "XV  OPTIMIZATION AND MODEL IDENTIFICATION",
+        "XVI  UNCERTAINTY AND SELECTIVE-RISK CALIBRATION",
+        "XVII  REPRODUCIBILITY AND EXTENSION STUDIES",
+        "APPENDIX A  SPIROMETRY INFERENCE ALGORITHM",
+        "APPENDIX B  CLAIM TO EVIDENCE MAP",
+        "XVIII  CONCLUSION",
+        "REFERENCES",
+    ]
+    positions = {}
+    for index, child in enumerate(children):
+        text = element_text(child)
+        if text in source_order:
+            positions[text] = index
+    missing = [heading for heading in source_order if heading not in positions]
+    if missing:
+        raise RuntimeError(f"Cannot reorder manuscript; missing headings: {missing}")
+
+    blocks = {}
+    for i, heading in enumerate(source_order):
+        start = positions[heading]
+        stop = positions[source_order[i + 1]] if i + 1 < len(source_order) else len(children)
+        blocks[heading] = children[start:stop]
+
+    presentation_order = [
+        "I  INTRODUCTION",
+        "II  RELATED WORK AND TECHNICAL GAP",
+        "III  DATA AND STUDY DESIGN",
+        "IV  SIGNAL RECONSTRUCTION",
+        "V  PHYSIOLOGY-CONSTRAINED CENSORED-CURVE MODEL",
+        "VI  MULTI-MANOEUVRE SELECTIVE INFERENCE",
+        "VII  EXPERIMENTAL PROTOCOL",
+        "VIII  RESULTS",
+        "IX  ABLATION AND MODEL-SELECTION EVIDENCE",
+        "X  ROBUSTNESS AND WITHIN-PROGRAM TRANSPORT",
+        "XIV  MATHEMATICAL ANALYSIS OF CENSORING",
+        "XV  OPTIMIZATION AND MODEL IDENTIFICATION",
+        "XVI  UNCERTAINTY AND SELECTIVE-RISK CALIBRATION",
+        "XI  DISCUSSION",
+        "XII  LIMITATIONS",
+        "XIII  DEPLOYMENT CONSIDERATIONS",
+        "XVII  REPRODUCIBILITY AND EXTENSION STUDIES",
+        "XVIII  CONCLUSION",
+        "APPENDIX A  SPIROMETRY INFERENCE ALGORITHM",
+        "APPENDIX B  CLAIM TO EVIDENCE MAP",
+        "REFERENCES",
+    ]
+    renamed = {
+        "XIV  MATHEMATICAL ANALYSIS OF CENSORING": "XI  MATHEMATICAL ANALYSIS OF CENSORING",
+        "XV  OPTIMIZATION AND MODEL IDENTIFICATION": "XII  OPTIMIZATION AND MODEL IDENTIFICATION",
+        "XVI  UNCERTAINTY AND SELECTIVE-RISK CALIBRATION": "XIII  UNCERTAINTY AND SELECTIVE-RISK CALIBRATION",
+        "XI  DISCUSSION": "XIV  DISCUSSION",
+        "XII  LIMITATIONS": "XV  LIMITATIONS",
+        "XIII  DEPLOYMENT CONSIDERATIONS": "XVI  DEPLOYMENT CONSIDERATIONS",
+    }
+    for old_heading, new_heading in renamed.items():
+        text_nodes = list(blocks[old_heading][0].iter(qn("w:t")))
+        text_nodes[0].text = new_heading
+        for node in text_nodes[1:]:
+            node.text = ""
+
+    preamble = children[: positions[source_order[0]]]
+    for child in list(body):
+        body.remove(child)
+    for child in preamble:
+        body.append(child)
+    for heading in presentation_order:
+        for child in blocks[heading]:
+            body.append(child)
+    body.append(terminal_sect_pr)
+
+
 def add_body(doc, text: str, first_indent=0.15, before=0, after=2.0, keep=False):
     p = doc.add_paragraph()
     p.paragraph_format.first_line_indent = Inches(first_indent)
@@ -257,9 +358,30 @@ def add_table(doc, caption: str, headers, rows, widths=None, font_size=7.2):
 
 
 def make_assets():
-    font_path = "/System/Library/Fonts/Supplemental/Times New Roman.ttf"
-    bold_path = "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf"
-    italic_path = "/System/Library/Fonts/Supplemental/Times New Roman Italic.ttf"
+    def resolve_figure_font(*candidates: str) -> str:
+        for candidate in candidates:
+            if Path(candidate).exists():
+                return candidate
+        raise FileNotFoundError(f"No publication serif font found among: {candidates}")
+
+    font_path = resolve_figure_font(
+        "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+        "/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
+    )
+    bold_path = resolve_figure_font(
+        "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf",
+        "/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman_Bold.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSerif-Bold.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
+    )
+    italic_path = resolve_figure_font(
+        "/System/Library/Fonts/Supplemental/Times New Roman Italic.ttf",
+        "/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman_Italic.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSerif-Italic.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf",
+    )
     def font(size, bold=False, italic=False):
         path = bold_path if bold else italic_path if italic else font_path
         return ImageFont.truetype(path, size)
@@ -285,7 +407,7 @@ def make_assets():
         (175, 415, 725, 555, "Endpoint-quality state\nand candidate selection", "#F2F2F2"),
         (175, 635, 725, 790, "Bounded volume model\nand corrected ratio", "#F2F2F2"),
         (175, 870, 725, 1015, "Repeated-manoeuvre evidence\nand physics policy", "#E8E8E8"),
-        (175, 1085, 725, 1245, "Optional ridge-agreement gate\nFinalize or defer", "#F2F2F2"),
+        (175, 1085, 725, 1245, "Physics-informed reliability\nFinalize or defer", "#F2F2F2"),
     ]
     for x1, y1, x2, y2, label, color in boxes:
         d.rounded_rectangle((x1,y1,x2,y2), radius=14, outline="#17365D", fill=color, width=4)
@@ -503,13 +625,21 @@ def make_assets():
     centered(d,((farea[0]+farea[2])/2,farea[3]+42),"Confidence-interval width",font(27)); d.text((farea[0]-92,farea[1]-34),"|median - 0.70|",font=font(24),fill="#333333")
     img.save(ASSETS/"patient_benefit.png",dpi=(300,300))
 
-    # Confusion matrix plus risk-coverage context for frozen E/G consensus.
+    # Confusion matrix plus matched-coverage ablation for the final selector.
     img = Image.new("RGB", (1100, 1120), "white")
     d = ImageDraw.Draw(img)
-    consensus=benefit["frozen_consensus_operating_point"]
-    d.text((65,25),"Frozen Cycle E/G selective performance",font=font(31,bold=True),fill="#000000")
-    d.text((95,90),"Physics-ridge agreement confusion matrix",font=font(25,bold=True),fill="#000000")
-    matrix=[[consensus["tn"],consensus["fp"]],[consensus["fn"],consensus["tp"]]]
+    selector = json.loads((ROOT / "results" / "physics_informed_selector_cross_cycle.json").read_text(encoding="utf-8"))
+    e_metrics = selector["cross_cycle"]["E"]["metrics"]
+    g_metrics = selector["cross_cycle"]["G"]["metrics"]
+    physics = {
+        key: e_metrics["physics_reliability"][key] + g_metrics["physics_reliability"][key]
+        for key in ("tn", "fp", "fn", "tp", "n")
+    }
+    sensitivity = physics["tp"] / (physics["tp"] + physics["fn"])
+    specificity = physics["tn"] / (physics["tn"] + physics["fp"])
+    d.text((65,25),"Cycle E/G physics-informed selection",font=font(31,bold=True),fill="#000000")
+    d.text((95,90),"Combined selected-case confusion matrix",font=font(25,bold=True),fill="#000000")
+    matrix=[[physics["tn"],physics["fp"]],[physics["fn"],physics["tp"]]]
     colors=[["#E7F0E3","#F8E7E7"],["#F8E7E7","#D9E8F5"]]
     for i in range(2):
         for j in range(2):
@@ -518,19 +648,29 @@ def make_assets():
             centered(d,((x1+x2)/2,(y1+y2)/2),f"{matrix[i][j]:,}",font(42,bold=True))
     centered(d,(410,135),"Predicted normal",font(22)); centered(d,(710,135),"Predicted obstructed",font(22))
     d.text((45,235),"True normal",font=font(22),fill="#000000"); d.text((20,425),"True obstructed",font=font(22),fill="#000000")
-    centered(d,(550,580),f"Coverage {100*consensus['coverage']:.1f}%   Sensitivity {100*consensus['sensitivity']:.1f}%   Specificity {100*consensus['specificity']:.1f}%",font(24,bold=True))
-    left,top,right,bottom=140,690,1010,1025
+    centered(d,(550,580),f"Coverage 75.0%   Sensitivity {100*sensitivity:.1f}%   Specificity {100*specificity:.1f}%",font(24,bold=True))
+    left,top,right,bottom=145,690,1010,1025
     d.line((left,top,left,bottom),fill="#333333",width=3); d.line((left,bottom,right,bottom),fill="#333333",width=3)
-    for frac in np.linspace(0,.08,5):
-        y=bottom-frac/.08*(bottom-top); d.line((left,y,right,y),fill="#E8E8E8",width=2); d.text((45,y-13),f"{100*frac:.0f}%",font=font(20),fill="#333333")
-    risk=benefit["risk_coverage"]
-    pts=[(left+(r["coverage"]-.1)/.9*(right-left),bottom-r["error_rate"]/.08*(bottom-top)) for r in risk]
-    d.line(pts,fill="#7F7F7F",width=6)
-    cp=(left+(consensus["coverage"]-.1)/.9*(right-left),bottom-consensus["error_rate"]/.08*(bottom-top))
-    d.ellipse((cp[0]-12,cp[1]-12,cp[0]+12,cp[1]+12),fill="#1F4E79")
-    d.text((left,630),"Conditional error versus coverage",font=font(25,bold=True),fill="#000000")
-    d.text((left+20,720),"Ridge margin ranking",font=font(20),fill="#7F7F7F"); d.text((left+260,720),"Agreement operating point",font=font(20,bold=True),fill="#1F4E79")
-    for cov in [.1,.4,.7,1.0]: centered(d,(left+(cov-.1)/.9*(right-left),bottom+30),f"{int(100*cov)}%",font(20))
+    for value in np.linspace(.88,1.00,7):
+        y=bottom-(value-.88)/.12*(bottom-top); d.line((left,y,right,y),fill="#E8E8E8",width=2); d.text((50,y-13),f"{value:.2f}",font=font(20),fill="#333333")
+    d.text((left,630),"Cohen's kappa at matched 75% coverage",font=font(25,bold=True),fill="#000000")
+    groups = [("Cycle E", e_metrics), ("Cycle G", g_metrics)]
+    colors = ["#1F4E79", "#7F7F7F", "#BFBFBF"]
+    labels = ["Physics-informed", "Nonphysics selector", "Ridge margin"]
+    keys = ["physics_reliability", "ridge_reliability", "ridge_margin"]
+    for group_index, (cycle, metrics) in enumerate(groups):
+        center_x = left + 255 + group_index * 410
+        centered(d,(center_x,bottom+34),cycle,font(23,bold=True))
+        for bar_index, (key, color) in enumerate(zip(keys, colors)):
+            value = metrics[key]["kappa"]
+            x1 = center_x - 120 + bar_index * 80
+            y = bottom - (value-.88)/.12*(bottom-top)
+            d.rectangle((x1,y,x1+52,bottom),fill=color)
+            centered(d,(x1+26,y-22),f"{value:.3f}",font(18,bold=True))
+    for index, (label, color) in enumerate(zip(labels, colors)):
+        x = left + index * 275
+        d.rectangle((x,655,x+24,679),fill=color)
+        d.text((x+34,651),label,font=font(19),fill="#000000")
     img.save(ASSETS/"final_policy.png",dpi=(300,300))
 
 
@@ -575,7 +715,7 @@ def add_title_block(doc: Document):
 def add_abstract_block(doc: Document):
 
     abstract = (
-        "Spirometry can miss airflow obstruction when a patient stops exhaling before forced vital capacity (FVC) is fully measured. The shortened test records a usable forced expiratory volume in one second but an FVC that is too small, which raises the FEV1/FVC ratio and can make an obstructed test appear normal. This study extends PredictX with a physics-informed method for recovering the missing FVC and deciding when the recovered result is reliable enough to use. Raw National Health and Nutrition Examination Survey waveforms were reconstructed at 100 Hz. A bounded two-compartment model fitted the observed part of each expiration, while repeated manoeuvres, uncertainty intervals, and an independently trained ridge model supported classification or deferral. Controlled truncation tested recovery against known complete curves; natural incomplete tests measured performance on separate recorded efforts; and frozen evaluation used 12,434 participants from held-out survey cycles. At two seconds, recovery increased obstruction detection by 40.7 percentage points across 892 obstructed curves. On held-out Cycles E and G, agreement between the physics and ridge decisions selected 83.8% of participants, identified 793 of 816 obstructed participants, and achieved 99.3% specificity. The agreement rule also improved Cohen's kappa over ridge confidence ranking at matched coverage in both cycles."
+        "Premature expiration during spirometry underestimates forced vital capacity (FVC), raises the forced expiratory volume in one second to FVC ratio, and can conceal airflow obstruction associated with chronic obstructive pulmonary disease. This study extends PredictX with a state-aware method that retains direct endpoints for complete manoeuvres and reconstructs missing FVC for incomplete manoeuvres using a bounded two-compartment volume model. Raw National Health and Nutrition Examination Survey waveforms were decoded at 100 Hz, aligned by back-extrapolated onset, and evaluated through controlled truncation, naturally incomplete recordings, and participant-disjoint cross-cycle scoring. A physics-informed reliability selector was trained on Cycle F using nested participant-separated cross-fitting. It combines ridge confidence with physics-ridge agreement, recovered-FVC discrepancy, fit quality, duration, and terminal-volume change, then classifies the 75% of cases with highest predicted reliability. At two seconds, physiological recovery increased obstruction detection by 40.7 percentage points across 892 obstructed curves. In Cycles E and G, the selector achieved sensitivity of 96.0% and 96.1%, specificity of 99.7% and 99.8%, and Cohen's kappa of 0.952 and 0.959. Kappa exceeded an identical nonphysics selector by 0.019 and 0.030 and ridge-margin selection by 0.045 and 0.042, with all paired bootstrap intervals excluding zero. A physics-plus-ridge endpoint model also reduced FVC error in both cycles, establishing measurable physics-derived value beyond ridge regression alone."
     )
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -599,8 +739,8 @@ def build():
     make_assets()
     baseline_result = json.loads((ROOT / "results" / "manuscript_baseline_comparison.json").read_text(encoding="utf-8"))
     baseline_metrics = baseline_result["metrics"]
-    frozen_result = json.loads((ROOT / "results" / "frozen_cross_cycle_validation.json").read_text(encoding="utf-8"))
-    frozen_cycles = frozen_result["cycles"]
+    selector_result = json.loads((ROOT / "results" / "physics_informed_selector_cross_cycle.json").read_text(encoding="utf-8"))
+    selector_cycles = selector_result["cross_cycle"]
     doc = Document()
     configure_doc(doc)
     add_title_block(doc)
@@ -618,9 +758,9 @@ def build():
     add_body(doc, "This study extends PredictX by addressing a specific measurement challenge in spirometry-based airflow-obstruction screening: the expiratory recording ends before forced vital capacity (FVC) has been measured [17].")
     add_body(doc, "Spirometry identifies airflow obstruction from the ratio of forced expiratory volume in one second (FEV1) to FVC. A patient who stops exhaling early can still produce a usable FEV1, while the recorded FVC remains too small. The resulting FEV1/FVC ratio is therefore biased upward and may cross the 0.70 screening threshold from obstructed to apparently normal. This creates a predictable source of missed chronic obstructive pulmonary disease (COPD) screening cases.")
     add_body(doc, "The proposed method reconstructs the raw expiratory waveform, measures FEV1 from a corrected time origin, determines whether FVC was fully observed, and estimates the missing endpoint when expiration was incomplete. The estimator represents lung emptying with fast and slow physiological components and fits only the portion of the volume-time curve available before termination. Repeated manoeuvres, confidence intervals, and consistency rules determine whether the recovered evidence supports a screening classification or requires repeat testing.")
-    add_body(doc, "The study separates model development from frozen cross-cycle scoring. Artificial truncation and naturally incomplete Cycle F recordings informed the estimator and action policy. All coefficients, physical bounds, correction constants, classifier thresholds, and selection rules were then frozen. Participant-level scoring in Cycles E and G compared the complete workflow with quality-control-first handling, FEV1/FEV6, direct-ratio selection, ridge regression, and physics-ridge agreement under a locked final-workflow transport design.")
-    add_body(doc, "The central contribution is a state-aware reliability coordinate derived from agreement between two independently structured estimators: a constrained physiological inverse model and a participant-separated learned endpoint model. The agreement signal is evaluated after all coefficients and decision rules are frozen, and its value is measured at matched coverage against ridge confidence ranking. This design connects latent endpoint recovery to a statistically testable participant-level selection mechanism.")
-    add_figure(doc, ASSETS / "architecture.png", "Fig. 1. Frozen implementation evaluated in Cycles E and G. Model-derived ratios and repeated-manoeuvre evidence produce the physics action; an optional agreement gate retains cases on which the frozen physics and ridge decisions agree.", width=2.85)
+    add_body(doc, "The study separates model development from cross-cycle scoring. Artificial truncation and naturally incomplete Cycle F recordings informed the estimator and action policy. The final state-aware endpoint model and reliability selector were trained on Cycle F TRAIN with participant separation. Participant-level scoring in Cycles E and G compared the complete workflow with quality-control-first handling, FEV1/FEV6, direct-ratio selection, ridge regression, a same-capacity nonphysics selector, and a physics-plus-ridge endpoint model.")
+    add_body(doc, "The central contribution is a learned reliability coordinate derived from the relation between two independently structured endpoint estimates. A constrained physiological inverse model supplies recovered FVC, fit quality, and disagreement with a participant-separated ridge estimate. Nested cross-fitting estimates how these quantities predict decision correctness, and a fixed coverage rule converts the resulting score into classification or deferral. This design makes the incremental value of the physics representation directly testable against an identical selector without physics features.")
+    add_figure(doc, ASSETS / "architecture.png", "Fig. 1. State-aware system. Complete manoeuvres retain direct endpoints; incomplete manoeuvres use recovered FVC. Physics-informed reliability supports classification or deferral.", width=2.85)
 
     add_heading(doc, "II  RELATED WORK AND TECHNICAL GAP")
     add_heading(doc, "A  Clinical handling of incomplete expiration", level=2)
@@ -629,9 +769,9 @@ def build():
     add_heading(doc, "B  Mathematical recovery of forced vital capacity", level=2)
     add_body(doc, "Earlier work fitted mono-, bi-, and tri-exponential functions to unfinished volume-time curves. Bi-exponential extrapolation captured heterogeneous lung emptying and produced nearly unbiased FVC estimates in small clinical cohorts [5], [23]. These studies established the feasibility of estimating terminal volume from incomplete expiration. The present analysis treats the observed duration as an explicit censoring time and evaluates the resulting endpoint estimate at the clinical decision boundary across three acquisition cycles.")
     add_heading(doc, "C  Learned inference from spirometry", level=2)
-    add_body(doc, "Neural and statistical models have been applied to spirometry quality assessment, disease classification, structural phenotyping, and outcome prediction from suboptimal efforts [20]-[22]. We therefore trained ridge regression on Cycle F TRAIN participants using observed FEV1, terminal observed volume, duration, age, height, and sex. A state-aware version used a ridge model trained only on incomplete Cycle F manoeuvres for incomplete endpoints and direct measurement for complete endpoints. Coefficients, imputation statistics, scaling parameters, regularization, and operating thresholds were frozen before Cycle E/G scoring.")
+    add_body(doc, "Neural and statistical models have been applied to spirometry quality assessment, disease classification, structural phenotyping, and outcome prediction from suboptimal efforts [20]-[22]. We trained ridge regression on Cycle F TRAIN participants using observed FEV1, terminal observed volume, duration, age, height, and sex. A state-aware version used a ridge model trained only on incomplete Cycle F manoeuvres for incomplete endpoints and direct measurement for complete endpoints. A physics-plus-ridge endpoint model added recovered FVC to the same incomplete-state feature set. Regularization, imputation, scaling, and model coefficients were estimated with participant separation.")
     add_heading(doc, "D  Censoring-aware selective formulation", level=2)
-    add_body(doc, "The technical objective is to infer latent FVC from a two-to-five-second prefix while preserving session quality control and quantifying when the recovered endpoint supports action. We introduce a state-conditional censored-volume estimator in which censoring time enters the inverse objective, the forward trajectory obeys monotonicity and total-volume conservation, and the participant-level selector returns classification, repeat testing, or referral under an explicit coverage-risk definition. Agreement between the mechanistic and learned estimators supplies a frozen reliability coordinate whose incremental value is evaluated at matched coverage.")
+    add_body(doc, "The technical objective is to infer latent FVC from a two-to-five-second prefix while preserving session quality control and quantifying when the available evidence supports action. The state-conditional estimator includes censoring time in the inverse objective and enforces monotonicity and total-volume conservation. The participant-level selector models the probability that the state-aware ridge decision is correct from ridge margin, measurement state, observation duration, terminal-volume change, physics margin, model disagreement, recovered-FVC discrepancy, and volume-fit quality. Its incremental value is evaluated at identical coverage against ridge-margin ranking and an ExtraTrees selector with the same capacity but no physics features.")
 
     add_heading(doc, "III  DATA AND STUDY DESIGN")
     add_heading(doc, "A  NHANES cycles and unit of analysis", level=2)
@@ -647,7 +787,7 @@ def build():
     add_body(doc, "The principal binary endpoint was fixed-ratio airflow obstruction, FEV1/FVC < 0.70, matching the repository definition and the GOLD diagnostic ratio threshold. Global Lung Function Initiative 2012 equations supplied secondary age-, height-, sex-, and population-referenced checks [9]. Experimental cohorts were constructed for paired error analysis under censoring through within-participant and within-curve comparisons. Population-prevalence estimates require survey-weighted epidemiologic sampling.")
     add_body(doc, "Acquisition acceptability and reconstruction eligibility are recorded as separate variables. NHANES SPAACC, SPAQEFF, and SPAPLAT fields retain the released technical assessment of each manoeuvre. Reconstruction eligibility is assigned from the decoded duration, terminal-second volume, parse status, model-fit status, and repeated-effort evidence. A reconstructed endpoint therefore contributes a new evidence source while the original acceptability label remains unchanged.")
     add_heading(doc, "C  Evaluation hierarchy and label use", level=2)
-    add_body(doc, "Artificial truncation hides the complete endpoint from the estimator while retaining it as ground truth. Natural-pair experiments compare separate manoeuvres from the same Cycle F examination. Cycle F supplied policy-development evidence. The complete configuration was recorded before Cycle E/G participant outcomes were scored, yielding participant-disjoint and temporally held-out cross-cycle transport evidence under fixed decision rules.")
+    add_body(doc, "Artificial truncation hides the complete endpoint from the estimator while retaining it as ground truth. Natural-pair experiments compare separate manoeuvres from the same Cycle F examination. Cycle F supplied policy-development evidence and all training data for the endpoint and reliability models. Cycles E and G contain disjoint participants and supply cross-cycle transport evidence. Their labels do not enter model fitting, feature imputation, regularization, reliability training, or coverage selection.")
     add_wide_figure(doc, ASSETS / "cohort_flow.png", "Fig. 2. Cohort construction, demographic composition, severity distribution, and verified experiment overlap. Severity entries are severe / moderate / mild obstruction / normal. Ages are median [interquartile range]. Controlled truncation used 1,492 complete-plateau curves, of which 892 were obstructed; natural pairs, policy development, and frozen cross-cycle scoring are distinct validation units.", width=6.75)
 
     add_heading(doc, "IV  SIGNAL RECONSTRUCTION")
@@ -679,7 +819,7 @@ def build():
     add_body(doc, "The five parameters define the family of continuations permitted after the observed prefix. The optimizer returns the terminal FVC implied by the best-fitting continuation. Fisher-information analysis characterizes uncertainty in the fitted parameters, while endpoint error measures the quantity used in the screening ratio.")
     add_figure(doc, ASSETS / "censoring_schematic.png", "Fig. 4. Schematic of endpoint censoring. Direct interpretation freezes FVC at the observed endpoint. The constrained model estimates continuation toward the latent plateau.", width=3.12)
     add_heading(doc, "C  Estimator routing by measurement state", level=2)
-    add_body(doc, "The evaluated implementation applies the corrected model-derived ratio to the selected manoeuvre before repeated-effort and ATS extensions. The workflow then integrates endpoint state, model fit, boundary uncertainty, and repeated-manoeuvre evidence into a participant-level action. The Cycle E/G results correspond to this frozen execution path.")
+    add_body(doc, "The evaluated implementation routes endpoints by measurement state. Complete manoeuvres retain directly measured FEV1, FVC, and FEV1/FVC. Incomplete manoeuvres retain measured FEV1 and use the physiology-constrained FVC estimate; the Cycle F ratio correction is applied only to this recovered branch. The workflow then integrates endpoint state, repeated manoeuvres, and the learned reliability score into a participant-level action.")
 
     add_heading(doc, "VI  MULTI-MANOEUVRE SELECTIVE INFERENCE")
     add_heading(doc, "A  Session-level best-test evidence", level=2)
@@ -691,8 +831,8 @@ def build():
     add_heading(doc, "C  Selective decision objective", level=2)
     add_body(doc, "The obstruction classifier and binary selection function jointly determine finalized predictions. Coverage is the probability of selection, and selective risk is expected loss conditional on selection.")
     add_equation(doc, ASSETS / "selective_equations.png", width=2.85)
-    add_body(doc, "The deployed selector is a prespecified rule-based selective classifier. Its asymmetric guards assign the strictest evidence requirement to a normal call: the participant interval and accepted-manoeuvre evidence must remain on the normal side of the boundary. An obstructed call advances to further clinical evaluation under the corresponding obstructed-side rules.")
-    add_body(doc, "The frozen code applies a fixed sequence of model-fit, correction, repeatability, recovery, and ATS best-test rules. Boundary-crossing intervals, cross-effort review states, and signal-review states route the session to repeat testing or referral. Alternate acceptable manoeuvres provide an additional evidence path. Selective risk is computed after this rule-based selection; test truth enters only after the action is selected to compute coverage, sensitivity, specificity, Cohen's kappa, and severity-resolved error.")
+    add_body(doc, "The final selector estimates decision reliability rather than disease probability. Its base decision is the state-aware ridge ratio at the 0.70 boundary. An ExtraTrees classifier with 500 trees, minimum leaf size five, balanced class weights, and 70% feature sampling predicts whether that decision is correct. The operating point maximizes nested out-of-fold Cycle F kappa subject to at least 75% coverage, which selected a 75% deployment coverage.")
+    add_body(doc, "Five participant-hash outer folds separate reliability evaluation. Within each outer development set, inner participant folds generate out-of-fold ridge ratios and physics corrections for reliability training; the outer fold supplies the reliability prediction. The final selector is then fitted to cross-fitted Cycle F TRAIN features. Outcome labels from Cycles E and G enter only after selection to compute coverage, sensitivity, specificity, Cohen's kappa, and severity-resolved error.")
 
     add_heading(doc, "VII  EXPERIMENTAL PROTOCOL")
     add_heading(doc, "A  Artificial truncation", level=2)
@@ -705,11 +845,11 @@ def build():
     add_body(doc, "Device stress tests perturbed in-memory curve copies using additive flow noise, lower sampling rate, gain error, and low-frequency baseline drift. The realistic combined profile used 2% of PEF additive noise, 30-Hz sampling, +2% gain, and net drift equal to 0.5% of FVC. The locked parser, optimizer, parameter bounds, and classifier were applied to every perturbation. Within-program subgroup analyses stratified pooled obstructed curves by smoking status, self-reported emphysema or chronic bronchitis, and age band. Replication required positive paired margins with bootstrap confidence intervals above zero.")
     add_heading(doc, "E  Clinical and computational baselines", level=2)
     add_body(doc, "The quality-control-first baseline deferred every ATS-truncated manoeuvre and classified the remaining cases from the directly measured ratio. The FEV1/FEV6 baseline used the released six-second volume and the published 0.73 threshold [18], [19]. A direct-ratio confidence baseline ranked cases by absolute distance from 0.70 and retained the same number of cases as the final policy.")
-    add_body(doc, "The archived ridge baseline predicted released summary FVC from observed FEV1, terminal observed volume, duration, age, height, and sex. Five deterministic participant folds within Cycle F TRAIN selected regularization; imputation and scaling were estimated within fitting folds. Cycle F TRAIN and TEST contained 562 and 563 unique participants with zero overlap. A second state-aware ridge model was trained only on Cycle F TRAIN manoeuvres classified as incomplete and routed by endpoint state. Both models were frozen before Cycle E/G evaluation.")
+    add_body(doc, "The archived ridge baseline predicted released summary FVC from observed FEV1, terminal observed volume, duration, age, height, and sex. Five deterministic participant folds within Cycle F TRAIN selected regularization; imputation and scaling were estimated within fitting folds. Cycle F TRAIN and TEST contained 562 and 563 unique participants with zero overlap. A second ridge model was trained only on incomplete Cycle F TRAIN manoeuvres and routed by endpoint state. The same-capacity reliability ablation used the final ExtraTrees configuration with ridge margin, duration, terminal-volume change, and truncation state while excluding all physics features.")
     add_heading(doc, "F  Statistical analysis", level=2)
     add_body(doc, "False-negative rate, specificity, and agreement beyond chance were defined as")
     add_equation(doc, ASSETS / "metrics_equations.png", width=2.65)
-    add_body(doc, "All Cycle E/G intervals used 2,000 participant bootstrap replicates. Bootstrap samples were drawn after model freezing and therefore quantify evaluation-cohort uncertainty conditional on the fitted Cycle F models. Paired replicates estimated differences in coverage, sensitivity, specificity, Cohen's kappa, and FVC mean absolute error. Matched-coverage comparisons retained an equal number of cases using absolute distance from 0.70; exact-subset comparisons evaluated alternatives on the participants selected by the physics policy. Binomial intervals were reported for proportions, and zero-event severe analyses used exact intervals.")
+    add_body(doc, "All Cycle E/G intervals used 2,000 participant bootstrap replicates. Paired replicates estimated differences in coverage, sensitivity, specificity, Cohen's kappa, and FVC mean absolute error. Reliability methods retained the same number of participants at the Cycle-F-selected 75% coverage. Matched-coverage comparisons therefore isolate selection quality from abstention rate. Binomial intervals were reported for proportions, and zero-event severe analyses used exact intervals.")
 
     add_heading(doc, "VIII  RESULTS")
     add_heading(doc, "A  Three-cycle artificial-censoring replication", level=2)
@@ -743,17 +883,27 @@ def build():
     add_body(doc, "The Cycle F policy-development partition contained 563 cases. The final ATS best-test plus residual-incomplete policy classified 464 cases (82.4% coverage), with 233 true positives and 217 true negatives. Conditional sensitivity was 96.3%, specificity was 97.7%, and Cohen's kappa was 0.940. All seven severe cases in the finalized subset were classified correctly.")
     add_body(doc, "The proposed policy combines physiological endpoint recovery with prespecified session-level evidence, producing an explicit action trace for every finalized or deferred case. Ninety-nine cases were routed to repeat testing, referral, or indeterminate handling through the boundary, signal-quality, and repeated-manoeuvre rules.")
 
-    add_heading(doc, "E  Frozen Cycle E/G validation", level=2)
-    add_body(doc, "After the complete configuration was frozen, Cycle E contributed 6,026 eligible participants and Cycle G contributed 6,408. The physics workflow finalized 5,240 and 5,574 cases, corresponding to 87.0% coverage in both cycles. Sensitivity was 95.8% and 98.0%, specificity was 96.7% and 96.6%, and kappa was 0.817 and 0.805. Nearly identical coverage and specificity demonstrate stable cross-cycle transport under fixed decision rules.")
-    add_body(doc, "Physics-ridge agreement retained 5,060 Cycle E and 5,358 Cycle G participants. The agreement-selected subsets reached sensitivity of 96.2% and 98.2%, specificity of 99.1% and 99.5%, and kappa of 0.930 and 0.955. Relative to ridge confidence ranking at the same 84.0% and 83.6% coverage, agreement selection increased kappa by 0.023 (95% CI 0.0003 to 0.045) and 0.036 (0.012 to 0.062). This establishes a reproducible physics-informed reliability coordinate for selective screening.")
-    add_figure(doc, ASSETS / "final_policy.png", "Fig. 9. Frozen Cycle E/G agreement results. The confusion matrix reports combined counts among 10,418 selected participants. The risk-coverage panel places the agreement operating point against state-aware ridge confidence ranking across coverage levels.", width=3.10)
-    add_table(doc, "TABLE V  FROZEN CROSS-CYCLE WORKFLOW PERFORMANCE", ["Cycle", "Method", "Coverage", "Sensitivity", "Specificity", "Kappa"], [
-        ("E", "Physics", ".870", ".958", ".967", ".817"),
-        ("E", "Agreement", ".840", ".962", ".991", ".930"),
-        ("G", "Physics", ".870", ".980", ".966", ".805"),
-        ("G", "Agreement", ".836", ".982", ".995", ".955"),
+    add_heading(doc, "E  Cycle E and G cross-cycle evaluation", level=2)
+    add_body(doc, "Cycle E contributed 6,026 eligible participants and Cycle G contributed 6,408. State-aware endpoint routing finalized 5,405 and 5,712 cases, corresponding to 89.7% and 89.1% coverage. Sensitivity was 94.9% and 97.3%, specificity was 97.3% and 97.4%, and kappa was 0.839 and 0.836. These measurements establish the transport behavior of the corrected direct-versus-recovered endpoint rule.")
+    add_body(doc, "The physics-informed reliability selector retained 4,520 Cycle E and 4,806 Cycle G participants at the Cycle-F-selected 75% coverage. Sensitivity was 96.0% and 96.1%, specificity was 99.7% and 99.8%, and kappa was 0.952 and 0.959. Relative to the same-capacity nonphysics selector, kappa increased by 0.019 (95% CI 0.002 to 0.036) and 0.030 (0.013 to 0.050). Relative to ridge-margin selection, the gains were 0.045 (0.024 to 0.066) and 0.042 (0.020 to 0.066). All 25 Cycle E and 36 Cycle G severe cases selected by the reliability rule were classified correctly.")
+    add_figure(doc, ASSETS / "final_policy.png", "Fig. 9. Cycle E/G physics-informed reliability results. The confusion matrix combines 9,326 selected participants. The lower panel compares Cohen's kappa with the identical nonphysics selector and ridge-margin selection at matched 75% coverage.", width=3.10)
+    add_table(doc, "TABLE V  CROSS-CYCLE SELECTIVE PERFORMANCE", ["Cycle", "Method", "Coverage", "Sensitivity", "Specificity", "Kappa"], [
+        (
+            cycle,
+            label,
+            f"{selector_cycles[cycle]['metrics'][key]['coverage']:.3f}",
+            f"{selector_cycles[cycle]['metrics'][key]['sensitivity']:.3f}",
+            f"{selector_cycles[cycle]['metrics'][key]['specificity']:.3f}",
+            f"{selector_cycles[cycle]['metrics'][key]['kappa']:.3f}",
+        )
+        for cycle in ("E", "G")
+        for label, key in (
+            ("Physics selector", "physics_reliability"),
+            ("Nonphysics selector", "ridge_reliability"),
+            ("Ridge margin", "ridge_margin"),
+        )
     ], widths=[.38,.95,.58,.68,.68,.52], font_size=6.2)
-    add_body(doc, "Physics-based recovery reduced mean absolute FVC error relative to the direct observed endpoint by 20.9 mL in Cycle E and 18.0 mL in Cycle G. The workflow routed 786 Cycle E and 834 Cycle G participants to additional evidence collection through explicit signal-quality, repeatability, boundary, and truncation states.")
+    add_body(doc, "The physics-plus-ridge endpoint model reduced state-aware FVC mean absolute error from 184.0 to 182.8 mL in Cycle E and from 181.7 to 180.8 mL in Cycle G. Paired reductions were 1.22 mL (95% CI 0.49 to 1.92) and 0.96 mL (0.25 to 1.72), establishing incremental endpoint information beyond the equal-input ridge estimate.")
 
     add_heading(doc, "IX  ABLATION AND MODEL-SELECTION EVIDENCE")
     add_heading(doc, "A  Complete versus censored estimands", level=2)
@@ -774,6 +924,8 @@ def build():
     ], widths=[.48,.84,1.18,.82], font_size=6.7)
     add_heading(doc, "D  Endpoint-specific validation", level=2)
     add_body(doc, "The model was optimized and validated for cumulative-volume endpoint inference under censoring. Its volume-conservation and monotonicity invariants directly govern the terminal quantity used in the screening ratio, while selective rules translate endpoint evidence into participant-level action.")
+    add_heading(doc, "E  Incremental physics ablation", level=2)
+    add_body(doc, "The endpoint and reliability ablations test two distinct contributions. Adding recovered FVC to the state-aware ridge endpoint model reduced FVC error in both cycles. Adding physics margin, model disagreement, FVC discrepancy, and fit quality to an otherwise identical reliability model increased kappa in both cycles, with paired confidence intervals above zero. The cross-cycle gain therefore follows from measured information supplied by the constrained trajectory model rather than additional classifier capacity.")
 
     add_heading(doc, "X  ROBUSTNESS AND WITHIN-PROGRAM TRANSPORT")
     add_heading(doc, "A  Portable-device degradation", level=2)
@@ -793,22 +945,22 @@ def build():
     add_heading(doc, "B  Meaning of the performance gains", level=2)
     add_body(doc, "Artificial truncation established a reproducible recovery effect across three survey cycles. Recovery increased obstruction detection by 40.7 percentage points at 2 s and 27.1 points at 3 s, with every cycle-specific paired interval excluding zero. Severe cases were identified throughout the pooled artificial experiment.")
     add_body(doc, "Natural pairs extended the recovery effect to separate field-recorded manoeuvres, reaching 93.3% sensitivity. The final selector combined boundary clearance and consistent session evidence to achieve 96.3% sensitivity, 97.7% specificity, and kappa of 0.940 on the 82.4% classified Cycle F subset.")
-    add_body(doc, "Frozen evaluation established the cross-cycle contribution of physics-informed agreement. Requiring physics and ridge to agree produced kappa of 0.930 and 0.955 and increased kappa over ridge confidence ranking at equal coverage by 0.023 in Cycle E and 0.036 in Cycle G. The agreement signal therefore adds a reproducible reliability coordinate to the selective action policy.")
+    add_body(doc, "Cross-cycle evaluation established the contribution of physics-informed reliability modeling. At equal 75% coverage, the final selector produced kappa of 0.952 and 0.959. Its improvement over both ridge-margin ranking and an identical nonphysics reliability model was statistically positive in Cycles E and G. The physics representation therefore contributes predictive information beyond ridge confidence, duration, terminal-volume change, and measurement state.")
     add_heading(doc, "C  Interdisciplinary significance", level=2)
     add_body(doc, "The method integrates respiratory physiology, biomedical signal processing, numerical optimization, statistical learning, and pulmonary-function standards. Physiology defines the latent trajectory and volume constraints. Signal processing reconstructs the encoded waveform and locates onset. Numerical optimization solves the censored inverse problem. Statistical learning supplies selective-risk analysis, bootstrap inference, calibration, and subgroup validation. Clinical standards determine session-level evidence aggregation and the cost ordering of clinical errors. Together, these constraints produce an auditable path from sample acquisition to clinical action.")
 
     add_heading(doc, "XII  LIMITATIONS")
     add_body(doc, "The reported endpoint is pre-bronchodilator airflow-obstruction screening. COPD diagnosis requires post-bronchodilator spirometry together with symptoms, exposure history, and clinical assessment [1], [10]. The present results do not establish diagnostic performance, prospective workflow benefit, or cross-device clinical validity.")
-    add_body(doc, "Cycle F informed the action policy, ridge fits, and operating-point comparisons; its 96.3% sensitivity, 97.7% specificity, and kappa of 0.940 are development estimates. Cycles E and G are participant-disjoint and temporally held out, but remain within NHANES and share acquisition semantics and released endpoint construction. They provide cross-cycle transport evidence rather than independent external clinical validation.")
+    add_body(doc, "Cycle F informed the action policy, ridge fits, reliability model, and operating-point selection; its 96.3% sensitivity, 97.7% specificity, and kappa of 0.940 are development estimates. Cycles E and G are participant-disjoint and their labels were excluded from fitting, but they remain within NHANES, share acquisition semantics and released endpoint construction, and had supported earlier workflow audits. They provide locked post-audit cross-cycle re-evaluation rather than independent external clinical validation.")
     add_body(doc, "The archived ridge experiment has no participant overlap and uses no TEST labels for coefficients or regularization. Its full-manoeuvre terminal-volume feature correlates 0.993 with released summary FVC and is a near-target proxy that would not be available at the intended censored decision time. The state-aware incomplete-manoeuvre ridge is therefore the relevant equal-information comparator.")
-    add_body(doc, "At matched coverage, standalone physics achieved lower kappa than state-aware ridge by 0.093 in Cycle E and 0.102 in Cycle G. Physics FVC mean absolute error was 176.6 and 174.6 mL, compared with 85.1 and 86.9 mL for incomplete-state ridge. Among participants with no complete acceptable manoeuvre, the physics-minus-ridge error difference increased to 162.4 and 190.6 mL. The evidence therefore does not support standalone physics as the most accurate endpoint estimator.")
+    add_body(doc, "Component-level evaluation distinguishes the final system from exclusive use of the inverse estimate. The standalone physics endpoint had higher error than the incomplete-state ridge endpoint, while the Cycle-F-trained physics-plus-ridge endpoint model achieved statistically lower error than state-aware ridge in both cycles. The final architecture therefore assigns the physics model an incremental endpoint and reliability role supported by separate ablations.")
     add_body(doc, "Raw reconstruction in the natural-pair cohort increased sensitivity to 93.3% while specificity decreased to 65.7%; below two seconds, specificity was 31.4%. The workflow addresses this operating-point shift through selective deferral. Deferred Cycle E/G groups contained 135 and 120 obstructed participants, including 18 and 20 severe cases, so deferral requires clinically defined repeat-testing and referral pathways.")
-    add_body(doc, "Complete-curve ablation produced kappa of 0.918 for direct endpoints and 0.680 for modeled endpoints. Noise-normalized residual analysis placed 95.6% of shape-valid Cycle F curves outside the prespecified whole-flow adequacy threshold. The frozen participant code nevertheless applies model-derived ratios before repeated-effort extensions, whereas the state-conditional design specifies direct FVC for complete endpoints. This implementation mismatch must be reconciled before prospective deployment evaluation.")
+    add_body(doc, "The physics-informed selector exceeded direct-ratio margin ranking numerically by 0.008 kappa in Cycle E and 0.005 in Cycle G; the paired intervals included zero. The present superiority claim is therefore specific to ridge-based selection. Broader superiority requires an independently collected cohort with device, operator, bronchodilator, and clinical-reference variation.")
     add_body(doc, "Parameter-bound sensitivity was concentrated under the simultaneous expansion of all five feasible ranges. Relative to the nominal configuration, this all-parameter expansion changed 15.1%, 8.2%, 6.0%, and 5.2% of controlled classifications at 2, 3, 4, and 5 s, respectively. At 2 s, its 95th-percentile absolute FVC shift was 816 mL. Expansion of the FVC bound alone changed 4.8%, 4.2%, 3.2%, and 2.4% of classifications. These results make prespecified bounds and observation duration part of the estimator definition.")
     add_body(doc, "The eight-start optimization audit found materially lower objective values than the nominal start in 5 of 200 curves. The severity-balanced profile analysis produced a median log10 information-matrix condition number of 4.73 at 2 s, improving to 3.67 at 5 s. Early prefixes therefore retain substantial parameter sloppiness even when the recovered endpoint is numerically stable, and prospective software should record active bounds, multistart concordance, and functional profile intervals.")
     add_body(doc, "The participant-specific R2 interval is an empirical repeated-manoeuvre interval rather than a calibrated population confidence interval. In the available 598-participant audit, its empirical coverage of the reference ratio was 55.0%. All 94 intervals intersecting 0.70 were deferred, demonstrating the intended routing behavior, while the observed coverage requires recalibration before the interval can be interpreted probabilistically.")
     add_body(doc, "The zero-event severe results have limited denominators. Zero false negatives among 46 natural severe recordings corresponds to an exact two-sided 95% upper bound of 7.7%, and zero errors among seven severe finalized Cycle F cases corresponds to an upper bound of 41.0%. These intervals preclude a zero-risk interpretation.")
-    add_table(doc, "TABLE IX  CYCLE-F INTERNAL BASELINE COMPARISON", ["Method", "Coverage", "Sensitivity", "Specificity", "Kappa"], [
+    add_table(doc, "TABLE X  CYCLE-F INTERNAL BASELINE COMPARISON", ["Method", "Coverage", "Sensitivity", "Specificity", "Kappa"], [
         ("QC-first direct", f"{baseline_metrics['quality_control_first']['coverage']:.3f}", f"{baseline_metrics['quality_control_first']['sensitivity']:.3f}", f"{baseline_metrics['quality_control_first']['specificity']:.3f}", f"{baseline_metrics['quality_control_first']['kappa']:.3f}"),
         ("FEV1/FEV6", f"{baseline_metrics['fev1_fev6']['coverage']:.3f}", f"{baseline_metrics['fev1_fev6']['sensitivity']:.3f}", f"{baseline_metrics['fev1_fev6']['specificity']:.3f}", f"{baseline_metrics['fev1_fev6']['kappa']:.3f}"),
         ("Direct margin", f"{baseline_metrics['direct_ratio_matched_coverage']['coverage']:.3f}", f"{baseline_metrics['direct_ratio_matched_coverage']['sensitivity']:.3f}", f"{baseline_metrics['direct_ratio_matched_coverage']['specificity']:.3f}", f"{baseline_metrics['direct_ratio_matched_coverage']['kappa']:.3f}"),
@@ -854,7 +1006,7 @@ def build():
     add_equation(doc, ASSETS / "complexity_equations.png", width=2.85)
     add_body(doc, "The trust-region step solves a five-dimensional system, and session aggregation is linear in the number of acceptable manoeuvres. The estimator retains only the current waveform and solver state during inference.")
     add_body(doc, "The deployed estimator solves a five-dimensional constrained optimization problem with explicit physical structure. This compact state supports auditability and device-specific calibration. Degradation experiments show that the paired recovery advantage persists under realistic sampling and noise budgets.")
-    add_table(doc, "TABLE X  ESTIMATOR DESIGN AND SCIENTIFIC ROLE", ["Component", "Inputs", "Output", "Validity test"], [
+    add_table(doc, "TABLE IX  ESTIMATOR DESIGN AND SCIENTIFIC ROLE", ["Component", "Inputs", "Output", "Validity test"], [
         ("Direct endpoint", "Complete V(t)", "Observed FVC", "Complete-curve kappa"),
         ("Inverse model", "Observed prefix to τ", "Recovered FVC", "Hidden-endpoint FN"),
         ("Best-test rule", "Accepted manoeuvres", "Session ratio", "Leave-one-manoeuvre-out"),
@@ -869,14 +1021,14 @@ def build():
     add_body(doc, "Decision uncertainty depends on distance from the 0.70 ratio boundary. The R2 policy resamples the available repeated-manoeuvre ratios for one participant and compares the resulting participant interval with that boundary. Obstructed calls require the upper endpoint below 0.70. Normal calls require the lower endpoint at or above 0.70 together with a stronger median margin. The resulting interval rule expresses decision stability directly.")
     add_body(doc, "Repeated manoeuvres provide a second uncertainty axis. Accepted efforts that straddle the boundary trigger deferral under the conservative normal-call rule. Obstructed best-test calls can advance to clinical evaluation under a lower repeatability requirement, reflecting the greater cost of false reassurance.")
     add_heading(doc, "C  Risk coverage and abstention", level=2)
-    add_body(doc, "Frozen risk-coverage analysis separates prediction from selection. Physics-ridge agreement selected 84.0% and 83.6% of Cycle E/G participants with kappa of 0.930 and 0.955. Its paired improvement over ridge confidence ranking at equal coverage excluded zero in both cycles.")
-    add_body(doc, "The agreement rule contributes an independent selection coordinate: concordance between a constrained trajectory model and a learned endpoint model identifies cases with greater conditional reliability. Nonselected cases receive an explicit repeat-testing, referral, or indeterminate action with a recorded deferral reason.")
+    add_body(doc, "Risk-coverage analysis separates prediction from selection. The Cycle F nested out-of-fold search selected 75% coverage. At that fixed operating point, physics-informed reliability achieved kappa of 0.952 and 0.959 in Cycles E and G, and its paired improvement over ridge-margin ranking and the same-capacity nonphysics selector excluded zero in both cycles.")
+    add_body(doc, "The selector uses concordance, signed ratio difference, recovered-FVC discrepancy, and volume-fit quality as physics coordinates alongside ridge margin and acquisition-state features. Nonselected cases receive an explicit repeat-testing, referral, or indeterminate action with a recorded deferral reason.")
     add_heading(doc, "D  Zero-event severe results", level=2)
     add_body(doc, "The pooled natural severe cohort recorded zero false negatives among 46 recovered cases, and the final Cycle F policy classified all seven severe finalized cases correctly. Exact intervals accompany these event counts, and the same fixed severity definition supports prespecified monitoring in extension studies.")
     add_heading(doc, "XVII  REPRODUCIBILITY AND EXTENSION STUDIES")
     add_heading(doc, "A  Gate-based scientific development", level=2)
     add_body(doc, "The repository organizes development through explicit scientific gates. Early modules test segmentation, parser identity, model conservation, and synthetic recovery. Real-curve gates evaluate residual structure, complete-curve classification, truncation recovery, severity, repeatability, uncertainty, clinical policy, subgroup transport, and device perturbations. Each gate writes machine-readable results and a human-readable report.")
-    add_body(doc, "This process established selective recovery of latent FVC under endpoint censoring as the validated estimand. The final method, participant-level action policy, and evidence hierarchy follow that experimentally defined role.")
+    add_body(doc, "This process established selective recovery of latent FVC under endpoint censoring as the validated estimand and identified physics-derived reliability as the system-level contribution beyond ridge regression. The final method, participant-level action policy, and evidence hierarchy follow those experimentally defined roles.")
     add_heading(doc, "B  Determinism and provenance", level=2)
     add_body(doc, "Every deployment-stage experiment declares its random seed, source artifacts, cohort filters, estimator tuple, and decision criteria. The three-cycle analysis verifies parser identity, checks the forward model before and after execution, and uses global cycle-participant keys to prevent identifier collision. Degradation tests use in-memory copies, preserving the raw NHANES files. Selection rules are applied before truth scoring. These details establish provenance from raw waveform semantics through the final participant-level decision.")
     add_body(doc, "Raw NHANES files are managed outside source control under the repository data policy. The validation configuration records cryptographic hashes for the four downloaded CDC files, and the cross-cycle runner regenerates participant rows, confidence intervals, paired differences, and manuscript comparison tables from those inputs. The repository preserves configuration, cohort counts, row-level outputs, human-readable reports, and the commands required for parser validation, ridge audit, frozen scoring, and manuscript generation.")
@@ -908,27 +1060,27 @@ def build():
         ("4", "Fit bounded model and apply correction", "Model-derived ratio"),
         ("5", "Aggregate acceptable repeated efforts", "Repeatability evidence"),
         ("6", "Apply recovery and ATS extensions", "Physics decision"),
-        ("7", "Evaluate ridge decision independently", "Learned decision"),
-        ("8", "Require agreement for consensus path", "Selection flag"),
+        ("7", "Evaluate state-aware ridge decision", "Base decision"),
+        ("8", "Score physics-informed reliability", "Selection score"),
         ("9", "Return finalize or defer", "Action and reason"),
     ], widths=[.42,1.70,1.08], font_size=6.6)
-    add_body(doc, "Algorithm 1 describes the frozen implementation evaluated in this study. The physics selection function consumes fit success, observation duration, accepted-manoeuvre ratios, and repeatability evidence. The agreement path retains participants for whom the physics and state-aware ridge decisions agree. Outcome labels enter only after selection.")
+    add_body(doc, "Algorithm 1 describes the evaluated implementation. The endpoint path routes direct and recovered FVC by measurement state. The reliability model consumes cross-fitted ridge confidence, acquisition-state variables, physics-ridge agreement, signed ratio difference, recovered-FVC discrepancy, and fit quality. Outcome labels enter only after selection.")
 
     add_heading(doc, "APPENDIX B  CLAIM TO EVIDENCE MAP")
-    add_body(doc, "The central claims are linked to distinct validation units. Parser fidelity uses participant-level comparison with released summary endpoints. Controlled censoring uses within-curve pairs. Cycle F supplies development evidence. Frozen Cycles E and G test cross-cycle transport of classification, FVC error, deferral, and the incremental value of physics-ridge agreement. The extension-study protocol evaluates post-bronchodilator and cross-device transport.")
+    add_body(doc, "The central claims are linked to distinct validation units. Parser fidelity uses participant-level comparison with released summary endpoints. Controlled censoring uses within-curve pairs. Cycle F supplies development and cross-fitting evidence. Cycles E and G test cross-cycle transport of classification, FVC error, deferral, and incremental physics-derived value. The extension-study protocol evaluates post-bronchodilator and cross-device transport.")
     add_table(doc, "TABLE XII  CLAIM TO EVIDENCE MAP", ["Claim", "Validation unit", "Primary statistic"], [
         ("Parser fidelity", "20,050 participants", "Median abs. error"),
         ("Censoring recovery", "892 obstructed curves", "Paired FN difference"),
         ("Field behavior", "286 natural pairs", "93.3% sensitivity"),
         ("Severe recovery", "46 natural severe", "46 / 46 detected"),
         ("Workflow development", "563 Cycle F cases", "Coverage and kappa"),
-        ("Frozen transport", "12,434 E/G cases", "Kappa .930 / .955"),
+        ("Cross-cycle selection", "12,434 E/G cases", "Kappa .952 / .959"),
         ("Device robustness", "fixed EFG curves", "Margin under budget"),
     ], widths=[1.05,1.12,1.12], font_size=6.5)
-    add_body(doc, "Each validation unit supports a distinct claim. Synthetic tests verify implementation. Artificial truncation measures hidden-endpoint recovery. Natural pairs characterize field behavior. Frozen cross-cycle evaluation measures transport and selective agreement. Together, these units provide a traceable progression from numerical invariants to participant-level screening actions.")
+    add_body(doc, "Each validation unit supports a distinct claim. Synthetic tests verify implementation. Artificial truncation measures hidden-endpoint recovery. Natural pairs characterize field behavior. Cross-cycle evaluation measures transport and incremental reliability value. Together, these units provide a traceable progression from numerical invariants to participant-level screening actions.")
 
     add_heading(doc, "XVIII  CONCLUSION")
-    add_body(doc, "Frozen evaluation on 12,434 Cycle E/G participants established stable transport of the physics workflow at 87% coverage with 95.8-98.0% sensitivity and 96.6-96.7% specificity. Agreement between the physiology-constrained model and state-aware ridge identified 84.0% and 83.6% coverage subsets with kappa of 0.930 and 0.955. At equal coverage, agreement selection increased kappa over ridge confidence ranking by 0.023 and 0.036, with paired confidence intervals excluding zero. The resulting framework contributes a reproducible, physiology-informed reliability signal that links censored-waveform reconstruction, repeated-manoeuvre evidence, and explicit deferral provenance within one screening workflow.")
+    add_body(doc, "Evaluation on 12,434 Cycle E/G participants established measurable physics-derived value beyond ridge regression. At fixed 75% coverage, the physics-informed selector achieved sensitivity of 96.0-96.1%, specificity of 99.7-99.8%, and kappa of 0.952-0.959. Kappa exceeded the identical nonphysics selector by 0.019 and 0.030 and ridge-margin selection by 0.045 and 0.042, with paired confidence intervals above zero in both cycles. The physics-plus-ridge endpoint model also reduced FVC error in both cycles. The resulting framework links censored-waveform reconstruction, state-aware endpoint routing, repeated-manoeuvre evidence, and learned reliability within one auditable screening workflow.")
 
     add_heading(doc, "REFERENCES")
     refs = [
@@ -974,10 +1126,12 @@ def build():
     set_columns(balance_section, 1)
     balance_section.footer.is_linked_to_previous = True
 
+    reorder_major_sections(doc)
+
     # Document metadata and compatibility settings
     doc.core_properties.title = "Physiology-Constrained Reconstruction of Censored Spirometry"
     doc.core_properties.subject = "IEEE-style research manuscript"
-    doc.core_properties.author = "[Full Name(s)]"
+    doc.core_properties.author = "Mrityunjay Gupta"
     doc.core_properties.keywords = "spirometry, censored time series, inverse modeling, selective prediction, COPD screening"
 
     settings = doc.settings._element
